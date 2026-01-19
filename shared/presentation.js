@@ -35,8 +35,9 @@
             appendixSlides: document.querySelectorAll('.slide[data-appendix="true"]'),
             progressBar: document.querySelector('.progress-bar'),
             slideCounter: document.querySelector('.slide-counter'),
-            currentCounter: document.querySelector('.slide-counter .current'),
-            totalCounter: document.querySelector('.slide-counter .total'),
+            // Support both class-based (.current) and id-based (#current-slide) selectors
+            currentCounter: document.querySelector('.slide-counter .current') || document.getElementById('current-slide'),
+            totalCounter: document.querySelector('.slide-counter .total') || document.getElementById('total-slides'),
             tocOverlay: document.getElementById('toc-overlay'),
             tocContent: document.getElementById('toc-content'),
             tocClose: document.getElementById('toc-close'),
@@ -257,6 +258,11 @@
 
         // Trigger slide-specific animations
         animateSlide(targetSlide);
+
+        // Notify narration system of slide change (if loaded)
+        if (typeof window.Narration !== 'undefined' && window.Narration.onSlideChange) {
+            window.Narration.onSlideChange(n);
+        }
     }
 
     // Go to an appendix slide (1 to totalAppendixSlides)
@@ -304,6 +310,11 @@
 
         // Trigger slide-specific animations
         animateSlide(targetSlide);
+
+        // Notify narration system of appendix entry (will stop narration)
+        if (typeof window.Narration !== 'undefined' && window.Narration.onSlideChange) {
+            window.Narration.onSlideChange(n);
+        }
     }
 
     function nextSlide() {
@@ -656,6 +667,15 @@
                 } else if (state.appendixMode) {
                     // Exit appendix mode and return to main slides
                     exitAppendixMode();
+                }
+                break;
+
+            // Voice narration toggle (V key)
+            case 'v':
+            case 'V':
+                e.preventDefault();
+                if (typeof window.Narration !== 'undefined') {
+                    window.Narration.toggle();
                 }
                 break;
 
