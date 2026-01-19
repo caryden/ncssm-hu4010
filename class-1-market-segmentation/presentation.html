@@ -961,14 +961,14 @@
             if (!container || container.querySelector('svg')) return;
 
             const width = 700;
-            const height = 300;
+            const height = 450;  // Increased to fit all nodes
 
             const svg = d3.select(container)
                 .append('svg')
                 .attr('viewBox', `0 0 ${width} ${height}`)
                 .attr('preserveAspectRatio', 'xMidYMid meet');
 
-            const center = { x: width / 2, y: height / 2 };
+            const center = { x: width / 2, y: height / 2 };  // Center at 225
 
             // Center beachhead
             svg.append('circle')
