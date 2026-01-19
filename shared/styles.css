@@ -177,7 +177,9 @@ body {
 
 /* ===== Visual Slide ===== */
 .slide-visual {
-    padding-top: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .slide-visual h2 {
@@ -185,6 +187,17 @@ body {
     font-weight: 700;
     margin-bottom: 40px;
     color: var(--text-primary);
+}
+
+/* Visual slide content wrapper for proper centering */
+.slide-visual > .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    max-height: 100%;
 }
 
 /* ===== Two Part Slide ===== */
