@@ -303,7 +303,17 @@ body {
 
 /* ===== Two Part Slide ===== */
 .slide-two-part {
-    padding-top: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-two-part > .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    text-align: center;
 }
 
 .slide-two-part .primary {
@@ -316,7 +326,6 @@ body {
 .slide-two-part .secondary {
     font-size: 1.8rem;
     color: var(--text-secondary);
-    max-width: 900px;
     line-height: 1.6;
 }
 
@@ -329,7 +338,8 @@ body {
 
 /* ===== Comparison Slide ===== */
 .slide-comparison {
-    padding-top: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 .slide-comparison h2 {
