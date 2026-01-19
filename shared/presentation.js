@@ -14,7 +14,8 @@
         totalSlides: 0,
         totalAppendixSlides: 0,
         appendixMode: false,
-        currentAppendixSlide: 1,
+        currentAppendixSlide: 0,  // 0 = none, 1-N for appendix slides
+        lastMainSlide: 1,         // Remember main slide when entering appendix
         tocVisible: false,
         appendixVisible: false,
         sections: [],  // Populated from slide data
@@ -27,11 +28,10 @@
     // ===== Initialization =====
     function init() {
         // Cache DOM elements
-        // Note: slides includes ALL slides (main + appendix) for unified navigation
+        // Main slides and appendix slides are kept separate
         elements = {
             presentation: document.querySelector('.presentation'),
-            slides: document.querySelectorAll('.slide'),
-            mainSlides: document.querySelectorAll('.slide:not([data-appendix="true"])'),
+            slides: document.querySelectorAll('.slide:not([data-appendix="true"])'),
             appendixSlides: document.querySelectorAll('.slide[data-appendix="true"]'),
             progressBar: document.querySelector('.progress-bar'),
             slideCounter: document.querySelector('.slide-counter'),
@@ -46,15 +46,13 @@
             backdrop: document.getElementById('overlay-backdrop')
         };
 
-        // Count slides - main slides for progress, but all slides are navigable
+        // Count slides
         state.totalSlides = elements.slides.length;
-        state.mainSlideCount = elements.mainSlides.length;
         state.totalAppendixSlides = elements.appendixSlides ? elements.appendixSlides.length : 0;
-        state.appendixStartIndex = state.mainSlideCount + 1;  // First appendix slide number
 
-        // Update counter display (show main slide count, not including appendix)
+        // Update counter display
         if (elements.totalCounter) {
-            elements.totalCounter.textContent = state.mainSlideCount;
+            elements.totalCounter.textContent = state.totalSlides;
         }
 
         // Build sections from slide data
@@ -87,7 +85,7 @@
         let currentSection = null;
 
         // Build sections from main slides only (not appendix)
-        elements.mainSlides.forEach((slide, index) => {
+        elements.slides.forEach((slide, index) => {
             const slideNum = index + 1;
             const sectionName = slide.dataset.section;
             const title = slide.dataset.title || getSlideTitle(slide);
@@ -139,7 +137,7 @@
         if (primary) return truncate(primary.textContent, 40);
         if (statement) return truncate(statement.textContent, 40);
 
-        return 'Slide ' + (Array.from(elements.mainSlides).indexOf(slide) + 1);
+        return 'Slide ' + (Array.from(elements.slides).indexOf(slide) + 1);
     }
 
     function truncate(text, maxLength) {
@@ -180,23 +178,18 @@
     }
 
     // ===== Build Appendix Panel =====
-    // Shows a TOC-style list of appendix slides; clicking navigates to that slide
+    // Shows a TOC-style list of appendix slides; clicking/selecting navigates to that slide
     function buildAppendixPanel() {
         if (!elements.appendixContent || state.totalAppendixSlides === 0) return;
 
         let html = '<div class="appendix-toc">';
 
-        // Convert to array to find actual indices
-        const allSlides = Array.from(elements.slides);
-
         elements.appendixSlides.forEach((slide, index) => {
-            // Find the actual index of this slide in the full slides array
-            const slideIndex = allSlides.indexOf(slide);
-            const slideNum = slideIndex + 1;  // Convert to 1-based
-            const title = slide.dataset.title || `Appendix ${index + 1}`;
+            const appendixNum = index + 1;  // 1-based index for A1, A2, etc.
+            const title = slide.dataset.title || `Appendix ${appendixNum}`;
 
-            html += `<div class="appendix-item" data-slide="${slideNum}">
-                <span class="appendix-num">${index + 1}.</span> ${title}
+            html += `<div class="appendix-item" data-appendix-num="${appendixNum}">
+                <span class="appendix-num">A${appendixNum}.</span> ${title}
             </div>`;
         });
 
@@ -206,18 +199,28 @@
         // Add click handlers to navigate to appendix slides
         elements.appendixContent.querySelectorAll('.appendix-item').forEach(item => {
             item.addEventListener('click', () => {
-                const slideNum = parseInt(item.dataset.slide);
-                window.Presentation.goToSlide(slideNum);
-                hideAppendix();
+                const appendixNum = parseInt(item.dataset.appendixNum);
+                goToAppendixSlide(appendixNum);
             });
         });
     }
 
     // ===== Navigation =====
+    // Go to a main slide (1 to totalSlides)
     function goToSlide(n) {
         if (n < 1 || n > state.totalSlides) return;
 
-        // Remove active from all slides
+        // Exit appendix mode if we're navigating to a main slide
+        if (state.appendixMode) {
+            state.appendixMode = false;
+            state.currentAppendixSlide = 0;
+            // Hide all appendix slides
+            elements.appendixSlides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+        }
+
+        // Remove active from all main slides
         elements.slides.forEach((slide, i) => {
             slide.classList.remove('active', 'prev');
             if (i + 1 < n) {
@@ -233,42 +236,71 @@
 
         state.currentSlide = n;
 
-        // Check if we're in appendix territory (slide has data-appendix attribute)
-        const isAppendix = targetSlide && targetSlide.dataset.appendix === 'true';
-
-        // Update progress bar (max out at 100% for main content)
+        // Update progress bar
         if (elements.progressBar) {
-            if (isAppendix) {
-                elements.progressBar.style.width = '100%';
-            } else {
-                const progress = state.mainSlideCount > 1
-                    ? ((n - 1) / (state.mainSlideCount - 1)) * 100
-                    : 100;
-                elements.progressBar.style.width = `${progress}%`;
-            }
+            const progress = state.totalSlides > 1
+                ? ((n - 1) / (state.totalSlides - 1)) * 100
+                : 100;
+            elements.progressBar.style.width = `${progress}%`;
         }
 
-        // Update counter (show "A1", "A2" etc. for appendix slides)
+        // Update counter
         if (elements.currentCounter) {
-            if (isAppendix) {
-                // Find the index within appendix slides
-                const appendixArray = Array.from(elements.appendixSlides);
-                const appendixIndex = appendixArray.indexOf(targetSlide);
-                const appendixNum = appendixIndex + 1;
-                elements.currentCounter.textContent = `A${appendixNum}`;
-            } else {
-                elements.currentCounter.textContent = n;
-            }
+            elements.currentCounter.textContent = n;
         }
 
         // Update TOC highlighting
         updateTOCHighlight();
 
-        // Update appendix highlighting
+        // Update URL hash
+        history.replaceState(null, null, `#${n}`);
+
+        // Trigger slide-specific animations
+        animateSlide(targetSlide);
+    }
+
+    // Go to an appendix slide (1 to totalAppendixSlides)
+    function goToAppendixSlide(n) {
+        if (n < 1 || n > state.totalAppendixSlides) return;
+
+        // Enter appendix mode
+        state.appendixMode = true;
+        state.currentAppendixSlide = n;
+
+        // Hide all main slides
+        elements.slides.forEach(slide => {
+            slide.classList.remove('active', 'prev');
+        });
+
+        // Hide all appendix slides first, then show the target
+        elements.appendixSlides.forEach((slide, i) => {
+            slide.classList.remove('active', 'prev');
+            if (i + 1 < n) {
+                slide.classList.add('prev');
+            }
+        });
+
+        // Mark target appendix slide as active
+        const targetSlide = elements.appendixSlides[n - 1];
+        if (targetSlide) {
+            targetSlide.classList.add('active');
+        }
+
+        // Update progress bar (show full for appendix)
+        if (elements.progressBar) {
+            elements.progressBar.style.width = '100%';
+        }
+
+        // Update counter to show "A1", "A2", etc.
+        if (elements.currentCounter) {
+            elements.currentCounter.textContent = `A${n}`;
+        }
+
+        // Update appendix overlay highlighting
         updateAppendixHighlight();
 
         // Update URL hash
-        history.replaceState(null, null, `#${n}`);
+        history.replaceState(null, null, `#A${n}`);
 
         // Trigger slide-specific animations
         animateSlide(targetSlide);
@@ -328,8 +360,8 @@
         if (!elements.appendixContent) return;
 
         elements.appendixContent.querySelectorAll('.appendix-item').forEach(item => {
-            const slideNum = parseInt(item.dataset.slide);
-            item.classList.toggle('active', slideNum === state.currentSlide);
+            const appendixNum = parseInt(item.dataset.appendixNum);
+            item.classList.toggle('active', appendixNum === state.currentAppendixSlide);
         });
     }
 
@@ -337,23 +369,48 @@
     function showAppendix() {
         if (state.totalAppendixSlides === 0) return;
 
+        // Remember the current main slide so we can return to it
+        if (!state.appendixMode) {
+            state.lastMainSlide = state.currentSlide;
+        }
+
+        // Show the overlay
         if (elements.appendixOverlay) {
             elements.appendixOverlay.classList.add('visible');
             state.appendixVisible = true;
         }
         if (elements.backdrop) {
-            elements.backdrop.classList.add('visible');
+            elements.backdrop.classList.add('visible', 'appendix-mode');
         }
-        updateAppendixHighlight();
+
+        // If not already viewing an appendix slide, navigate to the first one
+        if (!state.appendixMode || state.currentAppendixSlide === 0) {
+            goToAppendixSlide(1);
+        } else {
+            updateAppendixHighlight();
+        }
     }
 
     function hideAppendix() {
+        // Hide the overlay but keep the appendix slide visible
         if (elements.appendixOverlay) {
             elements.appendixOverlay.classList.remove('visible');
             state.appendixVisible = false;
         }
         if (elements.backdrop && !state.tocVisible) {
-            elements.backdrop.classList.remove('visible');
+            elements.backdrop.classList.remove('visible', 'appendix-mode');
+        }
+        // The appendix slide remains visible - user can press A again to reopen
+        // or use arrow keys to navigate (which will return to main slides)
+    }
+
+    function exitAppendixMode() {
+        // Completely exit appendix mode and return to the last main slide
+        hideAppendix();
+        if (state.lastMainSlide >= 1 && state.lastMainSlide <= state.totalSlides) {
+            window.Presentation.goToSlide(state.lastMainSlide);
+        } else {
+            window.Presentation.goToSlide(1);
         }
     }
 
@@ -384,6 +441,17 @@
     function handleHashNavigation() {
         if (window.location.hash) {
             const hash = window.location.hash.slice(1);
+
+            // Check for appendix hash (e.g., #A1, #A2)
+            if (hash.match(/^A\d+$/i)) {
+                const appendixNum = parseInt(hash.slice(1));
+                if (appendixNum >= 1 && appendixNum <= state.totalAppendixSlides) {
+                    goToAppendixSlide(appendixNum);
+                    return;
+                }
+            }
+
+            // Regular slide number
             const slideNum = parseInt(hash);
             if (slideNum >= 1 && slideNum <= state.totalSlides) {
                 window.Presentation.goToSlide(slideNum);
@@ -483,6 +551,41 @@
         // Ignore if user is typing
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
+        // Special handling when appendix overlay is visible
+        if (state.appendixVisible) {
+            switch (e.key) {
+                case 'ArrowDown':
+                case 'ArrowRight':
+                    e.preventDefault();
+                    // Navigate to next appendix slide
+                    if (state.currentAppendixSlide < state.totalAppendixSlides) {
+                        goToAppendixSlide(state.currentAppendixSlide + 1);
+                    }
+                    return;
+
+                case 'ArrowUp':
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    // Navigate to previous appendix slide
+                    if (state.currentAppendixSlide > 1) {
+                        goToAppendixSlide(state.currentAppendixSlide - 1);
+                    }
+                    return;
+
+                case 'Escape':
+                case 'Enter':
+                    e.preventDefault();
+                    hideAppendix();
+                    return;
+
+                case 'a':
+                case 'A':
+                    e.preventDefault();
+                    hideAppendix();
+                    return;
+            }
+        }
+
         switch (e.key) {
             // Slide Navigation
             case 'ArrowRight':
@@ -550,18 +653,12 @@
                 e.preventDefault();
                 if (state.tocVisible) {
                     hideTOC();
-                } else if (state.appendixVisible) {
-                    hideAppendix();
+                } else if (state.appendixMode) {
+                    // Exit appendix mode and return to main slides
+                    exitAppendixMode();
                 }
                 break;
 
-            // Enter to close appendix (alternative to Escape)
-            case 'Enter':
-                if (state.appendixVisible) {
-                    e.preventDefault();
-                    hideAppendix();
-                }
-                break;
         }
     }
 
@@ -584,6 +681,7 @@
     window.Presentation = {
         init: init,
         goToSlide: goToSlide,
+        goToAppendixSlide: goToAppendixSlide,
         nextSlide: nextSlide,
         prevSlide: prevSlide,
         showTOC: showTOC,
@@ -592,6 +690,7 @@
         showAppendix: showAppendix,
         hideAppendix: hideAppendix,
         toggleAppendix: toggleAppendix,
+        exitAppendixMode: exitAppendixMode,
         goToSyllabus: goToSyllabus,
         getState: () => ({ ...state })
     };

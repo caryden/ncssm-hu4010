@@ -15,6 +15,8 @@
       --theme-color-dim: #d4a028;
       --gradient-hero: linear-gradient(135deg, #d4a028 0%, #f59e0b 100%);
       --gradient-text: linear-gradient(135deg, #ffffff 0%, #f59e0b 100%);
+      --font-display: 'Montserrat', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     /* Business Model Grid */
@@ -27,7 +29,7 @@
     }
 
     .model-card {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       border-radius: 12px;
       padding: 1.25rem;
       text-align: center;
@@ -96,7 +98,7 @@
     }
 
     .comparison-side {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       border-radius: 12px;
       padding: 1.5rem;
       text-align: left;
@@ -141,11 +143,11 @@
     }
 
     .comparison-side .pro {
-      color: var(--success);
+      color: var(--success-green);
     }
 
     .comparison-side .con {
-      color: var(--danger);
+      color: var(--danger-red);
     }
 
     /* Pricing Grid */
@@ -158,7 +160,7 @@
     }
 
     .pricing-card {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
@@ -219,12 +221,12 @@
 
     .pricing-card .period {
       font-size: 0.9rem;
-      color: var(--text-tertiary);
+      color: var(--text-muted);
     }
 
     .pricing-card .desc {
       font-size: 0.9rem;
-      color: var(--text-tertiary);
+      color: var(--text-muted);
       margin-top: 1rem;
     }
 
@@ -240,7 +242,7 @@
     }
 
     .expansion-step {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       padding: 0.75rem 1.25rem;
       border-radius: 8px;
       font-family: var(--font-display);
@@ -251,7 +253,7 @@
 
     .expansion-step.highlight {
       background: var(--theme-color);
-      color: var(--bg-primary);
+      color: var(--dark-bg);
       font-weight: 600;
     }
 
@@ -291,7 +293,7 @@
     }
 
     .canvas-block {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       border-radius: 8px;
       padding: 0.75rem;
       display: flex;
@@ -326,7 +328,7 @@
     }
 
     .metric-box {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       border-radius: 12px;
       padding: 1.25rem;
       text-align: center;
@@ -343,7 +345,7 @@
       font-family: var(--font-mono);
       font-size: 0.85rem;
       color: var(--text-secondary);
-      background: var(--bg-primary);
+      background: var(--dark-bg);
       padding: 0.5rem;
       border-radius: 4px;
       margin-top: 0.5rem;
@@ -359,7 +361,7 @@
     }
 
     .psychology-item {
-      background: var(--bg-secondary);
+      background: var(--dark-surface);
       border-radius: 8px;
       padding: 1rem;
     }
@@ -382,21 +384,26 @@
   <div class="overlay-backdrop" id="overlay-backdrop"></div>
 
   <!-- Table of Contents Overlay -->
-  <div class="toc-overlay" id="toc-overlay">
+  <div id="toc-overlay" class="toc-overlay">
+    <button id="toc-close" class="toc-close">&times;</button>
     <div class="toc-header">
-      <h2>Table of Contents</h2>
-      <button class="toc-close" id="toc-close">&times;</button>
+      <h3>Table of Contents</h3>
+      <div class="class-info">Class 6: Business Model</div>
     </div>
-    <div class="toc-content" id="toc-content"></div>
+    <div id="toc-content" class="toc-content"></div>
+    <div class="toc-footer">
+      <a href="../index.html">&larr; Back to Course Syllabus</a>
+    </div>
   </div>
 
   <!-- Appendix Overlay -->
-  <div class="appendix-overlay" id="appendix-overlay">
+  <div id="appendix-overlay" class="appendix-overlay">
+    <button id="appendix-close" class="appendix-close">&times;</button>
     <div class="appendix-header">
-      <h2>Appendix</h2>
-      <button class="appendix-close" id="appendix-close">&times;</button>
+      <h3>Appendix</h3>
+      <div class="appendix-subtitle">Reference Materials</div>
     </div>
-    <div class="appendix-content" id="appendix-content"></div>
+    <div id="appendix-content" class="appendix-content"></div>
   </div>
 
   <div class="presentation">
@@ -410,7 +417,7 @@
     </div>
 
     <!-- THEME -->
-    <div class="slide" data-slide="2" data-section="opening" data-title="Theme 4">
+    <div class="slide slide-statement" data-slide="2" data-section="opening" data-title="Theme 4">
       <div class="slide-content">
         <p class="statement">Theme 4: <span class="accent">How Do You Make Money?</span></p>
       </div>
@@ -432,7 +439,7 @@
       </div>
     </div>
 
-    <div class="slide" data-slide="5" data-section="story" data-title="The Result">
+    <div class="slide slide-statement" data-slide="5" data-section="story" data-title="The Result">
       <div class="slide-content">
         <div class="big-number">$4B → $19B</div>
         <p class="context">Adobe's revenue growth (2013-2023)</p>
@@ -440,14 +447,14 @@
       </div>
     </div>
 
-    <div class="slide" data-slide="6" data-section="story" data-title="Key Insight">
+    <div class="slide slide-statement" data-slide="6" data-section="story" data-title="Key Insight">
       <div class="slide-content">
         <p class="statement"><span class="accent">How</span> you charge can be as innovative as <span class="accent">what</span> you sell.</p>
       </div>
     </div>
 
     <!-- STEP 14: FOLLOW-ON MARKETS -->
-    <div class="slide" data-slide="7" data-section="step14" data-title="Step 14 Intro">
+    <div class="slide slide-statement" data-slide="7" data-section="step14" data-title="Step 14 Intro">
       <div class="slide-content">
         <p class="statement">Step 14: <span class="accent">TAM for Follow-on Markets</span></p>
       </div>
@@ -482,7 +489,7 @@
     </div>
 
     <!-- STEP 15: BUSINESS MODEL -->
-    <div class="slide" data-slide="10" data-section="step15" data-title="Step 15 Intro">
+    <div class="slide slide-statement" data-slide="10" data-section="step15" data-title="Step 15 Intro">
       <div class="slide-content">
         <p class="statement">Step 15: <span class="accent">Design a Business Model</span></p>
       </div>
@@ -548,7 +555,7 @@
     </div>
 
     <!-- STEP 16: PRICING -->
-    <div class="slide" data-slide="16" data-section="step16" data-title="Step 16 Intro">
+    <div class="slide slide-statement" data-slide="16" data-section="step16" data-title="Step 16 Intro">
       <div class="slide-content">
         <p class="statement">Step 16: <span class="accent">Set Your Pricing Framework</span></p>
       </div>
@@ -647,53 +654,53 @@
     </div>
 
     <!-- APPENDIX SLIDES -->
-    <div class="slide slide-visual" data-slide="24" data-section="appendix" data-title="Business Model Canvas" data-appendix="true">
+    <div class="slide" data-appendix="true" data-title="Business Model Canvas">
       <div class="slide-content">
         <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Business Model Canvas</h2>
         <p class="tertiary" style="margin-bottom: 1rem;">A strategic tool for designing and analyzing business models</p>
         <div class="canvas-visual">
           <div class="canvas-block key-partners">
             <h4>Key Partners</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">Who helps you?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">Who helps you?</span>
           </div>
           <div class="canvas-block key-activities">
             <h4>Key Activities</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">What do you do?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">What do you do?</span>
           </div>
           <div class="canvas-block value-prop">
             <h4>Value Proposition</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">What problem do you solve?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">What problem do you solve?</span>
           </div>
           <div class="canvas-block customer-rel">
             <h4>Customer Relationships</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">How do you interact?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">How do you interact?</span>
           </div>
           <div class="canvas-block customer-seg">
             <h4>Customer Segments</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">Who do you serve?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">Who do you serve?</span>
           </div>
           <div class="canvas-block key-resources">
             <h4>Key Resources</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">What do you need?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">What do you need?</span>
           </div>
           <div class="canvas-block channels">
             <h4>Channels</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">How do you reach them?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">How do you reach them?</span>
           </div>
           <div class="canvas-block cost-structure">
             <h4>Cost Structure</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">What are your costs?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">What are your costs?</span>
           </div>
           <div class="canvas-block revenue-streams">
             <h4>Revenue Streams</h4>
-            <span style="color: var(--text-tertiary); font-size: 0.7rem;">How do you make money?</span>
+            <span style="color: var(--text-muted); font-size: 0.7rem;">How do you make money?</span>
           </div>
         </div>
         <p class="caption">The canvas complements DE by providing a holistic business view</p>
       </div>
     </div>
 
-    <div class="slide slide-visual" data-slide="25" data-section="appendix" data-title="SaaS Metrics" data-appendix="true">
+    <div class="slide" data-appendix="true" data-title="SaaS Metrics">
       <div class="slide-content">
         <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Key SaaS Metrics</h2>
         <p class="tertiary" style="margin-bottom: 1rem;">Essential metrics for subscription businesses</p>
@@ -732,7 +739,7 @@
       </div>
     </div>
 
-    <div class="slide slide-visual" data-slide="26" data-section="appendix" data-title="Pricing Psychology" data-appendix="true">
+    <div class="slide" data-appendix="true" data-title="Pricing Psychology">
       <div class="slide-content">
         <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Pricing Psychology</h2>
         <p class="tertiary" style="margin-bottom: 1rem;">Behavioral principles that influence pricing decisions</p>
@@ -767,13 +774,14 @@
   </div>
 
   <div class="progress-container"><div class="progress-bar" id="progress"></div></div>
-  <div class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">26</span></div>
+  <div class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">23</span></div>
 
   <!-- Keyboard hints -->
   <div class="keyboard-hints">
-    <span class="hint-key">T</span> Contents
-    <span class="hint-key">A</span> Appendix
-    <span class="hint-key">S</span> Syllabus
+    <span><kbd>&larr;</kbd><kbd>&rarr;</kbd> Navigate</span>
+    <span><kbd>T</kbd> Contents</span>
+    <span><kbd>A</kbd> Appendix</span>
+    <span><kbd>S</kbd> Syllabus</span>
   </div>
 
   <script src="../shared/presentation.js"></script>
