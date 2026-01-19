@@ -27,9 +27,11 @@
     // ===== Initialization =====
     function init() {
         // Cache DOM elements
+        // Note: slides includes ALL slides (main + appendix) for unified navigation
         elements = {
             presentation: document.querySelector('.presentation'),
-            slides: document.querySelectorAll('.slide:not([data-appendix="true"])'),
+            slides: document.querySelectorAll('.slide'),
+            mainSlides: document.querySelectorAll('.slide:not([data-appendix="true"])'),
             appendixSlides: document.querySelectorAll('.slide[data-appendix="true"]'),
             progressBar: document.querySelector('.progress-bar'),
             slideCounter: document.querySelector('.slide-counter'),
@@ -41,19 +43,18 @@
             appendixOverlay: document.getElementById('appendix-overlay'),
             appendixContent: document.getElementById('appendix-content'),
             appendixClose: document.getElementById('appendix-close'),
-            appendixPrev: document.getElementById('appendix-prev'),
-            appendixNext: document.getElementById('appendix-next'),
-            appendixCounter: document.getElementById('appendix-counter'),
             backdrop: document.getElementById('overlay-backdrop')
         };
 
-        // Count slides
+        // Count slides - main slides for progress, but all slides are navigable
         state.totalSlides = elements.slides.length;
+        state.mainSlideCount = elements.mainSlides.length;
         state.totalAppendixSlides = elements.appendixSlides ? elements.appendixSlides.length : 0;
+        state.appendixStartIndex = state.mainSlideCount + 1;  // First appendix slide number
 
-        // Update counter display
+        // Update counter display (show main slide count, not including appendix)
         if (elements.totalCounter) {
-            elements.totalCounter.textContent = state.totalSlides;
+            elements.totalCounter.textContent = state.mainSlideCount;
         }
 
         // Build sections from slide data
@@ -85,7 +86,8 @@
         const sections = [];
         let currentSection = null;
 
-        elements.slides.forEach((slide, index) => {
+        // Build sections from main slides only (not appendix)
+        elements.mainSlides.forEach((slide, index) => {
             const slideNum = index + 1;
             const sectionName = slide.dataset.section;
             const title = slide.dataset.title || getSlideTitle(slide);
@@ -137,7 +139,7 @@
         if (primary) return truncate(primary.textContent, 40);
         if (statement) return truncate(statement.textContent, 40);
 
-        return 'Slide ' + (Array.from(elements.slides).indexOf(slide) + 1);
+        return 'Slide ' + (Array.from(elements.mainSlides).indexOf(slide) + 1);
     }
 
     function truncate(text, maxLength) {
@@ -178,23 +180,37 @@
     }
 
     // ===== Build Appendix Panel =====
+    // Shows a TOC-style list of appendix slides; clicking navigates to that slide
     function buildAppendixPanel() {
         if (!elements.appendixContent || state.totalAppendixSlides === 0) return;
 
-        let html = '';
+        let html = '<div class="appendix-toc">';
+
+        // Convert to array to find actual indices
+        const allSlides = Array.from(elements.slides);
 
         elements.appendixSlides.forEach((slide, index) => {
-            const slideNum = index + 1;
-            const title = slide.dataset.title || `Appendix ${slideNum}`;
-            const content = slide.innerHTML;
+            // Find the actual index of this slide in the full slides array
+            const slideIndex = allSlides.indexOf(slide);
+            const slideNum = slideIndex + 1;  // Convert to 1-based
+            const title = slide.dataset.title || `Appendix ${index + 1}`;
 
-            html += `<div class="appendix-slide" data-appendix-num="${slideNum}">
-                <h4>${title}</h4>
-                <div class="appendix-slide-content">${content}</div>
+            html += `<div class="appendix-item" data-slide="${slideNum}">
+                <span class="appendix-num">${index + 1}.</span> ${title}
             </div>`;
         });
 
+        html += '</div>';
         elements.appendixContent.innerHTML = html;
+
+        // Add click handlers to navigate to appendix slides
+        elements.appendixContent.querySelectorAll('.appendix-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const slideNum = parseInt(item.dataset.slide);
+                window.Presentation.goToSlide(slideNum);
+                hideAppendix();
+            });
+        });
     }
 
     // ===== Navigation =====
@@ -217,19 +233,39 @@
 
         state.currentSlide = n;
 
-        // Update progress bar
+        // Check if we're in appendix territory (slide has data-appendix attribute)
+        const isAppendix = targetSlide && targetSlide.dataset.appendix === 'true';
+
+        // Update progress bar (max out at 100% for main content)
         if (elements.progressBar) {
-            const progress = ((n - 1) / (state.totalSlides - 1)) * 100;
-            elements.progressBar.style.width = `${progress}%`;
+            if (isAppendix) {
+                elements.progressBar.style.width = '100%';
+            } else {
+                const progress = state.mainSlideCount > 1
+                    ? ((n - 1) / (state.mainSlideCount - 1)) * 100
+                    : 100;
+                elements.progressBar.style.width = `${progress}%`;
+            }
         }
 
-        // Update counter
+        // Update counter (show "A1", "A2" etc. for appendix slides)
         if (elements.currentCounter) {
-            elements.currentCounter.textContent = n;
+            if (isAppendix) {
+                // Find the index within appendix slides
+                const appendixArray = Array.from(elements.appendixSlides);
+                const appendixIndex = appendixArray.indexOf(targetSlide);
+                const appendixNum = appendixIndex + 1;
+                elements.currentCounter.textContent = `A${appendixNum}`;
+            } else {
+                elements.currentCounter.textContent = n;
+            }
         }
 
         // Update TOC highlighting
         updateTOCHighlight();
+
+        // Update appendix highlighting
+        updateAppendixHighlight();
 
         // Update URL hash
         history.replaceState(null, null, `#${n}`);
@@ -239,57 +275,13 @@
     }
 
     function nextSlide() {
-        if (state.appendixVisible) {
-            nextAppendixSlide();
-        } else {
-            // Use window.Presentation.goToSlide so custom overrides work
-            window.Presentation.goToSlide(state.currentSlide + 1);
-        }
+        // Use window.Presentation.goToSlide so custom overrides work
+        window.Presentation.goToSlide(state.currentSlide + 1);
     }
 
     function prevSlide() {
-        if (state.appendixVisible) {
-            prevAppendixSlide();
-        } else {
-            // Use window.Presentation.goToSlide so custom overrides work
-            window.Presentation.goToSlide(state.currentSlide - 1);
-        }
-    }
-
-    // ===== Appendix Navigation =====
-    function goToAppendixSlide(n) {
-        if (n < 1 || n > state.totalAppendixSlides) return;
-
-        const slides = elements.appendixContent.querySelectorAll('.appendix-slide');
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i + 1 === n) {
-                slide.classList.add('active');
-            }
-        });
-
-        state.currentAppendixSlide = n;
-
-        // Update counter
-        if (elements.appendixCounter) {
-            elements.appendixCounter.textContent = `${n} / ${state.totalAppendixSlides}`;
-        }
-
-        // Update nav buttons
-        if (elements.appendixPrev) {
-            elements.appendixPrev.disabled = n <= 1;
-        }
-        if (elements.appendixNext) {
-            elements.appendixNext.disabled = n >= state.totalAppendixSlides;
-        }
-    }
-
-    function nextAppendixSlide() {
-        goToAppendixSlide(state.currentAppendixSlide + 1);
-    }
-
-    function prevAppendixSlide() {
-        goToAppendixSlide(state.currentAppendixSlide - 1);
+        // Use window.Presentation.goToSlide so custom overrides work
+        window.Presentation.goToSlide(state.currentSlide - 1);
     }
 
     // ===== TOC Overlay =====
@@ -332,6 +324,15 @@
         });
     }
 
+    function updateAppendixHighlight() {
+        if (!elements.appendixContent) return;
+
+        elements.appendixContent.querySelectorAll('.appendix-item').forEach(item => {
+            const slideNum = parseInt(item.dataset.slide);
+            item.classList.toggle('active', slideNum === state.currentSlide);
+        });
+    }
+
     // ===== Appendix Overlay =====
     function showAppendix() {
         if (state.totalAppendixSlides === 0) return;
@@ -343,7 +344,7 @@
         if (elements.backdrop) {
             elements.backdrop.classList.add('visible');
         }
-        goToAppendixSlide(1);
+        updateAppendixHighlight();
     }
 
     function hideAppendix() {
@@ -466,14 +467,6 @@
             elements.appendixClose.addEventListener('click', hideAppendix);
         }
 
-        // Appendix nav buttons
-        if (elements.appendixPrev) {
-            elements.appendixPrev.addEventListener('click', prevAppendixSlide);
-        }
-        if (elements.appendixNext) {
-            elements.appendixNext.addEventListener('click', nextAppendixSlide);
-        }
-
         // Backdrop click
         if (elements.backdrop) {
             elements.backdrop.addEventListener('click', () => {
@@ -505,20 +498,12 @@
 
             case 'ArrowDown':
                 e.preventDefault();
-                if (state.appendixVisible) {
-                    nextAppendixSlide();
-                } else {
-                    nextSlide();
-                }
+                nextSlide();
                 break;
 
             case 'ArrowUp':
                 e.preventDefault();
-                if (state.appendixVisible) {
-                    prevAppendixSlide();
-                } else {
-                    prevSlide();
-                }
+                prevSlide();
                 break;
 
             // Jump to start/end
