@@ -213,6 +213,94 @@ body {
     max-height: 100%;
 }
 
+/* ===== Quote Slide ===== */
+.slide-quote {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.slide-quote > .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.slide-quote blockquote {
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-primary);
+    position: relative;
+    padding-left: 60px;
+    text-align: left;
+}
+
+.slide-quote blockquote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 4rem;
+    color: var(--theme-color);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.slide-quote .attribution {
+    margin-top: 40px;
+    font-size: 1.4rem;
+    color: var(--theme-color);
+    font-weight: 600;
+    align-self: flex-start;
+    padding-left: 60px;
+}
+
+/* ===== List Slide ===== */
+.slide-list {
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-list > .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 70%;
+}
+
+.slide-list h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--theme-color);
+}
+
+.slide-list ul,
+.slide-list ol {
+    list-style: none;
+}
+
+.slide-list li {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    padding-left: 40px;
+    position: relative;
+    color: var(--text-secondary);
+}
+
+.slide-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--theme-color);
+    font-size: 1.4rem;
+}
+
 /* ===== Two Part Slide ===== */
 .slide-two-part {
     padding-top: 60px;
