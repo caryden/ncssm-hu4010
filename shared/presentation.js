@@ -1,0 +1,591 @@
+/**
+ * NCSSM Entrepreneurship - Shared Presentation JavaScript
+ *
+ * Handles navigation, TOC overlay, appendix overlay, and keyboard bindings.
+ * Each presentation includes this and provides slide content and configuration.
+ */
+
+(function() {
+    'use strict';
+
+    // ===== State =====
+    const state = {
+        currentSlide: 1,
+        totalSlides: 0,
+        totalAppendixSlides: 0,
+        appendixMode: false,
+        currentAppendixSlide: 1,
+        tocVisible: false,
+        appendixVisible: false,
+        sections: [],  // Populated from slide data
+        syllabusUrl: '../index.html'
+    };
+
+    // ===== DOM Elements =====
+    let elements = {};
+
+    // ===== Initialization =====
+    function init() {
+        // Cache DOM elements
+        elements = {
+            presentation: document.querySelector('.presentation'),
+            slides: document.querySelectorAll('.slide:not([data-appendix="true"])'),
+            appendixSlides: document.querySelectorAll('.slide[data-appendix="true"]'),
+            progressBar: document.querySelector('.progress-bar'),
+            slideCounter: document.querySelector('.slide-counter'),
+            currentCounter: document.querySelector('.slide-counter .current'),
+            totalCounter: document.querySelector('.slide-counter .total'),
+            tocOverlay: document.getElementById('toc-overlay'),
+            tocContent: document.getElementById('toc-content'),
+            tocClose: document.getElementById('toc-close'),
+            appendixOverlay: document.getElementById('appendix-overlay'),
+            appendixContent: document.getElementById('appendix-content'),
+            appendixClose: document.getElementById('appendix-close'),
+            appendixPrev: document.getElementById('appendix-prev'),
+            appendixNext: document.getElementById('appendix-next'),
+            appendixCounter: document.getElementById('appendix-counter'),
+            backdrop: document.getElementById('overlay-backdrop')
+        };
+
+        // Count slides
+        state.totalSlides = elements.slides.length;
+        state.totalAppendixSlides = elements.appendixSlides ? elements.appendixSlides.length : 0;
+
+        // Update counter display
+        if (elements.totalCounter) {
+            elements.totalCounter.textContent = state.totalSlides;
+        }
+
+        // Build sections from slide data
+        buildSections();
+
+        // Build TOC
+        buildTOC();
+
+        // Build appendix panel
+        buildAppendixPanel();
+
+        // Set up event listeners
+        setupEventListeners();
+
+        // Go to first slide (or hash)
+        // Use setTimeout to allow custom scripts to override goToSlide first
+        setTimeout(() => {
+            handleHashNavigation();
+
+            // Mark first slide as active if no hash navigation happened
+            if (state.currentSlide === 1) {
+                window.Presentation.goToSlide(1);
+            }
+        }, 0);
+    }
+
+    // ===== Build Sections from Slides =====
+    function buildSections() {
+        const sections = [];
+        let currentSection = null;
+
+        elements.slides.forEach((slide, index) => {
+            const slideNum = index + 1;
+            const sectionName = slide.dataset.section;
+            const title = slide.dataset.title || getSlideTitle(slide);
+
+            if (sectionName && sectionName !== (currentSection ? currentSection.name : null)) {
+                currentSection = {
+                    name: sectionName,
+                    start: slideNum,
+                    slides: []
+                };
+                sections.push(currentSection);
+            }
+
+            if (currentSection) {
+                currentSection.slides.push({
+                    num: slideNum,
+                    title: title
+                });
+            } else {
+                // Slides before any section
+                if (sections.length === 0 || sections[0].name !== 'Opening') {
+                    sections.unshift({
+                        name: 'Opening',
+                        start: 1,
+                        slides: []
+                    });
+                    currentSection = sections[0];
+                }
+                currentSection.slides.push({
+                    num: slideNum,
+                    title: title
+                });
+            }
+        });
+
+        state.sections = sections;
+    }
+
+    // ===== Get Slide Title =====
+    function getSlideTitle(slide) {
+        // Try to find a title in the slide
+        const h1 = slide.querySelector('h1');
+        const h2 = slide.querySelector('h2');
+        const primary = slide.querySelector('.primary');
+        const statement = slide.querySelector('.statement');
+
+        if (h1) return truncate(h1.textContent, 40);
+        if (h2) return truncate(h2.textContent, 40);
+        if (primary) return truncate(primary.textContent, 40);
+        if (statement) return truncate(statement.textContent, 40);
+
+        return 'Slide ' + (Array.from(elements.slides).indexOf(slide) + 1);
+    }
+
+    function truncate(text, maxLength) {
+        text = text.trim();
+        if (text.length <= maxLength) return text;
+        return text.substring(0, maxLength - 3) + '...';
+    }
+
+    // ===== Build TOC =====
+    function buildTOC() {
+        if (!elements.tocContent) return;
+
+        let html = '';
+
+        state.sections.forEach(section => {
+            html += `<div class="toc-section">`;
+            html += `<div class="toc-section-title">${section.name}</div>`;
+
+            section.slides.forEach(slide => {
+                html += `<div class="toc-item" data-slide="${slide.num}">
+                    <span class="slide-num">${slide.num}.</span> ${slide.title}
+                </div>`;
+            });
+
+            html += `</div>`;
+        });
+
+        elements.tocContent.innerHTML = html;
+
+        // Add click handlers
+        elements.tocContent.querySelectorAll('.toc-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const slideNum = parseInt(item.dataset.slide);
+                window.Presentation.goToSlide(slideNum);
+                hideTOC();
+            });
+        });
+    }
+
+    // ===== Build Appendix Panel =====
+    function buildAppendixPanel() {
+        if (!elements.appendixContent || state.totalAppendixSlides === 0) return;
+
+        let html = '';
+
+        elements.appendixSlides.forEach((slide, index) => {
+            const slideNum = index + 1;
+            const title = slide.dataset.title || `Appendix ${slideNum}`;
+            const content = slide.innerHTML;
+
+            html += `<div class="appendix-slide" data-appendix-num="${slideNum}">
+                <h4>${title}</h4>
+                <div class="appendix-slide-content">${content}</div>
+            </div>`;
+        });
+
+        elements.appendixContent.innerHTML = html;
+    }
+
+    // ===== Navigation =====
+    function goToSlide(n) {
+        if (n < 1 || n > state.totalSlides) return;
+
+        // Remove active from all slides
+        elements.slides.forEach((slide, i) => {
+            slide.classList.remove('active', 'prev');
+            if (i + 1 < n) {
+                slide.classList.add('prev');
+            }
+        });
+
+        // Mark new slide as active
+        const targetSlide = elements.slides[n - 1];
+        if (targetSlide) {
+            targetSlide.classList.add('active');
+        }
+
+        state.currentSlide = n;
+
+        // Update progress bar
+        if (elements.progressBar) {
+            const progress = ((n - 1) / (state.totalSlides - 1)) * 100;
+            elements.progressBar.style.width = `${progress}%`;
+        }
+
+        // Update counter
+        if (elements.currentCounter) {
+            elements.currentCounter.textContent = n;
+        }
+
+        // Update TOC highlighting
+        updateTOCHighlight();
+
+        // Update URL hash
+        history.replaceState(null, null, `#${n}`);
+
+        // Trigger slide-specific animations
+        animateSlide(targetSlide);
+    }
+
+    function nextSlide() {
+        if (state.appendixVisible) {
+            nextAppendixSlide();
+        } else {
+            // Use window.Presentation.goToSlide so custom overrides work
+            window.Presentation.goToSlide(state.currentSlide + 1);
+        }
+    }
+
+    function prevSlide() {
+        if (state.appendixVisible) {
+            prevAppendixSlide();
+        } else {
+            // Use window.Presentation.goToSlide so custom overrides work
+            window.Presentation.goToSlide(state.currentSlide - 1);
+        }
+    }
+
+    // ===== Appendix Navigation =====
+    function goToAppendixSlide(n) {
+        if (n < 1 || n > state.totalAppendixSlides) return;
+
+        const slides = elements.appendixContent.querySelectorAll('.appendix-slide');
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i + 1 === n) {
+                slide.classList.add('active');
+            }
+        });
+
+        state.currentAppendixSlide = n;
+
+        // Update counter
+        if (elements.appendixCounter) {
+            elements.appendixCounter.textContent = `${n} / ${state.totalAppendixSlides}`;
+        }
+
+        // Update nav buttons
+        if (elements.appendixPrev) {
+            elements.appendixPrev.disabled = n <= 1;
+        }
+        if (elements.appendixNext) {
+            elements.appendixNext.disabled = n >= state.totalAppendixSlides;
+        }
+    }
+
+    function nextAppendixSlide() {
+        goToAppendixSlide(state.currentAppendixSlide + 1);
+    }
+
+    function prevAppendixSlide() {
+        goToAppendixSlide(state.currentAppendixSlide - 1);
+    }
+
+    // ===== TOC Overlay =====
+    function showTOC() {
+        if (elements.tocOverlay) {
+            elements.tocOverlay.classList.add('visible');
+            state.tocVisible = true;
+        }
+        if (elements.backdrop) {
+            elements.backdrop.classList.add('visible');
+        }
+        updateTOCHighlight();
+    }
+
+    function hideTOC() {
+        if (elements.tocOverlay) {
+            elements.tocOverlay.classList.remove('visible');
+            state.tocVisible = false;
+        }
+        if (elements.backdrop && !state.appendixVisible) {
+            elements.backdrop.classList.remove('visible');
+        }
+    }
+
+    function toggleTOC() {
+        if (state.tocVisible) {
+            hideTOC();
+        } else {
+            hideAppendix();
+            showTOC();
+        }
+    }
+
+    function updateTOCHighlight() {
+        if (!elements.tocContent) return;
+
+        elements.tocContent.querySelectorAll('.toc-item').forEach(item => {
+            const slideNum = parseInt(item.dataset.slide);
+            item.classList.toggle('active', slideNum === state.currentSlide);
+        });
+    }
+
+    // ===== Appendix Overlay =====
+    function showAppendix() {
+        if (state.totalAppendixSlides === 0) return;
+
+        if (elements.appendixOverlay) {
+            elements.appendixOverlay.classList.add('visible');
+            state.appendixVisible = true;
+        }
+        if (elements.backdrop) {
+            elements.backdrop.classList.add('visible');
+        }
+        goToAppendixSlide(1);
+    }
+
+    function hideAppendix() {
+        if (elements.appendixOverlay) {
+            elements.appendixOverlay.classList.remove('visible');
+            state.appendixVisible = false;
+        }
+        if (elements.backdrop && !state.tocVisible) {
+            elements.backdrop.classList.remove('visible');
+        }
+    }
+
+    function toggleAppendix() {
+        if (state.appendixVisible) {
+            hideAppendix();
+        } else {
+            hideTOC();
+            showAppendix();
+        }
+    }
+
+    // ===== Go to Syllabus =====
+    function goToSyllabus() {
+        window.location.href = state.syllabusUrl;
+    }
+
+    // ===== Fullscreen =====
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    // ===== Hash Navigation =====
+    function handleHashNavigation() {
+        if (window.location.hash) {
+            const hash = window.location.hash.slice(1);
+            const slideNum = parseInt(hash);
+            if (slideNum >= 1 && slideNum <= state.totalSlides) {
+                window.Presentation.goToSlide(slideNum);
+            }
+        }
+    }
+
+    // ===== Slide Animations =====
+    function animateSlide(slide) {
+        if (!slide) return;
+
+        // Animate list items with stagger
+        const listItems = slide.querySelectorAll('.content-list li');
+        listItems.forEach((item, i) => {
+            item.classList.remove('visible');
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, 200 * (i + 1));
+        });
+
+        // Animate cards
+        const cards = slide.querySelectorAll('.card, .metric-card, .category-card, .technique-card');
+        cards.forEach((card, i) => {
+            card.classList.remove('visible');
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, 150 * (i + 1));
+        });
+
+        // Trigger custom visualization if present
+        const vizId = slide.dataset.visualization;
+        if (vizId && typeof window[vizId] === 'function') {
+            window[vizId]();
+        }
+    }
+
+    // ===== Event Listeners =====
+    function setupEventListeners() {
+        // Keyboard navigation
+        document.addEventListener('keydown', handleKeydown);
+
+        // Click navigation
+        document.addEventListener('click', handleClick);
+
+        // TOC close button
+        if (elements.tocClose) {
+            elements.tocClose.addEventListener('click', hideTOC);
+        }
+
+        // Appendix close button
+        if (elements.appendixClose) {
+            elements.appendixClose.addEventListener('click', hideAppendix);
+        }
+
+        // Appendix nav buttons
+        if (elements.appendixPrev) {
+            elements.appendixPrev.addEventListener('click', prevAppendixSlide);
+        }
+        if (elements.appendixNext) {
+            elements.appendixNext.addEventListener('click', nextAppendixSlide);
+        }
+
+        // Backdrop click
+        if (elements.backdrop) {
+            elements.backdrop.addEventListener('click', () => {
+                hideTOC();
+                hideAppendix();
+            });
+        }
+
+        // Hash change
+        window.addEventListener('hashchange', handleHashNavigation);
+    }
+
+    function handleKeydown(e) {
+        // Ignore if user is typing
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        switch (e.key) {
+            // Slide Navigation
+            case 'ArrowRight':
+            case ' ':
+                e.preventDefault();
+                nextSlide();
+                break;
+
+            case 'ArrowLeft':
+                e.preventDefault();
+                prevSlide();
+                break;
+
+            case 'ArrowDown':
+                e.preventDefault();
+                if (state.appendixVisible) {
+                    nextAppendixSlide();
+                } else {
+                    nextSlide();
+                }
+                break;
+
+            case 'ArrowUp':
+                e.preventDefault();
+                if (state.appendixVisible) {
+                    prevAppendixSlide();
+                } else {
+                    prevSlide();
+                }
+                break;
+
+            // Jump to start/end
+            case 'Home':
+                e.preventDefault();
+                window.Presentation.goToSlide(1);
+                break;
+
+            case 'End':
+                e.preventDefault();
+                window.Presentation.goToSlide(state.totalSlides);
+                break;
+
+            // TOC toggle (T key)
+            case 't':
+            case 'T':
+                e.preventDefault();
+                toggleTOC();
+                break;
+
+            // Syllabus (S key)
+            case 's':
+            case 'S':
+                e.preventDefault();
+                goToSyllabus();
+                break;
+
+            // Appendix toggle (A key)
+            case 'a':
+            case 'A':
+                e.preventDefault();
+                toggleAppendix();
+                break;
+
+            // Fullscreen (F key)
+            case 'f':
+            case 'F':
+                e.preventDefault();
+                toggleFullscreen();
+                break;
+
+            // Close overlays (Escape)
+            case 'Escape':
+                e.preventDefault();
+                if (state.tocVisible) {
+                    hideTOC();
+                } else if (state.appendixVisible) {
+                    hideAppendix();
+                }
+                break;
+
+            // Enter to close appendix (alternative to Escape)
+            case 'Enter':
+                if (state.appendixVisible) {
+                    e.preventDefault();
+                    hideAppendix();
+                }
+                break;
+        }
+    }
+
+    function handleClick(e) {
+        // Don't handle clicks if an overlay is visible
+        if (state.tocVisible || state.appendixVisible) return;
+
+        // Don't handle clicks on interactive elements
+        if (e.target.closest('a, button, input, .toc-overlay, .appendix-overlay')) return;
+
+        // Click on right half to advance, left half to go back
+        if (e.clientX > window.innerWidth / 2) {
+            nextSlide();
+        } else {
+            prevSlide();
+        }
+    }
+
+    // ===== Public API =====
+    window.Presentation = {
+        init: init,
+        goToSlide: goToSlide,
+        nextSlide: nextSlide,
+        prevSlide: prevSlide,
+        showTOC: showTOC,
+        hideTOC: hideTOC,
+        toggleTOC: toggleTOC,
+        showAppendix: showAppendix,
+        hideAppendix: hideAppendix,
+        toggleAppendix: toggleAppendix,
+        goToSyllabus: goToSyllabus,
+        getState: () => ({ ...state })
+    };
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();

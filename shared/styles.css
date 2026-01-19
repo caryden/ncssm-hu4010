@@ -1,0 +1,737 @@
+/**
+ * NCSSM Entrepreneurship - Shared Presentation Styles
+ *
+ * Common CSS for all class presentations.
+ * Each presentation imports this and can override with theme-specific colors.
+ */
+
+/* ===== CSS Variables (can be overridden per presentation) ===== */
+:root {
+    /* NCSSM Brand Colors */
+    --ncssm-blue: #356093;
+    --ncssm-blue-light: #4a7ab8;
+    --ncssm-blue-dark: #264570;
+
+    /* Secondary Accent */
+    --gold: #d4a028;
+    --gold-light: #e8b84a;
+
+    /* Dark Mode Backgrounds */
+    --dark-bg: #0a0a0f;
+    --dark-surface: #12121a;
+    --dark-card: #1a1a24;
+    --dark-border: #2a2a3a;
+
+    /* Text Colors */
+    --text-primary: #f1f1f1;
+    --text-secondary: #a0a0a0;
+    --text-muted: #6a6a7a;
+
+    /* Status Colors */
+    --success-green: #10b981;
+    --danger-red: #ef4444;
+    --warning-yellow: #eab308;
+
+    /* Theme Colors (set per presentation) */
+    --theme-color: var(--ncssm-blue);
+    --theme-color-light: var(--ncssm-blue-light);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+
+    /* Layout */
+    --toc-width: 320px;
+    --appendix-width: 400px;
+}
+
+/* ===== Reset & Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ===== Presentation Container ===== */
+.presentation {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* ===== Slides ===== */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    background: var(--dark-bg);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.slide.active {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide.prev {
+    transform: translateX(-20px);
+}
+
+/* Appendix slides hidden from normal flow */
+.slide[data-appendix="true"] {
+    display: none !important;
+}
+
+/* ===== Title Slide ===== */
+.slide-title {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #0a1018 100%);
+}
+
+/* Handle .slide-content wrapper inside centered slides */
+.slide-title > .slide-content,
+.slide-statement > .slide-content,
+.slide-two-part > .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    text-align: center;
+}
+
+.slide-title h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.slide-title .subtitle {
+    font-size: 2rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.slide-title .session-info {
+    font-size: 1.2rem;
+    color: var(--theme-color);
+    font-weight: 500;
+}
+
+/* ===== Statement Slide ===== */
+.slide-statement {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 120px;
+}
+
+.slide-statement .statement {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    max-width: 1000px;
+}
+
+.slide-statement .subtext {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* ===== Content Slide ===== */
+.slide-content {
+    padding-top: 40px;
+}
+
+.slide-content h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--theme-color);
+}
+
+/* ===== Visual Slide ===== */
+.slide-visual {
+    padding-top: 40px;
+}
+
+.slide-visual h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--text-primary);
+}
+
+/* ===== Two Part Slide ===== */
+.slide-two-part {
+    padding-top: 60px;
+}
+
+.slide-two-part .primary {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--theme-color);
+    margin-bottom: 30px;
+}
+
+.slide-two-part .secondary {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    max-width: 900px;
+    line-height: 1.6;
+}
+
+.slide-two-part .note {
+    margin-top: 40px;
+    font-size: 1.2rem;
+    color: var(--theme-color);
+    font-style: italic;
+}
+
+/* ===== Comparison Slide ===== */
+.slide-comparison {
+    padding-top: 40px;
+}
+
+.slide-comparison h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    flex: 1;
+    align-items: start;
+}
+
+.comparison-side {
+    padding: 40px;
+    border-radius: 20px;
+    height: 100%;
+}
+
+.comparison-side.left {
+    background: linear-gradient(135deg, rgba(100, 100, 100, 0.1) 0%, transparent 100%);
+    border: 1px solid rgba(100, 100, 100, 0.3);
+}
+
+.comparison-side.right {
+    background: linear-gradient(135deg, rgba(53, 96, 147, 0.1) 0%, transparent 100%);
+    border: 1px solid rgba(53, 96, 147, 0.3);
+}
+
+.comparison-side h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.comparison-side ul {
+    list-style: none;
+}
+
+.comparison-side li {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    position: relative;
+    color: var(--text-secondary);
+}
+
+.comparison-side li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--theme-color);
+}
+
+/* ===== List Styles ===== */
+.content-list {
+    list-style: none;
+}
+
+.content-list li {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    padding-left: 50px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.content-list li.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.content-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--theme-color);
+    font-size: 1.8rem;
+}
+
+/* ===== Section Label ===== */
+.section-label {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* ===== Emphasis ===== */
+.emphasis {
+    color: var(--theme-color);
+    font-weight: 600;
+}
+
+/* ===== Progress Bar ===== */
+.progress-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--dark-surface);
+    z-index: 100;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--theme-color), var(--theme-color-light));
+    transition: width var(--transition-normal);
+}
+
+/* ===== Slide Counter ===== */
+.slide-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    z-index: 100;
+}
+
+/* ===== Keyboard Hints ===== */
+.keyboard-hints {
+    position: fixed;
+    bottom: 20px;
+    left: 40px;
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    z-index: 100;
+    transition: opacity var(--transition-normal);
+}
+
+.keyboard-hints:hover {
+    opacity: 1;
+}
+
+.keyboard-hints kbd {
+    display: inline-block;
+    padding: 2px 6px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    margin-right: 4px;
+}
+
+/* ===== TOC Overlay (Left Side) ===== */
+.toc-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--toc-width);
+    height: 100%;
+    background: var(--dark-surface);
+    border-right: 1px solid var(--dark-border);
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.toc-overlay.visible {
+    transform: translateX(0);
+}
+
+.toc-header {
+    padding: 30px 25px 20px;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.toc-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.toc-header .class-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.toc-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 0;
+}
+
+.toc-section {
+    margin-bottom: 10px;
+}
+
+.toc-section-title {
+    padding: 8px 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.toc-item {
+    display: block;
+    padding: 12px 25px 12px 35px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-left: 3px solid transparent;
+}
+
+.toc-item:hover {
+    background: var(--dark-card);
+    color: var(--text-primary);
+}
+
+.toc-item.active {
+    background: rgba(53, 96, 147, 0.1);
+    color: var(--theme-color);
+    border-left-color: var(--theme-color);
+}
+
+.toc-item .slide-num {
+    display: inline-block;
+    width: 28px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.toc-footer {
+    padding: 20px 25px;
+    border-top: 1px solid var(--dark-border);
+}
+
+.toc-footer a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+.toc-footer a:hover {
+    background: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
+.toc-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.toc-close:hover {
+    background: var(--dark-card);
+    color: var(--text-primary);
+}
+
+/* ===== Appendix Overlay (Right Side) ===== */
+.appendix-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--appendix-width);
+    height: 100%;
+    background: var(--dark-surface);
+    border-left: 1px solid var(--dark-border);
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.appendix-overlay.visible {
+    transform: translateX(0);
+}
+
+.appendix-header {
+    padding: 30px 25px 20px;
+    border-bottom: 1px solid var(--dark-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.appendix-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.appendix-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.appendix-close:hover {
+    background: var(--dark-card);
+    color: var(--text-primary);
+}
+
+.appendix-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.appendix-slide {
+    padding: 40px 30px;
+    border-bottom: 1px solid var(--dark-border);
+    display: none;
+}
+
+.appendix-slide.active {
+    display: block;
+}
+
+.appendix-slide h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+.appendix-slide p,
+.appendix-slide ul {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.appendix-slide ul {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.appendix-slide li {
+    margin-bottom: 10px;
+}
+
+.appendix-nav {
+    padding: 20px 25px;
+    border-top: 1px solid var(--dark-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appendix-nav-btn {
+    padding: 8px 16px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.appendix-nav-btn:hover:not(:disabled) {
+    background: var(--theme-color);
+    border-color: var(--theme-color);
+    color: white;
+}
+
+.appendix-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.appendix-counter {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ===== Overlay Backdrop ===== */
+.overlay-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+    z-index: 999;
+}
+
+.overlay-backdrop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.animate-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .slide {
+        padding: 40px;
+    }
+
+    .slide-title h1 {
+        font-size: 3rem;
+    }
+
+    .slide-statement .statement {
+        font-size: 2rem;
+    }
+
+    .comparison-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .toc-overlay,
+    .appendix-overlay {
+        width: 100%;
+    }
+}
