@@ -164,15 +164,30 @@ body {
 }
 
 /* ===== Content Slide ===== */
-.slide-content {
-    padding-top: 40px;
+/* Only target .slide-content when used as a slide type modifier */
+.slide.slide-content {
+    justify-content: center;
+    align-items: center;
 }
 
-.slide-content h2 {
+/* Content slide elements - constrained width, left-aligned text */
+.slide.slide-content > h2 {
     font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 50px;
     color: var(--theme-color);
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+}
+
+.slide.slide-content > ul,
+.slide.slide-content > ol,
+.slide.slide-content > .content-list,
+.slide.slide-content > p {
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
 }
 
 /* ===== Visual Slide ===== */
