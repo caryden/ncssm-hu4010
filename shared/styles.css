@@ -189,10 +189,9 @@ body {
 }
 
 /* ===== Visual Slide ===== */
-/* Uses space-between layout: title at top, visualization fills middle, caption at bottom */
+/* Default: center content vertically (for grids, cards, etc.) */
 .slide-visual {
-    /* Don't center - use space-between to distribute vertically */
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-align: center;
 }
@@ -203,6 +202,12 @@ body {
     margin-bottom: 20px;
     color: var(--text-primary);
     flex-shrink: 0;
+}
+
+/* When slide has a .visualization child, use fill layout:
+   title at top, visualization fills middle, caption at bottom */
+.slide-visual:has(.visualization) {
+    justify-content: flex-start;
 }
 
 /* Visualization container fills available space */
