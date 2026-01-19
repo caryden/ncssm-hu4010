@@ -1,12 +1,12 @@
 # Applications in Entrepreneurship
 
-## Course Syllabus - Spring 2025
+## Course Syllabus - Spring 2026
 
 **Guest Instructor:** Carl Ryden
 **NCSSM Instructor:** Chad Keister
 **Schedule:** Monday Evenings, 6:15 - 7:55 PM (100 minutes)
 **Work Sessions:** Wednesday Mornings (with Chad Keister)
-**Duration:** 13 Monday Sessions (February 2 - May 11, 2025)
+**Duration:** 13 Monday Sessions (February 2 - May 11, 2026)
 **Location:** NCSSM (Durham & Morganton campuses)
 **Class Size:** ~30 students (largest class to date!)
 

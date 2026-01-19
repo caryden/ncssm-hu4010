@@ -1,6 +1,6 @@
 # Class 0: Course Introduction & Team Formation Kickoff
 
-**Date:** February 2, 2025
+**Date:** February 2, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** N/A (Course foundation)
 

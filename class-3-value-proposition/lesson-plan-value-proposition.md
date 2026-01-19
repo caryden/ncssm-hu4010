@@ -1,6 +1,6 @@
 # Class 3: Value Proposition & Customer Journey
 
-**Date:** February 23, 2025
+**Date:** February 23, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 6 (Full Life Cycle Use Case), 7 (High-Level Product Spec), 8 (Quantify Value Proposition)
 

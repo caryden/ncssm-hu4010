@@ -1,6 +1,6 @@
 # Class 7: Unit Economics - LTV & COCA
 
-**Date:** March 23, 2025
+**Date:** March 23, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 17 (Calculate LTV), 18 (Map Sales Process), 19 (Calculate COCA)
 

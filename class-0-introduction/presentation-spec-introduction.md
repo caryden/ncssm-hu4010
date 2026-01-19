@@ -22,7 +22,7 @@
 - **Content:**
   - Main title: "Applications in Entrepreneurship"
   - Subtitle: "A Disciplined Approach to Building Ventures"
-  - Course details: "Spring 2025 | NCSSM"
+  - Course details: "Spring 2026 | NCSSM"
 - **Animation:** Fade in title, then subtitle with 500ms delay
 - **Visual:** Subtle gradient background with geometric shapes
 

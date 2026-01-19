@@ -1,6 +1,6 @@
 # Class 9: Scale & Pitch Preparation
 
-**Date:** April 20, 2025
+**Date:** April 20, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 24 (Develop a Product Plan)
 

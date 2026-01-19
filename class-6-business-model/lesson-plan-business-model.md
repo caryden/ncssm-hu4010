@@ -1,6 +1,6 @@
 # Class 6: Business Model & Pricing
 
-**Date:** March 16, 2025
+**Date:** March 16, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 14 (Calculate TAM for Follow-on Markets), 15 (Design a Business Model), 16 (Set Your Pricing Framework)
 

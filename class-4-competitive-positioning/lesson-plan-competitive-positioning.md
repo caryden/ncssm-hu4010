@@ -1,6 +1,6 @@
 # Class 4: Competitive Positioning & Core
 
-**Date:** March 2, 2025
+**Date:** March 2, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 9 (Next 10 Customers), 10 (Define Your Core), 11 (Chart Competitive Position)
 
