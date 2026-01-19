@@ -177,6 +177,50 @@ Based on [NCSSM's official branding kit](https://brand.ncssm.edu/):
 }
 ```
 
+### Minimum Font Sizes (Classroom Readability)
+
+**Context:** These presentations are delivered on ~80" TVs in classrooms (students 10-30 feet away) AND simultaneously over Zoom to the Morganton campus. All text must be readable in both contexts.
+
+| Element Type | Minimum Size | Notes |
+|--------------|--------------|-------|
+| **Titles/Headlines** | `2.5rem` (40px) | Slide titles, section headers |
+| **Primary Content** | `1.5rem` (24px) | Main text, bullet points, key messages |
+| **Secondary Content** | `1.25rem` (20px) | Supporting text, descriptions |
+| **Labels & Captions** | `1.25rem` (20px) | Chart labels, diagram annotations, D3 text |
+| **Absolute Minimum** | `1rem` (16px) | Only for non-essential metadata (e.g., keyboard hints) |
+
+**Critical Rules:**
+1. **No pixel values under 16px** - Ever. For any visible text.
+2. **Use rem units** - Scales properly with browser/display settings
+3. **D3 visualizations** - All `.attr('font-size', ...)` must use rem: `'1.25rem'` minimum
+4. **Chart labels** - Must be readable from back of room; prefer `1.25rem` or larger
+5. **Test readability** - Preview on actual classroom TV before final delivery
+
+**Code Review Checklist:**
+```javascript
+// BAD - Too small for classroom
+.attr('font-size', '12px')
+.attr('font-size', '14px')
+.style('font-size', '0.8rem')
+
+// GOOD - Classroom readable
+.attr('font-size', '1.25rem')
+.attr('font-size', '1.5rem')
+.style('font-size', '1.25rem')
+```
+
+```css
+/* BAD - Too small */
+font-size: 12px;
+font-size: 0.75rem;
+font-size: 14px;
+
+/* GOOD - Classroom readable */
+font-size: 1rem;      /* Absolute minimum */
+font-size: 1.25rem;   /* Labels, captions */
+font-size: 1.5rem;    /* Body text */
+```
+
 ---
 
 ## Layout System

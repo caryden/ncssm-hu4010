@@ -674,16 +674,16 @@
             // Labels
             svg.append('text').attr('x', w-m+10).attr('y', h/2+5)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
-                .attr('font-size', '11px').text('High Price →');
+                .attr('font-size', '1rem').text('High Price →');
             svg.append('text').attr('x', m-5).attr('y', h/2+5)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
-                .attr('font-size', '11px').attr('text-anchor', 'end').text('← Low Price');
+                .attr('font-size', '1rem').attr('text-anchor', 'end').text('← Low Price');
             svg.append('text').attr('x', w/2).attr('y', m-10)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
-                .attr('font-size', '11px').attr('text-anchor', 'middle').text('Premium ↑');
+                .attr('font-size', '1rem').attr('text-anchor', 'middle').text('Premium ↑');
             svg.append('text').attr('x', w/2).attr('y', h-m+20)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
-                .attr('font-size', '11px').attr('text-anchor', 'middle').text('↓ Basic');
+                .attr('font-size', '1rem').attr('text-anchor', 'middle').text('↓ Basic');
 
             // Competitors
             const comps = [
@@ -707,7 +707,7 @@
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#fff')
                     .attr('font-family', 'Montserrat')
-                    .attr('font-size', '9px')
+                    .attr('font-size', '1rem')
                     .attr('font-weight', c.highlight ? '700' : '500')
                     .text(c.name);
                 g.transition().delay(i * 300).duration(400).attr('opacity', 1);
