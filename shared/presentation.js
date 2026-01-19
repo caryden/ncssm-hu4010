@@ -394,23 +394,52 @@
     function animateSlide(slide) {
         if (!slide) return;
 
-        // Animate list items with stagger
-        const listItems = slide.querySelectorAll('.content-list li');
-        listItems.forEach((item, i) => {
-            item.classList.remove('visible');
-            setTimeout(() => {
-                item.classList.add('visible');
-            }, 200 * (i + 1));
-        });
+        // Helper to animate elements with stagger
+        function animateElements(selector, delay = 150) {
+            const elements = slide.querySelectorAll(selector);
+            elements.forEach((el, i) => {
+                el.classList.remove('visible');
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, delay * (i + 1));
+            });
+        }
 
-        // Animate cards
-        const cards = slide.querySelectorAll('.card, .metric-card, .category-card, .technique-card');
-        cards.forEach((card, i) => {
-            card.classList.remove('visible');
-            setTimeout(() => {
-                card.classList.add('visible');
-            }, 150 * (i + 1));
-        });
+        // Content list items (slower stagger)
+        animateElements('.content-list li', 200);
+
+        // Cards (various types across presentations)
+        animateElements('.card, .metric-card, .category-card, .technique-card', 150);
+        animateElements('.myth-card', 200);
+        animateElements('.question-card', 150);
+        animateElements('.dual-card', 300);
+        animateElements('.homework-item', 200);
+
+        // Timeline elements
+        animateElements('.timeline-item', 200);
+        animateElements('.timeline-node', 200);
+        animateElements('.timeline-arrow', 200);
+
+        // Grid items
+        animateElements('.icon-item', 100);
+        animateElements('.criteria-card', 200);
+
+        // Class-specific elements
+        animateElements('.journey-step', 150);
+        animateElements('.value-card', 150);
+        animateElements('.pro-tip', 200);
+        animateElements('.checklist-item', 150);
+        animateElements('.qa-item', 200);
+        animateElements('.pitch-section', 100);
+        animateElements('.slack-step', 200);
+        animateElements('.roadmap-phase', 200);
+        animateElements('.criteria-item', 150);
+        animateElements('.stone', 300);
+        animateElements('.model-card', 150);
+        animateElements('.pricing-option', 200);
+        animateElements('.threshold-item', 150);
+        animateElements('.test-card', 150);
+        animateElements('.mvbp-component', 200);
 
         // Trigger custom visualization if present
         const vizId = slide.dataset.visualization;
