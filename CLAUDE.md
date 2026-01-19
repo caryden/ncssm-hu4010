@@ -135,7 +135,8 @@ Navigation and interaction logic including:
 2. **Use theme colors** from the spec (CSS custom properties or hex values)
 3. **Font sizes must be `1.25rem` minimum** for all labels and text
 4. **Use `rem` units** instead of `px` for scalability
-5. **Override `goToSlide`** to trigger visualization drawing:
+5. **Make visualizations fully responsive** (see Responsive D3 section in master spec)
+6. **Override `goToSlide`** to trigger visualization drawing:
 
 ```javascript
 const originalGoToSlide = window.Presentation.goToSlide;
@@ -144,6 +145,32 @@ window.Presentation.goToSlide = function(n) {
     if (n === 10) setTimeout(drawMyVisualization, 300);
 };
 ```
+
+### Responsive D3 Pattern (CRITICAL)
+
+All D3 visualizations must be responsive - no hardcoded pixel values for positions or sizes:
+
+```javascript
+// GOOD - Responsive pattern
+const width = 600;
+const height = 400;
+const scale = Math.min(width, height);
+
+const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+// Positions as proportions
+const center = { x: width * 0.5, y: height * 0.5 };
+const nodeRadius = scale * 0.08;  // 8% of scale
+
+// BAD - Hardcoded pixels
+const center = { x: 300, y: 200 };
+const nodeRadius = 50;
+```
+
+See `master-presentation-spec.md` for complete responsive D3 guidelines.
 
 ---
 

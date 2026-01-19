@@ -189,8 +189,10 @@ body {
 }
 
 /* ===== Visual Slide ===== */
+/* Uses space-between layout: title at top, visualization fills middle, caption at bottom */
 .slide-visual {
-    justify-content: center;
+    /* Don't center - use space-between to distribute vertically */
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
 }
@@ -198,8 +200,22 @@ body {
 .slide-visual h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+/* Visualization container fills available space */
+.slide-visual .visualization {
+    flex: 1;
+    width: 100%;
+    min-height: 0; /* Allow shrinking in flex context */
+}
+
+/* Caption stays at bottom */
+.slide-visual .caption {
+    flex-shrink: 0;
+    margin-top: 20px;
 }
 
 /* Visual slide content wrapper for proper centering */

@@ -611,6 +611,159 @@
         getState: () => ({ ...state })
     };
 
+    // =========================================================================
+    // D3 VISUALIZATION UTILITIES
+    // =========================================================================
+    // Shared utilities to create consistent, responsive D3 visualizations
+    // that properly fill their containers and don't break when CSS changes.
+    // =========================================================================
+
+    /**
+     * Create a responsive SVG visualization
+     * @param {string} containerId - The ID of the container element
+     * @param {object} options - Configuration options
+     * @param {number} options.padding - Padding percentage (0-1), default 0.05 (5%)
+     * @param {string} options.aspectRatio - 'container' (match container) or 'square'
+     * @returns {object|null} - { svg, width, height, bounds, scale } or null if already exists
+     */
+    function createVisualization(containerId, options = {}) {
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.warn(`Visualization container '${containerId}' not found`);
+            return null;
+        }
+
+        // Prevent duplicate SVGs
+        if (container.querySelector('svg')) {
+            return null;
+        }
+
+        // Get actual container dimensions
+        const rect = container.getBoundingClientRect();
+        const containerWidth = rect.width || 800;
+        const containerHeight = rect.height || 400;
+
+        // Use container dimensions for viewBox (1:1 mapping)
+        const width = containerWidth;
+        const height = containerHeight;
+
+        // Calculate padding and bounds
+        const paddingPercent = options.padding !== undefined ? options.padding : 0.05;
+        const paddingX = width * paddingPercent;
+        const paddingY = height * paddingPercent;
+
+        const bounds = {
+            left: paddingX,
+            right: width - paddingX,
+            top: paddingY,
+            bottom: height - paddingY,
+            width: width - 2 * paddingX,
+            height: height - 2 * paddingY,
+            centerX: width / 2,
+            centerY: height / 2
+        };
+
+        // Create SVG
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', '100%')
+            .attr('height', '100%')
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet')
+            .style('display', 'block');  // Prevent inline spacing issues
+
+        // Useful scale value (smaller of width/height for circular layouts)
+        const scale = Math.min(bounds.width, bounds.height);
+
+        return {
+            svg,
+            width,
+            height,
+            bounds,
+            scale,
+            container
+        };
+    }
+
+    /**
+     * Calculate radial layout positions for nodes around a center
+     * @param {object} center - { x, y } center point
+     * @param {number} radius - Distance from center
+     * @param {number} count - Number of nodes
+     * @param {number} startAngle - Starting angle in degrees (default -90, top)
+     * @returns {Array} - Array of { x, y, angle } positions
+     */
+    function radialLayout(center, radius, count, startAngle = -90) {
+        const positions = [];
+        const angleStep = 360 / count;
+
+        for (let i = 0; i < count; i++) {
+            const angleDeg = startAngle + i * angleStep;
+            const angleRad = (angleDeg * Math.PI) / 180;
+            positions.push({
+                x: center.x + Math.cos(angleRad) * radius,
+                y: center.y + Math.sin(angleRad) * radius,
+                angle: angleDeg
+            });
+        }
+
+        return positions;
+    }
+
+    /**
+     * Standard node sizes based on visualization scale
+     * @param {number} scale - The visualization scale (min of width/height)
+     * @returns {object} - Recommended sizes for different elements
+     */
+    function getNodeSizes(scale) {
+        return {
+            // Primary/central node
+            primaryRadius: scale * 0.12,
+            // Secondary nodes (connected to primary)
+            secondaryRadius: scale * 0.08,
+            // Tertiary/outer nodes
+            tertiaryRadius: scale * 0.06,
+            // Ring distances
+            innerRing: scale * 0.25,
+            outerRing: scale * 0.4,
+            // Font sizes (in pixels, will be converted to rem)
+            labelSize: Math.max(14, scale * 0.04),
+            smallLabelSize: Math.max(12, scale * 0.03)
+        };
+    }
+
+    /**
+     * Validate that a point is within bounds
+     * @param {number} x - X coordinate
+     * @param {number} y - Y coordinate
+     * @param {number} radius - Radius of element (for circular elements)
+     * @param {object} bounds - Bounds object from createVisualization
+     * @param {string} label - Label for warning message
+     * @returns {boolean} - True if within bounds
+     */
+    function validateBounds(x, y, radius, bounds, label = 'Element') {
+        const inBounds = (
+            x - radius >= bounds.left &&
+            x + radius <= bounds.right &&
+            y - radius >= bounds.top &&
+            y + radius <= bounds.bottom
+        );
+
+        if (!inBounds) {
+            console.warn(`${label} may be clipped: (${x.toFixed(1)}, ${y.toFixed(1)}) r=${radius.toFixed(1)}, bounds: [${bounds.left.toFixed(1)}-${bounds.right.toFixed(1)}, ${bounds.top.toFixed(1)}-${bounds.bottom.toFixed(1)}]`);
+        }
+
+        return inBounds;
+    }
+
+    // Export visualization utilities
+    window.Visualization = {
+        create: createVisualization,
+        radialLayout: radialLayout,
+        getNodeSizes: getNodeSizes,
+        validateBounds: validateBounds
+    };
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);

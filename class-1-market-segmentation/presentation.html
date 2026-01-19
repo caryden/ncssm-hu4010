@@ -194,12 +194,11 @@
             font-weight: 500;
         }
 
-        /* Visualization containers */
+        /* Visualization containers - fills available space */
         .visualization {
             width: 100%;
-            max-width: 900px;
-            height: 350px;
-            margin: 30px auto;
+            /* No max-width - let it fill the slide */
+            /* Height controlled by flex: 1 in shared styles */
         }
 
         /* Caption */
@@ -736,18 +735,20 @@
 
         // Draw segment branches on slide 10
         function drawBranches() {
-            const container = document.getElementById('segment-branches');
-            if (!container || container.querySelector('svg')) return;
+            const viz = window.Visualization.create('segment-branches', { padding: 0.05 });
+            if (!viz) return;
 
-            const width = 800;
-            const height = 300;
+            const { svg, width, height, bounds } = viz;
 
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            // Proportional calculations based on actual container size
+            const centerX = bounds.left + bounds.width * 0.1;
+            const centerY = bounds.centerY;
+            const centerRadius = Math.min(bounds.height * 0.15, bounds.width * 0.06);
+            const midX = bounds.left + bounds.width * 0.35;
+            const endX = bounds.left + bounds.width * 0.6;
+            const segmentRadius = centerRadius * 0.6;
+            const rowSpacing = bounds.height * 0.3;
 
-            const center = { x: 100, y: height / 2 };
             const branches = [
                 { label: 'Segment A', items: ['Features', 'Pricing', 'Channel'] },
                 { label: 'Segment B', items: ['Features', 'Pricing', 'Channel'] },
@@ -756,9 +757,9 @@
 
             // Central node
             svg.append('circle')
-                .attr('cx', center.x)
-                .attr('cy', center.y)
-                .attr('r', 40)
+                .attr('cx', centerX)
+                .attr('cy', centerY)
+                .attr('r', centerRadius)
                 .attr('fill', '#356093')
                 .attr('opacity', 0)
                 .transition()
@@ -766,40 +767,39 @@
                 .attr('opacity', 1);
 
             svg.append('text')
-                .attr('x', center.x)
-                .attr('y', center.y)
+                .attr('x', centerX)
+                .attr('y', centerY)
                 .attr('text-anchor', 'middle')
                 .attr('dy', '0.35em')
                 .attr('fill', '#fff')
                 .attr('font-family', 'Montserrat, sans-serif')
-                .attr('font-size', '1rem')
+                .attr('font-size', '1.1rem')
                 .attr('font-weight', '600')
                 .text('Your Idea');
 
             branches.forEach((branch, i) => {
-                const y = 60 + i * 100;
-                const midX = 300;
-                const endX = 500;
+                const y = centerY + (i - 1) * rowSpacing;
+                const itemSpacing = bounds.height * 0.08;
 
                 // Line to segment
                 svg.append('line')
-                    .attr('x1', center.x + 40)
-                    .attr('y1', center.y)
-                    .attr('x2', center.x + 40)
-                    .attr('y2', center.y)
+                    .attr('x1', centerX + centerRadius)
+                    .attr('y1', centerY)
+                    .attr('x2', centerX + centerRadius)
+                    .attr('y2', centerY)
                     .attr('stroke', '#4a7ab8')
                     .attr('stroke-width', 2)
                     .transition()
                     .delay(500 + i * 200)
                     .duration(400)
-                    .attr('x2', midX - 30)
+                    .attr('x2', midX - segmentRadius)
                     .attr('y2', y);
 
                 // Segment node
                 svg.append('circle')
                     .attr('cx', midX)
                     .attr('cy', y)
-                    .attr('r', 25)
+                    .attr('r', segmentRadius)
                     .attr('fill', '#12121a')
                     .attr('stroke', '#4a7ab8')
                     .attr('stroke-width', 2)
@@ -816,7 +816,7 @@
                     .attr('dy', '0.35em')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
+                    .attr('font-size', '1.1rem')
                     .text(branch.label)
                     .attr('opacity', 0)
                     .transition()
@@ -824,14 +824,14 @@
                     .duration(300)
                     .attr('opacity', 1);
 
-                // Sub-items
+                // Sub-items with labels outside
                 branch.items.forEach((item, j) => {
-                    const itemY = y - 30 + j * 30;
+                    const itemY = y + (j - 1) * itemSpacing;
 
                     svg.append('line')
-                        .attr('x1', midX + 25)
+                        .attr('x1', midX + segmentRadius)
                         .attr('y1', y)
-                        .attr('x2', midX + 25)
+                        .attr('x2', midX + segmentRadius)
                         .attr('y2', y)
                         .attr('stroke', '#6a6a7a')
                         .attr('stroke-width', 1)
@@ -847,7 +847,7 @@
                         .attr('dy', '0.35em')
                         .attr('fill', '#6a6a7a')
                         .attr('font-family', 'Montserrat, sans-serif')
-                        .attr('font-size', '1rem')
+                        .attr('font-size', '1.1rem')
                         .text(item)
                         .attr('opacity', 0)
                         .transition()
@@ -860,16 +860,10 @@
 
         // Draw segmentation matrix on slide 13
         function drawMatrix() {
-            const container = document.getElementById('segment-matrix');
-            if (!container || container.querySelector('svg')) return;
+            const viz = window.Visualization.create('segment-matrix', { padding: 0.05 });
+            if (!viz) return;
 
-            const width = 800;
-            const height = 300;
-
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            const { svg, bounds } = viz;
 
             const segments = ['College Students', 'Office Workers', 'New Parents', 'Gym-Goers'];
             const criteria = ['Problem', 'Access', 'Size', 'Compete', 'Fit'];
@@ -880,20 +874,26 @@
                 [4, 4, 3, 3, 5]
             ];
 
-            const cellWidth = 80;
-            const cellHeight = 40;
-            const startX = 160;
-            const startY = 50;
+            // Proportional calculations based on actual container size
+            const labelWidth = bounds.width * 0.2;
+            const gridWidth = bounds.width - labelWidth;
+            const cellWidth = gridWidth / criteria.length;
+            const headerHeight = bounds.height * 0.15;
+            const gridHeight = bounds.height - headerHeight;
+            const cellHeight = gridHeight / segments.length;
+            const startX = bounds.left + labelWidth;
+            const startY = bounds.top + headerHeight;
+            const cellGap = 4;
 
             // Headers
             criteria.forEach((c, i) => {
                 svg.append('text')
                     .attr('x', startX + i * cellWidth + cellWidth/2)
-                    .attr('y', startY - 10)
+                    .attr('y', bounds.top + headerHeight * 0.6)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
+                    .attr('font-size', '1.1rem')
                     .attr('font-weight', '600')
                     .text(c)
                     .attr('opacity', 0)
@@ -906,12 +906,13 @@
             // Rows
             segments.forEach((seg, row) => {
                 svg.append('text')
-                    .attr('x', startX - 10)
-                    .attr('y', startY + row * cellHeight + cellHeight/2 + 5)
+                    .attr('x', startX - 15)
+                    .attr('y', startY + row * cellHeight + cellHeight/2)
                     .attr('text-anchor', 'end')
+                    .attr('dominant-baseline', 'middle')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
+                    .attr('font-size', '1.1rem')
                     .text(seg)
                     .attr('opacity', 0)
                     .transition()
@@ -925,10 +926,10 @@
                         .range(['#ef4444', '#eab308', '#10b981']);
 
                     svg.append('rect')
-                        .attr('x', startX + col * cellWidth)
-                        .attr('y', startY + row * cellHeight)
-                        .attr('width', cellWidth - 4)
-                        .attr('height', cellHeight - 4)
+                        .attr('x', startX + col * cellWidth + cellGap/2)
+                        .attr('y', startY + row * cellHeight + cellGap/2)
+                        .attr('width', cellWidth - cellGap)
+                        .attr('height', cellHeight - cellGap)
                         .attr('rx', 4)
                         .attr('fill', colorScale(score))
                         .attr('opacity', 0)
@@ -938,12 +939,13 @@
                         .attr('opacity', 0.8);
 
                     svg.append('text')
-                        .attr('x', startX + col * cellWidth + (cellWidth - 4)/2)
-                        .attr('y', startY + row * cellHeight + (cellHeight - 4)/2 + 5)
+                        .attr('x', startX + col * cellWidth + cellWidth/2)
+                        .attr('y', startY + row * cellHeight + cellHeight/2)
                         .attr('text-anchor', 'middle')
+                        .attr('dominant-baseline', 'middle')
                         .attr('fill', '#fff')
                         .attr('font-family', 'JetBrains Mono, monospace')
-                        .attr('font-size', '1.25rem')
+                        .attr('font-size', '1.5rem')
                         .attr('font-weight', '600')
                         .text(score)
                         .attr('opacity', 0)
@@ -956,20 +958,29 @@
         }
 
         // Draw expansion diagram on slide 23
+        // Uses shared Visualization utilities for consistent, responsive sizing
         function drawExpansion() {
-            const container = document.getElementById('expansion-diagram');
-            if (!container || container.querySelector('svg')) return;
+            // Use shared utility to create responsive SVG
+            const viz = window.Visualization.create('expansion-diagram', { padding: 0.05 });
+            if (!viz) return;
 
-            const width = 700;
-            const height = 380;
+            const { svg, bounds, scale } = viz;
+            const center = { x: bounds.centerX, y: bounds.centerY };
 
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            // Use the smaller dimension to keep diagram circular
+            const maxRadius = Math.min(bounds.width, bounds.height) / 2;
 
-            // Center positioned to fit all nodes (top node at y=35, bottom at y=345)
-            const center = { x: width / 2, y: 215 };
+            // Scale everything relative to available space
+            // Beachhead is the focal point - make it prominent
+            const beachheadRadius = maxRadius * 0.25;
+            const marketRadius = maxRadius * 0.12;
+
+            // Ring distances from center
+            const adjacentDist = maxRadius * 0.55;  // Phase 2 markets
+            const outerDist = maxRadius * 0.85;     // Phase 3 markets
+
+            // Label positioning
+            const labelOffset = maxRadius * 0.08;
 
             // Center beachhead
             svg.append('circle')
@@ -979,7 +990,7 @@
                 .attr('fill', '#356093')
                 .transition()
                 .duration(600)
-                .attr('r', 50);
+                .attr('r', beachheadRadius);
 
             svg.append('text')
                 .attr('x', center.x)
@@ -988,7 +999,7 @@
                 .attr('dy', '0.35em')
                 .attr('fill', '#fff')
                 .attr('font-family', 'Montserrat, sans-serif')
-                .attr('font-size', '1.1rem')
+                .attr('font-size', '1.25rem')
                 .attr('font-weight', '700')
                 .text('BEACHHEAD')
                 .attr('opacity', 0)
@@ -997,31 +1008,46 @@
                 .duration(300)
                 .attr('opacity', 1);
 
-            // Adjacent markets
-            const adjacent = [
-                { angle: -30, label: 'Adjacent 1', phase: 2 },
-                { angle: 30, label: 'Adjacent 2', phase: 2 },
-                { angle: 90, label: 'Adjacent 3', phase: 2 },
-                { angle: 150, label: 'Market 4', phase: 3 },
-                { angle: 210, label: 'Market 5', phase: 3 },
-                { angle: -90, label: 'Market 6', phase: 3 }
+            // Adjacent markets - spread around center
+            // Phase 2 (adjacent) on inner ring, Phase 3 (expansion) on outer ring
+            const markets = [
+                { angle: -60, label: 'Adjacent 1', phase: 2 },
+                { angle: 0, label: 'Adjacent 2', phase: 2 },
+                { angle: 60, label: 'Adjacent 3', phase: 2 },
+                { angle: 120, label: 'Market 4', phase: 3 },
+                { angle: 180, label: 'Market 5', phase: 3 },
+                { angle: -120, label: 'Market 6', phase: 3 }
             ];
 
-            adjacent.forEach((adj, i) => {
-                const rad = (adj.angle * Math.PI) / 180;
-                const dist = adj.phase === 2 ? 130 : 180;
+            markets.forEach((market, i) => {
+                const rad = (market.angle * Math.PI) / 180;
+                const dist = market.phase === 2 ? adjacentDist : outerDist;
                 const x = center.x + Math.cos(rad) * dist;
                 const y = center.y + Math.sin(rad) * dist;
 
-                // Connection line
+                // Calculate label position OUTSIDE the circle
+                const labelDist = dist + marketRadius + labelOffset;
+                const labelX = center.x + Math.cos(rad) * labelDist;
+                const labelY = center.y + Math.sin(rad) * labelDist;
+
+                // Determine text-anchor based on angle (left/right/center)
+                let textAnchor = 'middle';
+                if (Math.cos(rad) > 0.3) textAnchor = 'start';
+                else if (Math.cos(rad) < -0.3) textAnchor = 'end';
+
+                // Line starts at EDGE of beachhead circle, not center
+                const lineStartX = center.x + Math.cos(rad) * beachheadRadius;
+                const lineStartY = center.y + Math.sin(rad) * beachheadRadius;
+
+                // Connection line from beachhead edge to market node
                 svg.append('line')
-                    .attr('x1', center.x)
-                    .attr('y1', center.y)
-                    .attr('x2', center.x)
-                    .attr('y2', center.y)
-                    .attr('stroke', adj.phase === 2 ? '#4a7ab8' : '#6a6a7a')
+                    .attr('x1', lineStartX)
+                    .attr('y1', lineStartY)
+                    .attr('x2', lineStartX)
+                    .attr('y2', lineStartY)
+                    .attr('stroke', market.phase === 2 ? '#4a7ab8' : '#6a6a7a')
                     .attr('stroke-width', 2)
-                    .attr('stroke-dasharray', adj.phase === 3 ? '5,5' : 'none')
+                    .attr('stroke-dasharray', market.phase === 3 ? '5,5' : 'none')
                     .transition()
                     .delay(800 + i * 150)
                     .duration(400)
@@ -1034,22 +1060,23 @@
                     .attr('cy', y)
                     .attr('r', 0)
                     .attr('fill', '#12121a')
-                    .attr('stroke', adj.phase === 2 ? '#4a7ab8' : '#6a6a7a')
+                    .attr('stroke', market.phase === 2 ? '#4a7ab8' : '#6a6a7a')
                     .attr('stroke-width', 2)
                     .transition()
                     .delay(1200 + i * 150)
                     .duration(300)
-                    .attr('r', 30);
+                    .attr('r', marketRadius);
 
+                // Label positioned OUTSIDE the circle
                 svg.append('text')
-                    .attr('x', x)
-                    .attr('y', y)
-                    .attr('text-anchor', 'middle')
+                    .attr('x', labelX)
+                    .attr('y', labelY)
+                    .attr('text-anchor', textAnchor)
                     .attr('dy', '0.35em')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
-                    .text(adj.label)
+                    .attr('font-size', '1.25rem')
+                    .text(market.label)
                     .attr('opacity', 0)
                     .transition()
                     .delay(1400 + i * 150)

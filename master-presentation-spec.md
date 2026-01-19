@@ -379,6 +379,125 @@ elements.forEach((el, i) => {
 });
 ```
 
+### Responsive D3 Visualizations (CRITICAL)
+
+**Problem:** Presentations are viewed on different screen sizes and resolutions (80" classroom TVs, laptop screens, Zoom windows). Hardcoded pixel values cause clipping, overlap, and layout issues.
+
+**Solution:** All D3 visualizations MUST be fully responsive using these techniques:
+
+#### 1. Use viewBox for SVG Scaling
+```javascript
+// GOOD - Responsive SVG that scales to container
+const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+    // Do NOT set width/height attributes - let viewBox handle scaling
+
+// BAD - Fixed size that won't adapt
+const svg = d3.select(container)
+    .append('svg')
+    .attr('width', 800)
+    .attr('height', 400);
+```
+
+#### 2. Calculate Positions as Proportions
+```javascript
+// GOOD - Proportional positioning
+const center = { x: width * 0.5, y: height * 0.5 };
+const nodeRadius = Math.min(width, height) * 0.07;  // 7% of smallest dimension
+const ringDistance = Math.min(width, height) * 0.35;  // 35% from center
+
+// BAD - Hardcoded pixels
+const center = { x: 350, y: 190 };
+const nodeRadius = 50;
+const ringDistance = 130;
+```
+
+#### 3. Scale Text with Diagram
+```javascript
+// GOOD - Font size proportional to diagram
+const baseFontSize = Math.min(width, height) * 0.035;  // ~3.5% of size
+svg.append('text')
+    .attr('font-size', `${baseFontSize}px`);
+
+// Also acceptable - rem units (scaled by browser)
+.attr('font-size', '1.25rem')
+
+// BAD - Fixed pixel sizes
+.attr('font-size', '14px')
+```
+
+#### 4. Use Aspect Ratio Appropriate to Content
+```javascript
+// For radial/circular diagrams - use square or near-square
+const width = 600;
+const height = 500;  // Close to 1:1
+
+// For horizontal flows/timelines - use wide ratio
+const width = 800;
+const height = 300;  // ~2.6:1
+
+// For vertical hierarchies - use tall ratio
+const width = 400;
+const height = 600;  // ~1:1.5
+```
+
+#### 5. Standard Responsive Pattern
+```javascript
+function drawVisualization() {
+    const container = document.getElementById('my-viz');
+    if (!container || container.querySelector('svg')) return;
+
+    // Define logical coordinate space (viewBox dimensions)
+    const width = 700;
+    const height = 500;
+
+    // Create responsive SVG
+    const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // Calculate all positions as proportions
+    const scale = Math.min(width, height);
+    const center = { x: width / 2, y: height / 2 };
+    const nodeSize = scale * 0.08;
+    const fontSize = scale * 0.03;
+
+    // Draw elements using proportional values
+    svg.append('circle')
+        .attr('cx', center.x)
+        .attr('cy', center.y)
+        .attr('r', nodeSize);
+
+    svg.append('text')
+        .attr('font-size', `${Math.max(fontSize, 14)}px`);  // Floor for readability
+}
+```
+
+#### Code Review Checklist - Responsiveness
+```javascript
+// REJECT - Hardcoded positions
+.attr('cx', 350)
+.attr('cy', 190)
+.attr('r', 50)
+const dist = 130;
+
+// ACCEPT - Proportional calculations
+.attr('cx', width * 0.5)
+.attr('cy', height * 0.45)
+.attr('r', scale * 0.07)
+const dist = scale * 0.35;
+```
+
+**Key Principles:**
+1. **viewBox defines coordinate space** - actual size comes from container CSS
+2. **All positions are percentages/proportions** of the viewBox dimensions
+3. **Node sizes scale with the diagram** - use `Math.min(width, height) * fraction`
+4. **Font sizes have a floor** - ensure minimum readability: `Math.max(calculated, 14)`
+5. **Test at multiple sizes** - preview in both fullscreen and small window
+
 ---
 
 ## Common Components
