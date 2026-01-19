@@ -1,6 +1,6 @@
 # Class 5: Customer Acquisition & Decision-Making Unit
 
-**Date:** March 9, 2025
+**Date:** March 9, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 12 (Determine the DMU), 13 (Map Process to Acquire Customer)
 

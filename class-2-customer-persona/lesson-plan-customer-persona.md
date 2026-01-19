@@ -1,6 +1,6 @@
 # Class 2: Customer Persona & TAM
 
-**Date:** February 16, 2025
+**Date:** February 16, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 3 (End User Profile), 4 (Calculate TAM), 5 (Profile the Persona)
 

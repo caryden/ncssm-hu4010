@@ -1,6 +1,6 @@
 # Class 1: Market Segmentation & Beachhead Selection
 
-**Date:** February 9, 2025
+**Date:** February 9, 2026
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 1 (Market Segmentation), 2 (Select a Beachhead Market)
 

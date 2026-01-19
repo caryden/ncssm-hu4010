@@ -1,6 +1,6 @@
 # Class 8: Testing Assumptions & MVBP
 
-**Date:** April 13, 2025 (After Spring Break)
+**Date:** April 13, 2026 (After Spring Break)
 **Duration:** 100 minutes (6:15 - 7:55 PM)
 **DE Steps:** 20 (Identify Key Assumptions), 21 (Test Key Assumptions), 22 (Define MVBP), 23 (Show Dogs Eat Dog Food)
 
