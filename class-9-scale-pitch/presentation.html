@@ -357,10 +357,6 @@
         /* DE Wheel Complete */
         #de-wheel-complete {
             width: 100%;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         /* Theme colors reference for journey grid */
@@ -868,8 +864,8 @@
 
         <!-- Slide 23: Complete DE Wheel -->
         <div class="slide slide-visual" data-slide="23" data-section="wrap-up" data-title="DE Wheel Complete">
-            <h2 style="text-align: center;">Your Journey Is Complete!</h2>
-            <div id="de-wheel-complete"></div>
+            <h2>Your Journey Is Complete!</h2>
+            <div id="de-wheel-complete" class="visualization"></div>
         </div>
 
         <!-- Slide 24: Workshop -->
@@ -1188,25 +1184,18 @@
 
         // Draw complete DE wheel
         function drawCompleteWheel() {
-            const container = document.getElementById('de-wheel-complete');
-            if (!container || container.querySelector('svg')) return;
+            const viz = window.Visualization.create('de-wheel-complete', { padding: 0.05 });
+            if (!viz) return;
 
-            // Define logical coordinate space
-            const width = 500;
-            const height = 400;
-            const scale = Math.min(width, height);
+            const { svg, bounds, scale } = viz;
 
-            // Proportional calculations
-            const centerX = width * 0.5;
-            const centerY = height * 0.5;
-            const radius = scale * 0.375;                 // Main radius ~37.5%
-            const innerRadius = radius - scale * 0.1;    // Inner radius (ring thickness ~10%)
-            const checkRadius = radius - scale * 0.05;   // Checkmark position
-
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            // Proportional calculations using bounds
+            const centerX = bounds.centerX;
+            const centerY = bounds.centerY;
+            const maxRadius = Math.min(bounds.width, bounds.height) / 2;
+            const radius = maxRadius * 0.9;
+            const innerRadius = radius - scale * 0.05;
+            const checkRadius = radius - scale * 0.025;
 
             // Theme colors
             const themes = [
@@ -1263,7 +1252,7 @@
             // Center text
             svg.append('text')
                 .attr('x', centerX)
-                .attr('y', centerY - height * 0.025)
+                .attr('y', centerY - bounds.height * 0.025)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#f1f1f1')
                 .attr('font-family', 'Montserrat')
@@ -1273,7 +1262,7 @@
 
             svg.append('text')
                 .attr('x', centerX)
-                .attr('y', centerY + height * 0.0375)
+                .attr('y', centerY + bounds.height * 0.0375)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#06b6d4')
                 .attr('font-family', 'Montserrat')

@@ -103,12 +103,9 @@
             color: var(--text-muted);
         }
 
-        /* Visualization containers */
+        /* Visualization containers - height controlled by flex in shared styles */
         .visualization {
             width: 100%;
-            max-width: 900px;
-            height: 350px;
-            margin: 30px auto;
         }
 
         /* Caption */
@@ -701,25 +698,24 @@
 
         // Draw focus animation on slide 5
         function drawFocusAnimation() {
-            const container = document.getElementById('focus-animation');
-            if (!container || container.querySelector('svg')) return;
+            const viz = window.Visualization.create('focus-animation', { padding: 0.05 });
+            if (!viz) return;
 
-            // Define logical coordinate space
-            const width = 800, height = 300;
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            const { svg, bounds } = viz;
 
-            // Proportional calculations
-            const stageXPositions = [width * 0.125, width * 0.5, width * 0.875];
-            const clusterRadius = height * 0.133;     // Radius of people cluster
-            const labelOffsetY = height * 0.333;      // Label distance below center
+            // Proportional calculations based on container
+            const stageXPositions = [
+                bounds.left + bounds.width * 0.15,
+                bounds.centerX,
+                bounds.left + bounds.width * 0.85
+            ];
+            const clusterRadius = bounds.height * 0.15;
+            const labelOffsetY = bounds.height * 0.35;
 
             const stages = [
-                { x: stageXPositions[0], label: 'Segment', blur: 8, count: 20, size: height * 0.027 },
-                { x: stageXPositions[1], label: 'Profile', blur: 3, count: 8, size: height * 0.04 },
-                { x: stageXPositions[2], label: 'Persona', blur: 0, count: 1, size: height * 0.133 }
+                { x: stageXPositions[0], label: 'Segment', blur: 8, count: 20, size: bounds.height * 0.03 },
+                { x: stageXPositions[1], label: 'Profile', blur: 3, count: 8, size: bounds.height * 0.045 },
+                { x: stageXPositions[2], label: 'Persona', blur: 0, count: 1, size: bounds.height * 0.15 }
             ];
 
             // Define blur filters
@@ -729,7 +725,7 @@
             });
 
             stages.forEach((stage, si) => {
-                const g = svg.append('g').attr('transform', `translate(${stage.x}, ${height/2})`);
+                const g = svg.append('g').attr('transform', `translate(${stage.x}, ${bounds.centerY})`);
 
                 // Draw people
                 for (let i = 0; i < stage.count; i++) {
@@ -768,11 +764,14 @@
             });
 
             // Arrows - positioned between stages
-            const arrowXPositions = [width * 0.3125, width * 0.6875];
+            const arrowXPositions = [
+                bounds.left + bounds.width * 0.32,
+                bounds.left + bounds.width * 0.68
+            ];
             arrowXPositions.forEach((x, i) => {
                 svg.append('text')
                     .attr('x', x)
-                    .attr('y', height/2 + 5)
+                    .attr('y', bounds.centerY + 5)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#d4a028')
                     .attr('font-size', '1.5rem')
@@ -787,25 +786,20 @@
 
         // Draw user/buyer comparison on slide 7
         function drawUserBuyer() {
-            const container = document.getElementById('user-buyer');
-            if (!container || container.querySelector('svg')) return;
+            const viz = window.Visualization.create('user-buyer', { padding: 0.05 });
+            if (!viz) return;
 
-            // Define logical coordinate space
-            const width = 800, height = 300;
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            const { svg, bounds } = viz;
 
-            // Proportional calculations
-            const contextX = width * 0.125;           // Context label column
-            const userBoxX = width * 0.275;           // User box left edge
-            const equalSignX = width * 0.5;           // Equals/not-equals position
-            const buyerBoxX = width * 0.575;          // Buyer box left edge
-            const boxWidth = width * 0.15;            // Box width
-            const boxHeight = height * 0.133;         // Box height
-            const rowSpacing = height * 0.333;        // Spacing between rows
-            const headerY = height * 0.083;           // Header row Y position
+            // Proportional calculations based on container
+            const contextX = bounds.left + bounds.width * 0.12;
+            const userBoxX = bounds.left + bounds.width * 0.27;
+            const equalSignX = bounds.centerX;
+            const buyerBoxX = bounds.left + bounds.width * 0.57;
+            const boxWidth = bounds.width * 0.15;
+            const boxHeight = bounds.height * 0.12;
+            const rowSpacing = bounds.height * 0.28;
+            const headerY = bounds.top + bounds.height * 0.08;
 
             const examples = [
                 { context: 'Consumer App', user: 'User', buyer: 'User', same: true, row: 0 },
@@ -814,13 +808,14 @@
             ];
 
             examples.forEach((ex, i) => {
-                const y = height * 0.167 + ex.row * rowSpacing;
+                const y = bounds.top + bounds.height * 0.25 + ex.row * rowSpacing;
                 const g = svg.append('g').attr('opacity', 0);
 
                 g.append('text')
                     .attr('x', contextX)
                     .attr('y', y)
                     .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
                     .attr('font-size', '1.25rem')
@@ -838,8 +833,9 @@
 
                 g.append('text')
                     .attr('x', userBoxX + boxWidth/2)
-                    .attr('y', y + 5)
+                    .attr('y', y)
                     .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
                     .attr('fill', '#fff')
                     .attr('font-family', 'Montserrat, sans-serif')
                     .attr('font-size', '1.1rem')
@@ -847,8 +843,9 @@
 
                 g.append('text')
                     .attr('x', equalSignX)
-                    .attr('y', y + 5)
+                    .attr('y', y)
                     .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
                     .attr('fill', ex.same ? '#10b981' : '#d4a028')
                     .attr('font-family', 'JetBrains Mono, monospace')
                     .attr('font-size', '1.25rem')
@@ -866,8 +863,9 @@
 
                 g.append('text')
                     .attr('x', buyerBoxX + boxWidth/2)
-                    .attr('y', y + 5)
+                    .attr('y', y)
                     .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
                     .attr('fill', '#fff')
                     .attr('font-family', 'Montserrat, sans-serif')
                     .attr('font-size', '1.1rem')
@@ -876,9 +874,9 @@
                 g.transition().delay(i * 400).duration(400).attr('opacity', 1);
             });
 
-            // Labels
-            svg.append('text').attr('x', userBoxX + boxWidth/2).attr('y', headerY).attr('text-anchor', 'middle').attr('fill', '#356093').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1rem').attr('font-weight', '600').text('END USER');
-            svg.append('text').attr('x', buyerBoxX + boxWidth/2).attr('y', headerY).attr('text-anchor', 'middle').attr('fill', '#d4a028').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1rem').attr('font-weight', '600').text('BUYER');
+            // Column headers
+            svg.append('text').attr('x', userBoxX + boxWidth/2).attr('y', headerY).attr('text-anchor', 'middle').attr('fill', '#356093').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1.1rem').attr('font-weight', '600').text('END USER');
+            svg.append('text').attr('x', buyerBoxX + boxWidth/2).attr('y', headerY).attr('text-anchor', 'middle').attr('fill', '#d4a028').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1.1rem').attr('font-weight', '600').text('BUYER');
         }
 
         // Custom slide animations

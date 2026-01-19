@@ -220,10 +220,6 @@
     /* Validation Ladder */
     #validation-ladder {
       width: 100%;
-      height: 450px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     /* MVBP Circles */
@@ -1142,10 +1138,8 @@
     </div>
 
     <div class="slide slide-visual" data-slide="28" data-section="step22-23" data-title="Validation Ladder">
-      <div class="slide-content">
-        <h2>The Validation Ladder</h2>
-        <div id="validation-ladder"></div>
-      </div>
+      <h2>The Validation Ladder</h2>
+      <div id="validation-ladder" class="visualization"></div>
     </div>
 
     <div class="slide slide-visual" data-slide="29" data-section="step22-23" data-title="MVBP Template">
@@ -1386,17 +1380,10 @@
 
     // Draw validation ladder
     function drawValidationLadder() {
-      const container = document.getElementById('validation-ladder');
-      if (!container || container.querySelector('svg')) return;
+      const viz = window.Visualization.create('validation-ladder', { padding: 0.05 });
+      if (!viz) return;
 
-      // Define logical coordinate space
-      const width = 700;
-      const height = 400;
-
-      const svg = d3.select(container)
-        .append('svg')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .attr('preserveAspectRatio', 'xMidYMid meet');
+      const { svg, bounds } = viz;
 
       const steps = [
         { level: 'Opinion', quote: '"That\'s interesting"', strength: '0%', color: '#6b7280' },
@@ -1408,13 +1395,13 @@
         { level: 'Repeat', quote: '"Renewing"', strength: '100%', color: '#15803d' }
       ];
 
-      // Proportional calculations
-      const stepHeight = height * 0.125;              // Step height ~12.5%
-      const stepWidth = width * 0.1;                  // Step width ~10%
-      const stepOverlap = width * 0.014;              // Overlap between steps
-      const baseX = width * 0.05;                     // Left margin ~5%
-      const baseY = height - height * 0.1;           // Bottom margin ~10%
-      const strengthOffset = width * 0.014;           // Offset for strength label
+      // Proportional calculations using bounds
+      const stepHeight = bounds.height * 0.125;
+      const stepWidth = bounds.width * 0.1;
+      const stepOverlap = bounds.width * 0.014;
+      const baseX = bounds.left;
+      const baseY = bounds.bottom - bounds.height * 0.05;
+      const strengthOffset = bounds.width * 0.014;
 
       steps.forEach((step, i) => {
         const x = baseX + (i * (stepWidth - stepOverlap));
@@ -1425,7 +1412,7 @@
           .attr('x', x)
           .attr('y', y)
           .attr('width', 0)
-          .attr('height', stepHeight - height * 0.0125)
+          .attr('height', stepHeight - bounds.height * 0.0125)
           .attr('rx', 6)
           .attr('fill', step.color)
           .transition()
@@ -1469,7 +1456,7 @@
 
       // Target indicator - positioned above the 5th step (Pre-order)
       const targetX = baseX + 4 * (stepWidth - stepOverlap) + stepWidth / 2;
-      const targetY = baseY - 4 * stepHeight - height * 0.075;
+      const targetY = baseY - 4 * stepHeight - bounds.height * 0.075;
       svg.append('text')
         .attr('x', targetX)
         .attr('y', targetY)

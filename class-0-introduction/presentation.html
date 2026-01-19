@@ -76,13 +76,9 @@
             font-weight: 600;
         }
 
-        /* Framework wheel container */
+        /* Framework wheel container - height controlled by flex in shared styles */
         #de-wheel {
             width: 100%;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         /* Questions grid */
@@ -427,7 +423,7 @@
         <!-- Slide 10: 24-Step Wheel -->
         <div class="slide slide-visual" data-slide="10" data-title="The 24 Steps">
             <h2>The 24-Step Framework</h2>
-            <div id="de-wheel"></div>
+            <div class="visualization" id="de-wheel"></div>
         </div>
 
         <!-- Slide 11: Six Questions -->
@@ -723,25 +719,19 @@
 
         // Draw DE Wheel when slide 10 is active
         function drawDEWheel() {
-            const container = document.getElementById('de-wheel');
-            if (!container || container.querySelector('svg')) return;
+            const viz = window.Visualization.create('de-wheel', { padding: 0.05 });
+            if (!viz) return;
 
-            // Define logical coordinate space
-            const width = 500;
-            const height = 400;
-            const scale = Math.min(width, height);
+            const { svg, bounds } = viz;
+
+            // Use smaller dimension for circular wheel
+            const maxRadius = Math.min(bounds.width, bounds.height) / 2;
+            const center = { x: bounds.centerX, y: bounds.centerY };
 
             // Proportional calculations
-            const centerX = width * 0.5;
-            const centerY = height * 0.5;
-            const radius = scale * 0.375;          // 37.5% of scale
-            const innerRadius = radius - scale * 0.125;  // Ring thickness ~12.5%
-            const labelOffset = scale * 0.075;     // Label distance from outer edge
-
-            const svg = d3.select(container)
-                .append('svg')
-                .attr('viewBox', `0 0 ${width} ${height}`)
-                .attr('preserveAspectRatio', 'xMidYMid meet');
+            const radius = maxRadius * 0.75;
+            const innerRadius = radius * 0.6;
+            const labelOffset = maxRadius * 0.12;
 
             const themes = [
                 { name: 'Customer', color: '#356093', steps: 5 },
@@ -765,7 +755,7 @@
             arcs.forEach((arc, i) => {
                 svg.append('path')
                     .attr('d', arcGenerator(arc))
-                    .attr('transform', `translate(${centerX}, ${centerY})`)
+                    .attr('transform', `translate(${center.x}, ${center.y})`)
                     .attr('fill', themes[i].color)
                     .attr('opacity', 0)
                     .transition()
@@ -775,8 +765,8 @@
 
                 const midAngle = (arc.startAngle + arc.endAngle) / 2;
                 const labelRadius = radius + labelOffset;
-                const x = centerX + Math.cos(midAngle - Math.PI/2) * labelRadius;
-                const y = centerY + Math.sin(midAngle - Math.PI/2) * labelRadius;
+                const x = center.x + Math.cos(midAngle - Math.PI/2) * labelRadius;
+                const y = center.y + Math.sin(midAngle - Math.PI/2) * labelRadius;
 
                 svg.append('text')
                     .attr('x', x)
@@ -794,9 +784,10 @@
                     .attr('opacity', 1);
             });
 
+            // Center text - "24" and "STEPS"
             svg.append('text')
-                .attr('x', centerX)
-                .attr('y', centerY - height * 0.0375)
+                .attr('x', center.x)
+                .attr('y', center.y - maxRadius * 0.05)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#f1f1f1')
                 .attr('font-family', 'Montserrat')
@@ -805,8 +796,8 @@
                 .text('24');
 
             svg.append('text')
-                .attr('x', centerX)
-                .attr('y', centerY + height * 0.0625)
+                .attr('x', center.x)
+                .attr('y', center.y + maxRadius * 0.1)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#a0a0a0')
                 .attr('font-family', 'Montserrat')

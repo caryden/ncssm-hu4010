@@ -358,22 +358,10 @@
       color: var(--theme-color);
     }
 
-    /* Funnel Container */
-    #funnel-viz {
-      width: 100%;
-      height: 400px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Gauge Container */
+    /* Visualization containers - height controlled by flex in shared styles */
+    #funnel-viz,
     #ratio-gauge {
       width: 100%;
-      height: 350px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     /* Includes grid */
@@ -907,10 +895,8 @@
     </div>
 
     <div class="slide slide-visual" data-slide="18" data-section="step18-19" data-title="Sales Funnel">
-      <div class="slide-content">
-        <h2>Understanding Your Sales Process</h2>
-        <div id="funnel-viz"></div>
-      </div>
+      <h2>Understanding Your Sales Process</h2>
+      <div class="visualization" id="funnel-viz"></div>
     </div>
 
     <div class="slide slide-visual" data-slide="19" data-section="step18-19" data-title="Funnel Math">
@@ -1067,10 +1053,8 @@
     </div>
 
     <div class="slide slide-visual" data-slide="26" data-section="ratio" data-title="Interpreting Ratio">
-      <div class="slide-content">
-        <h2>Interpreting Your Ratio</h2>
-        <div id="ratio-gauge"></div>
-      </div>
+      <h2>Interpreting Your Ratio</h2>
+      <div class="visualization" id="ratio-gauge"></div>
     </div>
 
     <div class="slide slide-visual" data-slide="27" data-section="ratio" data-title="Fixing Bad Ratio">
@@ -1408,17 +1392,10 @@
 
     // Draw sales funnel
     function drawFunnel() {
-      const container = document.getElementById('funnel-viz');
-      if (!container || container.querySelector('svg')) return;
+      const viz = window.Visualization.create('funnel-viz', { padding: 0.05 });
+      if (!viz) return;
 
-      // Define logical coordinate space
-      const width = 600;
-      const height = 400;
-
-      const svg = d3.select(container)
-        .append('svg')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .attr('preserveAspectRatio', 'xMidYMid meet');
+      const { svg, bounds } = viz;
 
       const stages = [
         { name: 'Leads', value: 100, percent: '100%' },
@@ -1428,16 +1405,16 @@
         { name: 'Closed', value: 6, percent: '6%' }
       ];
 
-      // Proportional calculations
-      const maxWidth = width * 0.833;           // Max bar width ~83%
-      const stageHeight = height * 0.15;        // Each stage ~15% of height
-      const gap = height * 0.0375;              // Gap ~3.75% of height
-      const startY = height * 0.075;            // Top padding ~7.5%
+      // Proportional calculations based on container
+      const maxWidth = bounds.width * 0.85;
+      const totalHeight = bounds.height;
+      const stageHeight = totalHeight / (stages.length + 1);
+      const gap = stageHeight * 0.15;
 
       stages.forEach((stage, i) => {
         const stageWidth = (stage.value / 100) * maxWidth;
-        const x = (width - stageWidth) / 2;
-        const y = startY + i * (stageHeight + gap);
+        const x = bounds.centerX - stageWidth / 2;
+        const y = bounds.top + i * (stageHeight + gap);
 
         // Draw stage rectangle
         svg.append('rect')
@@ -1454,9 +1431,10 @@
 
         // Stage label
         svg.append('text')
-          .attr('x', width / 2)
-          .attr('y', y + stageHeight / 2 + 6)
+          .attr('x', bounds.centerX)
+          .attr('y', y + stageHeight / 2)
           .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'middle')
           .attr('fill', '#f1f1f1')
           .attr('font-family', 'Montserrat')
           .attr('font-size', '1.1rem')
@@ -1472,28 +1450,21 @@
 
     // Draw ratio gauge
     function drawRatioGauge() {
-      const container = document.getElementById('ratio-gauge');
-      if (!container || container.querySelector('svg')) return;
+      const viz = window.Visualization.create('ratio-gauge', { padding: 0.05 });
+      if (!viz) return;
 
-      // Define logical coordinate space
-      const width = 500;
-      const height = 300;
-      const scale_ = Math.min(width, height);
+      const { svg, bounds } = viz;
+      const scale_ = Math.min(bounds.width, bounds.height);
 
-      const svg = d3.select(container)
-        .append('svg')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .attr('preserveAspectRatio', 'xMidYMid meet');
-
-      // Proportional calculations
-      const centerX = width * 0.5;
-      const centerY = height - height * 0.167;      // Bottom area for gauge
-      const radius = scale_ * 0.6;                  // Main arc radius
-      const arcThickness = scale_ * 0.133;          // Arc ring thickness
-      const labelOffset = scale_ * 0.083;           // Label distance from arc
-      const tickInner = scale_ * 0.15;              // Tick start offset from radius
-      const tickOuter = scale_ * 0.017;             // Tick extend beyond radius
-      const tickTextOffset = scale_ * 0.2;          // Tick label offset
+      // Proportional calculations based on container
+      const centerX = bounds.centerX;
+      const centerY = bounds.bottom - bounds.height * 0.15;
+      const radius = scale_ * 0.5;
+      const arcThickness = scale_ * 0.12;
+      const labelOffset = scale_ * 0.1;
+      const tickInner = scale_ * 0.12;
+      const tickOuter = scale_ * 0.02;
+      const tickTextOffset = scale_ * 0.18;
 
       // Define zones
       const zones = [
@@ -1584,7 +1555,7 @@
       // Target indicator
       svg.append('text')
         .attr('x', centerX)
-        .attr('y', centerY + height * 0.067)
+        .attr('y', centerY + bounds.height * 0.08)
         .attr('text-anchor', 'middle')
         .attr('fill', '#f1f1f1')
         .attr('font-family', 'Montserrat')
