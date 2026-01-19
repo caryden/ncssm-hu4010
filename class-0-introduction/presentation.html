@@ -726,16 +726,22 @@
             const container = document.getElementById('de-wheel');
             if (!container || container.querySelector('svg')) return;
 
+            // Define logical coordinate space
             const width = 500;
             const height = 400;
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const radius = 150;
+            const scale = Math.min(width, height);
+
+            // Proportional calculations
+            const centerX = width * 0.5;
+            const centerY = height * 0.5;
+            const radius = scale * 0.375;          // 37.5% of scale
+            const innerRadius = radius - scale * 0.125;  // Ring thickness ~12.5%
+            const labelOffset = scale * 0.075;     // Label distance from outer edge
 
             const svg = d3.select(container)
                 .append('svg')
-                .attr('width', width)
-                .attr('height', height);
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet');
 
             const themes = [
                 { name: 'Customer', color: '#356093', steps: 5 },
@@ -747,7 +753,7 @@
             ];
 
             const arcGenerator = d3.arc()
-                .innerRadius(radius - 50)
+                .innerRadius(innerRadius)
                 .outerRadius(radius);
 
             const pie = d3.pie()
@@ -768,7 +774,7 @@
                     .attr('opacity', 1);
 
                 const midAngle = (arc.startAngle + arc.endAngle) / 2;
-                const labelRadius = radius + 30;
+                const labelRadius = radius + labelOffset;
                 const x = centerX + Math.cos(midAngle - Math.PI/2) * labelRadius;
                 const y = centerY + Math.sin(midAngle - Math.PI/2) * labelRadius;
 
@@ -790,7 +796,7 @@
 
             svg.append('text')
                 .attr('x', centerX)
-                .attr('y', centerY - 15)
+                .attr('y', centerY - height * 0.0375)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#f1f1f1')
                 .attr('font-family', 'Montserrat')
@@ -800,7 +806,7 @@
 
             svg.append('text')
                 .attr('x', centerX)
-                .attr('y', centerY + 25)
+                .attr('y', centerY + height * 0.0625)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#a0a0a0')
                 .attr('font-family', 'Montserrat')

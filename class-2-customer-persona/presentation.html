@@ -704,13 +704,22 @@
             const container = document.getElementById('focus-animation');
             if (!container || container.querySelector('svg')) return;
 
+            // Define logical coordinate space
             const width = 800, height = 300;
-            const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+            const svg = d3.select(container)
+                .append('svg')
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet');
+
+            // Proportional calculations
+            const stageXPositions = [width * 0.125, width * 0.5, width * 0.875];
+            const clusterRadius = height * 0.133;     // Radius of people cluster
+            const labelOffsetY = height * 0.333;      // Label distance below center
 
             const stages = [
-                { x: 100, label: 'Segment', blur: 8, count: 20, size: 8 },
-                { x: 400, label: 'Profile', blur: 3, count: 8, size: 12 },
-                { x: 700, label: 'Persona', blur: 0, count: 1, size: 40 }
+                { x: stageXPositions[0], label: 'Segment', blur: 8, count: 20, size: height * 0.027 },
+                { x: stageXPositions[1], label: 'Profile', blur: 3, count: 8, size: height * 0.04 },
+                { x: stageXPositions[2], label: 'Persona', blur: 0, count: 1, size: height * 0.133 }
             ];
 
             // Define blur filters
@@ -725,7 +734,7 @@
                 // Draw people
                 for (let i = 0; i < stage.count; i++) {
                     const angle = (i / stage.count) * Math.PI * 2;
-                    const radius = stage.count > 1 ? 40 : 0;
+                    const radius = stage.count > 1 ? clusterRadius : 0;
                     const x = Math.cos(angle) * radius;
                     const y = Math.sin(angle) * radius;
 
@@ -744,7 +753,7 @@
 
                 // Label
                 g.append('text')
-                    .attr('y', 100)
+                    .attr('y', labelOffsetY)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
@@ -758,14 +767,15 @@
                     .attr('opacity', 1);
             });
 
-            // Arrows
-            [250, 550].forEach((x, i) => {
+            // Arrows - positioned between stages
+            const arrowXPositions = [width * 0.3125, width * 0.6875];
+            arrowXPositions.forEach((x, i) => {
                 svg.append('text')
                     .attr('x', x)
                     .attr('y', height/2 + 5)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#d4a028')
-                    .attr('font-size', '24px')
+                    .attr('font-size', '1.5rem')
                     .text('→')
                     .attr('opacity', 0)
                     .transition()
@@ -780,21 +790,36 @@
             const container = document.getElementById('user-buyer');
             if (!container || container.querySelector('svg')) return;
 
+            // Define logical coordinate space
             const width = 800, height = 300;
-            const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+            const svg = d3.select(container)
+                .append('svg')
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet');
+
+            // Proportional calculations
+            const contextX = width * 0.125;           // Context label column
+            const userBoxX = width * 0.275;           // User box left edge
+            const equalSignX = width * 0.5;           // Equals/not-equals position
+            const buyerBoxX = width * 0.575;          // Buyer box left edge
+            const boxWidth = width * 0.15;            // Box width
+            const boxHeight = height * 0.133;         // Box height
+            const rowSpacing = height * 0.333;        // Spacing between rows
+            const headerY = height * 0.083;           // Header row Y position
 
             const examples = [
-                { context: 'Consumer App', user: 'User', buyer: 'User', same: true, y: 50 },
-                { context: 'Enterprise SW', user: 'Employee', buyer: 'IT Director', same: false, y: 150 },
-                { context: 'Kids Game', user: 'Child', buyer: 'Parent', same: false, y: 250 }
+                { context: 'Consumer App', user: 'User', buyer: 'User', same: true, row: 0 },
+                { context: 'Enterprise SW', user: 'Employee', buyer: 'IT Director', same: false, row: 1 },
+                { context: 'Kids Game', user: 'Child', buyer: 'Parent', same: false, row: 2 }
             ];
 
             examples.forEach((ex, i) => {
+                const y = height * 0.167 + ex.row * rowSpacing;
                 const g = svg.append('g').attr('opacity', 0);
 
                 g.append('text')
-                    .attr('x', 100)
-                    .attr('y', ex.y)
+                    .attr('x', contextX)
+                    .attr('y', y)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#a0a0a0')
                     .attr('font-family', 'Montserrat, sans-serif')
@@ -802,18 +827,18 @@
                     .text(ex.context);
 
                 g.append('rect')
-                    .attr('x', 220)
-                    .attr('y', ex.y - 20)
-                    .attr('width', 120)
-                    .attr('height', 40)
+                    .attr('x', userBoxX)
+                    .attr('y', y - boxHeight/2)
+                    .attr('width', boxWidth)
+                    .attr('height', boxHeight)
                     .attr('rx', 8)
                     .attr('fill', '#12121a')
                     .attr('stroke', '#356093')
                     .attr('stroke-width', 2);
 
                 g.append('text')
-                    .attr('x', 280)
-                    .attr('y', ex.y + 5)
+                    .attr('x', userBoxX + boxWidth/2)
+                    .attr('y', y + 5)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#fff')
                     .attr('font-family', 'Montserrat, sans-serif')
@@ -821,27 +846,27 @@
                     .text(ex.user);
 
                 g.append('text')
-                    .attr('x', 400)
-                    .attr('y', ex.y + 5)
+                    .attr('x', equalSignX)
+                    .attr('y', y + 5)
                     .attr('text-anchor', 'middle')
                     .attr('fill', ex.same ? '#10b981' : '#d4a028')
                     .attr('font-family', 'JetBrains Mono, monospace')
-                    .attr('font-size', '16px')
+                    .attr('font-size', '1.25rem')
                     .text(ex.same ? '=' : '≠');
 
                 g.append('rect')
-                    .attr('x', 460)
-                    .attr('y', ex.y - 20)
-                    .attr('width', 120)
-                    .attr('height', 40)
+                    .attr('x', buyerBoxX)
+                    .attr('y', y - boxHeight/2)
+                    .attr('width', boxWidth)
+                    .attr('height', boxHeight)
                     .attr('rx', 8)
                     .attr('fill', '#12121a')
                     .attr('stroke', '#d4a028')
                     .attr('stroke-width', 2);
 
                 g.append('text')
-                    .attr('x', 520)
-                    .attr('y', ex.y + 5)
+                    .attr('x', buyerBoxX + boxWidth/2)
+                    .attr('y', y + 5)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#fff')
                     .attr('font-family', 'Montserrat, sans-serif')
@@ -852,8 +877,8 @@
             });
 
             // Labels
-            svg.append('text').attr('x', 280).attr('y', 25).attr('text-anchor', 'middle').attr('fill', '#356093').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1rem').attr('font-weight', '600').text('END USER');
-            svg.append('text').attr('x', 520).attr('y', 25).attr('text-anchor', 'middle').attr('fill', '#d4a028').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1rem').attr('font-weight', '600').text('BUYER');
+            svg.append('text').attr('x', userBoxX + boxWidth/2).attr('y', headerY).attr('text-anchor', 'middle').attr('fill', '#356093').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1rem').attr('font-weight', '600').text('END USER');
+            svg.append('text').attr('x', buyerBoxX + boxWidth/2).attr('y', headerY).attr('text-anchor', 'middle').attr('fill', '#d4a028').attr('font-family', 'Montserrat, sans-serif').attr('font-size', '1rem').attr('font-weight', '600').text('BUYER');
         }
 
         // Custom slide animations

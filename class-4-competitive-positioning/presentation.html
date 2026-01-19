@@ -655,55 +655,66 @@
             const container = document.getElementById('matrix');
             if (!container || container.querySelector('svg')) return;
 
-            const w = 700, h = 300, m = 60;
+            // Define logical coordinate space
+            const w = 700, h = 300;
+            const margin = w * 0.086;  // ~8.6% margin
+
             const svg = d3.select(container)
                 .append('svg')
                 .attr('viewBox', `0 0 ${w} ${h}`)
-                .attr('width', '100%');
+                .attr('preserveAspectRatio', 'xMidYMid meet');
 
-            // Axes
+            // Axes - use proportional positions
             svg.append('line')
-                .attr('x1', m).attr('y1', h/2)
-                .attr('x2', w-m).attr('y2', h/2)
+                .attr('x1', margin).attr('y1', h/2)
+                .attr('x2', w-margin).attr('y2', h/2)
                 .attr('stroke', '#4a5568').attr('stroke-width', 2);
             svg.append('line')
-                .attr('x1', w/2).attr('y1', m)
-                .attr('x2', w/2).attr('y2', h-m)
+                .attr('x1', w/2).attr('y1', margin)
+                .attr('x2', w/2).attr('y2', h-margin)
                 .attr('stroke', '#4a5568').attr('stroke-width', 2);
 
-            // Labels
-            svg.append('text').attr('x', w-m+10).attr('y', h/2+5)
+            // Labels - proportional positions
+            svg.append('text').attr('x', w - margin + w * 0.014).attr('y', h/2 + 5)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
                 .attr('font-size', '1rem').text('High Price →');
-            svg.append('text').attr('x', m-5).attr('y', h/2+5)
+            svg.append('text').attr('x', margin - w * 0.007).attr('y', h/2 + 5)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
                 .attr('font-size', '1rem').attr('text-anchor', 'end').text('← Low Price');
-            svg.append('text').attr('x', w/2).attr('y', m-10)
+            svg.append('text').attr('x', w/2).attr('y', margin - h * 0.033)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
                 .attr('font-size', '1rem').attr('text-anchor', 'middle').text('Premium ↑');
-            svg.append('text').attr('x', w/2).attr('y', h-m+20)
+            svg.append('text').attr('x', w/2).attr('y', h - margin + h * 0.067)
                 .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
                 .attr('font-size', '1rem').attr('text-anchor', 'middle').text('↓ Basic');
 
-            // Competitors
+            // Competitors - positions as proportions of the chart area
+            // Chart area runs from margin to w-margin on X, margin to h-margin on Y
+            const chartW = w - 2 * margin;
+            const chartH = h - 2 * margin;
             const comps = [
-                { name: 'UberX', x: 200, y: 200 },
-                { name: 'Uber Black', x: 550, y: 80 },
-                { name: 'Lyft', x: 180, y: 170 },
-                { name: 'Taxi', x: 500, y: 220 },
-                { name: 'YOU?', x: 350, y: 120, highlight: true }
+                { name: 'UberX', px: 0.24, py: 0.78 },      // Low price, basic
+                { name: 'Uber Black', px: 0.85, py: 0.11 }, // High price, premium
+                { name: 'Lyft', px: 0.21, py: 0.61 },       // Low price, mid-basic
+                { name: 'Taxi', px: 0.76, py: 0.89 },       // High price, basic
+                { name: 'YOU?', px: 0.5, py: 0.33, highlight: true }  // Center-right, premium
             ];
 
+            const nodeRadius = Math.min(w, h) * 0.05;
+            const highlightRadius = Math.min(w, h) * 0.067;
+
             comps.forEach((c, i) => {
+                const x = margin + c.px * chartW;
+                const y = margin + c.py * chartH;
                 const g = svg.append('g').attr('opacity', 0);
                 g.append('circle')
-                    .attr('cx', c.x).attr('cy', c.y)
-                    .attr('r', c.highlight ? 20 : 15)
+                    .attr('cx', x).attr('cy', y)
+                    .attr('r', c.highlight ? highlightRadius : nodeRadius)
                     .attr('fill', c.highlight ? '#7c3aed' : '#1c2640')
                     .attr('stroke', c.highlight ? '#d4a028' : '#4a7ab8')
                     .attr('stroke-width', 2);
                 g.append('text')
-                    .attr('x', c.x).attr('y', c.y + 4)
+                    .attr('x', x).attr('y', y + 4)
                     .attr('text-anchor', 'middle')
                     .attr('fill', '#fff')
                     .attr('font-family', 'Montserrat')

@@ -1191,16 +1191,22 @@
             const container = document.getElementById('de-wheel-complete');
             if (!container || container.querySelector('svg')) return;
 
+            // Define logical coordinate space
             const width = 500;
             const height = 400;
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const radius = 150;
+            const scale = Math.min(width, height);
+
+            // Proportional calculations
+            const centerX = width * 0.5;
+            const centerY = height * 0.5;
+            const radius = scale * 0.375;                 // Main radius ~37.5%
+            const innerRadius = radius - scale * 0.1;    // Inner radius (ring thickness ~10%)
+            const checkRadius = radius - scale * 0.05;   // Checkmark position
 
             const svg = d3.select(container)
                 .append('svg')
-                .attr('width', width)
-                .attr('height', height);
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet');
 
             // Theme colors
             const themes = [
@@ -1213,7 +1219,7 @@
             ];
 
             const arcGenerator = d3.arc()
-                .innerRadius(radius - 40)
+                .innerRadius(innerRadius)
                 .outerRadius(radius);
 
             const pie = d3.pie()
@@ -1236,8 +1242,8 @@
 
                 // Add checkmark
                 const midAngle = (arc.startAngle + arc.endAngle) / 2;
-                const checkX = centerX + Math.cos(midAngle - Math.PI/2) * (radius - 20);
-                const checkY = centerY + Math.sin(midAngle - Math.PI/2) * (radius - 20);
+                const checkX = centerX + Math.cos(midAngle - Math.PI/2) * checkRadius;
+                const checkY = centerY + Math.sin(midAngle - Math.PI/2) * checkRadius;
 
                 svg.append('text')
                     .attr('x', checkX)
@@ -1245,7 +1251,7 @@
                     .attr('text-anchor', 'middle')
                     .attr('dominant-baseline', 'middle')
                     .attr('fill', '#fff')
-                    .attr('font-size', '16px')
+                    .attr('font-size', '1rem')
                     .attr('opacity', 0)
                     .text('\u2713')
                     .transition()
@@ -1257,7 +1263,7 @@
             // Center text
             svg.append('text')
                 .attr('x', centerX)
-                .attr('y', centerY - 10)
+                .attr('y', centerY - height * 0.025)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#f1f1f1')
                 .attr('font-family', 'Montserrat')
@@ -1267,11 +1273,11 @@
 
             svg.append('text')
                 .attr('x', centerX)
-                .attr('y', centerY + 15)
+                .attr('y', centerY + height * 0.0375)
                 .attr('text-anchor', 'middle')
                 .attr('fill', '#06b6d4')
                 .attr('font-family', 'Montserrat')
-                .attr('font-size', '18px')
+                .attr('font-size', '1.125rem')
                 .attr('font-weight', '700')
                 .attr('opacity', 0)
                 .text('COMPLETE!')

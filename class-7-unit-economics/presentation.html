@@ -1411,13 +1411,14 @@
       const container = document.getElementById('funnel-viz');
       if (!container || container.querySelector('svg')) return;
 
+      // Define logical coordinate space
       const width = 600;
       const height = 400;
 
       const svg = d3.select(container)
         .append('svg')
-        .attr('width', width)
-        .attr('height', height);
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
 
       const stages = [
         { name: 'Leads', value: 100, percent: '100%' },
@@ -1427,14 +1428,16 @@
         { name: 'Closed', value: 6, percent: '6%' }
       ];
 
-      const maxWidth = 500;
-      const stageHeight = 60;
-      const gap = 15;
+      // Proportional calculations
+      const maxWidth = width * 0.833;           // Max bar width ~83%
+      const stageHeight = height * 0.15;        // Each stage ~15% of height
+      const gap = height * 0.0375;              // Gap ~3.75% of height
+      const startY = height * 0.075;            // Top padding ~7.5%
 
       stages.forEach((stage, i) => {
         const stageWidth = (stage.value / 100) * maxWidth;
         const x = (width - stageWidth) / 2;
-        const y = i * (stageHeight + gap) + 30;
+        const y = startY + i * (stageHeight + gap);
 
         // Draw stage rectangle
         svg.append('rect')
@@ -1456,7 +1459,7 @@
           .attr('text-anchor', 'middle')
           .attr('fill', '#f1f1f1')
           .attr('font-family', 'Montserrat')
-          .attr('font-size', '16px')
+          .attr('font-size', '1.1rem')
           .attr('font-weight', '600')
           .attr('opacity', 0)
           .text(`${stage.name} (${stage.percent})`)
@@ -1472,17 +1475,25 @@
       const container = document.getElementById('ratio-gauge');
       if (!container || container.querySelector('svg')) return;
 
+      // Define logical coordinate space
       const width = 500;
       const height = 300;
+      const scale_ = Math.min(width, height);
 
       const svg = d3.select(container)
         .append('svg')
-        .attr('width', width)
-        .attr('height', height);
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
 
-      const centerX = width / 2;
-      const centerY = height - 50;
-      const radius = 180;
+      // Proportional calculations
+      const centerX = width * 0.5;
+      const centerY = height - height * 0.167;      // Bottom area for gauge
+      const radius = scale_ * 0.6;                  // Main arc radius
+      const arcThickness = scale_ * 0.133;          // Arc ring thickness
+      const labelOffset = scale_ * 0.083;           // Label distance from arc
+      const tickInner = scale_ * 0.15;              // Tick start offset from radius
+      const tickOuter = scale_ * 0.017;             // Tick extend beyond radius
+      const tickTextOffset = scale_ * 0.2;          // Tick label offset
 
       // Define zones
       const zones = [
@@ -1494,15 +1505,15 @@
       ];
 
       // Total range is 0-7, maps to 180 degrees (PI radians)
-      const scale = d3.scaleLinear().domain([0, 7]).range([Math.PI, 0]);
+      const valueScale = d3.scaleLinear().domain([0, 7]).range([Math.PI, 0]);
 
       // Draw arcs for each zone
       zones.forEach((zone, i) => {
         const arc = d3.arc()
-          .innerRadius(radius - 40)
+          .innerRadius(radius - arcThickness)
           .outerRadius(radius)
-          .startAngle(Math.PI / 2 - scale(zone.start))
-          .endAngle(Math.PI / 2 - scale(zone.end));
+          .startAngle(Math.PI / 2 - valueScale(zone.start))
+          .endAngle(Math.PI / 2 - valueScale(zone.end));
 
         svg.append('path')
           .attr('d', arc)
@@ -1515,8 +1526,8 @@
           .attr('opacity', 1);
 
         // Zone label
-        const midAngle = (scale(zone.start) + scale(zone.end)) / 2;
-        const labelRadius = radius + 25;
+        const midAngle = (valueScale(zone.start) + valueScale(zone.end)) / 2;
+        const labelRadius = radius + labelOffset;
         const labelX = centerX + Math.cos(midAngle) * labelRadius;
         const labelY = centerY - Math.sin(midAngle) * labelRadius;
 
@@ -1538,18 +1549,18 @@
 
       // Tick marks and values
       [0, 1, 2, 3, 5, 7].forEach((val, i) => {
-        const angle = scale(val);
+        const angle = valueScale(val);
         const innerPoint = {
-          x: centerX + Math.cos(angle) * (radius - 45),
-          y: centerY - Math.sin(angle) * (radius - 45)
+          x: centerX + Math.cos(angle) * (radius - tickInner),
+          y: centerY - Math.sin(angle) * (radius - tickInner)
         };
         const outerPoint = {
-          x: centerX + Math.cos(angle) * (radius + 5),
-          y: centerY - Math.sin(angle) * (radius + 5)
+          x: centerX + Math.cos(angle) * (radius + tickOuter),
+          y: centerY - Math.sin(angle) * (radius + tickOuter)
         };
         const textPoint = {
-          x: centerX + Math.cos(angle) * (radius - 60),
-          y: centerY - Math.sin(angle) * (radius - 60)
+          x: centerX + Math.cos(angle) * (radius - tickTextOffset),
+          y: centerY - Math.sin(angle) * (radius - tickTextOffset)
         };
 
         svg.append('line')
@@ -1573,11 +1584,11 @@
       // Target indicator
       svg.append('text')
         .attr('x', centerX)
-        .attr('y', centerY + 20)
+        .attr('y', centerY + height * 0.067)
         .attr('text-anchor', 'middle')
         .attr('fill', '#f1f1f1')
         .attr('font-family', 'Montserrat')
-        .attr('font-size', '16px')
+        .attr('font-size', '1rem')
         .text('Target: 3x or higher');
     }
 
