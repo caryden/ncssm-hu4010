@@ -284,6 +284,65 @@
         .dual-card p {
             color: var(--text-secondary);
         }
+
+        /* Journey image from Bill Aulet's book */
+        .journey-image {
+            max-height: 65vh;
+            max-width: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pivot cards */
+        .pivot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 950px;
+            margin: 30px auto;
+        }
+
+        .pivot-card {
+            background: var(--dark-surface);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .pivot-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pivot-card .company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--theme-color);
+            margin-bottom: 12px;
+        }
+
+        .pivot-card .from {
+            font-size: 1rem;
+            color: var(--danger-red);
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+
+        .pivot-card .arrow {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .pivot-card .to {
+            font-size: 1.1rem;
+            color: var(--success-green);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -454,16 +513,67 @@
             </div>
         </div>
 
-        <!-- Slide 12: Customer First -->
-        <div class="slide slide-statement" data-slide="12" data-title="Customer First">
+        <!-- Slide 12: The Real Journey (Non-Linear) -->
+        <div class="slide slide-visual" data-slide="12" data-title="The Real Journey">
+            <h2>It's Not a Straight Line</h2>
+            <img src="de-24-steps-journey.png" alt="24 Steps - The Real Journey" class="journey-image">
+            <p class="caption">Sometimes you go back to go forward. Iteration is the process working.</p>
+        </div>
+
+        <!-- Slide 13: Famous Pivots -->
+        <div class="slide slide-visual" data-slide="13" data-title="Famous Pivots">
+            <h2>Going Back is Often the Path Forward</h2>
+            <div class="pivot-grid">
+                <div class="pivot-card">
+                    <div class="company">YouTube</div>
+                    <div class="from">Dating site</div>
+                    <div class="arrow">↓</div>
+                    <div class="to">Video sharing</div>
+                </div>
+                <div class="pivot-card">
+                    <div class="company">Slack</div>
+                    <div class="from">Gaming company</div>
+                    <div class="arrow">↓</div>
+                    <div class="to">Team chat</div>
+                </div>
+                <div class="pivot-card">
+                    <div class="company">Instagram</div>
+                    <div class="from">Check-in app (Burbn)</div>
+                    <div class="arrow">↓</div>
+                    <div class="to">Photo sharing</div>
+                </div>
+                <div class="pivot-card">
+                    <div class="company">Netflix</div>
+                    <div class="from">DVD mailing</div>
+                    <div class="arrow">↓</div>
+                    <div class="to">Streaming</div>
+                </div>
+                <div class="pivot-card">
+                    <div class="company">Twitter</div>
+                    <div class="from">Podcasting (Odeo)</div>
+                    <div class="arrow">↓</div>
+                    <div class="to">Microblogging</div>
+                </div>
+                <div class="pivot-card">
+                    <div class="company">Shopify</div>
+                    <div class="from">Online snowboard store</div>
+                    <div class="arrow">↓</div>
+                    <div class="to">E-commerce platform</div>
+                </div>
+            </div>
+            <p class="caption">Each pivot came from listening to customers and following the evidence.</p>
+        </div>
+
+        <!-- Slide 14: Customer First -->
+        <div class="slide slide-statement" data-slide="14" data-title="Customer First">
             <div class="slide-content">
                 <p class="statement">Everything starts with the customer.</p>
                 <p class="subtext">Not your idea. Not your technology. The customer.</p>
             </div>
         </div>
 
-        <!-- Slide 13: Pirate + SEAL -->
-        <div class="slide slide-visual" data-slide="13" data-title="Spirit & Skills">
+        <!-- Slide 15: Pirate + SEAL -->
+        <div class="slide slide-visual" data-slide="15" data-title="Spirit & Skills">
             <h2>The Entrepreneurial Mindset</h2>
             <div class="dual-cards">
                 <div class="dual-card">
@@ -479,16 +589,16 @@
             </div>
         </div>
 
-        <!-- Slide 14: Course Overview Section -->
-        <div class="slide slide-statement" data-slide="14" data-section="The Course" data-title="What We'll Build">
+        <!-- Slide 16: Course Overview Section -->
+        <div class="slide slide-statement" data-slide="16" data-section="The Course" data-title="What We'll Build">
             <div class="slide-content">
                 <p class="section-label">This Semester</p>
                 <p class="statement">What We'll Build Together</p>
             </div>
         </div>
 
-        <!-- Slide 15: Course Timeline -->
-        <div class="slide slide-visual" data-slide="15" data-title="10-Week Journey">
+        <!-- Slide 17: Course Timeline -->
+        <div class="slide slide-visual" data-slide="17" data-title="10-Week Journey">
             <h2>Your 10-Week Journey</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -519,8 +629,8 @@
             </div>
         </div>
 
-        <!-- Slide 16: Weekly Rhythm -->
-        <div class="slide slide-visual" data-slide="16" data-title="Weekly Rhythm">
+        <!-- Slide 18: Weekly Rhythm -->
+        <div class="slide slide-visual" data-slide="18" data-title="Weekly Rhythm">
             <h2>Each Week</h2>
             <div class="dual-cards">
                 <div class="dual-card">
@@ -536,8 +646,8 @@
             </div>
         </div>
 
-        <!-- Slide 17: Teams -->
-        <div class="slide slide-visual" data-slide="17" data-title="Team Formation">
+        <!-- Slide 19: Teams -->
+        <div class="slide slide-visual" data-slide="19" data-title="Team Formation">
             <h2>Team Formation</h2>
             <ul class="content-list">
                 <li><strong>5 teams</strong> of approximately 6 students each</li>
@@ -547,16 +657,16 @@
             </ul>
         </div>
 
-        <!-- Slide 18: Final Pitches -->
-        <div class="slide slide-statement" data-slide="18" data-title="Final Pitches">
+        <!-- Slide 20: Final Pitches -->
+        <div class="slide slide-statement" data-slide="20" data-title="Final Pitches">
             <div class="slide-content">
                 <p class="statement">May 4 & 11: You'll Pitch to Real Judges</p>
                 <p class="subtext">8 minutes to convince them your venture is viable.</p>
             </div>
         </div>
 
-        <!-- Slide 19: What We're Looking For -->
-        <div class="slide slide-content" data-slide="19" data-section="Expectations" data-title="What We're Looking For">
+        <!-- Slide 21: What We're Looking For -->
+        <div class="slide slide-content" data-slide="21" data-section="Expectations" data-title="What We're Looking For">
             <h2>What We're Looking For</h2>
             <ul class="content-list">
                 <li><strong>Evidence over opinion</strong> - Show your work with data</li>
@@ -566,8 +676,8 @@
             </ul>
         </div>
 
-        <!-- Slide 20: What We're NOT Looking For -->
-        <div class="slide slide-content" data-slide="20" data-title="What We're NOT Looking For">
+        <!-- Slide 22: What We're NOT Looking For -->
+        <div class="slide slide-content" data-slide="22" data-title="What We're NOT Looking For">
             <h2>What We're NOT Looking For</h2>
             <ul class="content-list">
                 <li><span style="color: var(--danger-red);">✗</span> A "successful" business idea (most won't be viable - that's normal!)</li>
@@ -576,16 +686,16 @@
             </ul>
         </div>
 
-        <!-- Slide 21: Key Takeaway -->
-        <div class="slide slide-statement" data-slide="21" data-section="Closing" data-title="Key Takeaway">
+        <!-- Slide 23: Key Takeaway -->
+        <div class="slide slide-statement" data-slide="23" data-section="Closing" data-title="Key Takeaway">
             <div class="slide-content">
                 <p class="statement">Entrepreneurship is a <span style="color: var(--theme-color);">craft</span>.</p>
                 <p class="subtext">You learn it by doing it. Let's get started.</p>
             </div>
         </div>
 
-        <!-- Slide 22: Homework -->
-        <div class="slide slide-visual" data-slide="22" data-title="Homework">
+        <!-- Slide 24: Homework -->
+        <div class="slide slide-visual" data-slide="24" data-title="Homework">
             <h2>Before Next Week</h2>
             <div class="homework-list">
                 <div class="homework-item">
@@ -603,8 +713,8 @@
             </div>
         </div>
 
-        <!-- Slide 23: Next Week Preview -->
-        <div class="slide slide-two-part" data-slide="23" data-title="Next Week">
+        <!-- Slide 25: Next Week Preview -->
+        <div class="slide slide-two-part" data-slide="25" data-title="Next Week">
             <div class="slide-content">
                 <p class="primary">Next Week: Market Segmentation</p>
                 <p class="secondary">How do you find customers worth serving?<br>And which one do you start with?</p>
@@ -614,8 +724,8 @@
             </div>
         </div>
 
-        <!-- Slide 24: Let's Go -->
-        <div class="slide slide-statement" data-slide="24" data-title="Let's Go!">
+        <!-- Slide 26: Let's Go -->
+        <div class="slide slide-statement" data-slide="26" data-title="Let's Go!">
             <div class="slide-content">
                 <p class="statement" style="color: var(--theme-color);">Let's build something.</p>
                 <div style="font-size: 4rem; margin-top: 30px;">🚀</div>
@@ -710,7 +820,7 @@
 
     <!-- Slide Counter -->
     <div class="slide-counter">
-        <span id="current-slide">1</span> / <span id="total-slides">24</span>
+        <span id="current-slide">1</span> / <span id="total-slides">26</span>
     </div>
 
     <!-- Keyboard Hints -->
@@ -863,6 +973,13 @@
             if (n === 10) {
                 setTimeout(drawDEWheel, 300);
             }
+
+            // Animate pivot cards on slide 13
+            const pivotCards = slide.querySelectorAll('.pivot-card');
+            pivotCards.forEach((card, i) => {
+                card.classList.remove('visible');
+                setTimeout(() => card.classList.add('visible'), 150 * (i + 1));
+            });
         };
     </script>
 </body>
