@@ -308,12 +308,17 @@
             border-radius: 12px;
             padding: 20px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 1;
+            transform: translateY(0);
             transition: all 0.5s ease;
         }
 
-        .pivot-card.visible {
+        .pivot-card.animate-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .pivot-card.animate-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -975,11 +980,14 @@
             }
 
             // Animate pivot cards on slide 13
-            const pivotCards = slide.querySelectorAll('.pivot-card');
-            pivotCards.forEach((card, i) => {
-                card.classList.remove('visible');
-                setTimeout(() => card.classList.add('visible'), 150 * (i + 1));
-            });
+            if (n === 13) {
+                const pivotCards = slide.querySelectorAll('.pivot-card');
+                pivotCards.forEach((card, i) => {
+                    card.classList.add('animate-in');
+                    card.classList.remove('visible');
+                    setTimeout(() => card.classList.add('visible'), 150 * (i + 1));
+                });
+            }
         };
     </script>
 </body>
