@@ -1,0 +1,11 @@
+---
+import Slide from './Slide.astro';
+
+const { id, title, section } = Astro.props;
+---
+
+<Slide id={id} type="two-part" title={title} section={section}>
+  <div class="slide-content">
+    <slot />
+  </div>
+</Slide>

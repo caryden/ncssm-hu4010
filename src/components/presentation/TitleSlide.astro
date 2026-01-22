@@ -1,0 +1,14 @@
+---
+import Slide from './Slide.astro';
+
+const { id, section, title, subtitle, info } = Astro.props;
+---
+
+<Slide id={id} type="title" section={section} title={title} class="active">
+  <div class="slide-content">
+    <h1>{title}</h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {info && <p class="session-info">{info}</p>}
+    <slot />
+  </div>
+</Slide>

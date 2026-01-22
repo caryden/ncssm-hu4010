@@ -1,0 +1,778 @@
+---
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import Slide from '../../components/presentation/Slide.astro';
+---
+
+<PresentationLayout title="Class 0: Course Introduction | NCSSM Entrepreneurship">
+    <style>
+        /* Theme color override for Class 0 - NCSSM Blue */
+        :root {
+            --theme-color: #356093;
+            --theme-color-light: #4a7ab8;
+        }
+
+        /* Course-specific styles */
+        .course-info {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-top: 30px;
+        }
+
+        /* Myth cards */
+        .myth-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .myth-card {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .myth-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .myth-card .myth-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--danger-red);
+            margin-bottom: 10px;
+        }
+
+        .myth-card .myth-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            margin-bottom: 20px;
+        }
+
+        .myth-card .reality-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--success-green);
+            margin-bottom: 10px;
+        }
+
+        .myth-card .reality-text {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Framework wheel container - height controlled by flex in shared styles */
+        #de-wheel {
+            width: 100%;
+        }
+
+        /* Questions grid */
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .question-card {
+            background: var(--dark-surface);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+        }
+
+        .question-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .question-card .number {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .question-card .text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Theme colors for question cards */
+        .question-card[data-theme="1"] { border-left: 4px solid #356093; }
+        .question-card[data-theme="1"] .number { color: #356093; }
+        .question-card[data-theme="2"] { border-left: 4px solid #7c3aed; }
+        .question-card[data-theme="2"] .number { color: #7c3aed; }
+        .question-card[data-theme="3"] { border-left: 4px solid #059669; }
+        .question-card[data-theme="3"] .number { color: #059669; }
+        .question-card[data-theme="4"] { border-left: 4px solid #d4a028; }
+        .question-card[data-theme="4"] .number { color: #d4a028; }
+        .question-card[data-theme="5"] { border-left: 4px solid #ef4444; }
+        .question-card[data-theme="5"] .number { color: #ef4444; }
+        .question-card[data-theme="6"] { border-left: 4px solid #06b6d4; }
+        .question-card[data-theme="6"] .number { color: #06b6d4; }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1000px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--dark-border);
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--theme-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Homework list */
+        .homework-list {
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        .homework-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--dark-surface);
+            border-radius: 12px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .homework-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .homework-icon {
+            font-size: 1.5rem;
+        }
+
+        .homework-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Quote slide */
+        .quote-text {
+            font-family: 'Georgia', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        .quote-attribution {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: var(--theme-color);
+        }
+
+        /* Dual nature cards */
+        .dual-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .dual-card {
+            background: var(--dark-surface);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .dual-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dual-card .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .dual-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .dual-card p {
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="Applications in Entrepreneurship"
+        subtitle="Based on Bill Aulet's Disciplined Entrepreneurship"
+        info="NCSSM Spring 2026 | Carl Ryden & Chad Keister"
+    />
+
+    <!-- Slide 2: The Question -->
+    <StatementSlide id="2" section="Opening" title="Can It Be Taught?">
+        What if entrepreneurship could be taught?
+    </StatementSlide>
+
+    <!-- Slide 3: The Answer -->
+    <StatementSlide id="3" title="Yes, It Can">
+        <span style="color: var(--theme-color); font-size: 5rem; display: block; margin-bottom: 0.5em;">It can.</span>
+        <span class="subtext">And that's exactly what we're going to do.</span>
+    </StatementSlide>
+
+    <!-- Slide 4: Tonight's Agenda -->
+    <StandardSlide id="4" title="Tonight's Agenda">
+        <ul class="content-list">
+            <li>Bust some myths about entrepreneurship</li>
+            <li>Introduce the Disciplined Entrepreneurship framework</li>
+            <li>Preview the semester and what you'll build</li>
+            <li>Form teams and get started</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 5: Myth Busting Divider -->
+    <StatementSlide id="5" section="Myths vs Reality" title="Myth Busting">
+        <span class="section-label" style="display: block; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 15px;">Let's Start With</span>
+        Myth Busting
+    </StatementSlide>
+
+    <!-- Slide 6: Myth Grid -->
+    <StandardSlide id="6" title="What Most People Get Wrong" type="visual">
+        <div class="myth-grid">
+            <div class="myth-card">
+                <div class="myth-label">Myth</div>
+                <div class="myth-text">"Entrepreneurs are born, not made"</div>
+                <div class="reality-label">Reality</div>
+                <div class="reality-text">It's a skill you can learn and practice</div>
+            </div>
+            <div class="myth-card">
+                <div class="myth-label">Myth</div>
+                <div class="myth-text">"You need a brilliant idea"</div>
+                <div class="reality-label">Reality</div>
+                <div class="reality-text">Execution matters more than ideas</div>
+            </div>
+            <div class="myth-card">
+                <div class="myth-label">Myth</div>
+                <div class="myth-text">"It's all about the solo genius"</div>
+                <div class="reality-label">Reality</div>
+                <div class="reality-text">Teams consistently outperform individuals</div>
+            </div>
+            <div class="myth-card">
+                <div class="myth-label">Myth</div>
+                <div class="myth-text">"Entrepreneurs are risk-takers"</div>
+                <div class="reality-label">Reality</div>
+                <div class="reality-text">Great entrepreneurs reduce risk systematically</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 7: The Evidence -->
+    <StatementSlide id="7" title="The Evidence">
+        The more times you do it, the better you get.
+        <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">Just like any other craft.</span>
+    </StatementSlide>
+
+    <!-- Slide 8: Framework Section -->
+    <StatementSlide id="8" section="The Framework" title="Disciplined Entrepreneurship">
+        <span class="section-label" style="display: block; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 15px;">Introducing</span>
+        Disciplined Entrepreneurship
+        <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">24 Steps to a Successful Startup</span>
+    </StatementSlide>
+
+    <!-- Slide 9: Bill Aulet Quote -->
+    <StatementSlide id="9" title="Bill Aulet Quote">
+        <span class="quote-text">"We must avoid filling this gap with less than rigorous 'storytelling,' which at times assumes that assembling successful entrepreneurs in front of students so that they can spout platitudes about working hard is sufficient."</span>
+        <span class="quote-attribution" style="display: block; margin-top: 30px; font-size: 1.2rem; color: var(--theme-color); font-weight: 600;">- Bill Aulet, MIT</span>
+    </StatementSlide>
+
+    <!-- Slide 10: 24-Step Wheel -->
+    <StandardSlide id="10" title="The 24-Step Framework" type="visual">
+        <div class="visualization" id="de-wheel"></div>
+    </StandardSlide>
+
+    <!-- Slide 11: Six Questions -->
+    <StandardSlide id="11" title="Six Questions Every Startup Must Answer" type="visual">
+        <div class="questions-grid">
+            <div class="question-card" data-theme="1">
+                <div class="number">1</div>
+                <div class="text">Who is your customer?</div>
+            </div>
+            <div class="question-card" data-theme="2">
+                <div class="number">2</div>
+                <div class="text">What can you do for them?</div>
+            </div>
+            <div class="question-card" data-theme="3">
+                <div class="number">3</div>
+                <div class="text">How do they acquire your product?</div>
+            </div>
+            <div class="question-card" data-theme="4">
+                <div class="number">4</div>
+                <div class="text">How do you make money?</div>
+            </div>
+            <div class="question-card" data-theme="5">
+                <div class="number">5</div>
+                <div class="text">How do you design and build?</div>
+            </div>
+            <div class="question-card" data-theme="6">
+                <div class="number">6</div>
+                <div class="text">How do you scale?</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 12: Customer First -->
+    <StatementSlide id="12" title="Customer First">
+        Everything starts with the customer.
+        <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">Not your idea. Not your technology. The customer.</span>
+    </StatementSlide>
+
+    <!-- Slide 13: Pirate + SEAL -->
+    <StandardSlide id="13" title="The Entrepreneurial Mindset" type="visual">
+        <div class="dual-cards">
+            <div class="dual-card">
+                <div class="icon">🏴‍☠️</div>
+                <h3>Spirit of a Pirate</h3>
+                <p>Challenge the status quo. Question assumptions. Be bold.</p>
+            </div>
+            <div class="dual-card">
+                <div class="icon">🎯</div>
+                <h3>Skills of a Navy SEAL</h3>
+                <p>Disciplined execution. Systematic approach. Data-driven decisions.</p>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 14: Course Overview Section -->
+    <StatementSlide id="14" section="The Course" title="What We'll Build">
+        <span class="section-label" style="display: block; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 15px;">This Semester</span>
+        What We'll Build Together
+    </StatementSlide>
+
+    <!-- Slide 15: Course Timeline -->
+    <StandardSlide id="15" title="Your 10-Week Journey" type="visual">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot">1-2</div>
+                <div class="timeline-label">Weeks 1-2</div>
+                <div class="timeline-title">Find Your<br>Customer</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">3-4</div>
+                <div class="timeline-label">Weeks 3-4</div>
+                <div class="timeline-title">Define Your<br>Value</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">5-6</div>
+                <div class="timeline-label">Weeks 5-6</div>
+                <div class="timeline-title">Build Your<br>Model</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">7-8</div>
+                <div class="timeline-label">Weeks 7-8</div>
+                <div class="timeline-title">Test &<br>Validate</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">9-10</div>
+                <div class="timeline-label">Weeks 9-10</div>
+                <div class="timeline-title">Pitch &<br>Present</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 16: Weekly Rhythm -->
+    <StandardSlide id="16" title="Weekly Rhythm" type="visual">
+        <div class="dual-cards">
+            <div class="dual-card">
+                <div class="icon">📚</div>
+                <h3>Monday Evening</h3>
+                <p>Learn the framework. Apply to your venture. Get feedback.</p>
+            </div>
+            <div class="dual-card">
+                <div class="icon">🛠️</div>
+                <h3>Wednesday Morning</h3>
+                <p>Work session with Chad. Build your deliverables.</p>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 17: Teams -->
+    <StandardSlide id="17" title="Team Formation" type="visual">
+        <ul class="content-list">
+            <li><strong>5 teams</strong> of approximately 6 students each</li>
+            <li>Teams form over the <strong>first two weeks</strong></li>
+            <li>Starting Week 3: <strong>Weekly elevator pitches</strong></li>
+            <li>Final pitch: <strong>Every team member speaks</strong></li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 18: Final Pitches -->
+    <StatementSlide id="18" title="Final Pitches">
+        May 4 & 11: You'll Pitch to Real Judges
+        <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">8 minutes to convince them your venture is viable.</span>
+    </StatementSlide>
+
+    <!-- Slide 19: What We're Looking For -->
+    <StandardSlide id="19" section="Expectations" title="What We're Looking For">
+        <ul class="content-list">
+            <li><strong>Evidence over opinion</strong> - Show your work with data</li>
+            <li><strong>Iteration</strong> - Pivot when the evidence says so</li>
+            <li><strong>Specificity</strong> - Concrete details, not vague ideas</li>
+            <li><strong>Collaboration</strong> - Help each other succeed</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 20: What We're NOT Looking For -->
+    <StandardSlide id="20" title="What We're NOT Looking For">
+        <ul class="content-list">
+            <li><span style="color: var(--danger-red);">✗</span> A "successful" business idea (most won't be viable - that's normal!)</li>
+            <li><span style="color: var(--danger-red);">✗</span> Perfect execution (this is about learning)</li>
+            <li><span style="color: var(--danger-red);">✗</span> Brilliant solo performances (it's a team sport)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 21: Key Takeaway -->
+    <StatementSlide id="21" section="Closing" title="Key Takeaway">
+        Entrepreneurship is a <span style="color: var(--theme-color);">craft</span>.
+        <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">You learn it by doing it. Let's get started.</span>
+    </StatementSlide>
+
+    <!-- Slide 22: Homework -->
+    <StandardSlide id="22" title="Homework" type="visual">
+        <div class="homework-list">
+            <div class="homework-item">
+                <span class="homework-icon">📖</span>
+                <span class="homework-text">Read: DE Chapters 1-2 (Market Segmentation & Beachhead)</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">💭</span>
+                <span class="homework-text">Think about problems you've noticed that need solving</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">🤝</span>
+                <span class="homework-text">Start talking to potential teammates</span>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 23: Next Week Preview -->
+    <TwoPartSlide id="23" title="Next Week">
+        <p class="primary">Next Week: Market Segmentation</p>
+        <p class="secondary">How do you find customers worth serving?<br>And which one do you start with?</p>
+        <div style="margin-top: 50px; padding: 20px 30px; background: rgba(53, 96, 147, 0.1); border: 1px solid rgba(53, 96, 147, 0.3); border-radius: 12px; display: inline-block;">
+            <span style="color: var(--theme-color); font-weight: 600;">Theme 1: Who is your customer?</span>
+        </div>
+    </TwoPartSlide>
+
+    <!-- Slide 24: Let's Go -->
+    <StatementSlide id="24" title="Let's Go!">
+        <span style="color: var(--theme-color);">Let's build something.</span>
+        <div style="font-size: 4rem; margin-top: 30px;">🚀</div>
+    </StatementSlide>
+
+    <!-- ===== APPENDIX SLIDES ===== -->
+
+    <Slide title="About Bill Aulet" appendix={true}>
+        <div class="slide-content">
+            <h2>About Bill Aulet</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 20px auto; line-height: 1.8;">
+                Bill Aulet is the Managing Director of the Martin Trust Center for MIT Entrepreneurship and Professor of the Practice at the MIT Sloan School of Management. He has been instrumental in developing MIT's entrepreneurship curriculum and has helped launch hundreds of companies.
+            </p>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 20px auto; line-height: 1.8;">
+                Before joining MIT, he had a 25-year career as a successful entrepreneur and executive, including 11 years at IBM.
+            </p>
+        </div>
+    </Slide>
+
+    <Slide title="SME vs IDE" appendix={true}>
+        <div class="slide-content">
+            <h2>SME vs IDE Entrepreneurship</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 800px; margin: 30px auto;">
+                <div style="background: var(--dark-surface); padding: 30px; border-radius: 16px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 15px;">SME</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Small & Medium Enterprise</p>
+                    <ul style="color: var(--text-secondary); margin-top: 15px; margin-left: 20px; font-size: 0.95rem;">
+                        <li>Local/regional focus</li>
+                        <li>Linear growth</li>
+                        <li>Lifestyle or family business</li>
+                        <li>Examples: Restaurant, consulting firm</li>
+                    </ul>
+                </div>
+                <div style="background: var(--dark-surface); padding: 30px; border-radius: 16px;">
+                    <h3 style="color: var(--gold); margin-bottom: 15px;">IDE</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Innovation-Driven Enterprise</p>
+                    <ul style="color: var(--text-secondary); margin-top: 15px; margin-left: 20px; font-size: 0.95rem;">
+                        <li>Global ambition</li>
+                        <li>Exponential growth potential</li>
+                        <li>Technology or innovation-based</li>
+                        <li>Examples: Dropbox, Airbnb</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 20px;">This course focuses on IDE entrepreneurship, but the principles apply to both.</p>
+        </div>
+    </Slide>
+
+    <Slide title="Recommended Resources" appendix={true}>
+        <div class="slide-content">
+            <h2>Recommended Resources</h2>
+            <ul style="list-style: none; max-width: 700px; margin: 30px auto; text-align: left;">
+                <li style="margin-bottom: 20px; padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Book:</strong>
+                    <a href="https://www.amazon.com/Disciplined-Entrepreneurship-Steps-Successful-Startup/dp/1118692284" target="_blank" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+                        Disciplined Entrepreneurship by Bill Aulet
+                        <span style="color: var(--text-muted); font-size: 1rem; margin-left: 8px;">Amazon</span>
+                    </a>
+                </li>
+                <li style="margin-bottom: 20px; padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Website:</strong>
+                    <a href="https://www.d-eship.com/" target="_blank" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+                        d-eship.com - Free tools and templates
+                        <span style="color: var(--text-muted); font-size: 1rem; margin-left: 8px;">Official Site</span>
+                    </a>
+                </li>
+                <li style="margin-bottom: 20px; padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">MIT MOOCs:</strong>
+                    <a href="https://www.edx.org/learn/entrepreneurship/massachusetts-institute-of-technology-entrepreneurship-101-who-is-your-customer" target="_blank" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+                        Entrepreneurship 101, 102, 103 (free)
+                        <span style="color: var(--text-muted); font-size: 1rem; margin-left: 8px;">edX</span>
+                    </a>
+                </li>
+                <li style="padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Workbook:</strong>
+                    <a href="https://www.amazon.com/Disciplined-Entrepreneurship-Workbook-Bill-Aulet/dp/1119365791" target="_blank" style="color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+                        DE Workbook with worksheets for each step
+                        <span style="color: var(--text-muted); font-size: 1rem; margin-left: 8px;">Amazon</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-0-introduction/scripts.js"></script>
+
+    <script is:inline>
+        // Custom visualizations for this presentation
+
+        // Draw DE Wheel when slide 10 is active
+        function drawDEWheel() {
+            const viz = window.Visualization.create('de-wheel', { padding: 0.05 });
+            if (!viz) return;
+
+            const { svg, bounds } = viz;
+
+            // Use smaller dimension for circular wheel
+            const maxRadius = Math.min(bounds.width, bounds.height) / 2;
+            const center = { x: bounds.centerX, y: bounds.centerY };
+
+            // Proportional calculations
+            const radius = maxRadius * 0.75;
+            const innerRadius = radius * 0.6;
+            const labelOffset = maxRadius * 0.12;
+
+            const themes = [
+                { name: 'Customer', color: '#356093', steps: 5 },
+                { name: 'Value', color: '#7c3aed', steps: 6 },
+                { name: 'Acquire', color: '#059669', steps: 2 },
+                { name: 'Money', color: '#d4a028', steps: 6 },
+                { name: 'Build', color: '#ef4444', steps: 4 },
+                { name: 'Scale', color: '#06b6d4', steps: 1 }
+            ];
+
+            const arcGenerator = d3.arc()
+                .innerRadius(innerRadius)
+                .outerRadius(radius);
+
+            const pie = d3.pie()
+                .value(d => d.steps)
+                .sort(null);
+
+            const arcs = pie(themes);
+
+            arcs.forEach((arc, i) => {
+                svg.append('path')
+                    .attr('d', arcGenerator(arc))
+                    .attr('transform', `translate(${center.x}, ${center.y})`)
+                    .attr('fill', themes[i].color)
+                    .attr('opacity', 0)
+                    .transition()
+                    .delay(i * 150)
+                    .duration(500)
+                    .attr('opacity', 1);
+
+                const midAngle = (arc.startAngle + arc.endAngle) / 2;
+                const labelRadius = radius + labelOffset;
+                const x = center.x + Math.cos(midAngle - Math.PI/2) * labelRadius;
+                const y = center.y + Math.sin(midAngle - Math.PI/2) * labelRadius;
+
+                svg.append('text')
+                    .attr('x', x)
+                    .attr('y', y)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', themes[i].color)
+                    .attr('font-family', 'Montserrat')
+                    .attr('font-size', '1.25rem')
+                    .attr('font-weight', '600')
+                    .attr('opacity', 0)
+                    .text(themes[i].name)
+                    .transition()
+                    .delay(i * 150 + 300)
+                    .duration(400)
+                    .attr('opacity', 1);
+            });
+
+            // Center text - "24" and "STEPS"
+            svg.append('text')
+                .attr('x', center.x)
+                .attr('y', center.y - maxRadius * 0.05)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#f1f1f1')
+                .attr('font-family', 'Montserrat')
+                .attr('font-size', '3rem')
+                .attr('font-weight', '700')
+                .text('24');
+
+            svg.append('text')
+                .attr('x', center.x)
+                .attr('y', center.y + maxRadius * 0.1)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat')
+                .attr('font-size', '1.25rem')
+                .text('STEPS');
+        }
+
+        // Custom slide animations
+        const originalGoToSlide = window.Presentation.goToSlide;
+        window.Presentation.goToSlide = function(n) {
+            originalGoToSlide(n);
+
+            const slide = document.querySelector(`[data-slide="${n}"]`);
+            if (!slide) return;
+
+            // Animate myth cards
+            const mythCards = slide.querySelectorAll('.myth-card');
+            mythCards.forEach((card, i) => {
+                card.classList.remove('visible');
+                setTimeout(() => card.classList.add('visible'), 200 * (i + 1));
+            });
+
+            // Animate question cards
+            const questionCards = slide.querySelectorAll('.question-card');
+            questionCards.forEach((card, i) => {
+                card.classList.remove('visible');
+                setTimeout(() => card.classList.add('visible'), 150 * (i + 1));
+            });
+
+            // Animate timeline items
+            const timelineItems = slide.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, i) => {
+                item.classList.remove('visible');
+                setTimeout(() => item.classList.add('visible'), 200 * (i + 1));
+            });
+
+            // Animate dual cards
+            const dualCards = slide.querySelectorAll('.dual-card');
+            dualCards.forEach((card, i) => {
+                card.classList.remove('visible');
+                setTimeout(() => card.classList.add('visible'), 300 * (i + 1));
+            });
+
+            // Animate homework items
+            const homeworkItems = slide.querySelectorAll('.homework-item');
+            homeworkItems.forEach((item, i) => {
+                item.classList.remove('visible');
+                setTimeout(() => item.classList.add('visible'), 200 * (i + 1));
+            });
+
+            // Draw DE wheel on slide 10
+            if (n === 10) {
+                setTimeout(drawDEWheel, 300);
+            }
+        };
+    </script>
+</PresentationLayout>

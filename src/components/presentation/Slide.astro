@@ -1,0 +1,28 @@
+---
+const { 
+  id, 
+  type = 'content', 
+  title, 
+  section, 
+  appendix, 
+  visualization,
+  class: className 
+} = Astro.props;
+
+const slideClasses = [
+  'slide',
+  `slide-${type}`,
+  className
+].filter(Boolean).join(' ');
+---
+
+<div 
+  class={slideClasses} 
+  data-slide={id}
+  data-title={title}
+  data-section={section}
+  data-appendix={appendix}
+  data-visualization={visualization}
+>
+  <slot />
+</div>

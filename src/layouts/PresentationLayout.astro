@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import '../styles/presentation.css';
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Georgia&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js" defer></script>
+    <script is:inline src="/shared/narration.js"></script>
+    <script is:inline src="/shared/presentation.js"></script>
+</head>
+<body>
+    <!-- Overlay Backdrop -->
+    <div id="overlay-backdrop" class="overlay-backdrop"></div>
+
+    <!-- TOC Overlay -->
+    <div id="toc-overlay" class="toc-overlay">
+        <button id="toc-close" class="toc-close">&times;</button>
+        <div class="toc-header">
+            <h3>Table of Contents</h3>
+            <div class="class-info">{title}</div>
+        </div>
+        <div id="toc-content" class="toc-content">
+            <!-- Auto-generated -->
+        </div>
+        <div class="toc-footer">
+            <a href="/">&larr; Back to Course Syllabus</a>
+        </div>
+    </div>
+
+    <!-- Appendix Overlay -->
+    <div id="appendix-overlay" class="appendix-overlay">
+        <div class="appendix-header">
+            <h3>Appendix</h3>
+            <button id="appendix-close" class="appendix-close">&times;</button>
+        </div>
+        <div id="appendix-content" class="appendix-content">
+            <!-- Auto-generated from appendix slides -->
+        </div>
+        <div class="appendix-nav">
+            <button id="appendix-prev" class="appendix-nav-btn">&larr; Prev</button>
+            <span id="appendix-counter" class="appendix-counter">1 / 1</span>
+            <button id="appendix-next" class="appendix-nav-btn">Next &rarr;</button>
+        </div>
+    </div>
+
+    <div class="presentation">
+        <slot />
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span class="current">1</span> / <span class="total">1</span>
+    </div>
+
+    <!-- Keyboard Hints -->
+    <div class="keyboard-hints">
+        <span><kbd>&larr;</kbd><kbd>&rarr;</kbd> Navigate</span>
+        <span><kbd>T</kbd> Contents</span>
+        <span><kbd>A</kbd> Appendix</span>
+        <span><kbd>S</kbd> Syllabus</span>
+    </div>
+
+
+</body>
+</html>

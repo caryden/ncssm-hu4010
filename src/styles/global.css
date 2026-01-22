@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* NCSSM Brand Colors */
+    --ncssm-blue: #356093;
+    --ncssm-blue-light: #4a7ab8;
+    --ncssm-blue-dark: #264570;
+
+    /* Secondary Accent */
+    --gold: #d4a028;
+    --gold-light: #e8b84a;
+
+    /* Dark Mode Backgrounds */
+    --dark-bg: #0a0a0f;
+    --dark-surface: #12121a;
+    --dark-card: #1a1a24;
+    --dark-border: #2a2a3a;
+
+    /* Text Colors */
+    --text-primary: #f1f1f1;
+    --text-secondary: #a0a0a0;
+    --text-muted: #6a6a7a;
+
+    /* Status Colors */
+    --success-green: #10b981;
+    --danger-red: #ef4444;
+    --warning-yellow: #eab308;
+
+    /* Theme Colors (set per presentation) */
+    --theme-color: var(--ncssm-blue);
+    --theme-color-light: var(--ncssm-blue-light);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+
+    /* Layout */
+    --toc-width: 320px;
+    --appendix-width: 400px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+}
