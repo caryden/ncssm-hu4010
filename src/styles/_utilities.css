@@ -1,0 +1,246 @@
+/**
+ * Utility Classes
+ *
+ * Helper classes for common patterns in presentations.
+ * These complement Tailwind utilities with presentation-specific helpers.
+ */
+
+/* ===== Layout Utilities ===== */
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* ===== Spacing Utilities ===== */
+
+.mt-auto { margin-top: auto; }
+.mb-auto { margin-bottom: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.gap-sm { gap: 12px; }
+.gap-md { gap: 24px; }
+.gap-lg { gap: 40px; }
+.gap-xl { gap: 60px; }
+
+/* ===== Width Constraints ===== */
+
+.max-w-narrow { max-width: 600px; }
+.max-w-content { max-width: 800px; }
+.max-w-wide { max-width: 1000px; }
+.max-w-full { max-width: 100%; }
+
+.w-full { width: 100%; }
+.w-70 { width: 70%; }
+.w-50 { width: 50%; }
+
+/* ===== Text Utilities ===== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-sm { font-size: 0.9rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.25rem; }
+.text-xl { font-size: 1.5rem; }
+.text-2xl { font-size: 2rem; }
+.text-3xl { font-size: 2.5rem; }
+.text-4xl { font-size: 3rem; }
+
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.tracking-wide { letter-spacing: 0.05em; }
+.tracking-wider { letter-spacing: 0.1em; }
+
+.leading-tight { line-height: 1.2; }
+.leading-normal { line-height: 1.5; }
+.leading-relaxed { line-height: 1.7; }
+
+/* ===== Color Utilities ===== */
+
+.text-theme { color: var(--theme-color); }
+.text-theme-light { color: var(--theme-color-light); }
+.text-brand { color: var(--brand-primary); }
+.text-accent { color: var(--brand-accent); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-success { color: var(--success-green); }
+.text-danger { color: var(--danger-red); }
+.text-warning { color: var(--warning-yellow); }
+
+.bg-dark { background: var(--dark-bg); }
+.bg-surface { background: var(--dark-surface); }
+.bg-card { background: var(--dark-card); }
+.bg-theme { background: var(--theme-color); }
+
+/* ===== Border Utilities ===== */
+
+.border { border: 1px solid var(--dark-border); }
+.border-theme { border-color: var(--theme-color); }
+.rounded { border-radius: 8px; }
+.rounded-lg { border-radius: 16px; }
+.rounded-xl { border-radius: 24px; }
+.rounded-full { border-radius: 9999px; }
+
+/* ===== Card Styles ===== */
+
+.card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.card-surface {
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.card-theme {
+  background: linear-gradient(135deg, rgba(var(--theme-color-rgb, 53, 96, 147), 0.1) 0%, transparent 100%);
+  border: 1px solid rgba(var(--theme-color-rgb, 53, 96, 147), 0.3);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* ===== Badge Styles ===== */
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-brand {
+  background: var(--brand-primary);
+  color: white;
+}
+
+.badge-accent {
+  background: var(--brand-accent);
+  color: var(--dark-bg);
+}
+
+.badge-theme {
+  background: var(--theme-color);
+  color: white;
+}
+
+.badge-outline {
+  background: transparent;
+  border: 1px solid var(--theme-color);
+  color: var(--theme-color);
+}
+
+/* ===== Icon Utilities ===== */
+
+.icon-sm { font-size: 1.25rem; }
+.icon-md { font-size: 1.5rem; }
+.icon-lg { font-size: 2rem; }
+.icon-xl { font-size: 3rem; }
+.icon-2xl { font-size: 4rem; }
+
+/* ===== Visibility Utilities ===== */
+
+.hidden { display: none; }
+.invisible { visibility: hidden; }
+.opacity-0 { opacity: 0; }
+.opacity-50 { opacity: 0.5; }
+.opacity-100 { opacity: 1; }
+
+/* ===== Gradient Text ===== */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brand {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Shadow Utilities ===== */
+
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(var(--theme-color-rgb, 53, 96, 147), 0.3);
+}
+
+/* ===== Responsive Utilities ===== */
+
+@media (max-width: 900px) {
+  .hide-tablet { display: none; }
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hide-mobile { display: none; }
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .w-70 { width: 90%; }
+}

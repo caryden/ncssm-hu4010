@@ -1,10 +1,32 @@
 ---
+/**
+ * TwoPartSlide Component
+ *
+ * Centered slide with primary statement and secondary explanation.
+ * Use for definitions, concepts with explanations, or two-level messaging.
+ *
+ * @example
+ * <TwoPartSlide id="3" title="The Root Cause">
+ *   <p class="primary">They didn't know who they were building for.</p>
+ *   <p class="secondary">Or they tried to build for everyone.</p>
+ *   <p class="note">Focus is essential.</p>
+ * </TwoPartSlide>
+ */
+
+import type { TwoPartSlideProps } from './types';
 import Slide from './Slide.astro';
 
-const { id, title, section } = Astro.props;
+interface Props extends TwoPartSlideProps {}
+
+const {
+  id,
+  title,
+  section,
+  class: className,
+} = Astro.props;
 ---
 
-<Slide id={id} type="two-part" title={title} section={section}>
+<Slide id={id} type="two-part" title={title} section={section} class={className}>
   <div class="slide-content">
     <slot />
   </div>

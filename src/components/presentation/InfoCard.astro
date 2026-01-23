@@ -1,34 +1,53 @@
 ---
-const { title, delay } = Astro.props; // delay in ms, or index to calculate delay
+/**
+ * InfoCard Component
+ *
+ * Card with left border accent, optional title, and content.
+ * Animates in when parent slide becomes active.
+ *
+ * @example
+ * <InfoCard title="Key Insight" delay={200}>
+ *   <p>Focus on one market segment first.</p>
+ * </InfoCard>
+ */
+
+import type { InfoCardProps } from './types';
+
+interface Props extends InfoCardProps {}
+
+const {
+  title,
+  delay = 0,
+  class: className,
+} = Astro.props;
 ---
 
-<div class="info-card" style={delay ? `--delay: ${delay}ms` : ''}>
-    {title && <h3>{title}</h3>}
-    <slot />
+<div class:list={['info-card', className]} style={delay ? `--delay: ${delay}ms` : ''}>
+  {title && <h3>{title}</h3>}
+  <slot />
 </div>
 
 <style>
-    .info-card {
-        background: var(--dark-surface);
-        border-radius: 12px;
-        padding: 1.5rem;
-        border-left: 4px solid var(--theme-color);
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.5s ease;
-        transition-delay: var(--delay, 0ms);
-    }
+  .info-card {
+    background: var(--dark-surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--theme-color);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    transition-delay: var(--delay, 0ms);
+  }
 
-    /* Animate when parent slide is active */
-    :global(.slide.active) .info-card {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  /* Animate when parent slide is active */
+  :global(.slide.active) .info-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .info-card h3 {
-        font-size: 1.25rem;
-        color: var(--theme-color);
-        margin-bottom: 0.5rem;
-        font-family: var(--font-display);
-    }
+  .info-card h3 {
+    font-size: 1.25rem;
+    color: var(--theme-color);
+    margin-bottom: 0.5rem;
+  }
 </style>

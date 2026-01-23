@@ -1,49 +1,34 @@
+/**
+ * Global Styles Entry Point
+ *
+ * This file imports all CSS modules in the correct order.
+ * @import statements must come first per CSS spec.
+ *
+ * CSS Architecture:
+ * 1. Imports (design system modules)
+ * 2. Tailwind (base, components, utilities)
+ *
+ * The Tailwind layers will be processed after the imports.
+ */
+
+/* ===== Design System Modules (must be first) ===== */
+@import './_variables.css';
+@import './_base.css';
+@import './_slides.css';
+@import './_overlays.css';
+@import './_animations.css';
+@import './_utilities.css';
+
+/* ===== Tailwind CSS ===== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    /* NCSSM Brand Colors */
-    --ncssm-blue: #356093;
-    --ncssm-blue-light: #4a7ab8;
-    --ncssm-blue-dark: #264570;
-
-    /* Secondary Accent */
-    --gold: #d4a028;
-    --gold-light: #e8b84a;
-
-    /* Dark Mode Backgrounds */
-    --dark-bg: #0a0a0f;
-    --dark-surface: #12121a;
-    --dark-card: #1a1a24;
-    --dark-border: #2a2a3a;
-
-    /* Text Colors */
-    --text-primary: #f1f1f1;
-    --text-secondary: #a0a0a0;
-    --text-muted: #6a6a7a;
-
-    /* Status Colors */
-    --success-green: #10b981;
-    --danger-red: #ef4444;
-    --warning-yellow: #eab308;
-
-    /* Theme Colors (set per presentation) */
-    --theme-color: var(--ncssm-blue);
-    --theme-color-light: var(--ncssm-blue-light);
-
-    /* Transitions */
-    --transition-fast: 150ms ease;
-    --transition-normal: 300ms ease;
-    --transition-slow: 500ms ease;
-
-    /* Layout */
-    --toc-width: 320px;
-    --appendix-width: 400px;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--dark-bg);
-    color: var(--text-primary);
-}
+/**
+ * Note: Theme colors are injected dynamically from the config system
+ * in PresentationLayout.astro and MainLayout.astro using the
+ * generateCSSVariables() helper from @config.
+ *
+ * The _variables.css file provides fallback values for development
+ * and ensures CSS intellisense works correctly.
+ */

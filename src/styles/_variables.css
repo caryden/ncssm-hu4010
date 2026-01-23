@@ -1,0 +1,68 @@
+/**
+ * CSS Custom Properties
+ *
+ * This file defines CSS custom properties (variables) for the design system.
+ * These values should match the configuration in src/config/theme.ts
+ *
+ * NOTE: The actual values are injected dynamically from the config system
+ * in the layout files. This file serves as documentation and fallback.
+ *
+ * To customize branding:
+ * 1. Edit src/config/institution.ts (colors will auto-propagate)
+ * 2. Edit src/config/theme.ts (for presentation colors)
+ */
+
+:root {
+  /* ===== Institution Branding ===== */
+  /* These are set dynamically from config/institution.ts */
+  --brand-primary: #356093;
+  --brand-primary-light: #4a7ab8;
+  --brand-primary-dark: #264570;
+  --brand-accent: #d4a028;
+  --brand-accent-light: #e8b84a;
+
+  /* ===== Dark Mode Backgrounds ===== */
+  --dark-bg: #0a0a0f;
+  --dark-surface: #12121a;
+  --dark-card: #1a1a24;
+  --dark-border: #2a2a3a;
+
+  /* ===== Text Colors ===== */
+  --text-primary: #f1f1f1;
+  --text-secondary: #a0a0a0;
+  --text-muted: #6a6a7a;
+
+  /* ===== Status Colors ===== */
+  --success-green: #10b981;
+  --danger-red: #ef4444;
+  --warning-yellow: #eab308;
+
+  /* ===== Theme Colors ===== */
+  /* Set per-presentation for accent color */
+  --theme-color: var(--brand-primary);
+  --theme-color-light: var(--brand-primary-light);
+
+  /* ===== DE Framework Theme Colors ===== */
+  --theme-1-blue: #356093;
+  --theme-2-purple: #7c3aed;
+  --theme-3-green: #059669;
+  --theme-4-amber: #f59e0b;
+  --theme-5-red: #ef4444;
+  --theme-6-cyan: #06b6d4;
+
+  /* ===== Transitions ===== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* ===== Layout ===== */
+  --toc-width: 320px;
+  --appendix-width: 400px;
+
+  /* ===== Legacy Aliases ===== */
+  /* For backward compatibility with existing code */
+  --ncssm-blue: var(--brand-primary);
+  --ncssm-blue-light: var(--brand-primary-light);
+  --gold: var(--brand-accent);
+  --gold-light: var(--brand-accent-light);
+}

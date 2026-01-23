@@ -1,10 +1,48 @@
 ---
+/**
+ * StandardSlide Component
+ *
+ * General-purpose slide with title and flexible content area.
+ * Can be used for content, visual, or other slide types.
+ *
+ * @example
+ * <StandardSlide id="10" title="Key Concepts" type="content">
+ *   <ul>
+ *     <li>First point</li>
+ *     <li>Second point</li>
+ *   </ul>
+ * </StandardSlide>
+ *
+ * @example
+ * <StandardSlide id="15" title="Market Analysis" type="visual">
+ *   <MyVisualization />
+ *   <p class="caption">Source: Industry Report 2024</p>
+ * </StandardSlide>
+ */
+
+import type { StandardSlideProps } from './types';
 import Slide from './Slide.astro';
 
-const { id, title, section, type = 'content', visualization } = Astro.props;
+interface Props extends StandardSlideProps {}
+
+const {
+  id,
+  title,
+  section,
+  type = 'content',
+  visualization,
+  class: className,
+} = Astro.props;
 ---
 
-<Slide id={id} type={type} title={title} section={section} visualization={visualization}>
+<Slide
+  id={id}
+  type={type}
+  title={title}
+  section={section}
+  visualization={visualization}
+  class={className}
+>
   <h2>{title}</h2>
   <slot />
 </Slide>

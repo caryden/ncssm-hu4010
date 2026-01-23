@@ -1,17 +1,32 @@
 {
-  "name": "ncssm-hu4010",
+  "name": "course-presentation-template",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Astro + Tailwind course presentation template with modular branding. Based on NCSSM's Applications in Entrepreneurship course.",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "astro check"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "astro",
+    "tailwind",
+    "presentation",
+    "course",
+    "education",
+    "template"
+  ],
+  "author": "NCSSM",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ncssm/course-presentation-template"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.16.12",

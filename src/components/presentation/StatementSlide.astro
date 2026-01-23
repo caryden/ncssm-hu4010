@@ -1,10 +1,30 @@
 ---
+/**
+ * StatementSlide Component
+ *
+ * Large, centered statement for emphasis. Used for key messages,
+ * section intros, or impactful quotes without attribution.
+ *
+ * @example
+ * <StatementSlide id="2" title="The Core Problem">
+ *   Most startups fail because they build something <span class="danger">nobody wants</span>.
+ * </StatementSlide>
+ */
+
+import type { StatementSlideProps } from './types';
 import Slide from './Slide.astro';
 
-const { id, title, section } = Astro.props;
+interface Props extends StatementSlideProps {}
+
+const {
+  id,
+  title,
+  section,
+  class: className,
+} = Astro.props;
 ---
 
-<Slide id={id} type="statement" title={title} section={section}>
+<Slide id={id} type="statement" title={title} section={section} class={className}>
   <div class="slide-content">
     <p class="statement">
       <slot />
