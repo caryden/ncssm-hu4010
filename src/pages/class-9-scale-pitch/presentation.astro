@@ -1,0 +1,590 @@
+---
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import PitchCard from '../../components/presentation/PitchCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Slide from '../../components/presentation/Slide.astro';
+---
+
+<PresentationLayout title="Class 9: Scale & Pitch | Applications in Entrepreneurship">
+    <style>
+        /* Theme 6: Scale - Cyan */
+        :root {
+            --theme-color: #06b6d4;
+            --theme-color-light: #22d3ee;
+            --gradient-hero: linear-gradient(135deg, var(--dark-bg) 0%, #0a1518 100%);
+        }
+
+        /* Stepping Stones */
+        .stepping-stones {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            height: 350px;
+            margin-top: 30px;
+        }
+
+        .stone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 16px;
+            padding: 20px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        :global(.slide.active) .stone {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger stones */
+        :global(.slide.active) .stone:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .stone:nth-child(2) { transition-delay: 400ms; }
+        :global(.slide.active) .stone:nth-child(3) { transition-delay: 600ms; }
+        :global(.slide.active) .stone:nth-child(4) { transition-delay: 800ms; }
+
+        .stone.beachhead {
+            width: 140px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+            color: #000;
+            font-size: 1rem;
+        }
+
+        .stone.adjacent1 {
+            width: 160px;
+            height: 140px;
+            background: rgba(6, 182, 212, 0.3);
+            border: 2px solid var(--theme-color);
+            color: var(--theme-color);
+            font-size: 1rem;
+        }
+
+        .stone.adjacent2 {
+            width: 180px;
+            height: 180px;
+            background: rgba(6, 182, 212, 0.2);
+            border: 2px solid rgba(6, 182, 212, 0.5);
+            color: var(--theme-color);
+            font-size: 1rem;
+        }
+
+        .stone.broader {
+            width: 220px;
+            height: 220px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px dashed rgba(6, 182, 212, 0.3);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Pitch sections */
+        .pitch-sections {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* Slack timeline */
+        .slack-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        .slack-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 20px;
+            background: var(--dark-surface);
+            border-radius: 12px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s ease;
+        }
+
+        :global(.slide.active) .slack-step {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger slack steps */
+        :global(.slide.active) .slack-step:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .slack-step:nth-child(2) { transition-delay: 350ms; }
+        :global(.slide.active) .slack-step:nth-child(3) { transition-delay: 500ms; }
+        :global(.slide.active) .slack-step:nth-child(4) { transition-delay: 650ms; }
+        :global(.slide.active) .slack-step:nth-child(5) { transition-delay: 800ms; }
+
+
+        .slack-step .number {
+            width: 32px;
+            height: 32px;
+            background: var(--theme-color);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .slack-step .desc {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .roadmap-phase {
+            background: var(--dark-surface);
+            border-radius: 16px;
+            padding: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        :global(.slide.active) .roadmap-phase {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger roadmap phases */
+        :global(.slide.active) .roadmap-phase:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .roadmap-phase:nth-child(2) { transition-delay: 400ms; }
+        :global(.slide.active) .roadmap-phase:nth-child(3) { transition-delay: 600ms; }
+        :global(.slide.active) .roadmap-phase:nth-child(4) { transition-delay: 800ms; }
+
+
+        .roadmap-phase .phase-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-phase .phase-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--theme-color);
+            margin-bottom: 15px;
+        }
+
+        .roadmap-phase .phase-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Criteria Grid */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .criteria-item {
+            background: var(--dark-surface);
+            border-radius: 12px;
+            padding: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        :global(.slide.active) .criteria-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger criteria items */
+        :global(.slide.active) .criteria-item:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .criteria-item:nth-child(2) { transition-delay: 350ms; }
+        :global(.slide.active) .criteria-item:nth-child(3) { transition-delay: 500ms; }
+        :global(.slide.active) .criteria-item:nth-child(4) { transition-delay: 650ms; }
+
+
+        .criteria-item .icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .criteria-item .name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--theme-color);
+            margin-bottom: 8px;
+        }
+
+        .criteria-item .desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+         /* Theme colors reference for journey grid */
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .theme-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .theme-card.blue { background: rgba(53, 96, 147, 0.2); border: 1px solid #356093; }
+        .theme-card.blue .theme-label { color: #356093; }
+        .theme-card.green { background: rgba(5, 150, 105, 0.2); border: 1px solid #059669; }
+        .theme-card.green .theme-label { color: #059669; }
+        .theme-card.amber { background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; }
+        .theme-card.amber .theme-label { color: #f59e0b; }
+        .theme-card.red { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; }
+        .theme-card.red .theme-label { color: #ef4444; }
+        .theme-card.cyan { background: rgba(6, 182, 212, 0.2); border: 1px solid var(--theme-color); }
+        .theme-card.cyan .theme-label { color: var(--theme-color); }
+
+        .theme-card .theme-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .theme-card .theme-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .theme-card .status {
+            margin-top: 10px;
+        }
+        
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="Scale & Pitch"
+        subtitle="Growth Strategy & Final Prep"
+        info="Class 9 | Step 24"
+    />
+
+    <!-- Slide 2: Final Theme -->
+    <StatementSlide id="2" title="Theme 6">
+        Theme 6: <span class="accent">How Do You Scale Your Business?</span>
+        <p class="tertiary" style="margin-top: 2rem;">The final theme of Disciplined Entrepreneurship</p>
+    </StatementSlide>
+
+    <!-- Slide 3: Journey Complete -->
+    <StandardSlide id="3" title="24 Steps Overview" type="visual">
+        <h2 style="text-align: center;">We've Covered All 24 Steps</h2>
+        <div class="theme-grid">
+            <div class="theme-card blue">
+                <div class="theme-label">Theme 1-2</div>
+                <div class="theme-desc">Who is your customer?<br>What can you do for them?</div>
+                <div class="status" style="color: #10b981;">&#10003;</div>
+            </div>
+            <div class="theme-card green">
+                <div class="theme-label">Theme 3</div>
+                <div class="theme-desc">How do they acquire<br>your product?</div>
+                <div class="status" style="color: #10b981;">&#10003;</div>
+            </div>
+            <div class="theme-card amber">
+                <div class="theme-label">Theme 4</div>
+                <div class="theme-desc">How do you<br>make money?</div>
+                <div class="status" style="color: #10b981;">&#10003;</div>
+            </div>
+            <div class="theme-card red">
+                <div class="theme-label">Theme 5</div>
+                <div class="theme-desc">How do you design<br>and build?</div>
+                <div class="status" style="color: #10b981;">&#10003;</div>
+            </div>
+            <div class="theme-card cyan">
+                <div class="theme-label">Theme 6</div>
+                <div class="theme-desc">How do you<br>scale?</div>
+                <div class="status" style="color: #eab308;">In Progress</div>
+            </div>
+            <div class="theme-card" style="background: var(--dark-surface);">
+                <div style="font-size: 2rem; margin-bottom: 10px;">&#127919;</div>
+                <div class="theme-desc">Ready to<br>pitch!</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 4: What's Ahead -->
+    <StandardSlide id="4" title="The Home Stretch">
+        <ul class="content-list">
+            <li><strong>Today:</strong> Scale strategy + Pitch prep</li>
+            <li><strong>May 4:</strong> Final pitches (Group A)</li>
+            <li><strong>May 11:</strong> Final pitches (Group B)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 5: Tonight's Plan -->
+    <StandardSlide id="5" title="Tonight's Agenda">
+        <ul class="content-list">
+            <li>Scaling strategy <span style="color: var(--text-secondary);">(30 min)</span></li>
+            <li>Pitch structure <span style="color: var(--text-secondary);">(30 min)</span></li>
+            <li>Practice & feedback <span style="color: var(--text-secondary);">(40 min)</span></li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 6: Scaling Section -->
+    <StatementSlide id="6" section="Scale" title="Step 24">
+        Step 24: <span class="accent">Develop a Product Plan</span>
+    </StatementSlide>
+
+    <!-- Slide 7: The Question -->
+    <StatementSlide id="7" title="Now What?">
+        You've won the beachhead. <span class="accent">Now what?</span>
+    </StatementSlide>
+
+    <!-- Slide 8: Expansion Path -->
+    <StandardSlide id="8" title="Systematic Growth" type="visual">
+        <div class="stepping-stones">
+            <div class="stone beachhead">Beachhead<br><span style="font-size: 0.8rem; font-weight: 400;">You are here</span></div>
+            <div class="stone adjacent1">Adjacent<br>Market #1</div>
+            <div class="stone adjacent2">Adjacent<br>Market #2</div>
+            <div class="stone broader">Broader<br>Market</div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: var(--text-secondary);">Each market builds on the last</p>
+    </StandardSlide>
+
+    <!-- Slide 9: Why Sequence -->
+    <StandardSlide id="9" title="One Market at a Time">
+        <ul class="content-list">
+            <li>Resources are <strong>limited</strong></li>
+            <li>Each market <strong>teaches</strong> you something</li>
+            <li>Success builds <strong>credibility</strong></li>
+            <li>Product evolves to serve <strong>broader needs</strong></li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 10: Choosing Next Markets -->
+    <StandardSlide id="10" title="Evaluating Adjacent Markets" type="visual">
+        <div class="criteria-grid">
+            <div class="criteria-item">
+                <div class="icon">&#127919;</div>
+                <div class="name">Similarity of Needs</div>
+                <div class="desc">How similar are their problems to your beachhead?</div>
+            </div>
+            <div class="criteria-item">
+                <div class="icon">&#128483;&#65039;</div>
+                <div class="name">Reference Customers</div>
+                <div class="desc">Do beachhead customers connect to this market?</div>
+            </div>
+            <div class="criteria-item">
+                <div class="icon">&#128295;</div>
+                <div class="name">Product Fit</div>
+                <div class="desc">How much do you need to change your product?</div>
+            </div>
+            <div class="criteria-item">
+                <div class="icon">&#128226;</div>
+                <div class="name">Go-to-Market Alignment</div>
+                <div class="desc">Can you use the same channels?</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 11: Slack Example -->
+    <StandardSlide id="11" title="Example: Slack's Growth" type="visual">
+        <div class="slack-timeline">
+            <div class="slack-step">
+                <div class="number">1</div>
+                <div class="desc">Internal tool (own team)</div>
+            </div>
+            <div class="slack-step">
+                <div class="number">2</div>
+                <div class="desc">Tech startups (similar culture)</div>
+            </div>
+            <div class="slack-step">
+                <div class="number">3</div>
+                <div class="desc">Tech companies (larger scale)</div>
+            </div>
+            <div class="slack-step">
+                <div class="number">4</div>
+                <div class="desc">Enterprise (different needs)</div>
+            </div>
+            <div class="slack-step">
+                <div class="number">5</div>
+                <div class="desc">Everyone (platform)</div>
+            </div>
+        </div>
+        <p style="text-align: center; color: var(--theme-color); font-weight: 600; margin-top: 1rem;">Each step built credibility for the next.</p>
+    </StandardSlide>
+
+    <!-- Slide 12: Roadmap -->
+    <StandardSlide id="12" title="Plan Your Phases" type="visual">
+        <div class="roadmap">
+            <div class="roadmap-phase">
+                <div class="phase-label">Phase 1 (Now)</div>
+                <div class="phase-title">Beachhead</div>
+                <div class="phase-desc">Core features for your first market</div>
+            </div>
+            <div class="roadmap-phase">
+                <div class="phase-label">Phase 2 (6-12 mo)</div>
+                <div class="phase-title">Adjacent #1</div>
+                <div class="phase-desc">Features for first expansion</div>
+            </div>
+            <div class="roadmap-phase">
+                <div class="phase-label">Phase 3 (12-24 mo)</div>
+                <div class="phase-title">Adjacent #2</div>
+                <div class="phase-desc">Features for second expansion</div>
+            </div>
+            <div class="roadmap-phase">
+                <div class="phase-label">Ongoing</div>
+                <div class="phase-title">Platform</div>
+                <div class="phase-desc">Scale to broader market</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 13: Pitch Section -->
+    <StatementSlide id="13" section="Pitch" title="Preparing Your Pitch">
+        Preparing Your Pitch
+        <p class="tertiary" style="margin-top: 2rem;">8 minutes to convince the world</p>
+    </StatementSlide>
+
+    <!-- Slide 14: Pitch Structure -->
+    <StandardSlide id="14" title="8-Minute Structure" type="visual">
+        <div class="pitch-sections">
+            <PitchCard number="1" name="Hook" time="30 sec" delay="100" />
+            <PitchCard number="2" name="Problem" time="60 sec" delay="200" />
+            <PitchCard number="3" name="Solution" time="60 sec" delay="300" />
+            <PitchCard number="4" name="Market" time="60 sec" delay="400" />
+            <PitchCard number="5" name="Business Model" time="60 sec" delay="500" />
+            <PitchCard number="6" name="Traction" time="60 sec" delay="600" />
+            <PitchCard number="7" name="Team" time="30 sec" delay="700" />
+            <PitchCard number="8" name="Ask & Close" time="60 sec" delay="800" />
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 15: The Hook -->
+    <TwoPartSlide id="15" title="The Hook">
+        <p class="primary">1. Hook (30 seconds)</p>
+        <p class="secondary">Grab attention immediately</p>
+        <div style="margin-top: 40px; padding: 20px 30px; background: var(--dark-surface); border-radius: 12px; display: inline-block;">
+            <span style="color: var(--text-secondary);">Example:</span> <span style="color: var(--theme-color); font-style: italic;">"What if I told you half your homework time is wasted?"</span>
+        </div>
+    </TwoPartSlide>
+
+    <!-- Slide 16: Problem & Solution -->
+    <StandardSlide id="16" title="Problem & Solution" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Problem (60s)" delay="200">
+                <ul>
+                    <li>Make it vivid and relatable</li>
+                    <li>Use your persona by name</li>
+                    <li>Quantify the pain</li>
+                    <li>Why current solutions fail</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard title="Solution (60s)" delay="400">
+                <ul>
+                    <li>One sentence what you do</li>
+                    <li>How it works (simple)</li>
+                    <li>Demo or visual if possible</li>
+                    <li>Key differentiator</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- Slide 17: Market & Business Model -->
+    <StandardSlide id="17" title="Market & Business Model" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Market (60s)" delay="200">
+                <ul>
+                    <li>TAM (with methodology)</li>
+                    <li>Beachhead strategy</li>
+                    <li>Expansion path</li>
+                    <li>Why now?</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard title="Business Model (60s)" delay="400">
+                <ul>
+                    <li>How you charge</li>
+                    <li>Pricing</li>
+                    <li>Unit economics (LTV/COCA)</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- Slide 18: Traction -->
+    <TwoPartSlide id="18" title="Traction">
+        <p class="primary">6. Traction (60 seconds)</p>
+        <p class="secondary">Prove it's not just an idea</p>
+        <p class="note" style="margin-top: 2rem; color: var(--theme-color);">This is where the semester's work pays off!</p>
+    </TwoPartSlide>
+
+    <!-- Slide 19: Team & Ask -->
+    <StandardSlide id="19" title="Team & Ask" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Team (30s)" delay="200">
+                <ul>
+                    <li>Why YOU?</li>
+                    <li>Relevant skills/experience</li>
+                    <li>Advisors/Mentors</li>
+                    <li>Passion for problem</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard title="Ask & Close (60s)" delay="400">
+                <ul>
+                    <li>Request (Funding? Users?)</li>
+                    <li>Use of funds/milestones</li>
+                    <li>Compelling closing line</li>
+                    <li>Contact info</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- WORKSHOP -->
+    <StandardSlide id="20" section="Workshop" title="Workshop: 30 Minutes">
+        <ul class="content-list">
+            <li>Draft your 8 pitch sections (15 min)</li>
+            <li>Out loud practice with partner (15 min)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- WRAP-UP -->
+    <StandardSlide id="21" section="Closing" title="Closing Thoughts">
+        <ul class="content-list">
+            <li>This is the beginning, not the end</li>
+            <li>Entrepreneurship is a skill, not a gene</li>
+            <li>The process works if you work the process</li>
+            <li>Go change the world!</li>
+        </ul>
+    </StandardSlide>
+
+    <script is:inline src="/class-9-scale-pitch/scripts.js"></script>
+</PresentationLayout>

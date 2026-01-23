@@ -1,0 +1,45 @@
+---
+import Slide from './Slide.astro';
+
+const { id, title, attribution, section } = Astro.props;
+---
+
+<Slide id={id} type="quote" title={title} section={section}>
+    <div class="slide-content">
+        <blockquote>
+            <slot />
+        </blockquote>
+        {attribution && <p class="attribution">{attribution}</p>}
+    </div>
+</Slide>
+
+<style>
+    blockquote {
+        font-size: 2rem;
+        font-style: italic;
+        line-height: 1.5;
+        max-width: 900px;
+        margin: 0 auto 30px;
+        position: relative;
+        padding: 0 60px;
+    }
+
+    blockquote::before {
+        content: '"';
+        position: absolute;
+        left: 0;
+        top: -20px;
+        font-size: 5rem;
+        color: var(--theme-color);
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .attribution {
+        font-size: 1.3rem;
+        color: var(--gold);
+        font-weight: 500;
+        text-align: right;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+</style>

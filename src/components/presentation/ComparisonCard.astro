@@ -1,0 +1,74 @@
+---
+const { variant = 'neutral', title, delay } = Astro.props; // variant: good, bad, neutral, do, dont
+---
+
+<div class:list={["comparison-side", variant]} style={delay ? `--delay: ${delay}ms` : ''}>
+    {title && <h3>{title}</h3>}
+    <div class="content">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .comparison-side {
+        background: var(--dark-surface);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+        transition-delay: var(--delay, 0ms);
+    }
+    
+    /* Animate when parent slide is active */
+    :global(.slide.active) .comparison-side {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .comparison-side.bad, .comparison-side.dont {
+        border: 2px solid var(--danger-red);
+    }
+
+    .comparison-side.good, .comparison-side.do {
+        border: 2px solid var(--success-green);
+    }
+
+    .comparison-side h3 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+        font-family: var(--font-display);
+    }
+
+    .comparison-side.bad h3, .comparison-side.dont h3 {
+        color: var(--danger-red);
+    }
+
+    .comparison-side.good h3, .comparison-side.do h3 {
+        color: var(--success-green);
+    }
+
+    /* List styling support */
+    :global(.comparison-side ul) {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    :global(.comparison-side li) {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+        position: relative;
+    }
+
+    :global(.comparison-side li::before) {
+        content: '•';
+        position: absolute;
+        left: 0;
+    }
+</style>

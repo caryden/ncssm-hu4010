@@ -1,0 +1,39 @@
+---
+---
+<div class="tam-calc">
+    <slot />
+</div>
+
+<style>
+    .tam-calc {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1.5rem;
+        flex-wrap: wrap;
+        margin: 40px auto;
+    }
+    
+    :global(.tam-value) {
+        background: var(--dark-surface);
+        padding: 15px 25px;
+        border-radius: 10px;
+        border: 1px solid var(--dark-border);
+    }
+
+    :global(.tam-operator) {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    :global(.tam-result) {
+        background: var(--theme-color);
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-weight: 700;
+        color: white;
+    }
+</style>

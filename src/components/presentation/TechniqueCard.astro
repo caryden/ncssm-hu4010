@@ -1,0 +1,63 @@
+---
+const { name, effort, effortLabel, delay } = Astro.props;
+---
+
+<div class="technique-card" style={delay ? `--delay: ${delay}ms` : ''}>
+    <div class="name">{name}</div>
+    <div class:list={["effort", effort]}>{effortLabel || effort} Effort</div>
+    <slot />
+</div>
+
+<style>
+    .technique-card {
+        background: var(--dark-surface);
+        border-radius: 16px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        transition-delay: var(--delay, 0ms);
+    }
+    
+    /* Animate when parent slide is active */
+    :global(.slide.active) .technique-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .technique-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .technique-card .name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 15px;
+        font-family: var(--font-display);
+    }
+
+    .technique-card .effort {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    .technique-card .effort.low {
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--success-green);
+    }
+
+    .technique-card .effort.medium {
+        background: rgba(234, 179, 8, 0.2);
+        color: #eab308;
+    }
+
+    .technique-card .effort.high {
+        background: rgba(239, 68, 68, 0.2);
+        color: var(--theme-color);
+    }
+</style>

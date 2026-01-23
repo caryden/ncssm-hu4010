@@ -1,0 +1,51 @@
+---
+const { value, label, danger = false, delay } = Astro.props;
+---
+
+<div class:list={["metric-card", { danger }]} style={delay ? `--delay: ${delay}ms` : ''}>
+    <div class="value">{value}</div>
+    <div class="label">{label}</div>
+    <slot />
+</div>
+
+<style>
+    .metric-card {
+        background: var(--dark-surface);
+        border: 1px solid var(--dark-border, #1e1e2e);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.5s ease;
+        opacity: 0;
+        transform: scale(0.9);
+        transition-delay: var(--delay, 0ms);
+    }
+
+    /* Animate when parent slide is active */
+    :global(.slide.active) .metric-card {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .metric-card.danger {
+        border-color: var(--danger-red);
+        background: rgba(239, 68, 68, 0.1);
+    }
+
+    .metric-card .value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--theme-color);
+        margin-bottom: 10px;
+        font-family: var(--font-display);
+    }
+
+    .metric-card.danger .value {
+        color: var(--danger-red);
+    }
+
+    .metric-card .label {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+    }
+</style>

@@ -1,0 +1,51 @@
+---
+const { number, name, time, delay } = Astro.props;
+---
+
+<div class="pitch-section" style={delay ? `--delay: ${delay}ms` : ''}>
+    <div class="number">{number}</div>
+    <div class="name">{name}</div>
+    <div class="time">{time}</div>
+</div>
+
+<style>
+    .pitch-section {
+        background: var(--dark-surface);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        transition-delay: var(--delay, 0ms);
+    }
+
+    /* Animate when parent slide is active */
+    :global(.slide.active) .pitch-section {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .pitch-section:hover {
+        transform: translateY(-5px);
+    }
+    
+    .pitch-section .number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--theme-color);
+        margin-bottom: 10px;
+    }
+
+    .pitch-section .name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+
+    .pitch-section .time {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+</style>
