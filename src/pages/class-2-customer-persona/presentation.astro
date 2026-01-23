@@ -4,12 +4,17 @@ import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
 import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
 import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import ListSlide from '../../components/presentation/ListSlide.astro';
 import QuoteSlide from '../../components/presentation/QuoteSlide.astro';
 import Slide from '../../components/presentation/Slide.astro';
 import TamCalc from '../../components/presentation/TamCalc.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import InfoCard from '../../components/presentation/InfoCard.astro';
+import PersonaCard from '../../components/presentation/PersonaCard.astro';
+
+import FocusAnimation from '../../components/visualizations/class-2/FocusAnimation.astro';
+import UserBuyerDiagram from '../../components/visualizations/class-2/UserBuyerDiagram.astro';
 ---
 
 <PresentationLayout title="Class 2: Customer Persona & TAM | NCSSM Entrepreneurship">
@@ -24,92 +29,12 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
         .accent { color: var(--gold); }
         .danger { color: var(--danger-red); }
 
-        /* Visualization containers - height controlled by flex in shared styles */
-        .visualization {
-            width: 100%;
-        }
-
         /* Caption */
         .caption {
             font-size: 1rem;
             color: var(--text-muted);
             text-align: center;
             margin-top: 20px;
-        }
-
-        /* Persona card */
-        .persona-card {
-            background: var(--dark-surface);
-            border: 1px solid var(--dark-border);
-            border-radius: 20px;
-            padding: 35px;
-            max-width: 750px;
-            margin: 30px auto;
-            text-align: left;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        :global(.slide.active) .persona-card {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .persona-header {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--dark-border);
-            padding-bottom: 25px;
-        }
-
-        .persona-photo {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: var(--theme-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .persona-name {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .persona-quote {
-            font-style: italic;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .persona-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .persona-section h4 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-
-        .persona-section ul {
-            list-style: none;
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .persona-section li {
-            margin-bottom: 6px;
         }
 
         /* Secondary text for statement slides */
@@ -146,7 +71,7 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
 
     <!-- Slide 5: Tonight's Journey -->
     <StandardSlide id="5" title="From Segment to Person" type="visual">
-        <div class="visualization" id="focus-animation"></div>
+        <FocusAnimation />
         <p class="caption">Progressive focus: The more specific, the better</p>
     </StandardSlide>
 
@@ -157,31 +82,27 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
 
     <!-- Slide 7: End User vs Buyer -->
     <StandardSlide id="7" title="Who Actually Uses It?" type="visual">
-        <div class="visualization" id="user-buyer"></div>
+        <UserBuyerDiagram />
         <p class="caption">Design for the user. Sell to the buyer.</p>
     </StandardSlide>
 
     <!-- Slide 8: Profile Components -->
-    <StandardSlide id="8" title="What You Need to Know">
-        <ul class="content-list">
-            <li><strong>Demographics:</strong> Who they are</li>
-            <li><strong>Psychographics:</strong> What they value</li>
-            <li><strong>Behaviors:</strong> What they do</li>
-            <li><strong>Context:</strong> Where/when the problem occurs</li>
-            <li><strong>Current solutions:</strong> What they do today</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="8" title="What You Need to Know">
+        <li><strong>Demographics:</strong> Who they are</li>
+        <li><strong>Psychographics:</strong> What they value</li>
+        <li><strong>Behaviors:</strong> What they do</li>
+        <li><strong>Context:</strong> Where/when the problem occurs</li>
+        <li><strong>Current solutions:</strong> What they do today</li>
+    </ListSlide>
 
     <!-- Slide 9: Questions -->
-    <StandardSlide id="9" title="Answer Through Research">
-        <ul class="content-list">
-            <li>What does a typical day look like?</li>
-            <li>Where does the problem occur?</li>
-            <li>How do they solve it today?</li>
-            <li>What frustrates them about current solutions?</li>
-            <li>What would "better" look like?</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="9" title="Answer Through Research">
+        <li>What does a typical day look like?</li>
+        <li>Where does the problem occur?</li>
+        <li>How do they solve it today?</li>
+        <li>What frustrates them about current solutions?</li>
+        <li>What would "better" look like?</li>
+    </ListSlide>
 
     <!-- Slide 10: 80/20 Rule -->
     <TwoPartSlide id="10" section="Interview Techniques" title="80/20 Rule">
@@ -213,15 +134,13 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
     </StandardSlide>
 
     <!-- Slide 12: Magic Questions -->
-    <StandardSlide id="12" title="The Interview Framework">
-        <ul class="content-list">
-            <li>"Tell me about the last time you experienced [problem]..."</li>
-            <li>"What did you do about it?"</li>
-            <li>"How did that work out?"</li>
-            <li>"What would make it better?"</li>
-            <li>"How much time/money does this cost you?"</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="12" title="The Interview Framework">
+        <li>"Tell me about the last time you experienced [problem]..."</li>
+        <li>"What did you do about it?"</li>
+        <li>"How did that work out?"</li>
+        <li>"What would make it better?"</li>
+        <li>"How much time/money does this cost you?"</li>
+    </ListSlide>
 
     <!-- Slide 13: Section - Step 4 -->
     <StatementSlide id="13" section="Step 4: Calculate TAM" title="Step 4">
@@ -236,14 +155,12 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
     </TwoPartSlide>
 
     <!-- Slide 15: Why TAM Matters -->
-    <StandardSlide id="15" title="TAM Tells You...">
-        <ul class="content-list">
-            <li>Is this market worth pursuing?</li>
-            <li>What's the ceiling for this opportunity?</li>
-            <li>Do you need to expand to adjacent markets?</li>
-            <li>Are your goals realistic?</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="15" title="TAM Tells You...">
+        <li>Is this market worth pursuing?</li>
+        <li>What's the ceiling for this opportunity?</li>
+        <li>Do you need to expand to adjacent markets?</li>
+        <li>Are your goals realistic?</li>
+    </ListSlide>
 
     <!-- Slide 16: Bottom-Up Method -->
     <StandardSlide id="16" title="How to Calculate TAM" type="visual">
@@ -270,13 +187,11 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
     </StandardSlide>
 
     <!-- Slide 18: TAM Sanity Checks -->
-    <StandardSlide id="18" title="Goldilocks TAM">
-        <ul class="content-list">
-            <li><strong style="color: var(--danger-red);">Too small (&lt;$1M):</strong> May not be worth pursuing</li>
-            <li><strong style="color: var(--success-green);">Just right ($5M-$50M):</strong> Beachhead sweet spot</li>
-            <li><strong style="color: var(--gold);">Too big (&gt;$100M):</strong> Are you being specific enough?</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="18" title="Goldilocks TAM">
+        <li><strong style="color: var(--danger-red);">Too small (&lt;$1M):</strong> May not be worth pursuing</li>
+        <li><strong style="color: var(--success-green);">Just right ($5M-$50M):</strong> Beachhead sweet spot</li>
+        <li><strong style="color: var(--gold);">Too big (&gt;$100M):</strong> Are you being specific enough?</li>
+    </ListSlide>
 
     <!-- Slide 19: Key Question -->
     <StatementSlide id="19" title="TAM Assumptions">
@@ -297,58 +212,25 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
     </TwoPartSlide>
 
     <!-- Slide 22: Why Personify -->
-    <StandardSlide id="22" title="The Power of a Persona">
-        <ul class="content-list">
-            <li>Easier to design for "Maria" than "females 25-35"</li>
-            <li>Creates shared team understanding</li>
-            <li>Enables empathy-driven decisions</li>
-            <li>Keeps you honest about who you're serving</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="22" title="The Power of a Persona">
+        <li>Easier to design for "Maria" than "females 25-35"</li>
+        <li>Creates shared team understanding</li>
+        <li>Enables empathy-driven decisions</li>
+        <li>Keeps you honest about who you're serving</li>
+    </ListSlide>
 
     <!-- Slide 23: Example Persona -->
     <StandardSlide id="23" title="Meet Maria" type="visual">
-        <div class="persona-card">
-            <div class="persona-header">
-                <div class="persona-photo">👩‍💼</div>
-                <div>
-                    <div class="persona-name">Maria Chen</div>
-                    <div class="persona-quote">"I waste hours every week on tasks that should be automated."</div>
-                </div>
-            </div>
-            <div class="persona-grid">
-                <div class="persona-section">
-                    <h4>Demographics</h4>
-                    <ul>
-                        <li>32 years old</li>
-                        <li>Product Manager, Austin TX</li>
-                        <li>$95K salary</li>
-                    </ul>
-                </div>
-                <div class="persona-section">
-                    <h4>Goals</h4>
-                    <ul>
-                        <li>Ship products faster</li>
-                        <li>Reduce time in meetings</li>
-                        <li>Prove her impact with data</li>
-                    </ul>
-                </div>
-                <div class="persona-section">
-                    <h4>Frustrations</h4>
-                    <ul>
-                        <li>Manual reporting takes hours</li>
-                        <li>Constant context switching</li>
-                        <li>No single source of truth</li>
-                    </ul>
-                </div>
-                <div class="persona-section">
-                    <h4>Current Solution</h4>
-                    <ul>
-                        <li>Spreadsheets + Slack + Prayer</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <PersonaCard
+            name="Maria Chen"
+            role="Product Manager, Austin TX"
+            photoEmoji="👩‍💼"
+            quote="I waste hours every week on tasks that should be automated."
+            demographics={["32 years old", "Product Manager, Austin TX", "$95K salary"]}
+            goals={["Ship products faster", "Reduce time in meetings", "Prove her impact with data"]}
+            frustrations={["Manual reporting takes hours", "Constant context switching", "No single source of truth"]}
+            solution={["Spreadsheets + Slack + Prayer"]}
+        />
     </StandardSlide>
 
     <!-- Slide 24: The Quote -->
@@ -371,35 +253,29 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
     </StatementSlide>
 
     <!-- Slide 27: Workshop -->
-    <StandardSlide id="27" section="Workshop" title="Workshop: Build Your Persona">
-        <ul class="content-list">
-            <li>Name the persona (2 min)</li>
-            <li>Fill demographics (3 min)</li>
-            <li>Write the quote (3 min)</li>
-            <li>Goals and frustrations (7 min)</li>
-            <li>Current solution (5 min)</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="27" section="Workshop" title="Workshop: Build Your Persona">
+        <li>Name the persona (2 min)</li>
+        <li>Fill demographics (3 min)</li>
+        <li>Write the quote (3 min)</li>
+        <li>Goals and frustrations (7 min)</li>
+        <li>Current solution (5 min)</li>
+    </ListSlide>
 
     <!-- Slide 28: Key Takeaways -->
-    <StandardSlide id="28" section="Closing" title="Remember">
-        <ul class="content-list">
-            <li>Your end user is specific, not generic</li>
-            <li>TAM must be calculated, not guessed</li>
-            <li>Your persona should feel like a real person</li>
-            <li>Research trumps assumptions. Always.</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="28" section="Closing" title="Remember">
+        <li>Your end user is specific, not generic</li>
+        <li>TAM must be calculated, not guessed</li>
+        <li>Your persona should feel like a real person</li>
+        <li>Research trumps assumptions. Always.</li>
+    </ListSlide>
 
     <!-- Slide 29: Homework -->
-    <StandardSlide id="29" title="Before Next Week">
-        <ul class="content-list">
-            <li>Finalize persona (all fields, bring printed)</li>
-            <li>Complete TAM calculation (show your work)</li>
-            <li>2 more customer conversations</li>
-            <li>Read: DE Chapters 6 & 8</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="29" title="Before Next Week">
+        <li>Finalize persona (all fields, bring printed)</li>
+        <li>Complete TAM calculation (show your work)</li>
+        <li>2 more customer conversations</li>
+        <li>Read: DE Chapters 6 & 8</li>
+    </ListSlide>
 
     <!-- Slide 30: Next Week -->
     <TwoPartSlide id="30" title="Next Week">
@@ -483,253 +359,4 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
     </Slide>
 
     <script is:inline src="/class-2-customer-persona/scripts.js"></script>
-    <script is:inline>
-        // Custom visualizations for this presentation
-        const originalGoToSlide = window.Presentation.goToSlide;
-        window.Presentation.goToSlide = function(n) {
-            originalGoToSlide(n);
-
-            if (n === 5) setTimeout(drawFocusAnimation, 300);
-            if (n === 7) setTimeout(drawUserBuyer, 300);
-        };
-        
-        function drawFocusAnimation() {
-            const viz = window.Visualization.create('focus-animation', { padding: 0.05 });
-            if (!viz) return;
-
-            const { svg, bounds } = viz;
-
-            // Proportional calculations based on container
-            const stageXPositions = [
-                bounds.left + bounds.width * 0.15,
-                bounds.centerX,
-                bounds.left + bounds.width * 0.85
-            ];
-            const clusterRadius = bounds.height * 0.15;
-            const labelOffsetY = bounds.height * 0.35;
-
-            const stages = [
-                { x: stageXPositions[0], label: 'Segment', blur: 8, count: 20, size: bounds.height * 0.03 },
-                { x: stageXPositions[1], label: 'Profile', blur: 3, count: 8, size: bounds.height * 0.045 },
-                { x: stageXPositions[2], label: 'Persona', blur: 0, count: 1, size: bounds.height * 0.15 }
-            ];
-
-            // Define blur filters
-            const defs = svg.append('defs');
-            stages.forEach((s, i) => {
-                defs.append('filter').attr('id', `blur-${i}`).append('feGaussianBlur').attr('stdDeviation', s.blur);
-            });
-
-            stages.forEach((stage, si) => {
-                const g = svg.append('g').attr('transform', `translate(${stage.x}, ${bounds.centerY})`);
-
-                // Draw people
-                for (let i = 0; i < stage.count; i++) {
-                    const angle = (i / stage.count) * Math.PI * 2;
-                    const radius = stage.count > 1 ? clusterRadius : 0;
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-
-                    g.append('circle')
-                        .attr('cx', x)
-                        .attr('cy', y)
-                        .attr('r', stage.size)
-                        .attr('fill', '#356093')
-                        .attr('filter', stage.blur > 0 ? `url(#blur-${si})` : null)
-                        .attr('opacity', 0)
-                        .transition()
-                        .delay(si * 600 + i * 50)
-                        .duration(400)
-                        .attr('opacity', 1);
-                }
-
-                // Label
-                g.append('text')
-                    .attr('y', labelOffsetY)
-                    .attr('text-anchor', 'middle')
-                    .attr('fill', '#a0a0a0')
-                    .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1.25rem')
-                    .attr('font-weight', '600')
-                    .text(stage.label)
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(si * 600 + 300)
-                    .duration(300)
-                    .attr('opacity', 1);
-            });
-
-            // Arrows - positioned between stages
-            const arrowXPositions = [
-                bounds.left + bounds.width * 0.32,
-                bounds.left + bounds.width * 0.68
-            ];
-            arrowXPositions.forEach((x, i) => {
-                svg.append('text')
-                    .attr('x', x)
-                    .attr('y', bounds.centerY + 5)
-                    .attr('text-anchor', 'middle')
-                    .attr('fill', '#d4a028')
-                    .attr('font-size', '1.5rem')
-                    .text('→')
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(600 + i * 600)
-                    .duration(300)
-                    .attr('opacity', 1);
-            });
-        }
-
-        function drawUserBuyer() {
-            const viz = window.Visualization.create('user-buyer', { padding: 0.05 });
-            if (!viz) return;
-
-            const { svg, bounds } = viz;
-
-            // Proportional calculations based on container
-            const contextX = bounds.left + bounds.width * 0.12;
-            const userBoxX = bounds.left + bounds.width * 0.27;
-            const equalSignX = bounds.centerX;
-            const buyerBoxX = bounds.left + bounds.width * 0.57;
-            const boxWidth = bounds.width * 0.15;
-            const boxHeight = bounds.height * 0.12;
-            const rowSpacing = bounds.height * 0.28;
-            const headerY = bounds.top + bounds.height * 0.08;
-
-            // Headers
-            svg.append('text')
-                .attr('x', userBoxX + boxWidth/2)
-                .attr('y', headerY)
-                .attr('text-anchor', 'middle')
-                .attr('fill', '#4a7ab8')
-                .attr('font-family', 'Montserrat, sans-serif')
-                .attr('font-size', '1.25rem')
-                .attr('font-weight', '600')
-                .text('End User')
-                .attr('opacity', 0)
-                .transition()
-                .delay(300)
-                .duration(500)
-                .attr('opacity', 1);
-
-            svg.append('text')
-                .attr('x', buyerBoxX + boxWidth/2)
-                .attr('y', headerY)
-                .attr('text-anchor', 'middle')
-                .attr('fill', '#d4a028')
-                .attr('font-family', 'Montserrat, sans-serif')
-                .attr('font-size', '1.25rem')
-                .attr('font-weight', '600')
-                .text('Economic Buyer')
-                .attr('opacity', 0)
-                .transition()
-                .delay(300)
-                .duration(500)
-                .attr('opacity', 1);
-
-            const scenarios = [
-                { label: 'Video Games', user: 'Teenager', buyer: 'Parent' },
-                { label: 'Enterprise Soft', user: 'Employee', buyer: 'CTO / Manager' },
-                { label: 'Dog Food', user: 'Dog', buyer: 'Owner' }
-            ];
-
-            scenarios.forEach((s, i) => {
-                const y = headerY + bounds.height * 0.15 + i * rowSpacing;
-
-                // Scenario label
-                svg.append('text')
-                    .attr('x', contextX)
-                    .attr('y', y + boxHeight/2)
-                    .attr('text-anchor', 'end')
-                    .attr('dominant-baseline', 'middle')
-                    .attr('fill', '#a0a0a0')
-                    .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
-                    .text(s.label)
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(600 + i * 200)
-                    .duration(400)
-                    .attr('opacity', 1);
-
-                // User box
-                svg.append('rect')
-                    .attr('x', userBoxX)
-                    .attr('y', y)
-                    .attr('width', boxWidth)
-                    .attr('height', boxHeight)
-                    .attr('rx', 8)
-                    .attr('fill', '#1a2634')
-                    .attr('stroke', '#4a7ab8')
-                    .attr('stroke-width', 2)
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(900 + i * 200)
-                    .duration(400)
-                    .attr('opacity', 1);
-
-                svg.append('text')
-                    .attr('x', userBoxX + boxWidth/2)
-                    .attr('y', y + boxHeight/2)
-                    .attr('text-anchor', 'middle')
-                    .attr('dominant-baseline', 'middle')
-                    .attr('fill', '#fff')
-                    .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
-                    .text(s.user)
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(1100 + i * 200)
-                    .duration(400)
-                    .attr('opacity', 1);
-
-                // Not Equal Sign
-                svg.append('text')
-                    .attr('x', equalSignX)
-                    .attr('y', y + boxHeight/2)
-                    .attr('text-anchor', 'middle')
-                    .attr('dominant-baseline', 'middle')
-                    .attr('fill', '#ef4444')
-                    .attr('font-size', '1.5rem')
-                    .attr('font-weight', 'bold')
-                    .text('≠')
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(1200 + i * 200)
-                    .duration(400)
-                    .attr('opacity', 1);
-
-                // Buyer box
-                svg.append('rect')
-                    .attr('x', buyerBoxX)
-                    .attr('y', y)
-                    .attr('width', boxWidth)
-                    .attr('height', boxHeight)
-                    .attr('rx', 8)
-                    .attr('fill', '#2a261a')
-                    .attr('stroke', '#d4a028')
-                    .attr('stroke-width', 2)
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(1400 + i * 200)
-                    .duration(400)
-                    .attr('opacity', 1);
-
-                svg.append('text')
-                    .attr('x', buyerBoxX + boxWidth/2)
-                    .attr('y', y + boxHeight/2)
-                    .attr('text-anchor', 'middle')
-                    .attr('dominant-baseline', 'middle')
-                    .attr('fill', '#fff')
-                    .attr('font-family', 'Montserrat, sans-serif')
-                    .attr('font-size', '1rem')
-                    .text(s.buyer)
-                    .attr('opacity', 0)
-                    .transition()
-                    .delay(1600 + i * 200)
-                    .duration(400)
-                    .attr('opacity', 1);
-            });
-        }
-    </script>
 </PresentationLayout>

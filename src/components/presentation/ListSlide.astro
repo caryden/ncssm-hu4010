@@ -1,0 +1,19 @@
+---
+import StandardSlide from './StandardSlide.astro';
+
+interface Props {
+  id?: string;
+  title: string;
+  section?: string;
+  subtitle?: string; // StandardSlide might not have this, but just in case
+}
+
+const { id, title, section } = Astro.props;
+---
+
+<StandardSlide id={id} title={title} section={section}>
+  <ul class="content-list">
+    <slot />
+  </ul>
+  <slot name="footer" />
+</StandardSlide>

@@ -4,11 +4,18 @@ import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
 import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
 import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import ListSlide from '../../components/presentation/ListSlide.astro';
 import Slide from '../../components/presentation/Slide.astro';
 import IconCard from '../../components/presentation/IconCard.astro';
+import IconGrid from '../../components/presentation/IconGrid.astro';
 import InfoCard from '../../components/presentation/InfoCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Timeline from '../../components/presentation/Timeline.astro';
+
+import SegmentBranches from '../../components/visualizations/class-1/SegmentBranches.astro';
+import SegmentMatrix from '../../components/visualizations/class-1/SegmentMatrix.astro';
+import ExpansionDiagram from '../../components/visualizations/class-1/ExpansionDiagram.astro';
 ---
 
 <PresentationLayout title="Class 1: Market Segmentation | NCSSM Entrepreneurship">
@@ -23,32 +30,6 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
         .accent { color: var(--gold); }
         .danger { color: var(--danger-red); }
 
-        /* Icon grid */
-        .grid-icons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            max-width: 800px;
-            margin: 40px auto;
-        }
-
-        .icon-item .icon-emoji {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .icon-item .icon-label {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .icon-item .icon-label small {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-
         /* Criteria cards */
         .criteria-grid {
             display: grid;
@@ -56,65 +37,6 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
             gap: 25px;
             max-width: 900px;
             margin: 40px auto;
-        }
-
-        /* Timeline visual */
-        .timeline-visual {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 50px auto;
-        }
-
-        .timeline-node {
-            background: var(--dark-surface);
-            border: 1px solid var(--dark-border);
-            border-radius: 10px;
-            padding: 15px 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.5s ease;
-        }
-        
-        /* Animation delays handled manually for raw elements or use InfoCard if possible */
-        /* For this specific timeline, we will use CSS classes triggered by slide active */
-
-        :global(.slide.active) .timeline-node {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-node .date {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 5px;
-        }
-
-        .timeline-node .label {
-            font-size: 1rem;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .timeline-arrow {
-            color: var(--theme-color);
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        :global(.slide.active) .timeline-arrow {
-            opacity: 1;
-        }
-
-        /* Visualization containers - fills available space */
-        .visualization {
-            width: 100%;
         }
 
         /* Caption */
@@ -170,15 +92,13 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
     </TwoPartSlide>
 
     <!-- Slide 7: Instagram Beachhead -->
-    <StandardSlide id="7" title="The Instagram Beachhead">
-        <ul class="content-list">
-            <li>iPhone users (not Android, not all phones)</li>
-            <li>Who want to share photos (not text, not video)</li>
-            <li>With beautiful filters (not raw images)</li>
-            <li>With friends (not the public)</li>
-        </ul>
-        <p style="margin-top: 40px; font-size: 1.5rem; color: var(--gold); font-weight: 600;">1 million users in 2 months</p>
-    </StandardSlide>
+    <ListSlide id="7" title="The Instagram Beachhead">
+        <li>iPhone users (not Android, not all phones)</li>
+        <li>Who want to share photos (not text, not video)</li>
+        <li>With beautiful filters (not raw images)</li>
+        <li>With friends (not the public)</li>
+        <p slot="footer" style="margin-top: 40px; font-size: 1.5rem; color: var(--gold); font-weight: 600;">1 million users in 2 months</p>
+    </ListSlide>
 
     <!-- Slide 8: Section - Step 1 -->
     <StatementSlide id="8" section="Step 1: Market Segmentation" title="Step 1">
@@ -193,36 +113,34 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 
     <!-- Slide 10: Why Segment -->
     <StandardSlide id="10" title="Different Customers Need Different Everything" type="visual">
-        <div class="visualization" id="segment-branches"></div>
+        <SegmentBranches />
         <p class="caption">One product idea branches into many different approaches</p>
     </StandardSlide>
 
     <!-- Slide 11: Energy Drink Example -->
     <StandardSlide id="11" title="One Product, Many Segments" type="visual">
-        <div class="grid-icons">
+        <IconGrid>
             <IconCard icon="📚" title="College Students" delay="100"><p style="font-size: 0.85rem; color: var(--text-muted);">Cramming</p></IconCard>
             <IconCard icon="🚛" title="Truck Drivers" delay="200"><p style="font-size: 0.85rem; color: var(--text-muted);">Long Hauls</p></IconCard>
             <IconCard icon="🎮" title="Esports Gamers" delay="300"><p style="font-size: 0.85rem; color: var(--text-muted);">Competitions</p></IconCard>
             <IconCard icon="👶" title="New Parents" delay="400"><p style="font-size: 0.85rem; color: var(--text-muted);">Sleep-deprived</p></IconCard>
             <IconCard icon="💪" title="Gym-goers" delay="500"><p style="font-size: 0.85rem; color: var(--text-muted);">Pre-workout</p></IconCard>
             <IconCard icon="💼" title="Office Workers" delay="600"><p style="font-size: 0.85rem; color: var(--text-muted);">Afternoon Slump</p></IconCard>
-        </div>
+        </IconGrid>
         <p class="caption">Same energy drink. Completely different customers.</p>
     </StandardSlide>
 
     <!-- Slide 12: Segmentation Variables -->
-    <StandardSlide id="12" title="How to Slice the Market">
-        <ul class="content-list">
-            <li><strong>Demographics:</strong> Age, location, income, education</li>
-            <li><strong>Psychographics:</strong> Values, attitudes, lifestyle</li>
-            <li><strong>Behavioral:</strong> Usage patterns, benefits sought</li>
-            <li><strong>Situational:</strong> Context, trigger events</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="12" title="How to Slice the Market">
+        <li><strong>Demographics:</strong> Age, location, income, education</li>
+        <li><strong>Psychographics:</strong> Values, attitudes, lifestyle</li>
+        <li><strong>Behavioral:</strong> Usage patterns, benefits sought</li>
+        <li><strong>Situational:</strong> Context, trigger events</li>
+    </ListSlide>
 
     <!-- Slide 13: Segmentation Matrix -->
     <StandardSlide id="13" title="Your Tool: The Segmentation Matrix" type="visual">
-        <div class="visualization" id="segment-matrix"></div>
+        <SegmentMatrix />
         <p class="caption">Rate each segment on key criteria to find your best opportunity</p>
     </StandardSlide>
 
@@ -274,15 +192,13 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
     </TwoPartSlide>
 
     <!-- Slide 20: Why One -->
-    <StandardSlide id="20" title="The Case for Focus">
-        <ul class="content-list">
-            <li>Limited resources demand focus</li>
-            <li>Different segments need different everything</li>
-            <li>Word-of-mouth spreads within segments</li>
-            <li>Domination creates momentum</li>
-            <li>You can expand later (but not if you die first)</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="20" title="The Case for Focus">
+        <li>Limited resources demand focus</li>
+        <li>Different segments need different everything</li>
+        <li>Word-of-mouth spreads within segments</li>
+        <li>Domination creates momentum</li>
+        <li>You can expand later (but not if you die first)</li>
+    </ListSlide>
 
     <!-- Slide 21: The Paradox -->
     <StatementSlide id="21" title="The Paradox">
@@ -310,20 +226,18 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 
     <!-- Slide 23: Stepping Stones -->
     <StandardSlide id="23" title="From Beachhead to Empire" type="visual">
-        <div class="visualization" id="expansion-diagram"></div>
+        <ExpansionDiagram />
         <p class="caption">Amazon: Books → Media → Everything</p>
     </StandardSlide>
 
     <!-- Slide 24: Warning Signs -->
-    <StandardSlide id="24" title="Red Flags in Beachhead Selection">
-        <ul class="content-list">
-            <li class="warning">"Everyone could use this!"</li>
-            <li class="warning">"It's a trillion-dollar market!"</li>
-            <li class="warning">"We can sell to anyone who..."</li>
-            <li class="warning">"We'll start with friends and family"</li>
-            <li class="warning">"We'll figure out the customer later"</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="24" title="Red Flags in Beachhead Selection">
+        <li class="warning">"Everyone could use this!"</li>
+        <li class="warning">"It's a trillion-dollar market!"</li>
+        <li class="warning">"We can sell to anyone who..."</li>
+        <li class="warning">"We'll start with friends and family"</li>
+        <li class="warning">"We'll figure out the customer later"</li>
+    </ListSlide>
 
     <!-- Slide 25: Good vs Bad -->
     <StandardSlide id="25" section="Examples" title="Specificity is Power" type="visual">
@@ -339,75 +253,48 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 
     <!-- Slide 26: Facebook Example -->
     <StandardSlide id="26" title="Facebook's Beachhead Expansion" type="visual">
-        <div class="timeline-visual">
-            <div class="timeline-node" style="transition-delay: 200ms;">
-                <div class="date">Feb 2004</div>
-                <div class="label">Harvard Only</div>
-            </div>
-            <span class="timeline-arrow" style="transition-delay: 400ms;">→</span>
-            <div class="timeline-node" style="transition-delay: 600ms;">
-                <div class="date">Mar 2004</div>
-                <div class="label">Ivy League</div>
-            </div>
-            <span class="timeline-arrow" style="transition-delay: 800ms;">→</span>
-            <div class="timeline-node" style="transition-delay: 1000ms;">
-                <div class="date">Sep 2004</div>
-                <div class="label">All US Colleges</div>
-            </div>
-            <span class="timeline-arrow" style="transition-delay: 1200ms;">→</span>
-            <div class="timeline-node" style="transition-delay: 1400ms;">
-                <div class="date">Sep 2005</div>
-                <div class="label">High Schools</div>
-            </div>
-            <span class="timeline-arrow" style="transition-delay: 1600ms;">→</span>
-            <div class="timeline-node" style="transition-delay: 1800ms;">
-                <div class="date">Sep 2006</div>
-                <div class="label">Everyone</div>
-            </div>
-        </div>
+        <Timeline items={[
+            { date: 'Feb 2004', label: 'Harvard Only' },
+            { date: 'Mar 2004', label: 'Ivy League' },
+            { date: 'Sep 2004', label: 'All US Colleges' },
+            { date: 'Sep 2005', label: 'High Schools' },
+            { date: 'Sep 2006', label: 'Everyone' }
+        ]} />
         <p class="caption">2+ years of narrow focus before opening up</p>
     </StandardSlide>
 
     <!-- Slide 27: Other Examples -->
-    <StandardSlide id="27" title="Famous Beachheads">
-        <ul class="content-list">
-            <li><strong>Uber:</strong> SF tech workers, black car service</li>
-            <li><strong>Airbnb:</strong> Conference attendees needing rooms</li>
-            <li><strong>Slack:</strong> Founder's own gaming company</li>
-            <li><strong>Tesla:</strong> Wealthy early adopters, sports car</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="27" title="Famous Beachheads">
+        <li><strong>Uber:</strong> SF tech workers, black car service</li>
+        <li><strong>Airbnb:</strong> Conference attendees needing rooms</li>
+        <li><strong>Slack:</strong> Founder's own gaming company</li>
+        <li><strong>Tesla:</strong> Wealthy early adopters, sports car</li>
+    </ListSlide>
 
     <!-- Slide 28: Workshop Intro -->
-    <StandardSlide id="28" section="Workshop" title="Workshop Time: 30 Minutes">
-        <ul class="content-list">
-            <li>Brainstorm 6-12 segments (10 min)</li>
-            <li>Score each on 5 criteria (10 min)</li>
-            <li>Select your top 3 candidates (5 min)</li>
-            <li>Prepare to share (5 min)</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="28" section="Workshop" title="Workshop Time: 30 Minutes">
+        <li>Brainstorm 6-12 segments (10 min)</li>
+        <li>Score each on 5 criteria (10 min)</li>
+        <li>Select your top 3 candidates (5 min)</li>
+        <li>Prepare to share (5 min)</li>
+    </ListSlide>
 
     <!-- Slide 29: Key Takeaways -->
-    <StandardSlide id="29" section="Closing" title="Remember">
-        <ul class="content-list">
-            <li>Start with customers, not products</li>
-            <li>Segment to find your best opportunity</li>
-            <li>Pick ONE beachhead to dominate</li>
-            <li>Specific beats broad. Always.</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="29" section="Closing" title="Remember">
+        <li>Start with customers, not products</li>
+        <li>Segment to find your best opportunity</li>
+        <li>Pick ONE beachhead to dominate</li>
+        <li>Specific beats broad. Always.</li>
+    </ListSlide>
 
     <!-- Slide 30: Homework -->
-    <StandardSlide id="30" title="Before Next Week">
-        <ul class="content-list">
-            <li>Finalize your segmentation matrix</li>
-            <li>Write beachhead selection rationale</li>
-            <li>Identify 5 potential customers</li>
-            <li>Have 2+ conversations in that segment</li>
-            <li>Read: DE Chapters 3 & 5</li>
-        </ul>
-    </StandardSlide>
+    <ListSlide id="30" title="Before Next Week">
+        <li>Finalize your segmentation matrix</li>
+        <li>Write beachhead selection rationale</li>
+        <li>Identify 5 potential customers</li>
+        <li>Have 2+ conversations in that segment</li>
+        <li>Read: DE Chapters 3 & 5</li>
+    </ListSlide>
 
     <!-- Slide 31: Next Week -->
     <TwoPartSlide id="31" title="Next Week">
@@ -489,7 +376,6 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
                         <td style="padding: 12px; color: var(--text-muted); text-align: center;">Mild annoyance</td>
                         <td style="padding: 12px; color: var(--text-muted); text-align: center;">Hair on fire</td>
                     </tr>
-                    <!-- (Table rows condensed for brevity, keeping same content) -->
                 </table>
             </div>
             <p style="color: var(--text-muted); margin-top: 20px; font-size: 0.9rem;">Total possible score: 25. Your beachhead should score at least 18.</p>
@@ -497,63 +383,4 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
     </Slide>
 
     <script is:inline src="/class-1-market-segmentation/scripts.js"></script>
-
-    <script is:inline>
-        // Custom visualizations for this presentation
-        const originalGoToSlide = window.Presentation.goToSlide;
-        window.Presentation.goToSlide = function(n) {
-            originalGoToSlide(n);
-
-            if (n === 10) setTimeout(drawBranches, 300);
-            if (n === 13) setTimeout(drawMatrix, 300);
-            if (n === 23) setTimeout(drawExpansion, 300);
-        };
-        
-        // (Keeping drawBranches, drawMatrix, drawExpansion functions as they are visualizers using d3/svg or similar)
-        // I will trust that the external scripts.js or inline functions for D3/SVG are handling their own rendering.
-        // The previous file had them inline. I need to keep them inline if they were not in scripts.js.
-        // The previous view showed them inline. I will preserve them.
-        
-        function drawBranches() {
-            const viz = window.Visualization.create('segment-branches', { padding: 0.05 });
-            if (!viz) return;
-            const { svg, bounds } = viz;
-            // ... (Redacted for brevity, assuming standard D3 logic is preserved)
-             const centerX = bounds.left + bounds.width * 0.1;
-            const centerY = bounds.centerY;
-            const centerRadius = Math.min(bounds.height * 0.15, bounds.width * 0.06);
-            const midX = bounds.left + bounds.width * 0.35;
-            const endX = bounds.left + bounds.width * 0.6;
-            const segmentRadius = centerRadius * 0.6;
-            const rowSpacing = bounds.height * 0.3;
-
-            const branches = [
-                { label: 'Segment A', items: ['Features', 'Pricing', 'Channel'] },
-                { label: 'Segment B', items: ['Features', 'Pricing', 'Channel'] },
-                { label: 'Segment C', items: ['Features', 'Pricing', 'Channel'] }
-            ];
-
-             svg.append('circle').attr('cx', centerX).attr('cy', centerY).attr('r', centerRadius).attr('fill', '#356093').attr('opacity', 1);
-             svg.append('text').attr('x', centerX).attr('y', centerY).attr('text-anchor', 'middle').attr('dy', '0.35em').attr('fill', '#fff').text('Your Idea');
-             
-             branches.forEach((branch, i) => {
-                const y = centerY + (i - 1) * rowSpacing;
-                svg.append('line').attr('x1', centerX + centerRadius).attr('y1', centerY).attr('x2', midX - segmentRadius).attr('y2', y).attr('stroke', '#4a7ab8').attr('stroke-width', 2);
-                svg.append('circle').attr('cx', midX).attr('cy', y).attr('r', segmentRadius).attr('fill', '#12121a').attr('stroke', '#4a7ab8');
-                svg.append('text').attr('x', midX).attr('y', y).attr('text-anchor', 'middle').attr('fill', '#a0a0a0').text(branch.label);
-             });
-        }
-
-        function drawMatrix() {
-             const viz = window.Visualization.create('segment-matrix', { padding: 0.05 });
-             if (!viz) return;
-             // ... Preserve matrix drawing logic
-        }
-
-        function drawExpansion() {
-             const viz = window.Visualization.create('expansion-diagram', { padding: 0.05 });
-             if (!viz) return;
-             // ... Preserve expansion drawing logic
-        }
-    </script>
 </PresentationLayout>

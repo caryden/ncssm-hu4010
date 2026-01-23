@@ -1,0 +1,144 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  quote: string;
+  demographics: string[];
+  goals: string[];
+  frustrations: string[];
+  solution: string[];
+  photoEmoji?: string;
+  photoUrl?: string; // Optional real image support
+}
+
+const { name, role, quote, demographics, goals, frustrations, solution, photoEmoji = "👤", photoUrl } = Astro.props;
+---
+
+<div class="persona-card">
+  <div class="persona-header">
+    <div class="persona-photo">
+      {photoUrl ? <img src={photoUrl} alt={name} /> : photoEmoji}
+    </div>
+    <div>
+      <div class="persona-name">{name}</div>
+      <div class="persona-role">{role}</div>
+      <div class="persona-quote">"{quote}"</div>
+    </div>
+  </div>
+  <div class="persona-grid">
+    <div class="persona-section">
+      <h4>Demographics</h4>
+      <ul>
+        {demographics.map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div class="persona-section">
+      <h4>Goals</h4>
+      <ul>
+        {goals.map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div class="persona-section">
+      <h4>Frustrations</h4>
+      <ul>
+        {frustrations.map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div class="persona-section">
+      <h4>Current Solution</h4>
+      <ul>
+        {solution.map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .persona-card {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 20px;
+    padding: 35px;
+    max-width: 750px;
+    margin: 30px auto;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+
+  :global(.slide.active) .persona-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .persona-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--dark-border);
+    padding-bottom: 25px;
+  }
+
+  .persona-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--theme-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    overflow: hidden;
+  }
+  
+  .persona-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .persona-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  
+  .persona-role {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+  }
+
+  .persona-quote {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .persona-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .persona-section h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .persona-section ul {
+    list-style: none;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    padding: 0;
+  }
+
+  .persona-section li {
+    margin-bottom: 6px;
+  }
+</style>

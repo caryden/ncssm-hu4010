@@ -1,0 +1,155 @@
+---
+---
+
+<div id="segment-branches" class="visualization"></div>
+
+<script is:inline>
+(function() {
+    const containerId = 'segment-branches';
+
+    function draw() {
+        if (!window.Visualization || !d3) return;
+        const viz = window.Visualization.create(containerId, { padding: 0.05 });
+        if (!viz) return;
+
+        const { svg, width, height, bounds } = viz;
+
+        // Proportional calculations based on actual container size
+        const centerX = bounds.left + bounds.width * 0.1;
+        const centerY = bounds.centerY;
+        const centerRadius = Math.min(bounds.height * 0.15, bounds.width * 0.06);
+        const midX = bounds.left + bounds.width * 0.35;
+        const endX = bounds.left + bounds.width * 0.6;
+        const segmentRadius = centerRadius * 0.6;
+        const rowSpacing = bounds.height * 0.3;
+
+        const branches = [
+            { label: 'Segment A', items: ['Features', 'Pricing', 'Channel'] },
+            { label: 'Segment B', items: ['Features', 'Pricing', 'Channel'] },
+            { label: 'Segment C', items: ['Features', 'Pricing', 'Channel'] }
+        ];
+
+        // Central node
+        svg.append('circle')
+            .attr('cx', centerX)
+            .attr('cy', centerY)
+            .attr('r', centerRadius)
+            .attr('fill', '#356093')
+            .attr('opacity', 0)
+            .transition()
+            .duration(500)
+            .attr('opacity', 1);
+
+        svg.append('text')
+            .attr('x', centerX)
+            .attr('y', centerY)
+            .attr('text-anchor', 'middle')
+            .attr('dy', '0.35em')
+            .attr('fill', '#fff')
+            .attr('font-family', 'Montserrat, sans-serif')
+            .attr('font-size', '1.1rem')
+            .attr('font-weight', '600')
+            .text('Your Idea');
+
+        branches.forEach((branch, i) => {
+            const y = centerY + (i - 1) * rowSpacing;
+            const itemSpacing = bounds.height * 0.08;
+
+            // Line to segment
+            svg.append('line')
+                .attr('x1', centerX + centerRadius)
+                .attr('y1', centerY)
+                .attr('x2', centerX + centerRadius)
+                .attr('y2', centerY)
+                .attr('stroke', '#4a7ab8')
+                .attr('stroke-width', 2)
+                .transition()
+                .delay(500 + i * 200)
+                .duration(400)
+                .attr('x2', midX - segmentRadius)
+                .attr('y2', y);
+
+            // Segment node
+            svg.append('circle')
+                .attr('cx', midX)
+                .attr('cy', y)
+                .attr('r', segmentRadius)
+                .attr('fill', '#12121a')
+                .attr('stroke', '#4a7ab8')
+                .attr('stroke-width', 2)
+                .attr('opacity', 0)
+                .transition()
+                .delay(900 + i * 200)
+                .duration(300)
+                .attr('opacity', 1);
+
+            svg.append('text')
+                .attr('x', midX)
+                .attr('y', y)
+                .attr('text-anchor', 'middle')
+                .attr('dy', '0.35em')
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat, sans-serif')
+                .attr('font-size', '1.1rem')
+                .text(branch.label)
+                .attr('opacity', 0)
+                .transition()
+                .delay(900 + i * 200)
+                .duration(300)
+                .attr('opacity', 1);
+
+            // Sub-items with labels outside
+            branch.items.forEach((item, j) => {
+                const itemY = y + (j - 1) * itemSpacing;
+
+                svg.append('line')
+                    .attr('x1', midX + segmentRadius)
+                    .attr('y1', y)
+                    .attr('x2', midX + segmentRadius)
+                    .attr('y2', y)
+                    .attr('stroke', '#6a6a7a')
+                    .attr('stroke-width', 1)
+                    .transition()
+                    .delay(1200 + i * 200 + j * 100)
+                    .duration(300)
+                    .attr('x2', endX - 10)
+                    .attr('y2', itemY);
+
+                svg.append('text')
+                    .attr('x', endX)
+                    .attr('y', itemY)
+                    .attr('dy', '0.35em')
+                    .attr('fill', '#6a6a7a')
+                    .attr('font-family', 'Montserrat, sans-serif')
+                    .attr('font-size', '1.1rem')
+                    .text(item)
+                    .attr('opacity', 0)
+                    .transition()
+                    .delay(1500 + i * 200 + j * 100)
+                    .duration(300)
+                    .attr('opacity', 1);
+            });
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(draw, 300);
+                observer.disconnect();
+            }
+        });
+    });
+
+    const el = document.getElementById(containerId);
+    if (el) observer.observe(el);
+})();
+</script>
+
+<style>
+    .visualization {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+    }
+</style>
