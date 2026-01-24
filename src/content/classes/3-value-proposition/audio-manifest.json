@@ -1,7 +1,7 @@
 {
   "classNumber": 3,
   "topic": "value-proposition",
-  "generatedAt": "2026-01-24T22:25:06.852Z",
+  "generatedAt": "2026-01-24T22:33:59.109Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-3/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "301d4e0db756c820",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "What Can You Do For Them?"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "eb4f8d566061d721",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "This Week"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "57746e4c2e824579",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "What Product DOES"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "f2ad9eb0b3cd2c5c",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "What It Does FOR THEM"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "6e0a4e11bfa73e69",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Getting a Taxi: Before Uber"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "647b2c4c79a6c83d",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Getting a Ride: With Uber"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "b88110e0ca086772",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Full Life Cycle Use Case"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "8aa3b7b54d4fd2b9",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Your Product Doesn"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "cbe4df17054e2ff1",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "8 Phases of the Customer Journey"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "39b2fb63156a4253",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Journey Phases (continued)"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "d1222379fa80a660",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "High-Level Product Spec"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "e2cceccb827c196e",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Brochure Test"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "5f2dfe0ca1f4dcb8",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What It"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "70cb94b434e074ec",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What It IS"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "98214b3829a9be9c",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Quantify the Value"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "a5f0b2a84e5fc3d7",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Numbers Matter"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "d964e825d2de37c0",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Types of Value"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "6d49b461aa8baff5",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Quantifying Time Saved"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "71c0d40c8d634b67",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The 10x Rule"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "68fa6a26f179a2e6",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Write Your Value Proposition"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "3d76afacda37712e",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Example Value Proposition"
       },
       "status": "current"
     },
@@ -220,8 +220,8 @@
       "narrationTextHash": "89f67580623a65dd",
       "slideSignature": {
         "number": 22,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "b57ed643267bb009",
       "slideSignature": {
         "number": 23,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Remember"
       },
       "status": "current"
     },
@@ -240,8 +240,8 @@
       "narrationTextHash": "c1a212d1e24773e4",
       "slideSignature": {
         "number": 24,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Before Next Week"
       },
       "status": "current"
     },
@@ -250,8 +250,8 @@
       "narrationTextHash": "e95e60c25fa4506c",
       "slideSignature": {
         "number": 25,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     }

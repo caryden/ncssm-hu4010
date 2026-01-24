@@ -1,7 +1,7 @@
 {
   "classNumber": 4,
   "topic": "competitive-positioning",
-  "generatedAt": "2026-01-24T22:25:06.881Z",
+  "generatedAt": "2026-01-24T22:33:59.110Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-4/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "dac6573f20c66880",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Finding Your Unfair Advantage"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "9a1f09154f70c59a",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Not in a Vacuum"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "eae048707e10319e",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Tonight We Answer"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "bd006d14dfc10022",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Dell Was Unstoppable"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "59dee5d5ce55539e",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Reversal"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "d02d635f8fc6c248",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Copiable vs Lock-in"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "b8817d4db2155e57",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Identify Next 10 Customers"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "49bb4b3f9d49405b",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Names Not Segments"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "f28596295ab1df00",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What Makes a Good Target"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "ac3fab896d3cd5d9",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Customer Hunting Grounds"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "aaebd828c1243c92",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Start with Three"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "974cdce3b0d652ac",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Define Your Core"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "ba56d2e2113d884b",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Your Core"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "d77a556cda2f556b",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The VRIO Test"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "84807f0e10636d47",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What Can Be Core?"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "10d5aa364d99cefa",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Features vs Core"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "493f99428e494e89",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Flywheel Effect"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "d1af93e84b743293",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Core Takes Time"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "348049ce733c6613",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Chart Your Position"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "fb5b6c149eab6828",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Types of Competitors"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "b845929996c136f2",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Do Nothing Competitor"
       },
       "status": "current"
     },
@@ -220,8 +220,8 @@
       "narrationTextHash": "69e908a4ab2ca5ec",
       "slideSignature": {
         "number": 22,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The 2x2 Positioning Matrix"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "5b0ae15f4af11e64",
       "slideSignature": {
         "number": 23,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Find White Space"
       },
       "status": "current"
     },
@@ -240,8 +240,8 @@
       "narrationTextHash": "045b470a74c5931a",
       "slideSignature": {
         "number": 24,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Workshop: 30 Minutes"
       },
       "status": "current"
     },
@@ -250,8 +250,8 @@
       "narrationTextHash": "4312ad9007f17b88",
       "slideSignature": {
         "number": 25,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Remember"
       },
       "status": "current"
     },
@@ -260,8 +260,8 @@
       "narrationTextHash": "275be800deb4f702",
       "slideSignature": {
         "number": 26,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Before Next Week"
       },
       "status": "current"
     },
@@ -270,8 +270,8 @@
       "narrationTextHash": "2f9d7e49a0f65cf2",
       "slideSignature": {
         "number": 27,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },

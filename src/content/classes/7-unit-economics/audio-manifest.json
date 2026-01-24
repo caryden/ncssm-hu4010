@@ -1,7 +1,7 @@
 {
   "classNumber": 7,
   "topic": "unit-economics",
-  "generatedAt": "2026-01-24T22:25:06.971Z",
+  "generatedAt": "2026-01-24T22:33:59.113Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-7/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "146209840b2cbaa8",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Will You Make Money?"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "de5a12a9265a8acb",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Reality"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "f278f8991a065046",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "WeWork 2019"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "a1c7228235a547b9",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "WeWork Reality"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "af892041bb9d79ae",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Collapse"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "71110d3eef391a5e",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Tonight"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "56097e1e6c84ff85",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 17 Intro"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "31e47c4ef96806e7",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "What is LTV"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "a628a6a9ea62dfa5",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Why LTV Matters"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "fda0fdad22e19707",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The LTV Formula"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "6a365fc03ca3de03",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "ARPU"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "9598e8a069fa0443",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Gross Margin"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "54e782b0f2de010e",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 18 Intro"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "3c87cbe93436bb8a",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "What is COCA"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "17c6c8417d06e806",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "COCA Formula"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "706e12710b000945",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 19 Intro"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "834a176f61167afa",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Untitled"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "779af69e1d5d0d7a",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Rule of 3"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "76b8634206a853a0",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "f7fcfcacd1c97f2d",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Remember"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "a3b45358197860eb",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Before Next Week"
       },
       "status": "current"
     },
@@ -220,8 +220,8 @@
       "narrationTextHash": "17144abc80b64a98",
       "slideSignature": {
         "number": 22,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },

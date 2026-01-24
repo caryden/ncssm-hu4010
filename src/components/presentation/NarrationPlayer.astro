@@ -2,13 +2,14 @@
 /**
  * NarrationPlayer.astro
  *
- * Audio player with caption support for presentation slides.
+ * Caption display that integrates with the existing narration system.
+ * Shows timed captions synced to audio playback.
  *
  * Features:
- * - Auto-plays narration for current slide
  * - Toggle captions with 'C' key
- * - Shows timed captions synced to audio
+ * - Shows caption text synced to narration
  * - Falls back to full text if no caption timing
+ * - Integrates with existing narration.js audio system
  *
  * Props:
  * - classNumber: number - The class number (for audio path)
@@ -30,281 +31,203 @@ interface Props {
 const { classNumber, narration } = Astro.props;
 ---
 
-<div id="narration-player" class="narration-player" data-class={classNumber}>
-  <audio id="narration-audio" preload="auto"></audio>
-
-  <div id="caption-container" class="caption-container" aria-live="polite" hidden>
-    <div id="caption-text" class="caption-text"></div>
-  </div>
-
-  <div id="narration-controls" class="narration-controls">
-    <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause narration">
-      <span class="play-icon">▶</span>
-      <span class="pause-icon" hidden>⏸</span>
-    </button>
-    <button id="caption-toggle-btn" class="control-btn" aria-label="Toggle captions (C)">
-      CC
-    </button>
-    <div id="narration-progress" class="progress-bar">
-      <div id="narration-progress-fill" class="progress-fill"></div>
-    </div>
-  </div>
+<div id="caption-display" class="caption-display" data-class={classNumber} hidden>
+  <div id="caption-text" class="caption-text"></div>
 </div>
 
 <script define:vars={{ narration, classNumber }}>
-  // Store narration data globally for this presentation
+  // Store narration data globally for caption display
   window.NARRATION_DATA = narration;
   window.NARRATION_CLASS = classNumber;
 </script>
 
 <script>
-  class NarrationController {
+  class CaptionController {
     constructor() {
-      this.audio = document.getElementById('narration-audio');
-      this.captionContainer = document.getElementById('caption-container');
+      this.captionDisplay = document.getElementById('caption-display');
       this.captionText = document.getElementById('caption-text');
-      this.playPauseBtn = document.getElementById('play-pause-btn');
-      this.captionToggleBtn = document.getElementById('caption-toggle-btn');
-      this.progressBar = document.getElementById('narration-progress');
-      this.progressFill = document.getElementById('narration-progress-fill');
-
       this.narration = window.NARRATION_DATA;
       this.classNumber = window.NARRATION_CLASS;
       this.currentSlide = 1;
       this.captionsEnabled = false;
-      this.captionInterval = null;
+      this.updateInterval = null;
 
       this.init();
     }
 
     init() {
-      // Event listeners
-      this.playPauseBtn?.addEventListener('click', () => this.togglePlayPause());
-      this.captionToggleBtn?.addEventListener('click', () => this.toggleCaptions());
-
-      this.audio?.addEventListener('timeupdate', () => this.updateProgress());
-      this.audio?.addEventListener('ended', () => this.onEnded());
-      this.audio?.addEventListener('play', () => this.onPlay());
-      this.audio?.addEventListener('pause', () => this.onPause());
-
-      // Keyboard shortcuts
-      document.addEventListener('keydown', (e) => this.handleKeydown(e));
-
-      // Listen for slide changes
-      window.addEventListener('slidechange', (e) => {
-        this.loadSlide(e.detail.slideNumber);
-      });
-
       // Load saved caption preference
       this.captionsEnabled = localStorage.getItem('captionsEnabled') === 'true';
-      this.updateCaptionUI();
+      this.updateCaptionVisibility();
+
+      // Keyboard shortcut for captions
+      document.addEventListener('keydown', (e) => this.handleKeydown(e));
+
+      // Listen for slide changes from presentation.js
+      this.hookIntoSlideChanges();
+
+      // Hook into narration system for audio timing
+      this.hookIntoNarration();
     }
 
-    loadSlide(slideNumber) {
-      this.currentSlide = slideNumber;
-      const slideData = this.narration?.slides?.[String(slideNumber)];
+    hookIntoSlideChanges() {
+      // Override goToSlide to track current slide
+      if (window.Presentation && window.Presentation.goToSlide) {
+        const originalGoToSlide = window.Presentation.goToSlide;
+        const self = this;
 
-      if (!slideData) {
-        console.log(`No narration for slide ${slideNumber}`);
-        this.audio.src = '';
-        this.captionText.textContent = '';
-        return;
+        window.Presentation.goToSlide = function(n) {
+          originalGoToSlide.call(this, n);
+          self.onSlideChange(n);
+        };
       }
+    }
 
-      // Load audio
-      const audioPath = `/audio/class-${this.classNumber}/slide-${slideNumber}.mp3`;
-      this.audio.src = audioPath;
+    hookIntoNarration() {
+      // Hook into the Narration system to get audio timing
+      const checkNarration = () => {
+        if (window.Narration) {
+          // Add callback for narration events
+          const originalOnSlideChange = window.Narration.onSlideChange;
+          const self = this;
 
-      // Set caption text (will be updated during playback if timed captions exist)
-      if (!slideData.captions || slideData.captions.length === 0) {
+          window.Narration.onSlideChange = function(slideNum) {
+            if (originalOnSlideChange) {
+              originalOnSlideChange.call(this, slideNum);
+            }
+            self.onSlideChange(slideNum);
+          };
+
+          // Start monitoring audio for caption timing
+          this.startAudioMonitoring();
+        } else {
+          // Narration module not loaded yet, try again
+          setTimeout(checkNarration, 100);
+        }
+      };
+
+      checkNarration();
+    }
+
+    startAudioMonitoring() {
+      // Monitor for audio elements to sync captions
+      this.updateInterval = setInterval(() => {
+        if (!this.captionsEnabled) return;
+
+        // Find current playing audio
+        const audios = document.querySelectorAll('audio');
+        for (const audio of audios) {
+          if (!audio.paused && audio.src.includes(`slide-${this.currentSlide}`)) {
+            this.updateTimedCaptions(audio.currentTime);
+            return;
+          }
+        }
+
+        // No audio playing - show full caption text
+        this.showFullCaption();
+      }, 100);
+    }
+
+    onSlideChange(slideNum) {
+      this.currentSlide = slideNum;
+      this.showFullCaption();
+    }
+
+    showFullCaption() {
+      const slideData = this.narration?.slides?.[String(this.currentSlide)];
+      if (slideData && this.captionsEnabled) {
         this.captionText.textContent = slideData.plainText;
       } else {
         this.captionText.textContent = '';
       }
-
-      // Reset progress
-      this.progressFill.style.width = '0%';
     }
 
-    togglePlayPause() {
-      if (this.audio.paused) {
-        this.audio.play().catch(e => console.error('Playback failed:', e));
+    updateTimedCaptions(currentTime) {
+      const slideData = this.narration?.slides?.[String(this.currentSlide)];
+      if (!slideData) return;
+
+      // If we have timed captions, use them
+      if (slideData.captions && slideData.captions.length > 0) {
+        const currentCaption = slideData.captions.find(
+          c => currentTime >= c.start && currentTime < c.end
+        );
+        if (currentCaption) {
+          this.captionText.textContent = currentCaption.text;
+        }
       } else {
-        this.audio.pause();
+        // No timed captions - show full text
+        this.captionText.textContent = slideData.plainText;
       }
     }
 
     toggleCaptions() {
       this.captionsEnabled = !this.captionsEnabled;
       localStorage.setItem('captionsEnabled', String(this.captionsEnabled));
-      this.updateCaptionUI();
-    }
+      this.updateCaptionVisibility();
 
-    updateCaptionUI() {
+      // Show current slide caption if enabled
       if (this.captionsEnabled) {
-        this.captionContainer.hidden = false;
-        this.captionToggleBtn.classList.add('active');
-      } else {
-        this.captionContainer.hidden = true;
-        this.captionToggleBtn.classList.remove('active');
+        this.showFullCaption();
       }
     }
 
-    updateProgress() {
-      if (this.audio.duration) {
-        const percent = (this.audio.currentTime / this.audio.duration) * 100;
-        this.progressFill.style.width = `${percent}%`;
-
-        // Update timed captions
-        this.updateTimedCaptions();
+    updateCaptionVisibility() {
+      if (this.captionDisplay) {
+        this.captionDisplay.hidden = !this.captionsEnabled;
       }
-    }
-
-    updateTimedCaptions() {
-      const slideData = this.narration?.slides?.[String(this.currentSlide)];
-      if (!slideData?.captions || slideData.captions.length === 0) return;
-
-      const currentTime = this.audio.currentTime;
-      const currentCaption = slideData.captions.find(
-        c => currentTime >= c.start && currentTime < c.end
-      );
-
-      if (currentCaption) {
-        this.captionText.textContent = currentCaption.text;
-      }
-    }
-
-    onPlay() {
-      this.playPauseBtn.querySelector('.play-icon').hidden = true;
-      this.playPauseBtn.querySelector('.pause-icon').hidden = false;
-    }
-
-    onPause() {
-      this.playPauseBtn.querySelector('.play-icon').hidden = false;
-      this.playPauseBtn.querySelector('.pause-icon').hidden = true;
-    }
-
-    onEnded() {
-      this.onPause();
-      this.progressFill.style.width = '100%';
     }
 
     handleKeydown(e) {
       // Don't capture if user is typing in an input
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
-      switch (e.key.toLowerCase()) {
-        case 'c':
-          e.preventDefault();
-          this.toggleCaptions();
-          break;
-        case ' ':
-          // Only handle space if not in fullscreen presentation mode
-          // (let presentation.js handle it for slide navigation)
-          if (e.shiftKey) {
-            e.preventDefault();
-            this.togglePlayPause();
-          }
-          break;
-        case 'n':
-          // Play narration for current slide
-          if (e.shiftKey) {
-            e.preventDefault();
-            this.audio.currentTime = 0;
-            this.audio.play();
-          }
-          break;
+      if (e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        this.toggleCaptions();
       }
     }
   }
 
   // Initialize when DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
-    window.narrationController = new NarrationController();
+    window.captionController = new CaptionController();
   });
 </script>
 
 <style>
-  .narration-player {
+  .caption-display {
     position: fixed;
-    bottom: 60px;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-  }
-
-  .caption-container {
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
     max-width: 80vw;
-    margin-bottom: 1rem;
     text-align: center;
   }
 
   .caption-text {
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
     font-size: 1.5rem;
     line-height: 1.4;
     font-family: var(--font-body, system-ui, sans-serif);
   }
 
-  .narration-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 0.5rem 1rem;
-    border-radius: 24px;
-  }
-
-  .control-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    transition: background 0.2s;
-  }
-
-  .control-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .control-btn.active {
-    background: rgba(255, 255, 255, 0.3);
-  }
-
-  .progress-bar {
-    width: 150px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: white;
-    width: 0%;
-    transition: width 0.1s linear;
-  }
-
-  /* Hide when no narration */
-  .narration-player:not([data-has-audio]) .narration-controls {
-    opacity: 0.5;
-    pointer-events: none;
+  .caption-text:empty {
+    display: none;
   }
 
   @media (max-width: 768px) {
     .caption-text {
       font-size: 1.25rem;
+      padding: 0.75rem 1.5rem;
     }
 
-    .narration-player {
-      bottom: 80px;
+    .caption-display {
+      bottom: 100px;
+      max-width: 90vw;
     }
   }
 </style>

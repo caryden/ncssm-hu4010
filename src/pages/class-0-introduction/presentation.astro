@@ -10,9 +10,17 @@ import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
 import StandardSlide from '../../components/presentation/StandardSlide.astro';
 import Slide from '../../components/presentation/Slide.astro';
 import { course, institution } from '../../config';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/0-introduction/narration.json';
 ---
 
-<PresentationLayout title="Class 0: Course Introduction" themeNumber={1}>
+<PresentationLayout
+  title="Class 0: Course Introduction"
+  themeNumber={1}
+  classNumber={0}
+  narration={narrationData}
+>
     <style>
         /* Course-specific styles */
         .course-info {

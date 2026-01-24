@@ -7,10 +7,13 @@
  * - Progress bar and slide counter
  * - Keyboard navigation hints
  * - D3.js for visualizations
+ * - Optional narration player with captions
  *
  * @prop {string} title - Presentation title
  * @prop {string} [description] - Description for meta tags
  * @prop {number} [themeNumber] - DE Framework theme (1-6) for color override
+ * @prop {number} [classNumber] - Class number for audio paths (enables narration)
+ * @prop {object} [narration] - Narration data from content collection
  */
 
 import '../styles/global.css';
@@ -21,18 +24,36 @@ import {
   generateCSSVariables,
   getThemeColor,
 } from '../config';
+import NarrationPlayer from '../components/presentation/NarrationPlayer.astro';
+
+interface NarrationSlide {
+  ssml: string;
+  plainText: string;
+  estimatedDuration: number | null;
+  captions?: Array<{ start: number; end: number; text: string }>;
+}
+
+interface NarrationData {
+  slides: Record<string, NarrationSlide>;
+}
 
 interface Props {
   title: string;
   description?: string;
   themeNumber?: number;
+  classNumber?: number;
+  narration?: NarrationData;
 }
 
 const {
   title,
   description = course.description,
   themeNumber,
+  classNumber,
+  narration,
 } = Astro.props;
+
+const hasNarration = classNumber !== undefined && narration !== undefined;
 
 const pageTitle = getPageTitle(title);
 const baseCssVariables = generateCSSVariables();
@@ -140,6 +161,12 @@ const themeOverride = themeNumber
     <span><kbd>T</kbd> Contents</span>
     <span><kbd>A</kbd> Appendix</span>
     <span><kbd>S</kbd> Syllabus</span>
+    {hasNarration && <span><kbd>C</kbd> Captions</span>}
   </div>
+
+  <!-- Narration Player (if enabled) -->
+  {hasNarration && (
+    <NarrationPlayer classNumber={classNumber!} narration={narration!} />
+  )}
 </body>
 </html>

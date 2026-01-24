@@ -1,7 +1,7 @@
 {
   "classNumber": 8,
   "topic": "testing-mvbp",
-  "generatedAt": "2026-01-24T22:25:07.013Z",
+  "generatedAt": "2026-01-24T22:33:59.114Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-8/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "dcc570ef4fc2d22d",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Prove It"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "cb04bf2ebc3ee9d6",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Welcome Back"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "c5a3ac0373f2a417",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Theme 5"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "9fc6ad180f136fbe",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Critical Shift"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "c66e2166caadc71b",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Dropbox Problem"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "54786292e7772bcf",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Dropbox Test"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "f73dcf2a353bb1be",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Tonight"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "1250a177720ab8ad",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 20 Intro"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "e72192b805d70eff",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Assumption Matrix"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "06e11434ad25be5f",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 21 Intro"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "55901ba035ff6bee",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Testing Techniques"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "47926caf45ac4f8f",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 22 Intro"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "36ee779211efbf54",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "MVP vs MVBP"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "d525cb025465495d",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Three Conditions"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "9a1146ccd42798d9",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "MVBP Examples"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "bb0b93d870bcaca8",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 23 Intro"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "e8aead7499d85525",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Dog Food"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "bd3fba3e0be137ec",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "f9b747459ee9df34",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Remember"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "6435c359981fd1d2",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Before Next Week"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "c440c246f543a948",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },

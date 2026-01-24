@@ -1,7 +1,7 @@
 {
   "classNumber": 1,
   "topic": "market-segmentation",
-  "generatedAt": "2026-01-24T22:25:06.784Z",
+  "generatedAt": "2026-01-24T22:33:59.107Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-1/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "15213c37efbcf8a1",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Finding Your First Customers"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "158abda19b91b5d8",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Fatal Mistake"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "e40de2dcd9d9b38b",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Root Cause"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "043b1f2a0a242f0c",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Big Idea"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "8cc8b69a071b89d4",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Burbn"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "e89417e9b86a9762",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Pivot"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "4e45b793117fe26c",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 1"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "c29d43f0d532e46a",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "What is a Segment"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "91db549be053ce32",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Different Customers Need Different Everything"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "0ce9df5a464395fe",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "One Product, Many Segments"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "61afe17dfe73b708",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Your Tool: The Segmentation Matrix"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "9effd231a15ad4ed",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Problem Intensity"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "14723b303454ed6a",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Accessibility"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "124bd1e86a3a3372",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Market Size"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "92ed04cee78d62bd",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Two More Criteria"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "53aaa0d83def7031",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 2"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "dfcb163ece2707f3",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "What is a Beachhead"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "cb4cabcc6444c147",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Paradox"
       },
       "status": "current"
     },
@@ -220,8 +220,8 @@
       "narrationTextHash": "3122086fc68d3d2f",
       "slideSignature": {
         "number": 22,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Four Tests"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "1d11d6312a25efad",
       "slideSignature": {
         "number": 23,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "From Beachhead to Empire"
       },
       "status": "current"
     },
@@ -250,8 +250,8 @@
       "narrationTextHash": "b1be65d0bad445bd",
       "slideSignature": {
         "number": 25,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Specificity is Power"
       },
       "status": "current"
     },
@@ -260,8 +260,8 @@
       "narrationTextHash": "1eba560d6009efd0",
       "slideSignature": {
         "number": 26,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Facebook"
       },
       "status": "current"
     },
@@ -310,8 +310,8 @@
       "narrationTextHash": "f36ee5d6a57fd5a4",
       "slideSignature": {
         "number": 31,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },

@@ -56,18 +56,60 @@ function parseNarrationScripts(jsContent) {
 // Helper: Extract slide signatures from presentation.astro
 function extractSlideSignatures(astroContent) {
   const signatures = {};
-  // Match: <section class="slide slide-{type}" ... data-title="{title}"
-  const slideRegex = /<section[^>]*class="slide\s+slide-([^"]+)"[^>]*data-title="([^"]+)"[^>]*>/g;
+
+  // Astro component patterns: <TitleSlide, <StandardSlide, <StatementSlide, etc.
+  // These have id="N" and title="..."
+  const astroSlideRegex = /<(TitleSlide|StandardSlide|StatementSlide|TwoPartSlide|Slide)\s+([^>]*?)(?:\/>|>)/g;
+
   let match;
-  let slideNum = 1;
-  while ((match = slideRegex.exec(astroContent)) !== null) {
-    signatures[String(slideNum)] = {
-      number: slideNum,
-      type: `slide-${match[1]}`,
-      title: match[2],
+  while ((match = astroSlideRegex.exec(astroContent)) !== null) {
+    const componentType = match[1];
+    const attrs = match[2];
+
+    // Extract id (slide number)
+    const idMatch = attrs.match(/id=["'](\d+)["']/);
+    // Extract title
+    const titleMatch = attrs.match(/title=["']([^"']+)["']/);
+    // Check if appendix
+    const isAppendix = attrs.includes('appendix={true}') || attrs.includes('appendix="true"');
+
+    if (isAppendix) continue; // Skip appendix slides
+
+    const slideNum = idMatch ? idMatch[1] : null;
+    const title = titleMatch ? titleMatch[1] : 'Untitled';
+
+    // Map component type to slide type
+    const typeMap = {
+      'TitleSlide': 'slide-title',
+      'StandardSlide': 'slide-content',
+      'StatementSlide': 'slide-statement',
+      'TwoPartSlide': 'slide-two-part',
+      'Slide': 'slide-generic',
     };
-    slideNum++;
+
+    if (slideNum) {
+      signatures[slideNum] = {
+        number: parseInt(slideNum),
+        type: typeMap[componentType] || 'slide-unknown',
+        title: title,
+      };
+    }
   }
+
+  // Fallback: Also check for raw HTML slides (legacy format)
+  if (Object.keys(signatures).length === 0) {
+    const htmlSlideRegex = /<section[^>]*class="slide\s+slide-([^"]+)"[^>]*data-title="([^"]+)"[^>]*>/g;
+    let slideNum = 1;
+    while ((match = htmlSlideRegex.exec(astroContent)) !== null) {
+      signatures[String(slideNum)] = {
+        number: slideNum,
+        type: `slide-${match[1]}`,
+        title: match[2],
+      };
+      slideNum++;
+    }
+  }
+
   return signatures;
 }
 

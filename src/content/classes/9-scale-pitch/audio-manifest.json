@@ -1,7 +1,7 @@
 {
   "classNumber": 9,
   "topic": "scale-pitch",
-  "generatedAt": "2026-01-24T22:25:07.050Z",
+  "generatedAt": "2026-01-24T22:33:59.114Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-9/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "b8e4f51290740787",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Scale & Pitch"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "b4294f90a8fdb645",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Theme 6"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "df87623cd4d376ea",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "24 Steps Overview"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "c1fa7da46d0e78fd",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Home Stretch"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "dfb72336ec14e1f5",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Tonight"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "3a2a8814d62c00ae",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 24"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "b4090a8cb73fe456",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Now What?"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "4a9ad8ab963d2785",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Systematic Growth"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "ebfdb46e56457f87",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "One Market at a Time"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "c4cb520fd4fccd69",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Evaluating Adjacent Markets"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "98a296a3819061a1",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Example: Slack"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "908ff4e6fc0bd062",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Plan Your Phases"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "5903570362d93541",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Preparing Your Pitch"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "476bb15efff7283c",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "8-Minute Structure"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "fb511d5949614228",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Hook"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "bc6bb65ba8611af4",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Problem & Solution"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "9713d0760055a9c3",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Market & Business Model"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "0cba8fc2a05ac45d",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Traction"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "607f528ea9bad144",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Team & Ask"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "101380e83bae6543",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Workshop: 30 Minutes"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "0f50b56384415aca",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Closing Thoughts"
       },
       "status": "current"
     },

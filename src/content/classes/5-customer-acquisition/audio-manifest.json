@@ -1,7 +1,7 @@
 {
   "classNumber": 5,
   "topic": "customer-acquisition",
-  "generatedAt": "2026-01-24T22:25:06.917Z",
+  "generatedAt": "2026-01-24T22:33:59.111Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-5/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "b0973d9b4dfdd668",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "How Customers Buy"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "f9a4b2e8527766fc",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Theme 3"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "37744dccf4011caf",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "User vs Buyer"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "9e69ccb03d974e24",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Perfect Setup"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "e855178f09870cb8",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "IT Said No"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "c32c91639328a50e",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Know Your Stakeholders"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "45248d6eed762786",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Determine the DMU"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "e5545b2ea89dae80",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Six DMU Roles"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "ecf56701b970a46b",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Champion Role"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "83f1c1134f8c0544",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Economic Buyer Role"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "8fd99f624b1c9519",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Technical Buyer Role"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "20e76d0cae16b848",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Different Concerns"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "d94837574269032f",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Map Acquisition Process"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "6c51309c2daa2e86",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Acquisition Funnel"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "41ed13bf1ba70f0d",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Awareness Stage"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "dc7115bc1d937b3f",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Evaluation Stage"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "5338015f044476c5",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Questions for Each Stage"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "9c89e4eb33c2a545",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "B2B vs B2C"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "ecbd13ee77e31e88",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Sales Cycle Time"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "b5eb0e2d9653e709",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "c5e780d9f3815254",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Remember"
       },
       "status": "current"
     },
@@ -220,8 +220,8 @@
       "narrationTextHash": "972a7d8883673d07",
       "slideSignature": {
         "number": 22,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Before Next Week"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "3b57859ad7480472",
       "slideSignature": {
         "number": 23,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },

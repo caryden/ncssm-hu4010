@@ -1,7 +1,7 @@
 {
   "classNumber": 0,
   "topic": "introduction",
-  "generatedAt": "2026-01-24T22:25:06.758Z",
+  "generatedAt": "2026-01-24T22:33:59.101Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-0/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "df8ef2a01399f40d",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Based on Bill Aulet"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "c2f5f0567a13839f",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Can It Be Taught?"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "85a8fdc0c19670a2",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Yes, It Can"
       },
       "status": "current"
     },
@@ -40,8 +40,8 @@
       "narrationTextHash": "aaa05c4dbc406dcd",
       "slideSignature": {
         "number": 4,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Tonight"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "2df4e36cf695847d",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Myth Busting"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "7f6725bc6bd4efa7",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What Most People Get Wrong"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "ca109d0b3d9d3328",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Evidence"
       },
       "status": "current"
     },
@@ -80,8 +80,8 @@
       "narrationTextHash": "c52e42bcfdce2211",
       "slideSignature": {
         "number": 8,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Disciplined Entrepreneurship"
       },
       "status": "current"
     },
@@ -90,8 +90,8 @@
       "narrationTextHash": "cc4eea6fc4a40108",
       "slideSignature": {
         "number": 9,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Bill Aulet Quote"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "44b54d3ea3a985b2",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The 24-Step Framework"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "68cf2e6b1ec21a9a",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Six Questions Every Startup Must Answer"
       },
       "status": "current"
     },
@@ -120,8 +120,8 @@
       "narrationTextHash": "d4a0187582b8ea42",
       "slideSignature": {
         "number": 12,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Customer First"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "60e8b5fbf7a29f20",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "The Entrepreneurial Mindset"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "f2de4f63ffa6cd5d",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "What We"
       },
       "status": "current"
     },
@@ -150,8 +150,8 @@
       "narrationTextHash": "cfeb115d2449042d",
       "slideSignature": {
         "number": 15,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Your 10-Week Journey"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "7de9d8e8dfd19dce",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Weekly Rhythm"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "f70cc4f0adca48a5",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Team Formation"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "c7133aa41abb4a5c",
       "slideSignature": {
         "number": 18,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Final Pitches"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "cc16e29b3150d9a7",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What We"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "46a6721dade9b7ee",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "What We"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "4e99ddb36b67dda5",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Key Takeaway"
       },
       "status": "current"
     },
@@ -220,8 +220,8 @@
       "narrationTextHash": "f25a1a65c6168a90",
       "slideSignature": {
         "number": 22,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Homework"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "2a59407c8d5867df",
       "slideSignature": {
         "number": 23,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },
@@ -240,8 +240,8 @@
       "narrationTextHash": "85d8d95aab35d9ee",
       "slideSignature": {
         "number": 24,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Let"
       },
       "status": "current"
     },

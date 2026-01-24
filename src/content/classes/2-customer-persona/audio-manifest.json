@@ -1,7 +1,7 @@
 {
   "classNumber": 2,
   "topic": "customer-persona",
-  "generatedAt": "2026-01-24T22:25:06.818Z",
+  "generatedAt": "2026-01-24T22:33:59.108Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-2/",
   "slides": {
@@ -10,8 +10,8 @@
       "narrationTextHash": "29166421668e9bad",
       "slideSignature": {
         "number": 1,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-title",
+        "title": "Know Your Customer"
       },
       "status": "current"
     },
@@ -20,8 +20,8 @@
       "narrationTextHash": "d74e9507ec1dd345",
       "slideSignature": {
         "number": 2,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Mistake"
       },
       "status": "current"
     },
@@ -30,8 +30,8 @@
       "narrationTextHash": "1a8d6e7e69273c67",
       "slideSignature": {
         "number": 3,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Result"
       },
       "status": "current"
     },
@@ -50,8 +50,8 @@
       "narrationTextHash": "b49cb4dfda5fba6d",
       "slideSignature": {
         "number": 5,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "From Segment to Person"
       },
       "status": "current"
     },
@@ -60,8 +60,8 @@
       "narrationTextHash": "553e2b5f116b7810",
       "slideSignature": {
         "number": 6,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 3"
       },
       "status": "current"
     },
@@ -70,8 +70,8 @@
       "narrationTextHash": "014389652a0ebf06",
       "slideSignature": {
         "number": 7,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Who Actually Uses It?"
       },
       "status": "current"
     },
@@ -100,8 +100,8 @@
       "narrationTextHash": "bf633e38bd8bafc3",
       "slideSignature": {
         "number": 10,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "80/20 Rule"
       },
       "status": "current"
     },
@@ -110,8 +110,8 @@
       "narrationTextHash": "0175c923c90b13aa",
       "slideSignature": {
         "number": 11,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Interview Best Practices"
       },
       "status": "current"
     },
@@ -130,8 +130,8 @@
       "narrationTextHash": "5383a417d7356864",
       "slideSignature": {
         "number": 13,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 4"
       },
       "status": "current"
     },
@@ -140,8 +140,8 @@
       "narrationTextHash": "6f7d00e1bbfa20d0",
       "slideSignature": {
         "number": 14,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Total Addressable Market"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "0964efc2966f110f",
       "slideSignature": {
         "number": 16,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "How to Calculate TAM"
       },
       "status": "current"
     },
@@ -170,8 +170,8 @@
       "narrationTextHash": "ffe9e9cd470020ba",
       "slideSignature": {
         "number": 17,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Durham Restaurant Example"
       },
       "status": "current"
     },
@@ -190,8 +190,8 @@
       "narrationTextHash": "8db2b14637413884",
       "slideSignature": {
         "number": 19,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "TAM Assumptions"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "5578b83232f63d71",
       "slideSignature": {
         "number": 20,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Step 5"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "a67db27a10dc14b6",
       "slideSignature": {
         "number": 21,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Making It Real"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "15e403d6b1c03ca4",
       "slideSignature": {
         "number": 23,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-content",
+        "title": "Meet Maria"
       },
       "status": "current"
     },
@@ -240,8 +240,8 @@
       "narrationTextHash": "924a651c63d8089d",
       "slideSignature": {
         "number": 24,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "The Key Element"
       },
       "status": "current"
     },
@@ -250,8 +250,8 @@
       "narrationTextHash": "0f6ef266e652c3a8",
       "slideSignature": {
         "number": 25,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "The Test"
       },
       "status": "current"
     },
@@ -260,8 +260,8 @@
       "narrationTextHash": "265dfbd6141a043a",
       "slideSignature": {
         "number": 26,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "One Persona"
       },
       "status": "current"
     },
@@ -300,8 +300,8 @@
       "narrationTextHash": "bd736d76539b2014",
       "slideSignature": {
         "number": 30,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },
