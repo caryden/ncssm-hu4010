@@ -15,6 +15,8 @@
   let currentAudio = null;
   let autoAdvanceEnabled = false;
   let isAutoAdvancing = false; // Flag to prevent double-narration
+  let pendingNarrationTimeout = null; // Track pending narration to cancel on rapid nav
+  let pendingAdvanceTimeout = null; // Track pending auto-advance timeout
 
   // ============================================
   // Audio Playback (Local Files)
@@ -112,8 +114,13 @@
       if (isNarrating && autoAdvanceEnabled && !state.appendixMode) {
         // Check if we're at the last main slide
         if (state.currentSlide < state.totalSlides) {
+          // Clear any existing advance timeout
+          if (pendingAdvanceTimeout) {
+            clearTimeout(pendingAdvanceTimeout);
+          }
           // Small delay before advancing
-          setTimeout(() => {
+          pendingAdvanceTimeout = setTimeout(() => {
+            pendingAdvanceTimeout = null;
             if (isNarrating && autoAdvanceEnabled) {
               advanceToNextSlide();
             }
@@ -140,8 +147,14 @@
       window.Presentation.goToSlide(state.currentSlide + 1);
     }
 
+    // Clear any pending narration timeout before setting a new one
+    if (pendingNarrationTimeout) {
+      clearTimeout(pendingNarrationTimeout);
+    }
+
     // Wait for slide transition, then narrate
-    setTimeout(() => {
+    pendingNarrationTimeout = setTimeout(() => {
+      pendingNarrationTimeout = null;
       isAutoAdvancing = false;
       const newState = getState();
       if (isNarrating && autoAdvanceEnabled && newState && !newState.appendixMode) {
@@ -151,6 +164,15 @@
   }
 
   function stopNarration() {
+    // Clear any pending timeouts to prevent stale callbacks
+    if (pendingNarrationTimeout) {
+      clearTimeout(pendingNarrationTimeout);
+      pendingNarrationTimeout = null;
+    }
+    if (pendingAdvanceTimeout) {
+      clearTimeout(pendingAdvanceTimeout);
+      pendingAdvanceTimeout = null;
+    }
     stopAudio();
     isNarrating = false;
     autoAdvanceEnabled = false;
@@ -238,6 +260,12 @@
       // Skip if this is an auto-advance (already handled)
       if (isAutoAdvancing) return;
 
+      // Cancel any pending narration from previous rapid navigation
+      if (pendingNarrationTimeout) {
+        clearTimeout(pendingNarrationTimeout);
+        pendingNarrationTimeout = null;
+      }
+
       // If narration is active, narrate the new slide
       if (isNarrating) {
         const state = getState();
@@ -250,9 +278,12 @@
           return;
         }
 
-        // Stop current audio and narrate new slide
+        // Stop current audio and narrate new slide after brief delay
         stopAudio();
-        setTimeout(() => narrateCurrentSlide(), 100);
+        pendingNarrationTimeout = setTimeout(() => {
+          pendingNarrationTimeout = null;
+          narrateCurrentSlide();
+        }, 100);
       }
     }
   };
