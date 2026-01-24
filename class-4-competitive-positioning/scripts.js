@@ -49,11 +49,15 @@ window.NARRATION_SCRIPTS = {
 
   23: `That's the goal. <break time="0.5s"/> Find your white space. <break time="0.3s"/> The intersection of "no strong competitor exists" AND "customers want to be served here." <break time="0.3s"/> That's where you win.`,
 
-  24: `Time for the workshop. <break time="0.3s"/> You have 30 minutes total. <break time="0.5s"/> First ten minutes: identify your ten potential customers by name, with contact information. Next ten minutes: define your core—what makes you both better AND defensible. Final ten minutes: build your competitive positioning chart.`,
+  24: `Now, every investor will ask you three questions. <break time="0.4s"/> Why This? Is this problem worth solving? Is it big enough, painful enough? <break time="0.3s"/> Why Now? What has changed to make this the right moment? This is the most often forgotten—and most important question. <break time="0.3s"/> And Why Us? Why is your team uniquely positioned to win? <break time="0.4s"/> If you can't answer all three convincingly, investors will pass.`,
 
-  25: `Let's recap what to remember. <break time="0.3s"/> Ten customers means real names, not abstract segments. Your core is a defensible advantage, not just features. Everyone has competitors, including "do nothing." And position yourself where customers actually want to be served.`,
+  25: `Let's dig deeper into "Why Now." <break time="0.4s"/> What has changed to create this opportunity? <break time="0.3s"/> Technology shifts like AI, mobile, cloud, or sensors. Regulatory changes—new laws or deregulation. Cultural shifts like remote work, sustainability, or changing trust patterns. Economic shifts such as inflation or budget pressures. Demographic shifts like an aging population or Gen Z coming of age. <break time="0.5s"/> If this is such a good idea, why hasn't someone done it already? <break time="0.3s"/> You need a compelling answer to that question.`,
 
-  26: `Before next week. <break time="0.3s"/> Complete your list of ten customers with a contact plan for each. Write a core statement—one paragraph explaining your unfair advantage. Create your competitive positioning chart. And read chapters 12 and 13 from Disciplined Entrepreneurship.`,
+  26: `Time for the workshop. <break time="0.3s"/> You have 30 minutes total. <break time="0.5s"/> First ten minutes: identify your ten potential customers by name, with contact information. Next ten minutes: define your core—what makes you both better AND defensible. Final ten minutes: build your competitive positioning chart.`,
 
-  27: `Next week we start Theme 3: How does your customer acquire your product? <break time="0.3s"/> We'll cover the Decision-Making Unit and the Acquisition Process. <break time="0.3s"/> The question we'll answer: How do customers actually decide to buy? <break time="0.3s"/> See you then.`
+  27: `Let's recap what to remember. <break time="0.3s"/> Ten customers means real names, not abstract segments. Your core is a defensible advantage, not just features. Everyone has competitors, including "do nothing." And position yourself where customers actually want to be served.`,
+
+  28: `Before next week. <break time="0.3s"/> Complete your list of ten customers with a contact plan for each. Write a core statement—one paragraph explaining your unfair advantage. Create your competitive positioning chart. And read chapters 12 and 13 from Disciplined Entrepreneurship.`,
+
+  29: `Next week we start Theme 3: How does your customer acquire your product? <break time="0.3s"/> We'll cover the Decision-Making Unit and the Acquisition Process. <break time="0.3s"/> The question we'll answer: How do customers actually decide to buy? <break time="0.3s"/> See you then.`
 };
