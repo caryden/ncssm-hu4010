@@ -26,11 +26,12 @@ const {
   title,
   subtitle,
   info,
+  narrationKey,
   class: className,
 } = Astro.props;
 ---
 
-<Slide id={id} type="title" section={section} title={title} class={className}>
+<Slide id={id} type="title" section={section} title={title} narrationKey={narrationKey} class={className}>
   <div class="slide-content">
     <h1>{title}</h1>
     {subtitle && <p class="subtitle">{subtitle}</p>}

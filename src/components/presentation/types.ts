@@ -30,6 +30,8 @@ export interface BaseSlideProps {
   title?: string;
   /** Section name for TOC grouping */
   section?: string;
+  /** Stable key for narration audio mapping (survives slide reordering) */
+  narrationKey?: string;
   /** Additional CSS classes */
   class?: string;
 }
