@@ -15,8 +15,19 @@ import {
   getPresentationSessions,
 } from '../config';
 
+// Get base URL for links (handles GitHub Pages subdirectory deployment)
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
 // Get sessions with presentations for keyboard nav
 const presentationSessions = getPresentationSessions();
+
+// Helper to get the full presentation URL with base path
+function getPresentationUrl(path: string | undefined): string | undefined {
+  if (!path) return undefined;
+  // Path starts with /, base doesn't end with /
+  return `${base}${path}`;
+}
 
 // Helper to get theme class for a session
 function getThemeClass(session: typeof sessions[0]): string {
@@ -35,7 +46,7 @@ function getSessionNumber(session: typeof sessions[0]): string {
 ---
 
 <MainLayout>
-  <script define:vars={{ presentationSessions }}>
+  <script define:vars={{ presentationSessions, base }}>
     // Keyboard shortcuts: 0-9 to navigate to class presentations
     document.addEventListener('keydown', (e) => {
       const key = e.key;
@@ -43,7 +54,7 @@ function getSessionNumber(session: typeof sessions[0]): string {
         const classNum = parseInt(key);
         const session = presentationSessions.find(s => s.number === classNum);
         if (session && session.presentationPath) {
-          window.location.href = session.presentationPath;
+          window.location.href = base + session.presentationPath;
         }
       }
     });
@@ -84,10 +95,11 @@ function getSessionNumber(session: typeof sessions[0]): string {
           const themeClass = getThemeClass(session);
           const hasPresentation = !!session.presentationPath;
           const Tag = hasPresentation ? 'a' : 'div';
+          const presentationUrl = getPresentationUrl(session.presentationPath);
 
           return (
             <Tag
-              href={hasPresentation ? session.presentationPath : undefined}
+              href={hasPresentation ? presentationUrl : undefined}
               class:list={[
                 'schedule-item',
                 themeClass,

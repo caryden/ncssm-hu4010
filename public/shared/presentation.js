@@ -19,7 +19,8 @@
         tocVisible: false,
         appendixVisible: false,
         sections: [],  // Populated from slide data
-        syllabusUrl: '../index.html',
+        // Syllabus URL - can be set via window.__SYLLABUS_URL__ for base path support
+        syllabusUrl: window.__SYLLABUS_URL__ || './',
         // Touch tracking for swipe navigation
         touch: {
             startX: 0,
