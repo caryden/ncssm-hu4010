@@ -347,3 +347,89 @@
   font-size: 0.9rem;
   font-family: 'JetBrains Mono', monospace;
 }
+
+/* ===== Mobile Responsive Styles ===== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .keyboard-hints {
+    display: none; /* Hide keyboard hints on touch devices */
+  }
+
+  .slide-counter {
+    right: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .slide-counter {
+    bottom: 15px;
+    right: 15px;
+    font-size: 0.8rem;
+  }
+
+  .toc-overlay {
+    width: 85vw;
+    max-width: 320px;
+  }
+
+  .toc-header {
+    padding: 25px 20px 15px;
+  }
+
+  .toc-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .toc-item {
+    padding: 10px 20px 10px 30px;
+    font-size: 0.9rem;
+  }
+
+  .toc-section-title {
+    padding: 8px 20px;
+    font-size: 0.75rem;
+  }
+
+  .toc-footer {
+    padding: 15px 20px;
+  }
+
+  .toc-footer a {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+
+  .appendix-overlay {
+    width: 85vw;
+    max-width: 360px;
+  }
+
+  .appendix-header {
+    padding: 25px 20px 15px;
+  }
+
+  .appendix-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .appendix-item {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .appendix-nav {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .appendix-nav-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .appendix-counter {
+    font-size: 0.8rem;
+  }
+}

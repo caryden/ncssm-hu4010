@@ -449,3 +449,203 @@
 .slide[data-appendix="true"] li:hover {
   background: var(--dark-card) !important;
 }
+
+/* ===== Mobile Responsive Styles ===== */
+
+/* Tablet (portrait and smaller) */
+@media (max-width: 900px) {
+  .slide {
+    padding: 40px 50px;
+  }
+
+  .slide-title h1 {
+    font-size: 3rem;
+  }
+
+  .slide-title .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .slide-statement {
+    padding: 40px 60px;
+  }
+
+  .slide-statement .statement {
+    font-size: 2.2rem;
+  }
+
+  .slide.slide-content > h2,
+  .slide-list h2,
+  .slide-two-part .primary {
+    font-size: 2.2rem;
+  }
+
+  .slide-visual h2 {
+    font-size: 2rem;
+  }
+
+  .slide-quote blockquote {
+    font-size: 1.8rem;
+  }
+
+  .slide-list li,
+  .content-list li {
+    font-size: 1.4rem;
+  }
+
+  .comparison-container {
+    gap: 30px;
+  }
+
+  .comparison-side {
+    padding: 25px;
+  }
+
+  .comparison-side h3 {
+    font-size: 1.5rem;
+  }
+
+  .comparison-side li {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile (landscape and smaller) */
+@media (max-width: 600px) {
+  .slide {
+    padding: 30px 25px;
+  }
+
+  .slide-title h1 {
+    font-size: 2rem;
+  }
+
+  .slide-title .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .slide-title .session-info {
+    font-size: 1rem;
+  }
+
+  .slide-statement {
+    padding: 30px 25px;
+  }
+
+  .slide-statement .statement {
+    font-size: 1.5rem;
+  }
+
+  .slide-statement .subtext {
+    font-size: 1.1rem;
+  }
+
+  .slide.slide-content > h2,
+  .slide-list h2,
+  .slide-two-part .primary {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  .slide.slide-content > ul,
+  .slide.slide-content > ol,
+  .slide.slide-content > .content-list,
+  .slide.slide-content > p,
+  .slide-list > .slide-content,
+  .slide-two-part > .slide-content,
+  .slide-quote > .slide-content {
+    width: 100%;
+  }
+
+  .slide-visual h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .slide-quote blockquote {
+    font-size: 1.3rem;
+    padding-left: 35px;
+  }
+
+  .slide-quote blockquote::before {
+    font-size: 2.5rem;
+  }
+
+  .slide-quote .attribution {
+    font-size: 1.1rem;
+    padding-left: 35px;
+  }
+
+  .slide-list li,
+  .content-list li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-left: 25px;
+  }
+
+  .content-list li::before {
+    font-size: 1.4rem;
+  }
+
+  .slide-two-part .secondary {
+    font-size: 1.3rem;
+  }
+
+  .slide-two-part .note {
+    font-size: 1rem;
+  }
+
+  .comparison-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .comparison-side {
+    padding: 20px;
+  }
+
+  .comparison-side h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .comparison-side li {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    padding-left: 20px;
+  }
+}
+
+/* Small mobile (iPhone SE, etc) */
+@media (max-width: 375px) {
+  .slide {
+    padding: 20px 15px;
+  }
+
+  .slide-title h1 {
+    font-size: 1.6rem;
+  }
+
+  .slide-title .subtitle {
+    font-size: 1rem;
+  }
+
+  .slide-statement .statement {
+    font-size: 1.3rem;
+  }
+
+  .slide-quote blockquote {
+    font-size: 1.1rem;
+    padding-left: 25px;
+  }
+
+  .slide-quote blockquote::before {
+    font-size: 2rem;
+  }
+
+  .slide-list li,
+  .content-list li {
+    font-size: 1.1rem;
+  }
+}

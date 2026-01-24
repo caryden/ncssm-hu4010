@@ -19,7 +19,13 @@
         tocVisible: false,
         appendixVisible: false,
         sections: [],  // Populated from slide data
-        syllabusUrl: '../index.html'
+        syllabusUrl: '../index.html',
+        // Touch tracking for swipe navigation
+        touch: {
+            startX: 0,
+            startY: 0,
+            startTime: 0
+        }
     };
 
     // ===== DOM Elements =====
@@ -536,6 +542,10 @@
         // Click navigation
         document.addEventListener('click', handleClick);
 
+        // Touch navigation for mobile
+        document.addEventListener('touchstart', handleTouchStart, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd, { passive: false });
+
         // TOC close button
         if (elements.tocClose) {
             elements.tocClose.addEventListener('click', hideTOC);
@@ -694,6 +704,58 @@
             nextSlide();
         } else {
             prevSlide();
+        }
+    }
+
+    // ===== Touch/Swipe Navigation =====
+    function handleTouchStart(e) {
+        // Only track single-finger touches
+        if (e.touches.length !== 1) return;
+
+        const touch = e.touches[0];
+        state.touch.startX = touch.clientX;
+        state.touch.startY = touch.clientY;
+        state.touch.startTime = Date.now();
+    }
+
+    function handleTouchEnd(e) {
+        // Don't handle if an overlay is visible
+        if (state.tocVisible || state.appendixVisible) return;
+
+        // Don't handle touches on interactive elements
+        if (e.target.closest('a, button, input, .toc-overlay, .appendix-overlay')) return;
+
+        // Only process single-finger touches
+        if (e.changedTouches.length !== 1) return;
+
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - state.touch.startX;
+        const deltaY = touch.clientY - state.touch.startY;
+        const deltaTime = Date.now() - state.touch.startTime;
+
+        // Swipe detection thresholds
+        const minSwipeDistance = 50;  // Minimum distance in pixels
+        const maxSwipeTime = 500;     // Maximum time in milliseconds
+        const maxVerticalRatio = 0.75; // Max vertical/horizontal ratio (to distinguish from scroll)
+
+        // Check if this is a valid horizontal swipe
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (absX >= minSwipeDistance &&
+            deltaTime <= maxSwipeTime &&
+            absY / absX <= maxVerticalRatio) {
+
+            // Prevent default to stop any residual scrolling
+            e.preventDefault();
+
+            if (deltaX < 0) {
+                // Swipe left -> next slide
+                nextSlide();
+            } else {
+                // Swipe right -> previous slide
+                prevSlide();
+            }
         }
     }
 
