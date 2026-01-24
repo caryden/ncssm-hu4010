@@ -14,9 +14,12 @@ import TechniqueCard from '../../components/presentation/TechniqueCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/8-testing-mvbp/narration.json';
 ---
 
-<PresentationLayout title="Class 8: Testing & MVBP" themeNumber={5}>
+<PresentationLayout title="Class 8: Testing & MVBP" themeNumber={5} classNumber={8} narration={narrationData}>
     <style>
         /* Extended theme variables for this presentation */
         :root {

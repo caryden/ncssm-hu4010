@@ -14,9 +14,12 @@ import Slide from '../../components/presentation/Slide.astro';
 import InfoCard from '../../components/presentation/InfoCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/3-value-proposition/narration.json';
 ---
 
-<PresentationLayout title="Class 3: Value Proposition" themeNumber={2}>
+<PresentationLayout title="Class 3: Value Proposition" themeNumber={2} classNumber={3} narration={narrationData}>
     <style>
         /* Journey step styles */
         .journey-step {

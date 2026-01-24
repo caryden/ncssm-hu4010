@@ -21,9 +21,12 @@ import Timeline from '../../components/presentation/Timeline.astro';
 import SegmentBranches from '../../components/visualizations/class-1/SegmentBranches.astro';
 import SegmentMatrix from '../../components/visualizations/class-1/SegmentMatrix.astro';
 import ExpansionDiagram from '../../components/visualizations/class-1/ExpansionDiagram.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/1-market-segmentation/narration.json';
 ---
 
-<PresentationLayout title="Class 1: Market Segmentation" themeNumber={1}>
+<PresentationLayout title="Class 1: Market Segmentation" themeNumber={1} classNumber={1} narration={narrationData}>
     <style>
         /* Accent color for emphasis */
         .accent { color: var(--gold); }

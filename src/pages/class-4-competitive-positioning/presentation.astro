@@ -14,9 +14,12 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/4-competitive-positioning/narration.json';
 ---
 
-<PresentationLayout title="Class 4: Competitive Positioning" themeNumber={2}>
+<PresentationLayout title="Class 4: Competitive Positioning" themeNumber={2} classNumber={4} narration={narrationData}>
     <style>
         /* VRIO grid styles */
         .vrio-grid {

@@ -14,9 +14,12 @@ import PitchCard from '../../components/presentation/PitchCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/9-scale-pitch/narration.json';
 ---
 
-<PresentationLayout title="Class 9: Scale & Pitch" themeNumber={6}>
+<PresentationLayout title="Class 9: Scale & Pitch" themeNumber={6} classNumber={9} narration={narrationData}>
     <style>
         /* Extended theme variables for this presentation */
         :root {

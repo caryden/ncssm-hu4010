@@ -14,9 +14,12 @@ import PricingCard from '../../components/presentation/PricingCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/6-business-model/narration.json';
 ---
 
-<PresentationLayout title="Class 6: Business Model" themeNumber={4}>
+<PresentationLayout title="Class 6: Business Model" themeNumber={4} classNumber={6} narration={narrationData}>
     <style>
         /* Extended theme variables for this presentation */
         :root {

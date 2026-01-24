@@ -14,9 +14,12 @@ import MetricCard from '../../components/presentation/MetricCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/7-unit-economics/narration.json';
 ---
 
-<PresentationLayout title="Class 7: Unit Economics" themeNumber={4}>
+<PresentationLayout title="Class 7: Unit Economics" themeNumber={4} classNumber={7} narration={narrationData}>
     <style>
         /* Extended theme variables for this presentation */
         :root {

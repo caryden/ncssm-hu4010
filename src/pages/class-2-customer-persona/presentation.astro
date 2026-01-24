@@ -20,9 +20,12 @@ import PersonaCard from '../../components/presentation/PersonaCard.astro';
 
 import FocusAnimation from '../../components/visualizations/class-2/FocusAnimation.astro';
 import UserBuyerDiagram from '../../components/visualizations/class-2/UserBuyerDiagram.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/2-customer-persona/narration.json';
 ---
 
-<PresentationLayout title="Class 2: Customer Persona & TAM" themeNumber={1}>
+<PresentationLayout title="Class 2: Customer Persona & TAM" themeNumber={1} classNumber={2} narration={narrationData}>
     <style>
         /* Accent classes */
         .accent { color: var(--gold); }

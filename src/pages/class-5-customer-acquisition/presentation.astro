@@ -13,9 +13,12 @@ import IconCard from '../../components/presentation/IconCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/5-customer-acquisition/narration.json';
 ---
 
-<PresentationLayout title="Class 5: Customer Acquisition" themeNumber={3}>
+<PresentationLayout title="Class 5: Customer Acquisition" themeNumber={3} classNumber={5} narration={narrationData}>
     <style>
         /* DMU grid styles */
         .dmu-grid {
