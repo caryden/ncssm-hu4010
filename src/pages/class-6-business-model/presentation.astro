@@ -1,4 +1,9 @@
 ---
+/**
+ * Class 6: Business Model & Pricing
+ * Theme 4 (Amber) - How do you make money?
+ * DE Steps 14-16
+ */
 import PresentationLayout from '../../layouts/PresentationLayout.astro';
 import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
@@ -11,13 +16,12 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
 ---
 
-<PresentationLayout title="Class 6: Business Model | Applications in Entrepreneurship">
+<PresentationLayout title="Class 6: Business Model" themeNumber={4}>
     <style>
-        /* Theme 4: How Do You Make Money? - Amber */
+        /* Extended theme variables for this presentation */
         :root {
-            --theme-color: #f59e0b;
-            --theme-color-dim: #d4a028;
-            --gradient-hero: linear-gradient(135deg, #d4a028 0%, #f59e0b 100%);
+            --theme-color-dim: var(--brand-accent);
+            --gradient-hero: linear-gradient(135deg, var(--brand-accent) 0%, var(--theme-color) 100%);
         }
 
         /* Business Model Grid */

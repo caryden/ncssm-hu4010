@@ -1,4 +1,9 @@
 ---
+/**
+ * Class 8: Testing Assumptions & MVBP
+ * Theme 5 (Red) - How do you design & build?
+ * DE Steps 20-23
+ */
 import PresentationLayout from '../../layouts/PresentationLayout.astro';
 import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
@@ -11,14 +16,13 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
 ---
 
-<PresentationLayout title="Class 8: Prove It | Applications in Entrepreneurship">
+<PresentationLayout title="Class 8: Testing & MVBP" themeNumber={5}>
     <style>
-        /* Theme 5: How Do You Design and Build? - Red */
+        /* Extended theme variables for this presentation */
         :root {
-            --theme-color: #ef4444;
             --theme-color-dim: #dc2626;
             --theme-red-light: #f87171;
-            --gradient-hero: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            --gradient-hero: linear-gradient(135deg, #dc2626 0%, var(--theme-color) 100%);
         }
 
         /* 2x2 Matrix */

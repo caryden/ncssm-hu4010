@@ -1,20 +1,19 @@
 ---
+/**
+ * Class 0: Course Introduction
+ * Theme 1 (Blue) - Introduction to DE Framework
+ */
 import PresentationLayout from '../../layouts/PresentationLayout.astro';
 import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
 import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
 import StandardSlide from '../../components/presentation/StandardSlide.astro';
 import Slide from '../../components/presentation/Slide.astro';
+import { course, institution } from '../../config';
 ---
 
-<PresentationLayout title="Class 0: Course Introduction | NCSSM Entrepreneurship">
+<PresentationLayout title="Class 0: Course Introduction" themeNumber={1}>
     <style>
-        /* Theme color override for Class 0 - NCSSM Blue */
-        :root {
-            --theme-color: #356093;
-            --theme-color-light: #4a7ab8;
-        }
-
         /* Course-specific styles */
         .course-info {
             font-size: 1.1rem;
@@ -117,18 +116,18 @@ import Slide from '../../components/presentation/Slide.astro';
         }
 
         /* Theme colors for question cards */
-        .question-card[data-theme="1"] { border-left: 4px solid #356093; }
-        .question-card[data-theme="1"] .number { color: #356093; }
-        .question-card[data-theme="2"] { border-left: 4px solid #7c3aed; }
-        .question-card[data-theme="2"] .number { color: #7c3aed; }
-        .question-card[data-theme="3"] { border-left: 4px solid #059669; }
-        .question-card[data-theme="3"] .number { color: #059669; }
-        .question-card[data-theme="4"] { border-left: 4px solid #d4a028; }
-        .question-card[data-theme="4"] .number { color: #d4a028; }
-        .question-card[data-theme="5"] { border-left: 4px solid #ef4444; }
-        .question-card[data-theme="5"] .number { color: #ef4444; }
-        .question-card[data-theme="6"] { border-left: 4px solid #06b6d4; }
-        .question-card[data-theme="6"] .number { color: #06b6d4; }
+        .question-card[data-theme="1"] { border-left: 4px solid var(--theme-1-blue); }
+        .question-card[data-theme="1"] .number { color: var(--theme-1-blue); }
+        .question-card[data-theme="2"] { border-left: 4px solid var(--theme-2-purple); }
+        .question-card[data-theme="2"] .number { color: var(--theme-2-purple); }
+        .question-card[data-theme="3"] { border-left: 4px solid var(--theme-3-green); }
+        .question-card[data-theme="3"] .number { color: var(--theme-3-green); }
+        .question-card[data-theme="4"] { border-left: 4px solid var(--theme-4-amber); }
+        .question-card[data-theme="4"] .number { color: var(--theme-4-amber); }
+        .question-card[data-theme="5"] { border-left: 4px solid var(--theme-5-red); }
+        .question-card[data-theme="5"] .number { color: var(--theme-5-red); }
+        .question-card[data-theme="6"] { border-left: 4px solid var(--theme-6-cyan); }
+        .question-card[data-theme="6"] .number { color: var(--theme-6-cyan); }
 
         /* Timeline */
         .timeline {
@@ -286,12 +285,12 @@ import Slide from '../../components/presentation/Slide.astro';
     </style>
 
     <!-- Slide 1: Title -->
-    <TitleSlide 
-        id="1" 
-        section="Opening" 
-        title="Applications in Entrepreneurship"
+    <TitleSlide
+        id="1"
+        section="Opening"
+        title={course.name}
         subtitle="Based on Bill Aulet's Disciplined Entrepreneurship"
-        info="NCSSM Spring 2026 | Carl Ryden & Chad Keister"
+        info={`${institution.shortName} ${course.semester} | ${course.instructors.map(i => i.name).join(' & ')}`}
     />
 
     <!-- Slide 2: The Question -->

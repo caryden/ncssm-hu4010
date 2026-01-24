@@ -1,4 +1,9 @@
 ---
+/**
+ * Class 1: Market Segmentation & Beachhead Selection
+ * Theme 1 (Blue) - Who is your customer?
+ * DE Steps 1-2
+ */
 import PresentationLayout from '../../layouts/PresentationLayout.astro';
 import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
@@ -18,14 +23,8 @@ import SegmentMatrix from '../../components/visualizations/class-1/SegmentMatrix
 import ExpansionDiagram from '../../components/visualizations/class-1/ExpansionDiagram.astro';
 ---
 
-<PresentationLayout title="Class 1: Market Segmentation | NCSSM Entrepreneurship">
+<PresentationLayout title="Class 1: Market Segmentation" themeNumber={1}>
     <style>
-        /* Theme color override for Class 1 - NCSSM Blue (Theme 1: Who is your customer?) */
-        :root {
-            --theme-color: #356093;
-            --theme-color-light: #4a7ab8;
-        }
-
         /* Accent color for emphasis */
         .accent { color: var(--gold); }
         .danger { color: var(--danger-red); }

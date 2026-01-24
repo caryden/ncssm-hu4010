@@ -1,4 +1,9 @@
 ---
+/**
+ * Class 2: Customer Persona & TAM
+ * Theme 1 (Blue) - Who is your customer?
+ * DE Steps 3-5
+ */
 import PresentationLayout from '../../layouts/PresentationLayout.astro';
 import TitleSlide from '../../components/presentation/TitleSlide.astro';
 import StatementSlide from '../../components/presentation/StatementSlide.astro';
@@ -17,14 +22,8 @@ import FocusAnimation from '../../components/visualizations/class-2/FocusAnimati
 import UserBuyerDiagram from '../../components/visualizations/class-2/UserBuyerDiagram.astro';
 ---
 
-<PresentationLayout title="Class 2: Customer Persona & TAM | NCSSM Entrepreneurship">
+<PresentationLayout title="Class 2: Customer Persona & TAM" themeNumber={1}>
     <style>
-        /* Theme color override for Class 2 - NCSSM Blue (Theme 1: Who is your customer?) */
-        :root {
-            --theme-color: #356093;
-            --theme-color-light: #4a7ab8;
-        }
-
         /* Accent classes */
         .accent { color: var(--gold); }
         .danger { color: var(--danger-red); }
