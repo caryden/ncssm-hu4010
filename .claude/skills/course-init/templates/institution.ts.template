@@ -1,0 +1,56 @@
+/**
+ * Institution Configuration
+ *
+ * Branding and identity settings for {INSTITUTION_NAME}
+ */
+
+export interface InstitutionConfig {
+  name: string;
+  shortName: string;
+  logo: string;
+  favicon: string;
+  primaryColor: string;
+  accentColor: string;
+  website: string;
+  contactEmail?: string;
+}
+
+export const institution: InstitutionConfig = {
+  // Full institution name
+  name: "{INSTITUTION_NAME}",
+
+  // Short name for headers/footers
+  shortName: "{INSTITUTION_SHORT_NAME}",
+
+  // Path to logo image
+  logo: "/images/{LOGO_FILENAME}",
+
+  // Favicon path
+  favicon: "/favicon.ico",
+
+  // Primary brand color (headers, navigation)
+  primaryColor: "{PRIMARY_COLOR}",
+
+  // Accent color (highlights, links)
+  accentColor: "{ACCENT_COLOR}",
+
+  // Institution website
+  website: "{INSTITUTION_WEBSITE}",
+
+  // Contact email (optional)
+  contactEmail: "{CONTACT_EMAIL}",
+};
+
+/**
+ * CSS Variables
+ *
+ * Use these in your styles:
+ * - var(--institution-primary)
+ * - var(--institution-accent)
+ */
+export const institutionCSSVars = `
+  :root {
+    --institution-primary: ${institution.primaryColor};
+    --institution-accent: ${institution.accentColor};
+  }
+`;

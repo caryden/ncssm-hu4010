@@ -236,3 +236,85 @@ The course follows Bill Aulet's 6 themes, color-coded as:
 | 6 | How do you scale? | Cyan `#0891b2` | `--theme-6-scale` |
 
 Each class presentation uses its theme color as `--theme-color` for accents.
+
+---
+
+## RPIV Curriculum Development System
+
+This project includes a complete RPIV (Research-Plan-Implement-Verify/Validate) skills system for systematic curriculum development.
+
+### Quick Start
+
+```bash
+/artifact-status     # Check what exists and what's missing
+/rpiv-workflow       # Get guided workflow recommendations
+```
+
+### Available Skills
+
+#### Meta-Skills
+| Skill | Purpose |
+|-------|---------|
+| `/skill-builder` | Create new Claude Code skills |
+| `/skill-architect` | Design skill sets for workflows |
+
+#### Course-Level Skills
+| Skill | Purpose | Output |
+|-------|---------|--------|
+| `/course-init` | Scaffold new course project | Project structure |
+| `/course-research` | Research pedagogical approaches | `curriculum-design-research.md` |
+| `/course-plan` | Define teaching philosophy | `course-plan.md` |
+| `/syllabus-build` | Create session schedule | `SYLLABUS.md` |
+| `/master-spec` | Establish design system | `master-presentation-spec.md` |
+
+#### Class-Level Skills (Per-Topic RPIV Loop)
+| Skill | Purpose | Gate |
+|-------|---------|------|
+| `/class-research {topic}` | Research topic deeply | - |
+| `/lesson-plan {topic}` | Plan instruction | Gate 1 |
+| `/presentation-spec {topic}` | Specify slides | Gate 2 |
+| `/presentation-build {topic}` | Build presentation | Gate 3 |
+| `/presentation-review {topic}` | Validate & verify | Gates 4-5 |
+| `/narration-build {topic}` | Generate voice narration | - |
+
+#### Support Skills
+| Skill | Purpose |
+|-------|---------|
+| `/artifact-status` | Check artifact completeness |
+| `/gate-check {scope}` | Run validation gates |
+
+### Quality Gates
+
+| Gate | Question | On Fail |
+|------|----------|---------|
+| Gate 1 | Objectives align with course plan? | Fix lesson plan |
+| Gate 2 | Spec achieves objectives? | Fix presentation spec |
+| Gate 3 | Implementation matches spec? | Fix code |
+| Gate 4 | Built the thing right? (Verification) | Fix CODE |
+| Gate 5 | Built the right thing? (Validation) | Fix SPEC first |
+
+### Workflow Order
+
+```
+Course Foundation:
+  course-init → course-research → course-plan → syllabus-build → master-spec
+
+Per-Class Loop:
+  class-research → lesson-plan (G1) → presentation-spec (G2) →
+  presentation-build (G3) → presentation-review (G4-5) → narration-build
+```
+
+### Configuration
+
+RPIV settings are in `.claude/rpiv-config.json`. Key settings:
+- Minimum font sizes
+- Required research sources
+- Gate strictness
+- Narration provider
+
+### Skill Files Location
+
+All skills are in `.claude/skills/{skill-name}/`:
+- `SKILL.md` - Main skill instructions
+- `templates/` - Output templates
+- `gate-N-checklist.md` - Gate checklists (where applicable)

@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "framework": "astro",
+  "narration": {
+    "provider": "elevenlabs",
+    "voiceId": "configurable",
+    "model": "eleven_multilingual_v2",
+    "defaultVoice": "Rachel",
+    "outputFormat": "mp3_44100_128"
+  },
+  "research": {
+    "defaultSources": [
+      "3Blue1Brown",
+      "Khan Academy",
+      "MIT OpenCourseWare",
+      "Coursera",
+      "edX"
+    ],
+    "requireMinSources": 2,
+    "requireMinMisconceptions": 3,
+    "requireMinVizPatterns": 1
+  },
+  "validation": {
+    "strictMode": true,
+    "minFontSize": "1rem",
+    "preferredLabelSize": "1.25rem",
+    "requiredElements": [
+      "toc-overlay",
+      "keyboard-hints",
+      "progress-bar",
+      "slide-navigation"
+    ],
+    "requiredSlideTypes": [
+      "slide-title",
+      "slide-content",
+      "slide-visual"
+    ]
+  },
+  "astro": {
+    "componentPath": "src/components/presentation",
+    "layoutPath": "src/layouts/PresentationLayout.astro",
+    "pagesPath": "src/pages",
+    "contentPath": "src/content"
+  },
+  "gates": {
+    "gate1": {
+      "name": "Lesson Plan Alignment",
+      "description": "Objectives align with course plan",
+      "required": true
+    },
+    "gate2": {
+      "name": "Spec Achievement",
+      "description": "Spec achieves lesson objectives",
+      "required": true
+    },
+    "gate3": {
+      "name": "Implementation Match",
+      "description": "Presentation matches spec",
+      "required": true
+    },
+    "gate4": {
+      "name": "Verification",
+      "description": "Did we build the thing right?",
+      "required": true
+    },
+    "gate5": {
+      "name": "Validation",
+      "description": "Did we build the right thing?",
+      "required": true
+    }
+  },
+  "blocking": {
+    "lesson-plan": ["course-plan.md", "research-{topic}.md"],
+    "presentation-spec": ["lesson-plan-{topic}.md"],
+    "presentation": ["presentation-spec-{topic}.md"],
+    "reviewlog": ["presentation.astro"],
+    "narration": ["presentation.astro", "reviewlog.md"]
+  },
+  "paths": {
+    "courseArtifacts": ".",
+    "classArtifacts": "src/pages/class-{n}-{topic}",
+    "researchOutput": "research",
+    "audioOutput": "public/audio"
+  }
+}

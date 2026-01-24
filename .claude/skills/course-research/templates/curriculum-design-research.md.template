@@ -1,0 +1,182 @@
+# Curriculum Design Research: {COURSE_NAME}
+
+Generated: {DATE}
+Researcher: Claude (RPIV course-research skill)
+
+---
+
+## Executive Summary
+
+{EXECUTIVE_SUMMARY}
+
+---
+
+## Expert Sources
+
+{For each expert, copy this block:}
+
+### {EXPERT_NAME}
+
+- **Credentials**: {CREDENTIALS}
+- **Affiliation**: {ORGANIZATION}
+- **Key Works**:
+  - {WORK_1}
+  - {WORK_2}
+- **Teaching Philosophy**: {PHILOSOPHY}
+- **Relevance to This Course**: {RELEVANCE}
+- **Resources**:
+  - {RESOURCE_URL_1}
+  - {RESOURCE_URL_2}
+
+---
+
+## Pedagogical Approaches
+
+### Primary Recommended Approach: {APPROACH_NAME}
+
+{APPROACH_DESCRIPTION}
+
+**Why This Approach**:
+{RATIONALE}
+
+**Supporting Evidence**:
+1. {EVIDENCE_1} [Source: {SOURCE}]
+2. {EVIDENCE_2} [Source: {SOURCE}]
+3. {EVIDENCE_3} [Source: {SOURCE}]
+
+**Implementation Notes**:
+- {NOTE_1}
+- {NOTE_2}
+
+### Alternative Approaches Considered
+
+| Approach | Pros | Cons | Decision |
+|----------|------|------|----------|
+| {APPROACH_A} | {PROS} | {CONS} | {WHY_NOT_PRIMARY} |
+| {APPROACH_B} | {PROS} | {CONS} | {WHY_NOT_PRIMARY} |
+
+---
+
+## Common Misconceptions
+
+{Minimum 3 misconceptions required}
+
+### Misconception 1: {MISCONCEPTION_TITLE}
+
+- **What Students Typically Believe**: {BELIEF}
+- **Why This Is Incorrect**: {EXPLANATION}
+- **Root Cause**: {WHY_STUDENTS_THINK_THIS}
+- **Teaching Strategy to Address**:
+  1. {STRATEGY_STEP_1}
+  2. {STRATEGY_STEP_2}
+- **Source**: {SOURCE_URL}
+
+### Misconception 2: {MISCONCEPTION_TITLE}
+
+{Same structure as above}
+
+### Misconception 3: {MISCONCEPTION_TITLE}
+
+{Same structure as above}
+
+---
+
+## Visualization Patterns
+
+{Minimum 1 visualization pattern required}
+
+### Pattern 1: {PATTERN_NAME}
+
+- **Concept Being Visualized**: {CONCEPT}
+- **Type**: {static diagram | animated sequence | interactive exploration}
+- **Inspiration Source**: {WHERE_FOUND}
+- **How It Works**:
+  {DESCRIPTION}
+- **Example Reference**: {URL_OR_DESCRIPTION}
+- **Proposed Adaptation for This Course**:
+  {HOW_TO_IMPLEMENT}
+- **Technical Notes**:
+  - Technology: {D3.js | CSS animations | etc.}
+  - Interactivity: {click, hover, scrub, etc.}
+  - Data requirements: {what data drives it}
+
+---
+
+## Learning Progression
+
+Based on research, recommended concept ordering:
+
+| Order | Concept | Prerequisites | Rationale |
+|-------|---------|---------------|-----------|
+| 1 | {CONCEPT_1} | None | {WHY_FIRST} |
+| 2 | {CONCEPT_2} | {CONCEPT_1} | {WHY_HERE} |
+| 3 | {CONCEPT_3} | {CONCEPTS_1_2} | {WHY_HERE} |
+| ... | ... | ... | ... |
+
+---
+
+## Assessment Approaches
+
+Research supports these assessment methods for this subject:
+
+| Method | When to Use | Implementation |
+|--------|-------------|----------------|
+| {METHOD_1} | {TIMING} | {HOW} |
+| {METHOD_2} | {TIMING} | {HOW} |
+
+---
+
+## Source Bibliography
+
+{Numbered list with full citations}
+
+1. {AUTHOR}. "{TITLE}". {PUBLISHER/PLATFORM}, {YEAR}.
+   URL: {URL}
+   Accessed: {DATE}
+
+2. {Next source...}
+
+---
+
+## Recommendations for Course Plan
+
+Based on this research, the course plan should:
+
+1. **{RECOMMENDATION_1_TITLE}**
+   {RECOMMENDATION_1_DETAIL}
+
+2. **{RECOMMENDATION_2_TITLE}**
+   {RECOMMENDATION_2_DETAIL}
+
+3. **{RECOMMENDATION_3_TITLE}**
+   {RECOMMENDATION_3_DETAIL}
+
+---
+
+## Questions Requiring Instructor Input
+
+These questions emerged from research and need human decision:
+
+1. {QUESTION_1}
+   - Option A: {OPTION_A}
+   - Option B: {OPTION_B}
+   - Research suggests: {SUGGESTION}
+
+2. {QUESTION_2}
+   {Same format}
+
+---
+
+## Appendix: Additional Resources
+
+### Recommended Reading for Instructor
+- {RESOURCE_1}
+- {RESOURCE_2}
+
+### Supplementary Student Resources
+- {RESOURCE_1}
+- {RESOURCE_2}
+
+### Related Courses to Review
+- {COURSE_1} at {INSTITUTION} - {WHY_RELEVANT}
+- {COURSE_2} at {INSTITUTION} - {WHY_RELEVANT}

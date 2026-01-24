@@ -1,0 +1,418 @@
+# Master Presentation Specification
+
+## Overview
+
+This document defines the design system for all {COURSE_NAME} presentations. Every presentation must follow these specifications to ensure consistency, accessibility, and readability.
+
+**Delivery Context**: Presentations are shown on ~80" TVs in classrooms AND streamed over Zoom. All design decisions account for both viewing contexts.
+
+---
+
+## Color Palette
+
+### Institution Colors
+
+| Name | Hex | CSS Variable | Usage |
+|------|-----|--------------|-------|
+| Primary | {PRIMARY_COLOR} | `--institution-primary` | Headers, navigation |
+| Accent | {ACCENT_COLOR} | `--institution-accent` | Highlights, links |
+
+### Theme Colors
+
+{If using themed framework}
+
+| Theme | Name | Hex | CSS Variable | Question |
+|-------|------|-----|--------------|----------|
+| 1 | {THEME_1} | {COLOR_1} | `--theme-1-{name}` | {QUESTION_1} |
+| 2 | {THEME_2} | {COLOR_2} | `--theme-2-{name}` | {QUESTION_2} |
+| 3 | {THEME_3} | {COLOR_3} | `--theme-3-{name}` | {QUESTION_3} |
+| 4 | {THEME_4} | {COLOR_4} | `--theme-4-{name}` | {QUESTION_4} |
+| 5 | {THEME_5} | {COLOR_5} | `--theme-5-{name}` | {QUESTION_5} |
+| 6 | {THEME_6} | {COLOR_6} | `--theme-6-{name}` | {QUESTION_6} |
+
+### Semantic Colors
+
+| Purpose | Hex | CSS Variable |
+|---------|-----|--------------|
+| Success | #059669 | `--color-success` |
+| Warning | #d97706 | `--color-warning` |
+| Error | #dc2626 | `--color-error` |
+| Info | #0891b2 | `--color-info` |
+
+### Neutral Colors
+
+| Purpose | Hex | CSS Variable |
+|---------|-----|--------------|
+| Background | #ffffff | `--color-bg` |
+| Surface | #f8fafc | `--color-surface` |
+| Border | #e2e8f0 | `--color-border` |
+| Text Primary | #1e293b | `--color-text` |
+| Text Secondary | #64748b | `--color-text-secondary` |
+
+### CSS Variables Block
+
+```css
+:root {
+  /* Institution */
+  --institution-primary: {PRIMARY_COLOR};
+  --institution-accent: {ACCENT_COLOR};
+
+  /* Current theme (set per presentation) */
+  --theme-color: var(--theme-1-{name});
+
+  /* Semantic */
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #0891b2;
+
+  /* Neutrals */
+  --color-bg: #ffffff;
+  --color-surface: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-secondary: #64748b;
+}
+```
+
+---
+
+## Typography
+
+### Font Families
+
+```css
+:root {
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+}
+```
+
+### Font Loading
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+```
+
+### Type Scale
+
+| Level | Size | Line Height | Weight | Usage |
+|-------|------|-------------|--------|-------|
+| Display | 3rem (48px) | 1.1 | 700 | Hero titles |
+| H1 | 2.5rem (40px) | 1.2 | 700 | Slide titles |
+| H2 | 2rem (32px) | 1.25 | 600 | Section headers |
+| H3 | 1.5rem (24px) | 1.3 | 600 | Subsections |
+| Body | 1.5rem (24px) | 1.5 | 400 | Main content |
+| Body Small | 1.25rem (20px) | 1.5 | 400 | Secondary content |
+| Label | 1.25rem (20px) | 1.4 | 500 | Charts, captions |
+| Caption | 1rem (16px) | 1.4 | 400 | Metadata only |
+
+### MINIMUM FONT SIZES (CRITICAL)
+
+**These are absolute minimums for classroom readability:**
+
+| Element Type | Minimum Size | Notes |
+|--------------|--------------|-------|
+| Titles/Headlines | `2.5rem` (40px) | Slide titles, section headers |
+| Primary Content | `1.5rem` (24px) | Main text, bullet points |
+| Secondary Content | `1.25rem` (20px) | Supporting text |
+| Labels & Captions | `1.25rem` (20px) | **Chart labels, D3 text** |
+| Absolute Minimum | `1rem` (16px) | Only non-essential metadata |
+
+### Code Review Rules
+
+```javascript
+// REJECT - Too small for classroom
+.attr('font-size', '12px')
+.attr('font-size', '14px')
+.attr('font-size', '0.8rem')
+.style('font-size', '10pt')
+
+// ACCEPT - Classroom readable
+.attr('font-size', '1rem')      // Absolute minimum
+.attr('font-size', '1.25rem')   // Preferred for labels
+.attr('font-size', '1.5rem')    // Body text
+```
+
+---
+
+## Layout System
+
+### Slide Types
+
+| Type | Class | Purpose | Layout |
+|------|-------|---------|--------|
+| Title | `.slide-title` | Opening slides | Centered, large text |
+| Statement | `.slide-statement` | Key messages | Centered, impact font |
+| Content | `.slide-content` | Bullet points | Left-aligned list |
+| Visual | `.slide-visual` | D3/diagrams | Full-width container |
+| Quote | `.slide-quote` | Attributed quotes | Centered with attribution |
+| Two-Part | `.slide-two-part` | Primary + secondary | Stacked sections |
+| Comparison | `.slide-comparison` | Two columns | Side-by-side |
+| List | `.slide-list` | Lists in container | `.slide-content` wrapper |
+
+### Slide HTML Structure
+
+```html
+<section class="slide slide-{type}" id="slide-{n}" data-title="{Title}">
+  <div class="slide-content">
+    <!-- Content here -->
+  </div>
+</section>
+```
+
+### Common CSS
+
+```css
+.slide {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 4rem;
+  text-align: center;
+}
+
+.slide-content {
+  max-width: 90%;
+  width: 100%;
+}
+```
+
+---
+
+## Component Guidelines
+
+### Progress Bar
+
+```css
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: var(--theme-color);
+  transition: width 0.3s ease;
+}
+```
+
+### TOC Overlay
+
+- Triggered by `T` key
+- Full-screen overlay with slide list
+- Clickable entries
+- Current slide highlighted
+
+### Keyboard Hints
+
+```html
+<div class="keyboard-hints">
+  <span>← → Navigate</span>
+  <span>T TOC</span>
+  <span>A Appendix</span>
+  <span>F Fullscreen</span>
+</div>
+```
+
+### Slide Transitions
+
+```css
+.slide {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+```
+
+---
+
+## D3 Visualization Standards
+
+### Responsive Pattern (CRITICAL)
+
+All D3 visualizations must be responsive:
+
+```javascript
+// GOOD - Responsive pattern
+function createVisualization(container) {
+  const width = 600;
+  const height = 400;
+  const scale = Math.min(width, height);
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .style('width', '100%')
+    .style('max-width', `${width}px`);
+
+  // Positions as proportions
+  const center = { x: width * 0.5, y: height * 0.5 };
+  const radius = scale * 0.3;  // 30% of scale
+
+  // Font sizes in rem
+  const labelSize = '1.25rem';
+  const titleSize = '1.5rem';
+}
+
+// BAD - Hardcoded pixels
+const center = { x: 300, y: 200 };
+const radius = 50;
+```
+
+### Font Size Requirements
+
+```javascript
+// All text in D3 visualizations
+svg.selectAll('text')
+  .style('font-size', '1.25rem')  // Minimum for labels
+  .style('font-family', 'var(--font-body)');
+
+// Axis labels
+svg.append('g')
+  .call(xAxis)
+  .selectAll('text')
+  .style('font-size', '1.25rem');
+```
+
+### Animation Standards
+
+```javascript
+const animation = {
+  duration: 800,
+  easing: d3.easeCubicOut,
+  staggerDelay: 200
+};
+
+// Usage
+elements.transition()
+  .duration(animation.duration)
+  .ease(animation.easing)
+  .delay((d, i) => i * animation.staggerDelay);
+```
+
+### Color Usage
+
+```javascript
+// Use theme colors
+const color = getComputedStyle(document.documentElement)
+  .getPropertyValue('--theme-color');
+
+// Or reference directly
+.attr('fill', 'var(--theme-color)')
+```
+
+---
+
+## Keyboard Navigation
+
+### Standard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `→` / `Space` | Next slide |
+| `←` | Previous slide |
+| `T` | Toggle TOC overlay |
+| `A` | Toggle Appendix |
+| `S` | Toggle Syllabus |
+| `F` | Toggle fullscreen |
+| `0-9` | Jump to slide 0-9 |
+| `Escape` | Close overlays |
+
+### Implementation
+
+```javascript
+document.addEventListener('keydown', (e) => {
+  switch(e.key) {
+    case 'ArrowRight':
+    case ' ':
+      nextSlide();
+      break;
+    case 'ArrowLeft':
+      prevSlide();
+      break;
+    case 't':
+    case 'T':
+      toggleTOC();
+      break;
+    // ... etc
+  }
+});
+```
+
+---
+
+## Shared Resources
+
+### Files
+
+| File | Purpose |
+|------|---------|
+| `shared/styles.css` | Common CSS for all presentations |
+| `shared/presentation.js` | Navigation and interaction logic |
+
+### Usage
+
+```html
+<link rel="stylesheet" href="../shared/styles.css">
+<script src="../shared/presentation.js"></script>
+```
+
+---
+
+## Code Review Checklist
+
+Before approving any presentation:
+
+### Font Sizes
+- [ ] No font sizes below `1rem` (16px)
+- [ ] D3 labels use `1.25rem` or larger
+- [ ] Slide titles use `2.5rem` or larger
+- [ ] Body text uses `1.5rem` or larger
+
+### Layout
+- [ ] Slides use flexbox centering
+- [ ] Content is vertically and horizontally centered
+- [ ] Adequate whitespace around content
+
+### D3 Visualizations
+- [ ] Uses viewBox, not fixed width/height
+- [ ] Positions calculated as proportions
+- [ ] Font sizes in rem, not px
+- [ ] Colors use CSS variables
+
+### Navigation
+- [ ] Keyboard shortcuts work (T, A, S, arrows)
+- [ ] TOC overlay functions
+- [ ] Progress bar updates
+
+### Accessibility
+- [ ] Color contrast meets WCAG AA
+- [ ] Alt text for images
+- [ ] Keyboard navigable
+
+---
+
+## File Naming Conventions
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Presentation | `presentation.astro` | `class-5-tam/presentation.astro` |
+| Spec | `presentation-spec-{topic}.md` | `presentation-spec-tam.md` |
+| Lesson Plan | `lesson-plan-{topic}.md` | `lesson-plan-tam.md` |
+| Research | `research-{topic}.md` | `research/research-tam.md` |
+| Images | `{topic}-{descriptor}.{ext}` | `tam-funnel.svg` |
+
+---
+
+*Last Updated: {DATE}*
+*Generated by RPIV master-spec skill*

@@ -1,0 +1,245 @@
+# Course Plan: {COURSE_NAME}
+
+Version: 1.0
+Created: {DATE}
+Based on: curriculum-design-research.md
+
+---
+
+## Course Philosophy
+
+{PHILOSOPHY_PARAGRAPH_1}
+
+{PHILOSOPHY_PARAGRAPH_2}
+
+{PHILOSOPHY_PARAGRAPH_3}
+
+---
+
+## Guiding Principles
+
+{Minimum 5, maximum 7 principles}
+
+### Principle 1: {PRINCIPLE_1_NAME}
+
+**Statement**: {ONE_SENTENCE_STATEMENT}
+
+**Rationale**: {EVIDENCE_FROM_RESEARCH}
+
+**Implications**:
+- **Slide Design**: {WHAT_THIS_MEANS_FOR_SLIDES}
+- **Activities**: {WHAT_THIS_MEANS_FOR_ACTIVITIES}
+- **Assessment**: {WHAT_THIS_MEANS_FOR_ASSESSMENT}
+
+### Principle 2: {PRINCIPLE_2_NAME}
+
+{Same structure}
+
+### Principle 3: {PRINCIPLE_3_NAME}
+
+{Same structure}
+
+### Principle 4: {PRINCIPLE_4_NAME}
+
+{Same structure}
+
+### Principle 5: {PRINCIPLE_5_NAME}
+
+{Same structure}
+
+---
+
+## Learning Objectives Framework
+
+### Taxonomy
+
+This course uses modified Bloom's taxonomy:
+
+| Level | Definition | Example Verbs | Usage in Course |
+|-------|------------|---------------|-----------------|
+| Remember | Recall facts and concepts | define, list, identify | Foundation building |
+| Understand | Explain ideas | explain, describe, summarize | Early in concept |
+| Apply | Use in new situations | calculate, demonstrate, use | Practice activities |
+| Analyze | Draw connections | compare, contrast, analyze | Complex topics |
+| Evaluate | Justify decisions | evaluate, critique, justify | Advanced work |
+| Create | Produce new work | design, construct, develop | Projects |
+
+### Objective Writing Standards
+
+1. **Action Verb First**: Every objective starts with a measurable verb
+2. **Specificity**: Avoid vague terms like "understand" without clarification
+3. **Single Focus**: One objective = one skill or knowledge item
+4. **Level Appropriateness**: Verb matches expected cognitive level
+5. **Measurability**: Can be assessed through observation or testing
+
+### Mastery Definition
+
+{MASTERY_DEFINITION}
+
+---
+
+## Content Guidelines
+
+### Concepts Per Session
+
+| Category | Count | Rationale |
+|----------|-------|-----------|
+| New concepts introduced | {N} | {WHY} |
+| Concepts revisited | {N} | {WHY} |
+| Total concept touches | {N} | {WHY} |
+
+### Session Structure (Theory/Practice Balance)
+
+| Component | Percentage | Time (for {X}-min class) |
+|-----------|------------|--------------------------|
+| Concept introduction | {X}% | {TIME} min |
+| Worked examples | {X}% | {TIME} min |
+| Student practice | {X}% | {TIME} min |
+| Discussion/reflection | {X}% | {TIME} min |
+| Transitions/buffer | {X}% | {TIME} min |
+| **Total** | 100% | {TOTAL} min |
+
+### Visualization Standards
+
+Based on research findings, all visualizations must:
+
+1. {STANDARD_1}
+2. {STANDARD_2}
+3. {STANDARD_3}
+4. {STANDARD_4}
+
+### Pacing Guidelines
+
+- **Concept introduction**: Maximum {X} minutes before interaction
+- **Practice segments**: Minimum {X} minutes for meaningful engagement
+- **Transition time**: Budget {X} minutes between major sections
+- **Question/discussion**: Reserve {X} minutes per class
+
+---
+
+## Misconception Handling
+
+### Overall Strategy
+
+{MISCONCEPTION_STRATEGY_DESCRIPTION}
+
+### Specific Misconceptions to Address
+
+| # | Misconception | Target Class(es) | Technique | Verification |
+|---|---------------|------------------|-----------|--------------|
+| 1 | {MISCONCEPTION_1} | Class {N} | {TECHNIQUE} | {HOW_TO_CHECK} |
+| 2 | {MISCONCEPTION_2} | Class {N} | {TECHNIQUE} | {HOW_TO_CHECK} |
+| 3 | {MISCONCEPTION_3} | Class {N} | {TECHNIQUE} | {HOW_TO_CHECK} |
+
+### Conceptual Change Techniques
+
+- **Cognitive Conflict**: {DESCRIPTION}
+- **Bridging Analogies**: {DESCRIPTION}
+- **Explicit Comparison**: {DESCRIPTION}
+
+---
+
+## Assessment Philosophy
+
+### Formative Assessment (Ongoing)
+
+| Method | Frequency | Purpose |
+|--------|-----------|---------|
+| {METHOD_1} | {FREQUENCY} | {PURPOSE} |
+| {METHOD_2} | {FREQUENCY} | {PURPOSE} |
+
+### Summative Assessment (Final)
+
+| Method | Weight | What It Measures |
+|--------|--------|------------------|
+| {METHOD_1} | {WEIGHT}% | {MEASURES} |
+| {METHOD_2} | {WEIGHT}% | {MEASURES} |
+
+### Feedback Guidelines
+
+- Timing: {WHEN_FEEDBACK_GIVEN}
+- Format: {HOW_FEEDBACK_DELIVERED}
+- Focus: {WHAT_FEEDBACK_EMPHASIZES}
+
+---
+
+## Success Metrics
+
+### Student Learning Metrics
+
+1. {METRIC_1}: {HOW_MEASURED}
+2. {METRIC_2}: {HOW_MEASURED}
+3. {METRIC_3}: {HOW_MEASURED}
+
+### Course Effectiveness Metrics
+
+1. {METRIC_1}: {HOW_MEASURED}
+2. {METRIC_2}: {HOW_MEASURED}
+
+### Continuous Improvement
+
+{HOW_COURSE_WILL_BE_ITERATED}
+
+---
+
+## Framework Integration
+
+{If using a pedagogical framework like Disciplined Entrepreneurship}
+
+### Framework: {FRAMEWORK_NAME}
+
+**How Framework Applies**:
+{DESCRIPTION}
+
+**Framework Elements Mapping**:
+| Framework Element | Course Implementation |
+|-------------------|----------------------|
+| {ELEMENT_1} | {HOW_IMPLEMENTED} |
+| {ELEMENT_2} | {HOW_IMPLEMENTED} |
+
+---
+
+## Instructor Notes
+
+### Classroom Setup
+
+{SETUP_REQUIREMENTS}
+
+### Technology Requirements
+
+{TECH_REQUIREMENTS}
+
+### Common Challenges
+
+{ANTICIPATED_CHALLENGES_AND_SOLUTIONS}
+
+### Flexibility Points
+
+These aspects can be adjusted based on student needs:
+- {FLEXIBLE_ITEM_1}
+- {FLEXIBLE_ITEM_2}
+
+These aspects should remain fixed:
+- {FIXED_ITEM_1}
+- {FIXED_ITEM_2}
+
+---
+
+## Approval Checklist
+
+Before proceeding to syllabus creation, instructor should verify:
+
+- [ ] Philosophy accurately represents teaching intent
+- [ ] Principles are appropriate for student level
+- [ ] Content guidelines are realistic for class duration
+- [ ] Misconceptions list is accurate and complete
+- [ ] Assessment approach is feasible
+- [ ] Success metrics are measurable
+
+**Instructor Signature**: _________________
+**Date**: _________________
+
+---
+
+*This course plan was derived from curriculum-design-research.md
+Run `/syllabus-build` after approval to create session schedule.*
