@@ -1,0 +1,299 @@
+{
+  "classNumber": 4,
+  "topic": "competitive-positioning",
+  "generatedAt": "2026-01-24T22:25:06.881Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-4/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "dac6573f20c66880",
+      "slideSignature": {
+        "number": 1,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "2": {
+      "audioFile": "slide-2.mp3",
+      "narrationTextHash": "9a1f09154f70c59a",
+      "slideSignature": {
+        "number": 2,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "3": {
+      "audioFile": "slide-3.mp3",
+      "narrationTextHash": "eae048707e10319e",
+      "slideSignature": {
+        "number": 3,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "4": {
+      "audioFile": "slide-4.mp3",
+      "narrationTextHash": "bd006d14dfc10022",
+      "slideSignature": {
+        "number": 4,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "5": {
+      "audioFile": "slide-5.mp3",
+      "narrationTextHash": "59dee5d5ce55539e",
+      "slideSignature": {
+        "number": 5,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "6": {
+      "audioFile": "slide-6.mp3",
+      "narrationTextHash": "d02d635f8fc6c248",
+      "slideSignature": {
+        "number": 6,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "7": {
+      "audioFile": "slide-7.mp3",
+      "narrationTextHash": "b8817d4db2155e57",
+      "slideSignature": {
+        "number": 7,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "8": {
+      "audioFile": "slide-8.mp3",
+      "narrationTextHash": "49bb4b3f9d49405b",
+      "slideSignature": {
+        "number": 8,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "9": {
+      "audioFile": "slide-9.mp3",
+      "narrationTextHash": "f28596295ab1df00",
+      "slideSignature": {
+        "number": 9,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "10": {
+      "audioFile": "slide-10.mp3",
+      "narrationTextHash": "ac3fab896d3cd5d9",
+      "slideSignature": {
+        "number": 10,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "11": {
+      "audioFile": "slide-11.mp3",
+      "narrationTextHash": "aaebd828c1243c92",
+      "slideSignature": {
+        "number": 11,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "12": {
+      "audioFile": "slide-12.mp3",
+      "narrationTextHash": "974cdce3b0d652ac",
+      "slideSignature": {
+        "number": 12,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "13": {
+      "audioFile": "slide-13.mp3",
+      "narrationTextHash": "ba56d2e2113d884b",
+      "slideSignature": {
+        "number": 13,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "14": {
+      "audioFile": "slide-14.mp3",
+      "narrationTextHash": "d77a556cda2f556b",
+      "slideSignature": {
+        "number": 14,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "15": {
+      "audioFile": "slide-15.mp3",
+      "narrationTextHash": "84807f0e10636d47",
+      "slideSignature": {
+        "number": 15,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "16": {
+      "audioFile": "slide-16.mp3",
+      "narrationTextHash": "10d5aa364d99cefa",
+      "slideSignature": {
+        "number": 16,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "17": {
+      "audioFile": "slide-17.mp3",
+      "narrationTextHash": "493f99428e494e89",
+      "slideSignature": {
+        "number": 17,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "18": {
+      "audioFile": "slide-18.mp3",
+      "narrationTextHash": "d1af93e84b743293",
+      "slideSignature": {
+        "number": 18,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "19": {
+      "audioFile": "slide-19.mp3",
+      "narrationTextHash": "348049ce733c6613",
+      "slideSignature": {
+        "number": 19,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "20": {
+      "audioFile": "slide-20.mp3",
+      "narrationTextHash": "fb5b6c149eab6828",
+      "slideSignature": {
+        "number": 20,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "21": {
+      "audioFile": "slide-21.mp3",
+      "narrationTextHash": "b845929996c136f2",
+      "slideSignature": {
+        "number": 21,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "22": {
+      "audioFile": "slide-22.mp3",
+      "narrationTextHash": "69e908a4ab2ca5ec",
+      "slideSignature": {
+        "number": 22,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "23": {
+      "audioFile": "slide-23.mp3",
+      "narrationTextHash": "5b0ae15f4af11e64",
+      "slideSignature": {
+        "number": 23,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "24": {
+      "audioFile": "slide-24.mp3",
+      "narrationTextHash": "045b470a74c5931a",
+      "slideSignature": {
+        "number": 24,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "25": {
+      "audioFile": "slide-25.mp3",
+      "narrationTextHash": "4312ad9007f17b88",
+      "slideSignature": {
+        "number": 25,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "26": {
+      "audioFile": "slide-26.mp3",
+      "narrationTextHash": "275be800deb4f702",
+      "slideSignature": {
+        "number": 26,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "27": {
+      "audioFile": "slide-27.mp3",
+      "narrationTextHash": "2f9d7e49a0f65cf2",
+      "slideSignature": {
+        "number": 27,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "28": {
+      "audioFile": "slide-28.mp3",
+      "narrationTextHash": "5bbb2763505a74ae",
+      "slideSignature": {
+        "number": 28,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "29": {
+      "audioFile": "slide-29.mp3",
+      "narrationTextHash": "e0ac10d18836a321",
+      "slideSignature": {
+        "number": 29,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    }
+  }
+}

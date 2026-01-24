@@ -1,0 +1,139 @@
+{
+  "classNumber": 0,
+  "topic": "introduction",
+  "voice": "Rachel",
+  "model": "eleven_multilingual_v2",
+  "generatedFrom": "class-0-introduction/scripts.js",
+  "slides": {
+    "1": {
+      "ssml": "<speak>Applications in Entrepreneurship.<break time=\"0.4s\"/> Based on Bill Aulet's Disciplined Entrepreneurship framework.<break time=\"0.3s\"/> NCSSM Spring 2026.</speak>",
+      "plainText": "Applications in Entrepreneurship. Based on Bill Aulet's Disciplined Entrepreneurship framework. NCSSM Spring 2026.",
+      "estimatedDuration": null
+    },
+    "2": {
+      "ssml": "<speak>What if entrepreneurship could be taught?<break time=\"0.4s\"/> It's a question that's been debated for decades.<break time=\"0.3s\"/> Some say entrepreneurs are born with a special gift.<break time=\"0.3s\"/> Others say it's pure luck.<break time=\"0.4s\"/> But what if they're wrong?</speak>",
+      "plainText": "What if entrepreneurship could be taught? It's a question that's been debated for decades. Some say entrepreneurs are born with a special gift. Others say it's pure luck. But what if they're wrong?",
+      "estimatedDuration": null
+    },
+    "3": {
+      "ssml": "<speak>It can.<break time=\"0.5s\"/> And that's exactly what we're going to do this semester.<break time=\"0.3s\"/> Entrepreneurship isn't magic.<break time=\"0.3s\"/> It's a set of skills, frameworks, and practices that anyone can learn.</speak>",
+      "plainText": "It can. And that's exactly what we're going to do this semester. Entrepreneurship isn't magic. It's a set of skills, frameworks, and practices that anyone can learn.",
+      "estimatedDuration": null
+    },
+    "4": {
+      "ssml": "<speak>Here's what we'll cover tonight.<break time=\"0.3s\"/> First, we'll bust some common myths about entrepreneurship.<break time=\"0.3s\"/> Then we'll introduce the Disciplined Entrepreneurship framework that will guide our work.<break time=\"0.3s\"/> We'll preview the semester and what you'll build.<break time=\"0.3s\"/> And finally, we'll talk about forming teams and getting started.</speak>",
+      "plainText": "Here's what we'll cover tonight. First, we'll bust some common myths about entrepreneurship. Then we'll introduce the Disciplined Entrepreneurship framework that will guide our work. We'll preview the semester and what you'll build. And finally, we'll talk about forming teams and getting started.",
+      "estimatedDuration": null
+    },
+    "5": {
+      "ssml": "<speak>Let's start by clearing up some misconceptions about entrepreneurship.<break time=\"0.4s\"/> Because what most people believe about it?<break time=\"0.3s\"/> Turns out to be wrong.</speak>",
+      "plainText": "Let's start by clearing up some misconceptions about entrepreneurship. Because what most people believe about it? Turns out to be wrong.",
+      "estimatedDuration": null
+    },
+    "6": {
+      "ssml": "<speak>Here are four myths you've probably heard.<break time=\"0.4s\"/> Myth one: Entrepreneurs are born, not made.<break time=\"0.3s\"/> Reality: It's a skill you can learn and practice.<break time=\"0.4s\"/> Myth two: You need a brilliant idea.<break time=\"0.3s\"/> Reality: Execution matters far more than ideas.<break time=\"0.4s\"/> Myth three: It's all about the solo genius.<break time=\"0.3s\"/> Reality: Teams consistently outperform individuals.<break time=\"0.4s\"/> And myth four: Entrepreneurs are risk-takers.<break time=\"0.3s\"/> Reality: Great entrepreneurs actually reduce risk systematically.</speak>",
+      "plainText": "Here are four myths you've probably heard. Myth one: Entrepreneurs are born, not made. Reality: It's a skill you can learn and practice. Myth two: You need a brilliant idea. Reality: Execution matters far more than ideas. Myth three: It's all about the solo genius. Reality: Teams consistently outperform individuals. And myth four: Entrepreneurs are risk-takers. Reality: Great entrepreneurs actually reduce risk systematically.",
+      "estimatedDuration": null
+    },
+    "7": {
+      "ssml": "<speak>The more times you do it, the better you get.<break time=\"0.3s\"/> Just like any other craft.<break time=\"0.4s\"/> This is backed by research.<break time=\"0.3s\"/> Serial entrepreneurs are significantly more successful than first-timers.<break time=\"0.3s\"/> Why?<break time=\"0.3s\"/> Because they've practiced the skills.</speak>",
+      "plainText": "The more times you do it, the better you get. Just like any other craft. This is backed by research. Serial entrepreneurs are significantly more successful than first-timers. Why? Because they've practiced the skills.",
+      "estimatedDuration": null
+    },
+    "8": {
+      "ssml": "<speak>Now let me introduce you to our framework for the semester.<break time=\"0.4s\"/> Disciplined Entrepreneurship.<break time=\"0.3s\"/> Twenty-four steps to a successful startup.<break time=\"0.3s\"/> Developed at MIT by Bill Aulet.</speak>",
+      "plainText": "Now let me introduce you to our framework for the semester. Disciplined Entrepreneurship. Twenty-four steps to a successful startup. Developed at MIT by Bill Aulet.",
+      "estimatedDuration": null
+    },
+    "9": {
+      "ssml": "<speak>Here's what Bill Aulet says.<break time=\"0.3s\"/> Quote: \"We must avoid filling this gap with less than rigorous storytelling, which at times assumes that assembling successful entrepreneurs in front of students so that they can spout platitudes about working hard is sufficient.\"<break time=\"0.4s\"/> End quote.<break time=\"0.3s\"/> In other words, we need a real framework, not just inspiration.</speak>",
+      "plainText": "Here's what Bill Aulet says. Quote: \"We must avoid filling this gap with less than rigorous storytelling, which at times assumes that assembling successful entrepreneurs in front of students so that they can spout platitudes about working hard is sufficient.\" End quote. In other words, we need a real framework, not just inspiration.",
+      "estimatedDuration": null
+    },
+    "10": {
+      "ssml": "<speak>This is the framework.<break time=\"0.3s\"/> Twenty-four steps organized into six themes.<break time=\"0.3s\"/> Customer, Value, Acquire, Money, Build, and Scale.<break time=\"0.4s\"/> Each theme answers a fundamental question about your business.<break time=\"0.3s\"/> This semester, we'll work through these steps together.</speak>",
+      "plainText": "This is the framework. Twenty-four steps organized into six themes. Customer, Value, Acquire, Money, Build, and Scale. Each theme answers a fundamental question about your business. This semester, we'll work through these steps together.",
+      "estimatedDuration": null
+    },
+    "11": {
+      "ssml": "<speak>These are the six questions every startup must answer.<break time=\"0.4s\"/> One: Who is your customer?<break time=\"0.3s\"/> Two: What can you do for them?<break time=\"0.3s\"/> Three: How do they acquire your product?<break time=\"0.3s\"/> Four: How do you make money?<break time=\"0.3s\"/> Five: How do you design and build it?<break time=\"0.3s\"/> And six: How do you scale?</speak>",
+      "plainText": "These are the six questions every startup must answer. One: Who is your customer? Two: What can you do for them? Three: How do they acquire your product? Four: How do you make money? Five: How do you design and build it? And six: How do you scale?",
+      "estimatedDuration": null
+    },
+    "12": {
+      "ssml": "<speak>But here's the thing.<break time=\"0.3s\"/> It's not a straight line.<break time=\"0.4s\"/> Look at this image from Bill Aulet's book.<break time=\"0.3s\"/> The twenty-four steps wind back and forth like a game of snakes and ladders.<break time=\"0.4s\"/> Sometimes you go back to go forward.<break time=\"0.3s\"/> You learn something at step eight that makes you revisit step three.<break time=\"0.4s\"/> That's not failure.<break time=\"0.3s\"/> That's the process working.</speak>",
+      "plainText": "But here's the thing. It's not a straight line. Look at this image from Bill Aulet's book. The twenty-four steps wind back and forth like a game of snakes and ladders. Sometimes you go back to go forward. You learn something at step eight that makes you revisit step three. That's not failure. That's the process working.",
+      "estimatedDuration": null
+    },
+    "13": {
+      "ssml": "<speak>In fact, going back is often the path forward.<break time=\"0.4s\"/> YouTube started as a dating site.<break time=\"0.3s\"/> Slack was a gaming company.<break time=\"0.3s\"/> Instagram began as a check-in app called Burbn.<break time=\"0.4s\"/> Netflix mailed DVDs before streaming.<break time=\"0.3s\"/> Twitter emerged from a podcasting platform called Odeo.<break time=\"0.3s\"/> And Shopify started as an online snowboard store.<break time=\"0.5s\"/> Each pivot came from listening to customers and following the evidence.</speak>",
+      "plainText": "In fact, going back is often the path forward. YouTube started as a dating site. Slack was a gaming company. Instagram began as a check-in app called Burbn. Netflix mailed DVDs before streaming. Twitter emerged from a podcasting platform called Odeo. And Shopify started as an online snowboard store. Each pivot came from listening to customers and following the evidence.",
+      "estimatedDuration": null
+    },
+    "14": {
+      "ssml": "<speak>Everything starts with the customer.<break time=\"0.4s\"/> Not your idea.<break time=\"0.3s\"/> Not your technology.<break time=\"0.3s\"/> The customer.<break time=\"0.5s\"/> This is the most common mistake entrepreneurs make.<break time=\"0.3s\"/> They fall in love with their solution before understanding the problem.</speak>",
+      "plainText": "Everything starts with the customer. Not your idea. Not your technology. The customer. This is the most common mistake entrepreneurs make. They fall in love with their solution before understanding the problem.",
+      "estimatedDuration": null
+    },
+    "15": {
+      "ssml": "<speak>Successful entrepreneurs combine two things.<break time=\"0.4s\"/> The spirit of a pirate.<break time=\"0.3s\"/> Challenge the status quo.<break time=\"0.3s\"/> Question assumptions.<break time=\"0.3s\"/> Be bold.<break time=\"0.4s\"/> And the skills of a Navy SEAL.<break time=\"0.3s\"/> Disciplined execution.<break time=\"0.3s\"/> Systematic approach.<break time=\"0.3s\"/> Data-driven decisions.<break time=\"0.4s\"/> You need both.</speak>",
+      "plainText": "Successful entrepreneurs combine two things. The spirit of a pirate. Challenge the status quo. Question assumptions. Be bold. And the skills of a Navy SEAL. Disciplined execution. Systematic approach. Data-driven decisions. You need both.",
+      "estimatedDuration": null
+    },
+    "16": {
+      "ssml": "<speak>Let me tell you about what you'll build this semester.<break time=\"0.3s\"/> You won't just learn concepts.<break time=\"0.3s\"/> You'll apply them to a real venture.</speak>",
+      "plainText": "Let me tell you about what you'll build this semester. You won't just learn concepts. You'll apply them to a real venture.",
+      "estimatedDuration": null
+    },
+    "17": {
+      "ssml": "<speak>Here's your ten-week journey.<break time=\"0.4s\"/> Weeks one and two: Find your customer.<break time=\"0.3s\"/> Weeks three and four: Define your value proposition.<break time=\"0.3s\"/> Weeks five and six: Build your business model.<break time=\"0.3s\"/> Weeks seven and eight: Test and validate.<break time=\"0.3s\"/> Weeks nine and ten: Pitch and present.</speak>",
+      "plainText": "Here's your ten-week journey. Weeks one and two: Find your customer. Weeks three and four: Define your value proposition. Weeks five and six: Build your business model. Weeks seven and eight: Test and validate. Weeks nine and ten: Pitch and present.",
+      "estimatedDuration": null
+    },
+    "18": {
+      "ssml": "<speak>Each week has the same rhythm.<break time=\"0.4s\"/> Monday evenings with me: Learn the framework.<break time=\"0.3s\"/> Apply it to your venture.<break time=\"0.3s\"/> Get feedback.<break time=\"0.4s\"/> Wednesday mornings with Chad: Work sessions to build your deliverables.</speak>",
+      "plainText": "Each week has the same rhythm. Monday evenings with me: Learn the framework. Apply it to your venture. Get feedback. Wednesday mornings with Chad: Work sessions to build your deliverables.",
+      "estimatedDuration": null
+    },
+    "19": {
+      "ssml": "<speak>Let's talk about teams.<break time=\"0.3s\"/> We'll have five teams of approximately six students each.<break time=\"0.3s\"/> Teams will form over the first two weeks as ideas emerge.<break time=\"0.3s\"/> Starting week three, every team will give a weekly elevator pitch.<break time=\"0.4s\"/> And for the final pitch, every team member speaks.</speak>",
+      "plainText": "Let's talk about teams. We'll have five teams of approximately six students each. Teams will form over the first two weeks as ideas emerge. Starting week three, every team will give a weekly elevator pitch. And for the final pitch, every team member speaks.",
+      "estimatedDuration": null
+    },
+    "20": {
+      "ssml": "<speak>May fourth and May eleventh.<break time=\"0.3s\"/> You'll pitch to real judges.<break time=\"0.3s\"/> Eight minutes to convince them your venture is viable.<break time=\"0.4s\"/> This is real.<break time=\"0.3s\"/> This is what entrepreneurs do.</speak>",
+      "plainText": "May fourth and May eleventh. You'll pitch to real judges. Eight minutes to convince them your venture is viable. This is real. This is what entrepreneurs do.",
+      "estimatedDuration": null
+    },
+    "21": {
+      "ssml": "<speak>Here's what we're looking for this semester.<break time=\"0.4s\"/> Evidence over opinion.<break time=\"0.3s\"/> Show your work with data.<break time=\"0.3s\"/> Iteration.<break time=\"0.3s\"/> Pivot when the evidence says so.<break time=\"0.3s\"/> Specificity.<break time=\"0.3s\"/> Concrete details, not vague ideas.<break time=\"0.3s\"/> And collaboration.<break time=\"0.3s\"/> Help each other succeed.</speak>",
+      "plainText": "Here's what we're looking for this semester. Evidence over opinion. Show your work with data. Iteration. Pivot when the evidence says so. Specificity. Concrete details, not vague ideas. And collaboration. Help each other succeed.",
+      "estimatedDuration": null
+    },
+    "22": {
+      "ssml": "<speak>And here's what we're NOT looking for.<break time=\"0.4s\"/> We don't need a successful business idea.<break time=\"0.3s\"/> Most ventures won't be viable, and that's completely normal.<break time=\"0.3s\"/> We don't need perfect execution.<break time=\"0.3s\"/> This is about learning.<break time=\"0.3s\"/> And we don't need brilliant solo performances.<break time=\"0.3s\"/> Entrepreneurship is a team sport.</speak>",
+      "plainText": "And here's what we're NOT looking for. We don't need a successful business idea. Most ventures won't be viable, and that's completely normal. We don't need perfect execution. This is about learning. And we don't need brilliant solo performances. Entrepreneurship is a team sport.",
+      "estimatedDuration": null
+    },
+    "23": {
+      "ssml": "<speak>Entrepreneurship is a craft.<break time=\"0.4s\"/> You learn it by doing it.<break time=\"0.4s\"/> That's the key takeaway.<break time=\"0.3s\"/> Let's get started.</speak>",
+      "plainText": "Entrepreneurship is a craft. You learn it by doing it. That's the key takeaway. Let's get started.",
+      "estimatedDuration": null
+    },
+    "24": {
+      "ssml": "<speak>Before next week, three things.<break time=\"0.4s\"/> One: Read chapters one and two of Disciplined Entrepreneurship on Market Segmentation and Beachhead Market.<break time=\"0.3s\"/> Two: Think about problems you've noticed that need solving.<break time=\"0.3s\"/> Three: Start talking to potential teammates.</speak>",
+      "plainText": "Before next week, three things. One: Read chapters one and two of Disciplined Entrepreneurship on Market Segmentation and Beachhead Market. Two: Think about problems you've noticed that need solving. Three: Start talking to potential teammates.",
+      "estimatedDuration": null
+    },
+    "25": {
+      "ssml": "<speak>Next week we dive into Market Segmentation.<break time=\"0.3s\"/> How do you find customers worth serving?<break time=\"0.3s\"/> And which one do you start with?<break time=\"0.4s\"/> This is Theme One: Who is your customer?</speak>",
+      "plainText": "Next week we dive into Market Segmentation. How do you find customers worth serving? And which one do you start with? This is Theme One: Who is your customer?",
+      "estimatedDuration": null
+    },
+    "26": {
+      "ssml": "<speak>Let's build something.<break time=\"0.4s\"/> Welcome to Applications in Entrepreneurship.</speak>",
+      "plainText": "Let's build something. Welcome to Applications in Entrepreneurship.",
+      "estimatedDuration": null
+    }
+  }
+}

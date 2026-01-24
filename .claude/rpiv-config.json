@@ -1,12 +1,13 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "framework": "astro",
   "narration": {
     "provider": "elevenlabs",
     "voiceId": "configurable",
     "model": "eleven_multilingual_v2",
     "defaultVoice": "Rachel",
-    "outputFormat": "mp3_44100_128"
+    "outputFormat": "mp3_44100_128",
+    "captionsEnabled": true
   },
   "research": {
     "defaultSources": [
@@ -40,7 +41,8 @@
     "componentPath": "src/components/presentation",
     "layoutPath": "src/layouts/PresentationLayout.astro",
     "pagesPath": "src/pages",
-    "contentPath": "src/content"
+    "contentPath": "src/content",
+    "collectionsPath": "src/content/classes"
   },
   "gates": {
     "gate1": {
@@ -71,15 +73,49 @@
   },
   "blocking": {
     "lesson-plan": ["course-plan.md", "research-{topic}.md"],
-    "presentation-spec": ["lesson-plan-{topic}.md"],
-    "presentation": ["presentation-spec-{topic}.md"],
+    "presentation-spec": ["lesson-plan.md"],
+    "presentation": ["presentation-spec.md"],
     "reviewlog": ["presentation.astro"],
-    "narration": ["presentation.astro", "reviewlog.md"]
+    "narration": ["presentation.astro"],
+    "audio": ["narration.json"]
   },
   "paths": {
     "courseArtifacts": ".",
-    "classArtifacts": "src/pages/class-{n}-{topic}",
-    "researchOutput": "research",
-    "audioOutput": "public/audio"
+    "classContent": "src/content/classes/{n}-{topic}",
+    "classPages": "src/pages/class-{n}-{topic}",
+    "visualizations": "src/scripts/visualizations",
+    "audioOutput": "public/audio/class-{n}",
+    "legacy": {
+      "classArtifacts": "class-{n}-{topic}",
+      "note": "Legacy paths - migrate to new structure with /structure-migrate"
+    }
+  },
+  "artifacts": {
+    "perClass": {
+      "content": [
+        "lesson-plan.md",
+        "presentation-spec.md",
+        "narration.json",
+        "audio-manifest.json"
+      ],
+      "pages": [
+        "presentation.astro"
+      ],
+      "audio": [
+        "slide-*.mp3"
+      ]
+    },
+    "courseLevel": [
+      "SYLLABUS.md",
+      "master-presentation-spec.md",
+      "course-plan.md",
+      "curriculum-design-research.md"
+    ]
+  },
+  "audioSync": {
+    "hashAlgorithm": "sha256",
+    "hashLength": 16,
+    "checkOnBuild": true,
+    "warnOnStale": true
   }
 }
