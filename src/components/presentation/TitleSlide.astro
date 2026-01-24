@@ -1,0 +1,40 @@
+---
+/**
+ * TitleSlide Component
+ *
+ * Opening/section title slide with large heading, optional subtitle,
+ * and session info. Typically used at the start of presentations.
+ *
+ * @example
+ * <TitleSlide
+ *   id="1"
+ *   section="Opening"
+ *   title="Introduction to Entrepreneurship"
+ *   subtitle="Building Innovation-Driven Ventures"
+ *   info="Class 1 | DE Steps 1 & 2"
+ * />
+ */
+
+import type { TitleSlideProps } from './types';
+import Slide from './Slide.astro';
+
+interface Props extends TitleSlideProps {}
+
+const {
+  id,
+  section,
+  title,
+  subtitle,
+  info,
+  class: className,
+} = Astro.props;
+---
+
+<Slide id={id} type="title" section={section} title={title} class={className}>
+  <div class="slide-content">
+    <h1>{title}</h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {info && <p class="session-info">{info}</p>}
+    <slot />
+  </div>
+</Slide>

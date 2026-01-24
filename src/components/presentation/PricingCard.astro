@@ -1,0 +1,64 @@
+---
+const { title, price, period, description, featured = false, delay } = Astro.props;
+---
+
+<div class:list={["pricing-card", { featured }]} style={delay ? `--delay: ${delay}ms` : ''}>
+    <h3>{title}</h3>
+    <div class="price">{price}</div>
+    {period && <div class="period">{period}</div>}
+    {description && <p class="desc">{description}</p>}
+</div>
+
+<style>
+    .pricing-card {
+        background: var(--dark-surface);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: all 400ms ease;
+        opacity: 0;
+        transform: translateY(20px);
+        transition-delay: var(--delay, 0ms);
+    }
+
+    /* Animate when parent slide is active */
+    :global(.slide.active) .pricing-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .pricing-card.featured {
+        border-color: var(--theme-color);
+        transform: scale(1.05) translateY(20px); /* Pre-animation state */
+    }
+
+    :global(.slide.active) .pricing-card.featured {
+        transform: scale(1.05) translateY(0);
+    }
+
+    .pricing-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        font-family: var(--font-display);
+        color: var(--text-primary);
+    }
+
+    .pricing-card .price {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--theme-color);
+        font-family: var(--font-mono);
+    }
+
+    .pricing-card .period {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .pricing-card .desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-top: 1rem;
+    }
+</style>

@@ -1,0 +1,156 @@
+---
+---
+
+<div id="expansion-diagram" class="visualization"></div>
+
+<script is:inline>
+(function() {
+    const containerId = 'expansion-diagram';
+
+    function draw() {
+        if (!window.Visualization || !d3) return;
+        const viz = window.Visualization.create(containerId, { padding: 0.05 });
+        if (!viz) return;
+
+        const { svg, bounds, scale } = viz;
+        const center = { x: bounds.centerX, y: bounds.centerY };
+
+        // Use the smaller dimension to keep diagram circular
+        const maxRadius = Math.min(bounds.width, bounds.height) / 2;
+
+        // Scale everything relative to available space
+        // Beachhead is the focal point - make it prominent
+        const beachheadRadius = maxRadius * 0.25;
+        const marketRadius = maxRadius * 0.12;
+
+        // Ring distances from center
+        const adjacentDist = maxRadius * 0.55;  // Phase 2 markets
+        const outerDist = maxRadius * 0.85;     // Phase 3 markets
+
+        // Label positioning
+        const labelOffset = maxRadius * 0.08;
+
+        // Center beachhead
+        svg.append('circle')
+            .attr('cx', center.x)
+            .attr('cy', center.y)
+            .attr('r', 0)
+            .attr('fill', '#356093')
+            .transition()
+            .duration(600)
+            .attr('r', beachheadRadius);
+
+        svg.append('text')
+            .attr('x', center.x)
+            .attr('y', center.y)
+            .attr('text-anchor', 'middle')
+            .attr('dy', '0.35em')
+            .attr('fill', '#fff')
+            .attr('font-family', 'Montserrat, sans-serif')
+            .attr('font-size', '1.25rem')
+            .attr('font-weight', '700')
+            .text('BEACHHEAD')
+            .attr('opacity', 0)
+            .transition()
+            .delay(600)
+            .duration(300)
+            .attr('opacity', 1);
+
+        // Adjacent markets - spread around center
+        // Phase 2 (adjacent) on inner ring, Phase 3 (expansion) on outer ring
+        const markets = [
+            { angle: -60, label: 'Adjacent 1', phase: 2 },
+            { angle: 0, label: 'Adjacent 2', phase: 2 },
+            { angle: 60, label: 'Adjacent 3', phase: 2 },
+            { angle: 120, label: 'Market 4', phase: 3 },
+            { angle: 180, label: 'Market 5', phase: 3 },
+            { angle: -120, label: 'Market 6', phase: 3 }
+        ];
+
+        markets.forEach((market, i) => {
+            const rad = (market.angle * Math.PI) / 180;
+            const dist = market.phase === 2 ? adjacentDist : outerDist;
+            const x = center.x + Math.cos(rad) * dist;
+            const y = center.y + Math.sin(rad) * dist;
+
+            // Calculate label position OUTSIDE the circle
+            const labelDist = dist + marketRadius + labelOffset;
+            const labelX = center.x + Math.cos(rad) * labelDist;
+            const labelY = center.y + Math.sin(rad) * labelDist;
+
+            // Determine text-anchor based on angle (left/right/center)
+            let textAnchor = 'middle';
+            if (Math.cos(rad) > 0.3) textAnchor = 'start';
+            else if (Math.cos(rad) < -0.3) textAnchor = 'end';
+
+            // Line starts at EDGE of beachhead circle, not center
+            const lineStartX = center.x + Math.cos(rad) * beachheadRadius;
+            const lineStartY = center.y + Math.sin(rad) * beachheadRadius;
+
+            // Connection line from beachhead edge to market node
+            svg.append('line')
+                .attr('x1', lineStartX)
+                .attr('y1', lineStartY)
+                .attr('x2', lineStartX)
+                .attr('y2', lineStartY)
+                .attr('stroke', market.phase === 2 ? '#4a7ab8' : '#6a6a7a')
+                .attr('stroke-width', 2)
+                .attr('stroke-dasharray', market.phase === 3 ? '5,5' : 'none')
+                .transition()
+                .delay(800 + i * 150)
+                .duration(400)
+                .attr('x2', x)
+                .attr('y2', y);
+
+            // Market node
+            svg.append('circle')
+                .attr('cx', x)
+                .attr('cy', y)
+                .attr('r', 0)
+                .attr('fill', '#12121a')
+                .attr('stroke', market.phase === 2 ? '#4a7ab8' : '#6a6a7a')
+                .attr('stroke-width', 2)
+                .transition()
+                .delay(1200 + i * 150)
+                .duration(300)
+                .attr('r', marketRadius);
+
+            // Label positioned OUTSIDE the circle
+            svg.append('text')
+                .attr('x', labelX)
+                .attr('y', labelY)
+                .attr('text-anchor', textAnchor)
+                .attr('dy', '0.35em')
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat, sans-serif')
+                .attr('font-size', '1.25rem')
+                .text(market.label)
+                .attr('opacity', 0)
+                .transition()
+                .delay(1400 + i * 150)
+                .duration(300)
+                .attr('opacity', 1);
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(draw, 300);
+                observer.disconnect();
+            }
+        });
+    });
+
+    const el = document.getElementById(containerId);
+    if (el) observer.observe(el);
+})();
+</script>
+
+<style>
+    .visualization {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+    }
+</style>

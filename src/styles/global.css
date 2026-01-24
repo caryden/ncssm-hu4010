@@ -1,0 +1,34 @@
+/**
+ * Global Styles Entry Point
+ *
+ * This file imports all CSS modules in the correct order.
+ * @import statements must come first per CSS spec.
+ *
+ * CSS Architecture:
+ * 1. Imports (design system modules)
+ * 2. Tailwind (base, components, utilities)
+ *
+ * The Tailwind layers will be processed after the imports.
+ */
+
+/* ===== Design System Modules (must be first) ===== */
+@import './_variables.css';
+@import './_base.css';
+@import './_slides.css';
+@import './_overlays.css';
+@import './_animations.css';
+@import './_utilities.css';
+
+/* ===== Tailwind CSS ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Note: Theme colors are injected dynamically from the config system
+ * in PresentationLayout.astro and MainLayout.astro using the
+ * generateCSSVariables() helper from @config.
+ *
+ * The _variables.css file provides fallback values for development
+ * and ensures CSS intellisense works correctly.
+ */

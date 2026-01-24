@@ -1,0 +1,60 @@
+---
+/**
+ * IconCard Component
+ *
+ * Card with icon, optional title, and content. Animates in
+ * when parent slide becomes active. Use delay for staggered effects.
+ *
+ * @example
+ * <IconCard icon="📚" title="Students" delay={100}>
+ *   <p>Learning new skills</p>
+ * </IconCard>
+ */
+
+import type { IconCardProps } from './types';
+
+interface Props extends IconCardProps {}
+
+const {
+  icon,
+  title,
+  delay = 0,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={['icon-card', className]} style={delay ? `--delay: ${delay}ms` : ''}>
+  <div class="icon">{icon}</div>
+  {title && <h3>{title}</h3>}
+  <slot />
+</div>
+
+<style>
+  .icon-card {
+    background: var(--dark-surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition-delay: var(--delay, 0ms);
+  }
+
+  /* Animate when parent slide is active */
+  :global(.slide.active) .icon-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .icon-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .icon-card h3 {
+    font-size: 1.25rem;
+    color: var(--theme-color);
+    margin-bottom: 0.5rem;
+  }
+</style>

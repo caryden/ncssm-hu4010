@@ -1,0 +1,463 @@
+---
+/**
+ * Class 5: Customer Acquisition & DMU
+ * Theme 3 (Green) - How do they acquire?
+ * DE Steps 12-13
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Slide from '../../components/presentation/Slide.astro';
+---
+
+<PresentationLayout title="Class 5: Customer Acquisition" themeNumber={3}>
+    <style>
+        /* DMU grid styles */
+        .dmu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Funnel styles */
+        .funnel-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            margin: 0.25rem auto;
+            background: var(--dark-surface);
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        :global(.slide.active) .funnel-stage {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .funnel-stage.highlight {
+            background: var(--theme-color);
+        }
+
+        .funnel-arrow {
+            color: var(--theme-color);
+            font-size: 1.5rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        :global(.slide.active) .funnel-arrow {
+            opacity: 1;
+        }
+
+        /* Big number display */
+        .big-number {
+            font-size: 5rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            background: linear-gradient(135deg, #059669 0%, #22c55e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .context {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Workshop box */
+        .workshop-box {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .workshop-box ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .workshop-box li {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .workshop-box li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--theme-color);
+            border-radius: 50%;
+        }
+
+        /* Homework list */
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .homework-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--dark-surface);
+            padding: 15px 25px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        :global(.slide.active) .homework-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Stagger homework items */
+        :global(.slide.active) .homework-item:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .homework-item:nth-child(2) { transition-delay: 400ms; }
+        :global(.slide.active) .homework-item:nth-child(3) { transition-delay: 600ms; }
+        :global(.slide.active) .homework-item:nth-child(4) { transition-delay: 800ms; }
+
+        .homework-icon {
+            font-size: 1.5rem;
+        }
+
+        .homework-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Danger accent */
+        .statement .danger {
+            color: var(--danger-red);
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="How Customers Buy"
+        subtitle="Decision-Making Unit & Acquisition Process"
+        info="Class 5 | DE Steps 12, 13"
+    />
+
+    <!-- Slide 2: Theme Introduction -->
+    <StatementSlide id="2" title="Theme 3">
+        Theme 3: <span class="accent">How Does Your Customer Acquire Your Product?</span>
+    </StatementSlide>
+
+    <!-- Slide 3: User vs Buyer -->
+    <StatementSlide id="3" title="User vs Buyer">
+        The person who <span class="accent">uses</span> your product is often not the person who <span class="accent">decides</span> to buy it.
+    </StatementSlide>
+
+    <!-- Slide 4: Perfect Setup -->
+    <StandardSlide id="4" section="The IT Security Story" title="The Perfect Setup">
+        <ul class="content-list">
+            <li>Amazing product demo</li>
+            <li>Enthusiastic user feedback</li>
+            <li>Verbal commitment from champion</li>
+            <li>Everyone loves it</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 5: IT Said No -->
+    <StatementSlide id="5" title="IT Said No">
+        Then IT Security said <span class="danger">no</span>.
+        <p class="secondary" style="margin-top: 1rem; font-size: 1.25rem; color: var(--text-muted);">3 months of work. Dead.</p>
+    </StatementSlide>
+
+    <!-- Slide 6: Map the DMU -->
+    <TwoPartSlide id="6" title="Know Your Stakeholders">
+        <p class="primary">You can't sell to someone you don't know exists.</p>
+        <p class="secondary">Map the Decision-Making Unit.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 7: Step 12 Header -->
+    <StatementSlide id="7" section="Step 12: The DMU" title="Determine the DMU">
+        Step 12: <span class="accent">Determine the DMU</span>
+    </StatementSlide>
+
+    <!-- Slide 8: Six DMU Roles -->
+    <StandardSlide id="8" title="Six DMU Roles" type="visual">
+        <div class="dmu-grid">
+            <IconCard icon="⭐" title="Champion" delay="100"><p>Your internal advocate</p></IconCard>
+            <IconCard icon="👤" title="End User" delay="200"><p>Daily product user</p></IconCard>
+            <IconCard icon="💰" title="Economic Buyer" delay="300"><p>Controls budget</p></IconCard>
+            <IconCard icon="⚙️" title="Technical Buyer" delay="400"><p>Evaluates fit</p></IconCard>
+            <IconCard icon="📢" title="Influencer" delay="500"><p>Shapes opinions</p></IconCard>
+            <IconCard icon="🚫" title="Veto Power" delay="600"><p>Can say NO</p></IconCard>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 9: Champion -->
+    <TwoPartSlide id="9" title="Champion Role">
+        <p class="primary">Champion</p>
+        <p class="secondary">Your internal advocate who believes in your solution</p>
+        <p class="tertiary">Cares about: Looking good, having tools to sell internally, success metrics</p>
+    </TwoPartSlide>
+
+    <!-- Slide 10: Economic Buyer -->
+    <TwoPartSlide id="10" title="Economic Buyer Role">
+        <p class="primary">Economic Buyer</p>
+        <p class="secondary">Controls the budget and makes the financial decision</p>
+        <p class="tertiary">Cares about: ROI, risk mitigation, strategic alignment</p>
+    </TwoPartSlide>
+
+    <!-- Slide 11: Technical Buyer -->
+    <TwoPartSlide id="11" title="Technical Buyer Role">
+        <p class="primary">Technical Buyer</p>
+        <p class="secondary">Evaluates fit with existing systems</p>
+        <p class="tertiary">Cares about: Security, integration complexity, maintenance burden</p>
+    </TwoPartSlide>
+
+    <!-- Slide 12: Different Concerns -->
+    <StandardSlide id="12" title="Different Concerns">
+        <h2>Each Role Has Different Concerns</h2>
+        <ul class="content-list">
+            <li><strong>End User:</strong> "Will this make my job easier?"</li>
+            <li><strong>Economic Buyer:</strong> "Will this save/make us money?"</li>
+            <li><strong>Technical Buyer:</strong> "Will this integrate safely?"</li>
+            <li><strong>Legal/Compliance:</strong> "Does this meet our requirements?"</li>
+        </ul>
+        <p style="margin-top: 1.5rem; color: var(--theme-color); font-family: var(--font-display);">You need to address ALL of these.</p>
+    </StandardSlide>
+
+    <!-- Slide 13: Step 13 Header -->
+    <StatementSlide id="13" section="Step 13: Acquisition Process" title="Map Acquisition Process">
+        Step 13: <span class="accent">Map the Acquisition Process</span>
+    </StatementSlide>
+
+    <!-- Slide 14: Funnel -->
+    <StandardSlide id="14" title="The Acquisition Funnel" type="visual">
+        <div style="max-width: 400px; margin: 2rem auto;">
+            <!-- Added delays manually for funnel items -->
+            <div class="funnel-stage" style="width: 100%; transition-delay: 200ms;">Awareness</div>
+            <div class="funnel-arrow" style="transition-delay: 300ms;">↓</div>
+            <div class="funnel-stage" style="width: 90%; transition-delay: 400ms;">Interest</div>
+            <div class="funnel-arrow" style="transition-delay: 500ms;">↓</div>
+            <div class="funnel-stage" style="width: 80%; transition-delay: 600ms;">Evaluation</div>
+            <div class="funnel-arrow" style="transition-delay: 700ms;">↓</div>
+            <div class="funnel-stage" style="width: 70%; transition-delay: 800ms;">Decision</div>
+            <div class="funnel-arrow" style="transition-delay: 900ms;">↓</div>
+            <div class="funnel-stage" style="width: 60%; transition-delay: 1000ms;">Purchase</div>
+            <div class="funnel-arrow" style="transition-delay: 1100ms;">↓</div>
+            <div class="funnel-stage highlight" style="width: 50%; transition-delay: 1200ms;">Onboarding</div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 15: Awareness -->
+    <TwoPartSlide id="15" title="Awareness Stage">
+        <p class="primary">Awareness</p>
+        <p class="secondary">How do they discover you exist?</p>
+        <p class="tertiary">What triggers the search? Where do they look?</p>
+    </TwoPartSlide>
+
+    <!-- Slide 16: Evaluation -->
+    <TwoPartSlide id="16" title="Evaluation Stage">
+        <p class="primary">Evaluation</p>
+        <p class="secondary">How do they compare options?</p>
+        <p class="tertiary">What criteria matter? What evidence do they need?</p>
+    </TwoPartSlide>
+
+    <!-- Slide 17: Stage Questions -->
+    <StandardSlide id="17" title="Questions for Each Stage">
+        <h2>For Every Stage, Ask:</h2>
+        <ul class="content-list">
+            <li>How do they move to this stage?</li>
+            <li>What do they need here?</li>
+            <li>What might cause them to drop out?</li>
+            <li>How long does this stage take?</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 18: B2B vs B2C -->
+    <StandardSlide id="18" title="B2B vs B2C" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="B2C" delay="200">
+                <ul>
+                    <li>Decision: Minutes to days</li>
+                    <li>Stakeholders: 1-3 people</li>
+                    <li>Sale type: Self-service</li>
+                    <li>Risk tolerance: Higher</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard title="B2B" delay="400">
+                <ul>
+                    <li>Decision: Weeks to months</li>
+                    <li>Stakeholders: 5-15 people</li>
+                    <li>Sale type: Sales-assisted</li>
+                    <li>Risk tolerance: Lower</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+        <p class="caption">Know which world you're in.</p>
+    </StandardSlide>
+
+    <!-- Slide 19: Sales Cycle -->
+    <StandardSlide id="19" title="Sales Cycle Time" type="visual">
+        <div class="big-number">3-6 months</div>
+        <p class="context">Typical B2B sales cycle for new vendors</p>
+        <p style="margin-top: 0.5rem; color: var(--text-muted);">Plan accordingly.</p>
+    </StandardSlide>
+
+    <!-- Slide 20: Workshop -->
+    <StandardSlide id="20" section="Workshop" title="Workshop: 25 Minutes" type="visual">
+        <div class="workshop-box">
+            <ul>
+                <li>Complete DMU map (10 min)</li>
+                <li>Map acquisition process (10 min)</li>
+                <li>Estimate sales cycle (5 min)</li>
+            </ul>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 21: Remember -->
+    <StandardSlide id="21" section="Closing" title="Remember">
+        <ul class="content-list">
+            <li>The buyer is often not the user</li>
+            <li>Unknown stakeholders kill deals</li>
+            <li>Map every stage from awareness to purchase</li>
+            <li>Sales cycle time affects everything</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 22: Homework -->
+    <StandardSlide id="22" title="Before Next Week" type="visual">
+        <div class="homework-list">
+            <div class="homework-item">
+                <span class="homework-icon">🗺️</span>
+                <span class="homework-text">Complete DMU map (all stakeholders)</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">📊</span>
+                <span class="homework-text">Customer acquisition flowchart</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">⭐</span>
+                <span class="homework-text">Identify your champion strategy</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">📖</span>
+                <span class="homework-text">Read: DE Chapters 14, 15, 16</span>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 23: Next Week -->
+    <TwoPartSlide id="23" title="Next Week">
+        <p class="primary">Next Week: Business Model & Pricing</p>
+        <p class="secondary">How will you capture value? What will you charge?</p>
+        <div style="margin-top: 50px; padding: 20px 30px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; display: inline-block;">
+            <span style="color: #f59e0b; font-weight: 600;">Theme 4: How do you make money?</span>
+        </div>
+    </TwoPartSlide>
+
+    <!-- ===== APPENDIX SLIDES ===== -->
+
+    <Slide title="DMU Role Details" appendix={true}>
+        <div class="slide-content">
+            <h2>DMU Role Details</h2>
+            <div style="max-width: 800px; margin: 30px auto; text-align: left;">
+                <div style="display: grid; gap: 15px;">
+                    <div style="background: var(--dark-surface); padding: 20px; border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                        <strong style="color: var(--theme-color);">Champion:</strong>
+                        <span style="color: var(--text-secondary);"> The person who will sell your product internally when you're not in the room. They need ammunition: ROI data, case studies, success metrics.</span>
+                    </div>
+                    <div style="background: var(--dark-surface); padding: 20px; border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                        <strong style="color: var(--theme-color);">Veto Power:</strong>
+                        <span style="color: var(--text-secondary);"> Often legal, security, or procurement. They rarely say yes, but can always say no. Identify them early and address their concerns proactively.</span>
+                    </div>
+                    <div style="background: var(--dark-surface); padding: 20px; border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                        <strong style="color: var(--theme-color);">Influencer:</strong>
+                        <span style="color: var(--text-secondary);"> May not have formal authority but shapes opinions. Could be respected peers, consultants, or industry analysts.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="B2B Sales Cycle" appendix={true}>
+        <div class="slide-content">
+            <h2>Typical B2B Sales Cycle Stages</h2>
+            <div style="max-width: 700px; margin: 30px auto;">
+                <div style="display: grid; grid-template-columns: 80px 1fr; gap: 15px; text-align: left;">
+                    <div style="background: var(--theme-color); padding: 10px; border-radius: 8px; text-align: center; font-weight: 600;">Week 1-2</div>
+                    <div style="background: var(--dark-surface); padding: 10px 15px; border-radius: 8px; color: var(--text-secondary);">Discovery call, initial demo</div>
+
+                    <div style="background: var(--theme-color); padding: 10px; border-radius: 8px; text-align: center; font-weight: 600;">Week 3-4</div>
+                    <div style="background: var(--dark-surface); padding: 10px 15px; border-radius: 8px; color: var(--text-secondary);">Technical evaluation, stakeholder meetings</div>
+
+                    <div style="background: var(--theme-color); padding: 10px; border-radius: 8px; text-align: center; font-weight: 600;">Week 5-8</div>
+                    <div style="background: var(--dark-surface); padding: 10px 15px; border-radius: 8px; color: var(--text-secondary);">Proof of concept, pilot</div>
+
+                    <div style="background: var(--theme-color); padding: 10px; border-radius: 8px; text-align: center; font-weight: 600;">Week 9-12</div>
+                    <div style="background: var(--dark-surface); padding: 10px 15px; border-radius: 8px; color: var(--text-secondary);">Security review, legal review</div>
+
+                    <div style="background: var(--theme-color); padding: 10px; border-radius: 8px; text-align: center; font-weight: 600;">Week 13+</div>
+                    <div style="background: var(--dark-surface); padding: 10px 15px; border-radius: 8px; color: var(--text-secondary);">Contract negotiation, procurement</div>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="Champion Strategy" appendix={true}>
+        <div class="slide-content">
+            <h2>Building a Champion Strategy</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
+                Your champion is your most valuable asset in B2B sales.
+            </p>
+            <div style="max-width: 700px; margin: 30px auto; text-align: left;">
+                <div style="margin-bottom: 20px; padding: 20px; background: var(--dark-surface); border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">How to Identify Champions:</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.8;">
+                        <li>They're frustrated with the current solution</li>
+                        <li>They have something to gain from your success</li>
+                        <li>They have influence within the organization</li>
+                        <li>They're willing to spend time helping you navigate</li>
+                    </ul>
+                </div>
+                <div style="padding: 20px; background: var(--dark-surface); border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">How to Enable Champions:</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.8;">
+                        <li>Give them clear ROI calculations</li>
+                        <li>Provide internal presentation materials</li>
+                        <li>Coach them on handling objections</li>
+                        <li>Keep them informed of deal progress</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-5-customer-acquisition/scripts.js"></script>
+</PresentationLayout>

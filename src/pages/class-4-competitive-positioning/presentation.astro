@@ -1,0 +1,536 @@
+---
+/**
+ * Class 4: Competitive Positioning & Core
+ * Theme 2 (Purple) - What can you do for them?
+ * DE Steps 9-11
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import InfoCard from '../../components/presentation/InfoCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Slide from '../../components/presentation/Slide.astro';
+---
+
+<PresentationLayout title="Class 4: Competitive Positioning" themeNumber={2}>
+    <style>
+        /* VRIO grid styles */
+        .vrio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Core types grid */
+        .core-types {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Matrix visualization - height controlled by flex in shared styles */
+        .visualization {
+            width: 100%;
+        }
+
+        /* Workshop box */
+        .workshop-box {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .workshop-box ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .workshop-box li {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .workshop-box li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--theme-color);
+            border-radius: 50%;
+        }
+
+        /* Homework list */
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .homework-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--dark-surface);
+            padding: 15px 25px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        /* Animate when active */
+        :global(.slide.active) .homework-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Stagger delays manually in CSS since these are raw elements */
+        :global(.slide.active) .homework-item:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .homework-item:nth-child(2) { transition-delay: 300ms; }
+        :global(.slide.active) .homework-item:nth-child(3) { transition-delay: 400ms; }
+        :global(.slide.active) .homework-item:nth-child(4) { transition-delay: 500ms; }
+
+        .homework-icon {
+            font-size: 1.5rem;
+        }
+
+        .homework-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="Finding Your Unfair Advantage"
+        subtitle="Customers, Core & Competition"
+        info="Class 4 | DE Steps 9, 10, 11"
+    />
+
+    <!-- Slide 2: Not in a Vacuum -->
+    <StatementSlide id="2" title="Not in a Vacuum">
+        You're not building in a <span class="accent">vacuum</span>.
+    </StatementSlide>
+
+    <!-- Slide 3: Tonight's Questions -->
+    <StandardSlide id="3" title="Tonight We Answer">
+        <ul class="content-list">
+            <li>Who specifically will buy from you? (Names, not segments)</li>
+            <li>What makes you impossible to copy?</li>
+            <li>Why will you win against alternatives?</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 4: Dell Story Part 1 -->
+    <TwoPartSlide id="4" section="The Dell Story" title="Dell Was Unstoppable">
+        <p class="primary">2005: Dell Was Unstoppable</p>
+        <p class="secondary">World's largest PC maker. Legendary supply chain. "Build to order" efficiency.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 5: Dell Story Part 2 -->
+    <TwoPartSlide id="5" title="The Reversal">
+        <p class="primary">2024: The Reversal</p>
+        <p class="secondary">Dell: $70B market cap. Apple: $3 TRILLION.</p>
+        <p class="tertiary">What happened?</p>
+    </TwoPartSlide>
+
+    <!-- Slide 6: Dell Lesson -->
+    <TwoPartSlide id="6" title="Copiable vs Lock-in">
+        <p class="primary">Dell's "core" was copiable.</p>
+        <p class="secondary">Apple's core creates lock-in.</p>
+        <p class="tertiary">Supply chain efficiency vs. ecosystem + design + brand</p>
+    </TwoPartSlide>
+
+    <!-- Slide 7: Step 9 Header -->
+    <StatementSlide id="7" section="Step 9: Next 10 Customers" title="Identify Next 10 Customers">
+        Step 9: <span class="accent">Identify Your Next 10 Customers</span>
+    </StatementSlide>
+
+    <!-- Slide 8: The Challenge -->
+    <TwoPartSlide id="8" title="Names Not Segments">
+        <p class="primary">It's easy to say "restaurant owners would want this."</p>
+        <p class="secondary">It's harder to NAME 10 restaurant owners who'd buy it.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 9: Good Target Criteria -->
+    <StandardSlide id="9" title="What Makes a Good Target">
+        <ul class="content-list">
+            <li>Match your persona (demographics, psychographics)</li>
+            <li>Have the problem (demonstrated, not assumed)</li>
+            <li>Are accessible (you can reach them NOW)</li>
+            <li>Are early adopter types (willing to try new)</li>
+            <li>Could become paying (have budget and authority)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 10: Hunting Grounds -->
+    <StandardSlide id="10" title="Customer Hunting Grounds">
+        <ul class="content-list">
+            <li>Personal network (friends, family, their connections)</li>
+            <li>LinkedIn and professional networks</li>
+            <li>Industry events and meetups</li>
+            <li>Online communities (Reddit, Discord, forums)</li>
+            <li>Cold outreach (harder but possible)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 11: Action -->
+    <StatementSlide id="11" title="Start with Three">
+        Start with your <span class="accent">three most accessible</span> targets.
+        <p class="secondary" style="margin-top: 1rem;">Reach out this week.</p>
+    </StatementSlide>
+
+    <!-- Slide 12: Step 10 Header -->
+    <StatementSlide id="12" section="Step 10: Define Your Core" title="Define Your Core">
+        Step 10: <span class="accent">Define Your Core</span>
+    </StatementSlide>
+
+    <!-- Slide 13: Core Definition -->
+    <TwoPartSlide id="13" title="Your Core">
+        <p class="primary">Your Core</p>
+        <p class="secondary">The ONE thing you do better than anyone else that is ALSO hard to copy.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 14: VRIO Test -->
+    <StandardSlide id="14" title="The VRIO Test" type="visual">
+        <div class="vrio-grid">
+            <InfoCard title="V - Valuable" delay="200">
+                <p style="color: var(--text-secondary); font-size: 1rem;">Does the customer care?</p>
+            </InfoCard>
+            <InfoCard title="R - Rare" delay="400">
+                <p style="color: var(--text-secondary); font-size: 1rem;">Is it uncommon?</p>
+            </InfoCard>
+            <InfoCard title="I - Inimitable" delay="600">
+                <p style="color: var(--text-secondary); font-size: 1rem;">Is it hard to copy?</p>
+            </InfoCard>
+            <InfoCard title="O - Organized" delay="800">
+                <p style="color: var(--text-secondary); font-size: 1rem;">Can you leverage it?</p>
+            </InfoCard>
+        </div>
+        <p class="caption" style="margin-top: 1.5rem;">All four must be YES for true core.</p>
+    </StandardSlide>
+
+    <!-- Slide 15: Core Types -->
+    <StandardSlide id="15" title="What Can Be Core?" type="visual">
+        <div class="core-types">
+            <IconCard icon="🔗" title="Network Effects" delay="100" />
+            <IconCard icon="🔬" title="Proprietary Tech" delay="200" />
+            <IconCard icon="💲" title="Cost Advantage" delay="300" />
+            <IconCard icon="🔒" title="Customer Lock-in" delay="400" />
+            <IconCard icon="🧠" title="Unique Expertise" delay="500" />
+            <IconCard icon="🤝" title="Relationships" delay="600" />
+            <IconCard icon="⭐" title="Brand" delay="700" />
+            <IconCard icon="📊" title="Data" delay="800" />
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 16: Features vs Core -->
+    <StandardSlide id="16" title="Features vs Core" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard variant="bad" title="Features (NOT Core)" delay="200">
+                <ul>
+                    <li>"Fast delivery"</li>
+                    <li>"Easy to use"</li>
+                    <li>"Great customer service"</li>
+                    <li>"Best price"</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard variant="good" title="Core (Defensible)" delay="400">
+                <ul>
+                    <li>"Proprietary logistics network"</li>
+                    <li>"Deep UX research methodology"</li>
+                    <li>"Community-driven support"</li>
+                    <li>"Structural cost advantage"</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+        <p class="caption" style="margin-top: 1.5rem;">Features can be copied in 6 months. Core takes years.</p>
+    </StandardSlide>
+
+    <!-- Slide 17: Flywheel -->
+    <TwoPartSlide id="17" title="The Flywheel Effect">
+        <p class="primary">The Flywheel Effect</p>
+        <p class="secondary">More users → Better data → Better product → More users</p>
+        <p class="tertiary">Examples: Uber, Google, Facebook</p>
+    </TwoPartSlide>
+
+    <!-- Slide 18: Core Takes Time -->
+    <StatementSlide id="18" title="Core Takes Time">
+        Most startups don't have a core <span class="accent">yet</span>.
+        <p class="secondary" style="margin-top: 1rem;">That's okay. Your job is to build one over time.</p>
+    </StatementSlide>
+
+    <!-- Slide 19: Step 11 Header -->
+    <StatementSlide id="19" section="Step 11: Competitive Position" title="Chart Your Position">
+        Step 11: <span class="accent">Chart Your Competitive Position</span>
+    </StatementSlide>
+
+    <!-- Slide 20: Two Types -->
+    <TwoPartSlide id="20" title="Types of Competitors">
+        <p class="primary">Two Types of Competitors</p>
+        <p class="secondary">Direct: Same solution, same customers</p>
+        <p class="tertiary">Indirect: Different solution, same problem</p>
+    </TwoPartSlide>
+
+    <!-- Slide 21: Do Nothing -->
+    <StatementSlide id="21" title="Do Nothing Competitor">
+        Your biggest competitor is often <span class="accent">"do nothing."</span>
+        <p class="secondary" style="margin-top: 1rem;">The status quo. The spreadsheet. The manual workaround.</p>
+    </StatementSlide>
+
+    <!-- Slide 22: 2x2 Matrix -->
+    <StandardSlide id="22" title="The 2x2 Positioning Matrix" type="visual">
+        <div class="visualization" id="matrix"></div>
+        <p class="caption">Pick dimensions that matter to your customer AND differentiate you</p>
+    </StandardSlide>
+
+    <!-- Slide 23: White Space -->
+    <StatementSlide id="23" title="Find White Space">
+        Find your <span class="accent">white space</span>.
+        <p class="secondary" style="margin-top: 1rem;">Where no strong competitor exists AND customers want to be served.</p>
+    </StatementSlide>
+
+    <!-- Slide 24: Workshop -->
+    <StandardSlide id="24" section="Workshop" title="Workshop: 30 Minutes" type="visual">
+        <div class="workshop-box">
+            <ul>
+                <li>Identify 10 potential customers (10 min)</li>
+                <li>Define your core (10 min)</li>
+                <li>Build competitive position chart (10 min)</li>
+            </ul>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 25: Remember -->
+    <StandardSlide id="25" section="Closing" title="Remember">
+        <ul class="content-list">
+            <li>10 customers means real names, not abstract segments</li>
+            <li>Core is defensible advantage, not features</li>
+            <li>Everyone has competitors (including "do nothing")</li>
+            <li>Position where customers want to be served</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 26: Homework -->
+    <StandardSlide id="26" title="Before Next Week" type="visual">
+        <div class="homework-list">
+            <div class="homework-item">
+                <span class="homework-icon">📋</span>
+                <span class="homework-text">Complete 10 customers list with contact plan</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">✍️</span>
+                <span class="homework-text">Write core statement (one paragraph)</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">📊</span>
+                <span class="homework-text">Create competitive position chart</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">📖</span>
+                <span class="homework-text">Read: DE Chapters 12 & 13</span>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 27: Next Week -->
+    <TwoPartSlide id="27" title="Next Week">
+        <p class="primary">Next Week: Customer Acquisition</p>
+        <p class="secondary">Decision-Making Unit & Acquisition Process</p>
+        <p class="tertiary">How do customers actually decide to buy?</p>
+        <div style="margin-top: 50px; padding: 20px 30px; background: rgba(5, 150, 105, 0.1); border: 1px solid rgba(5, 150, 105, 0.3); border-radius: 12px; display: inline-block;">
+            <span style="color: #059669; font-weight: 600;">Theme 3: How does your customer acquire your product?</span>
+        </div>
+    </TwoPartSlide>
+
+    <!-- ===== APPENDIX SLIDES ===== -->
+
+    <Slide title="Porter's Five Forces" appendix={true}>
+        <div class="slide-content">
+            <h2>Porter's Five Forces</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
+                Michael Porter's framework for analyzing industry competition.
+            </p>
+            <div style="max-width: 700px; margin: 30px auto; text-align: left;">
+                <div style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                    <strong style="color: var(--theme-color);">1. Competitive Rivalry:</strong>
+                    <span style="color: var(--text-secondary);"> How intense is current competition?</span>
+                </div>
+                <!-- ... (other items preserved but not using InfoCard for now to minimize risk, or could refactor) -->
+                <!-- Actually let's just leave these as raw HTML for now unless requested, to focus on the presentation flow -->
+                <!-- Or wait, if I want consistency I should use InfoCard here too if possible, but the styling is inline. -->
+                <!-- I'll stick to the core slides for now to fix the reported bug. -->
+                  <div style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                    <strong style="color: var(--theme-color);">2. Supplier Power:</strong>
+                    <span style="color: var(--text-secondary);"> Can suppliers dictate terms?</span>
+                </div>
+                <div style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                    <strong style="color: var(--theme-color);">3. Buyer Power:</strong>
+                    <span style="color: var(--text-secondary);"> Can customers drive prices down?</span>
+                </div>
+                <div style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                    <strong style="color: var(--theme-color);">4. Threat of Substitutes:</strong>
+                    <span style="color: var(--text-secondary);"> Can customers solve this another way?</span>
+                </div>
+                <div style="padding: 15px; background: var(--dark-surface); border-radius: 10px; border-left: 4px solid var(--theme-color);">
+                    <strong style="color: var(--theme-color);">5. Threat of New Entrants:</strong>
+                    <span style="color: var(--text-secondary);"> How easy is it to enter this market?</span>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="Famous Moats" appendix={true}>
+        <div class="slide-content">
+            <h2>Famous Moats (Competitive Advantages)</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 30px auto;">
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Amazon</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Logistics infrastructure + Prime ecosystem + AWS reinvestment</p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Google</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Search data flywheel + advertiser network effects</p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Coca-Cola</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Brand recognition + distribution network + secret formula</p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Tesla</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Supercharger network + driving data + vertical integration</p>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="Positioning Matrix Tips" appendix={true}>
+        <div class="slide-content">
+            <h2>Building an Effective Positioning Matrix</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto 30px;">
+                The 2x2 matrix is powerful, but only if you choose the right dimensions.
+            </p>
+            <div style="max-width: 700px; margin: 0 auto; text-align: left;">
+                <div style="margin-bottom: 20px; padding: 20px; background: var(--dark-surface); border-radius: 12px; border-left: 4px solid var(--success-green);">
+                    <strong style="color: var(--success-green);">DO:</strong>
+                    <ul style="color: var(--text-secondary); margin-top: 10px; margin-left: 20px; line-height: 1.8;">
+                        <li>Pick dimensions customers actually care about</li>
+                        <li>Choose axes where you can differentiate</li>
+                        <li>Use specific, measurable criteria when possible</li>
+                    </ul>
+                </div>
+                <div style="padding: 20px; background: var(--dark-surface); border-radius: 12px; border-left: 4px solid var(--danger-red);">
+                    <strong style="color: var(--danger-red);">DON'T:</strong>
+                    <ul style="color: var(--text-secondary); margin-top: 10px; margin-left: 20px; line-height: 1.8;">
+                        <li>Pick axes just to put yourself in "best" corner</li>
+                        <li>Use vague terms like "quality" or "innovation"</li>
+                        <li>Ignore indirect competitors and substitutes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-4-competitive-positioning/scripts.js"></script>
+    <script is:inline>
+        // Custom slide animations
+        const originalGoToSlide = window.Presentation.goToSlide;
+        window.Presentation.goToSlide = function(n) {
+            originalGoToSlide(n);
+
+            // Draw matrix on slide 22
+            if (n === 22) {
+                setTimeout(drawMatrix, 300);
+            }
+        };
+
+        // I need to define drawMatrix here since it was inline in the original HTML
+        function drawMatrix() {
+            const viz = window.Visualization.create('matrix', { padding: 0.08 });
+            if (!viz) return;
+
+            const { svg, bounds } = viz;
+            const margin = Math.min(bounds.width, bounds.height) * 0.08;
+
+            // Axes
+            svg.append('line')
+                .attr('x1', bounds.left).attr('y1', bounds.centerY)
+                .attr('x2', bounds.right).attr('y2', bounds.centerY)
+                .attr('stroke', '#4a5568').attr('stroke-width', 2);
+            svg.append('line')
+                .attr('x1', bounds.centerX).attr('y1', bounds.top)
+                .attr('x2', bounds.centerX).attr('y2', bounds.bottom)
+                .attr('stroke', '#4a5568').attr('stroke-width', 2);
+
+            // Labels - proportional positions
+            svg.append('text').attr('x', bounds.right + 10).attr('y', bounds.centerY + 5)
+                .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
+                .attr('font-size', '1rem').text('High Price →');
+            svg.append('text').attr('x', bounds.left - 10).attr('y', bounds.centerY + 5)
+                .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
+                .attr('font-size', '1rem').attr('text-anchor', 'end').text('← Low Price');
+            svg.append('text').attr('x', bounds.centerX).attr('y', bounds.top - 10)
+                .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
+                .attr('font-size', '1rem').attr('text-anchor', 'middle').text('Premium ↑');
+            svg.append('text').attr('x', bounds.centerX).attr('y', bounds.bottom + 20)
+                .attr('fill', '#b8c4d6').attr('font-family', 'Montserrat')
+                .attr('font-size', '1rem').attr('text-anchor', 'middle').text('↓ Basic');
+
+            // Competitors - positions as proportions of the chart area
+            const comps = [
+                { name: 'UberX', px: 0.24, py: 0.78 },
+                { name: 'Uber Black', px: 0.85, py: 0.11 },
+                { name: 'Lyft', px: 0.21, py: 0.61 },
+                { name: 'Taxi', px: 0.76, py: 0.89 },
+                { name: 'YOU?', px: 0.5, py: 0.33, highlight: true }
+            ];
+
+            const scale = Math.min(bounds.width, bounds.height);
+            const nodeRadius = scale * 0.05;
+            const highlightRadius = scale * 0.07;
+
+            comps.forEach((c, i) => {
+                const x = bounds.left + c.px * bounds.width;
+                const y = bounds.top + c.py * bounds.height;
+                const g = svg.append('g').attr('opacity', 0);
+                g.append('circle')
+                    .attr('cx', x).attr('cy', y)
+                    .attr('r', c.highlight ? highlightRadius : nodeRadius)
+                    .attr('fill', c.highlight ? '#7c3aed' : '#1c2640')
+                    .attr('stroke', c.highlight ? '#d4a028' : '#4a7ab8')
+                    .attr('stroke-width', 2);
+                g.append('text')
+                    .attr('x', x).attr('y', y)
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
+                    .attr('fill', '#fff')
+                    .attr('font-family', 'Montserrat')
+                    .attr('font-size', '1rem')
+                    .attr('font-weight', c.highlight ? '700' : '500')
+                    .text(c.name);
+                g.transition().delay(i * 300).duration(400).attr('opacity', 1);
+            });
+        }
+    </script>
+</PresentationLayout>

@@ -1,0 +1,571 @@
+---
+/**
+ * Homepage / Course Syllabus
+ *
+ * This page displays the course schedule and overview.
+ * All content is pulled from the config system for easy customization.
+ */
+
+import MainLayout from '../layouts/MainLayout.astro';
+import {
+  institution,
+  course,
+  sessions,
+  deFrameworkThemes,
+  getPresentationSessions,
+} from '../config';
+
+// Get base URL for links (handles GitHub Pages subdirectory deployment)
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+// Get sessions with presentations for keyboard nav
+const presentationSessions = getPresentationSessions();
+
+// Helper to get the full presentation URL with base path
+function getPresentationUrl(path: string | undefined): string | undefined {
+  if (!path) return undefined;
+  // Path starts with /, base doesn't end with /
+  return `${base}${path}`;
+}
+
+// Helper to get theme class for a session
+function getThemeClass(session: typeof sessions[0]): string {
+  if (session.isBreak) return 'break';
+  if (session.isSpecial) return 'theme-final';
+  if (session.number === 0) return 'theme-intro';
+  return session.theme ? `theme-${session.theme}` : 'theme-1';
+}
+
+// Helper to format session number display
+function getSessionNumber(session: typeof sessions[0]): string {
+  if (session.isBreak) return '-';
+  if (session.isSpecial) return '🏆';
+  return session.number.toString();
+}
+---
+
+<MainLayout>
+  <script define:vars={{ presentationSessions, base }}>
+    // Keyboard shortcuts: 0-9 to navigate to class presentations
+    document.addEventListener('keydown', (e) => {
+      const key = e.key;
+      if (key >= '0' && key <= '9') {
+        const classNum = parseInt(key);
+        const session = presentationSessions.find(s => s.number === classNum);
+        if (session && session.presentationPath) {
+          window.location.href = base + session.presentationPath;
+        }
+      }
+    });
+  </script>
+
+  <header class="header">
+    <div class="header-content">
+      <div class="institution-badge">{institution.shortName} {course.semester}</div>
+      <h1>{course.name}</h1>
+      <p class="subtitle">{course.description}</p>
+      <div class="header-meta">
+        <span>
+          <span class="icon">👤</span>
+          {course.instructors.map(i => i.name).join(' & ')}
+        </span>
+        <span>
+          <span class="icon">📅</span>
+          {course.schedule}
+        </span>
+        <span>
+          <span class="icon">📍</span>
+          {course.locations.join(' & ')}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Course Schedule -->
+    <section class="schedule">
+      <div class="section-header">
+        <h2>Course Schedule</h2>
+        <p>{sessions.filter(s => s.presentationPath).length} sessions covering Bill Aulet's Disciplined Entrepreneurship framework</p>
+      </div>
+
+      <div class="schedule-grid">
+        {sessions.map((session) => {
+          const themeClass = getThemeClass(session);
+          const hasPresentation = !!session.presentationPath;
+          const Tag = hasPresentation ? 'a' : 'div';
+          const presentationUrl = getPresentationUrl(session.presentationPath);
+
+          return (
+            <Tag
+              href={hasPresentation ? presentationUrl : undefined}
+              class:list={[
+                'schedule-item',
+                themeClass,
+                { 'has-presentation': hasPresentation }
+              ]}
+            >
+              <div class="schedule-date">
+                <div class="day">{session.date}</div>
+              </div>
+              <div
+                class="schedule-number"
+                class:list={{ 'muted-number': session.isBreak }}
+              >
+                {getSessionNumber(session)}
+              </div>
+              <div class="schedule-content">
+                <div
+                  class="schedule-title"
+                  class:list={{ 'muted-title': session.isBreak }}
+                >
+                  {session.title}
+                </div>
+                <div class="schedule-steps">{session.description}</div>
+              </div>
+              {hasPresentation && (
+                <div class="schedule-action">
+                  View Presentation <span class="arrow-icon">→</span>
+                </div>
+              )}
+            </Tag>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Course Overview -->
+    <section class="overview">
+      <div class="section-header">
+        <h2>Course Overview</h2>
+        <p>Based on Bill Aulet's Disciplined Entrepreneurship framework from MIT</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <h3>Customer First</h3>
+          <p>Every venture starts with understanding a real customer problem. We design from the customer backward, not from the product forward.</p>
+        </div>
+        <div class="overview-card">
+          <h3>Team Sport</h3>
+          <p>Research shows teams outperform individuals. You'll work in teams of ~6 students, learning to collaborate effectively on a shared venture.</p>
+        </div>
+        <div class="overview-card">
+          <h3>Learn by Doing</h3>
+          <p>Mens et Manus (Mind and Hand). Every concept is immediately applied to your venture through workshops and weekly deliverables.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DE Framework -->
+    <section class="framework">
+      <div class="section-header">
+        <h2>The 24-Step Framework</h2>
+        <p>Six fundamental questions every entrepreneur must answer</p>
+      </div>
+
+      <div class="framework-grid">
+        {deFrameworkThemes.map((theme) => (
+          <div class={`framework-card t${theme.number}`}>
+            <div class="framework-number">{theme.number}</div>
+            <div class="framework-content">
+              <h4>{theme.question}</h4>
+              <p>Steps {theme.steps}: {theme.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-quote">"Entrepreneurship can be taught. It can be learned. And the first step is understanding that it's a process, not a personality trait."</p>
+    <p class="footer-attribution">— Bill Aulet, MIT</p>
+    <p class="keyboard-hint">
+      <kbd>0</kbd>-<kbd>9</kbd> Jump to class
+    </p>
+  </footer>
+</MainLayout>
+
+<style>
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--dark-surface) 0%, var(--dark-bg) 100%);
+    border-bottom: 1px solid var(--dark-border);
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .header-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .institution-badge {
+    display: inline-block;
+    background: var(--brand-primary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+
+  .header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header .subtitle {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .header-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-meta .icon {
+    color: var(--brand-accent);
+  }
+
+  /* Main content */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .section-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  /* Course schedule grid */
+  .schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 100px 60px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 24px 30px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .schedule-item:hover {
+    border-color: var(--brand-primary);
+    transform: translateX(5px);
+  }
+
+  .schedule-item.has-presentation {
+    cursor: pointer;
+  }
+
+  .schedule-item.has-presentation:hover {
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(53, 96, 147, 0.1) 100%);
+  }
+
+  .schedule-item.break {
+    opacity: 0.5;
+    background: transparent;
+    border-style: dashed;
+  }
+
+  .schedule-item.break:hover {
+    transform: none;
+    border-color: var(--dark-border);
+  }
+
+  .schedule-date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .schedule-date .day {
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .schedule-number {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .schedule-number.muted-number {
+    background: transparent !important;
+    color: var(--text-muted) !important;
+  }
+
+  .schedule-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .schedule-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .schedule-title.muted-title {
+    color: var(--text-muted);
+  }
+
+  .schedule-steps {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .schedule-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .schedule-item.has-presentation:hover .schedule-action {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: white;
+  }
+
+  /* Theme colors for numbers */
+  .theme-intro .schedule-number { background: rgba(53, 96, 147, 0.2); color: var(--theme-1-blue); }
+  .theme-1 .schedule-number { background: rgba(53, 96, 147, 0.2); color: var(--theme-1-blue); }
+  .theme-2 .schedule-number { background: rgba(124, 58, 237, 0.2); color: var(--theme-2-purple); }
+  .theme-3 .schedule-number { background: rgba(5, 150, 105, 0.2); color: var(--theme-3-green); }
+  .theme-4 .schedule-number { background: rgba(245, 158, 11, 0.2); color: var(--theme-4-amber); }
+  .theme-5 .schedule-number { background: rgba(239, 68, 68, 0.2); color: var(--theme-5-red); }
+  .theme-6 .schedule-number { background: rgba(6, 182, 212, 0.2); color: var(--theme-6-cyan); }
+  .theme-final .schedule-number { background: rgba(212, 160, 40, 0.2); color: var(--brand-accent); }
+
+  /* Overview section */
+  .overview {
+    margin-top: 80px;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .overview-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    padding: 30px;
+  }
+
+  .overview-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brand-accent);
+    margin-bottom: 15px;
+  }
+
+  .overview-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Framework section */
+  .framework {
+    margin-top: 80px;
+  }
+
+  .framework-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .framework-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .framework-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .framework-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .framework-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .framework-card.t1 .framework-number { background: rgba(53, 96, 147, 0.2); color: var(--theme-1-blue); }
+  .framework-card.t2 .framework-number { background: rgba(124, 58, 237, 0.2); color: var(--theme-2-purple); }
+  .framework-card.t3 .framework-number { background: rgba(5, 150, 105, 0.2); color: var(--theme-3-green); }
+  .framework-card.t4 .framework-number { background: rgba(245, 158, 11, 0.2); color: var(--theme-4-amber); }
+  .framework-card.t5 .framework-number { background: rgba(239, 68, 68, 0.2); color: var(--theme-5-red); }
+  .framework-card.t6 .framework-number { background: rgba(6, 182, 212, 0.2); color: var(--theme-6-cyan); }
+
+  /* Footer */
+  .footer {
+    margin-top: 100px;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .footer-quote {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 15px;
+  }
+
+  .footer-attribution {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .keyboard-hint {
+    margin-top: 30px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .keyboard-hint kbd {
+    padding: 2px 8px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    font-family: inherit;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .header h1 {
+      font-size: 2.5rem;
+    }
+
+    .schedule-item {
+      grid-template-columns: 80px 50px 1fr;
+    }
+
+    .schedule-action {
+      display: none;
+    }
+
+    .overview-grid,
+    .framework-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header {
+      padding: 40px 20px;
+    }
+
+    .main {
+      padding: 40px 20px;
+    }
+
+    .header-meta {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .schedule-item {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .schedule-number {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  /* Arrow icon */
+  .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .schedule-item.has-presentation:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+</style>

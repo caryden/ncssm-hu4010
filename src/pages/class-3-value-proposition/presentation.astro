@@ -1,0 +1,554 @@
+---
+/**
+ * Class 3: Value Proposition & Customer Journey
+ * Theme 2 (Purple) - What can you do for them?
+ * DE Steps 6-8
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import Slide from '../../components/presentation/Slide.astro';
+import InfoCard from '../../components/presentation/InfoCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+---
+
+<PresentationLayout title="Class 3: Value Proposition" themeNumber={2}>
+    <style>
+        /* Journey step styles */
+        .journey-step {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            margin: 0 0.25rem;
+            background: var(--dark-surface);
+            border-radius: 8px;
+            min-width: 100px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        /* Animate when slide active */
+        :global(.slide.active) .journey-step {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .journey-step .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-step .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: var(--font-display);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .journey-step.pain {
+            border: 2px solid var(--danger-red);
+        }
+
+        .journey-step.joy {
+            border: 2px solid var(--success-green);
+        }
+
+        /* Value grid styles */
+        .value-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Calculation styles */
+        .calc-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .calc-value {
+            background: var(--dark-surface);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+        }
+
+        .calc-op {
+            color: var(--theme-color);
+            font-weight: 700;
+        }
+
+        .calc-result {
+            background: var(--theme-color);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* Template box styles */
+        .template-box {
+            background: var(--dark-surface);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+
+        .template-box .blank {
+            color: var(--theme-color);
+            font-weight: 600;
+        }
+
+        /* Workshop box */
+        .workshop-box {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .workshop-box ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .workshop-box li {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .workshop-box li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--theme-color);
+            border-radius: 50%;
+        }
+
+        /* Homework list */
+        .homework-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .homework-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--dark-surface);
+            padding: 15px 25px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        :global(.slide.active) .homework-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Stagger delays manually for homework items */
+        :global(.slide.active) .homework-item:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .homework-item:nth-child(2) { transition-delay: 400ms; }
+        :global(.slide.active) .homework-item:nth-child(3) { transition-delay: 600ms; }
+        :global(.slide.active) .homework-item:nth-child(4) { transition-delay: 800ms; }
+
+        .homework-icon {
+            font-size: 1.5rem;
+        }
+
+        .homework-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Appendix-specific styles */
+        .journey-template {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .journey-phase {
+            background: var(--dark-surface);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .journey-phase h4 {
+            color: var(--theme-color);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .journey-phase p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="What Can You Do For Them?"
+        subtitle="Customer Journey & Value Proposition"
+        info="Class 3 | DE Steps 6, 7, 8"
+    />
+
+    <!-- Slide 2: Week Transition -->
+    <TwoPartSlide id="2" title="This Week's Focus">
+        <p class="primary">Last week: WHO is your customer</p>
+        <p class="secondary">This week: WHAT can you do for them</p>
+    </TwoPartSlide>
+
+    <!-- Slide 3: Founder Mistake -->
+    <StatementSlide id="3" title="What Product DOES">
+        Most founders talk about what their product <span class="accent">DOES</span>.
+    </StatementSlide>
+
+    <!-- Slide 4: Customer Focus -->
+    <StatementSlide id="4" title="What It Does FOR THEM">
+        Customers care about what it does <span class="accent">FOR THEM</span>.
+    </StatementSlide>
+
+    <!-- Slide 5: Taxi Before Uber -->
+    <StandardSlide id="5" section="Uber Story" title="Getting a Taxi: Before Uber" type="visual">
+        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 2rem;">
+            <!-- Added inline delay styles for staggering -->
+            <div class="journey-step pain" style="transition-delay: 100ms;"><span class="icon">📞</span><span class="label">Call & wait<br>on hold</span></div>
+            <div class="journey-step pain" style="transition-delay: 200ms;"><span class="icon">🗣️</span><span class="label">Give address<br>hope they get it</span></div>
+            <div class="journey-step pain" style="transition-delay: 300ms;"><span class="icon">❓</span><span class="label">Wait outside<br>unknown ETA</span></div>
+            <div class="journey-step pain" style="transition-delay: 400ms;"><span class="icon">🚕</span><span class="label">Ride<br>trust the meter</span></div>
+            <div class="journey-step pain" style="transition-delay: 500ms;"><span class="icon">💵</span><span class="label">Pay cash<br>calculate tip</span></div>
+            <div class="journey-step pain" style="transition-delay: 600ms;"><span class="icon">📄</span><span class="label">Receipt?<br>maybe...</span></div>
+        </div>
+        <p class="caption" style="margin-top: 1.5rem;">Every step had friction and uncertainty</p>
+    </StandardSlide>
+
+    <!-- Slide 6: With Uber -->
+    <StandardSlide id="6" title="Getting a Ride: With Uber" type="visual">
+        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 2rem;">
+            <div class="journey-step joy" style="transition-delay: 100ms;"><span class="icon">📱</span><span class="label">Open app<br>see cars nearby</span></div>
+            <div class="journey-step joy" style="transition-delay: 200ms;"><span class="icon">📍</span><span class="label">Enter destination<br>price upfront</span></div>
+            <div class="journey-step joy" style="transition-delay: 300ms;"><span class="icon">🗺️</span><span class="label">Track arrival<br>real-time ETA</span></div>
+            <div class="journey-step joy" style="transition-delay: 400ms;"><span class="icon">🚗</span><span class="label">Ride<br>follow on map</span></div>
+            <div class="journey-step joy" style="transition-delay: 500ms;"><span class="icon">💳</span><span class="label">Auto-pay<br>no fumbling</span></div>
+            <div class="journey-step joy" style="transition-delay: 600ms;"><span class="icon">📧</span><span class="label">Receipt<br>automatic email</span></div>
+        </div>
+        <p class="caption" style="margin-top: 1.5rem;">Every friction point transformed into delight</p>
+    </StandardSlide>
+
+    <!-- Slide 7: Step 6 Header -->
+    <StatementSlide id="7" section="Step 6: Full Life Cycle" title="Full Life Cycle Use Case">
+        Step 6: <span class="accent">Full Life Cycle Use Case</span>
+    </StatementSlide>
+
+    <!-- Slide 8: Context -->
+    <StandardSlide id="8" title="Your Product Doesn't Exist in Isolation">
+        <ul class="content-list">
+            <li>Customers experience you in context of their whole day</li>
+            <li>Every touchpoint is an opportunity (or failure point)</li>
+            <li>Understanding the journey reveals where to add value</li>
+            <li>Competitors might beat you in phases you forgot about</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 9: 8 Phases Part 1 -->
+    <StandardSlide id="9" title="8 Phases of the Customer Journey">
+        <ul class="content-list">
+            <li><strong>Awareness:</strong> How do they discover you?</li>
+            <li><strong>Consideration:</strong> How do they evaluate options?</li>
+            <li><strong>Acquisition:</strong> How do they buy/sign up?</li>
+            <li><strong>Onboarding:</strong> First experience with your product</li>
+            <li><strong>Usage:</strong> The core experience (repeat)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 10: 8 Phases Part 2 -->
+    <StandardSlide id="10" title="Journey Phases (continued)">
+        <ul class="content-list">
+            <li><strong>Support:</strong> When things go wrong</li>
+            <li><strong>Renewal:</strong> Will they come back?</li>
+            <li><strong>Churn:</strong> Why do they leave?</li>
+        </ul>
+        <p style="margin-top: 2rem; color: var(--theme-color); font-family: var(--font-display);">Most founders focus only on Usage. Don't make that mistake.</p>
+    </StandardSlide>
+
+    <!-- Slide 11: Step 7 Header -->
+    <StatementSlide id="11" section="Step 7: High-Level Spec" title="High-Level Product Spec">
+        Step 7: <span class="accent">High-Level Product Spec</span>
+    </StatementSlide>
+
+    <!-- Slide 12: Brochure Test -->
+    <TwoPartSlide id="12" title="The Brochure Test">
+        <p class="primary">The Brochure Test</p>
+        <p class="secondary">Could you show this to a customer and they'd understand what you're offering in 30 seconds?</p>
+    </TwoPartSlide>
+
+    <!-- Slide 13: What It's NOT -->
+    <StandardSlide id="13" title="What It's NOT">
+        <ul class="content-list">
+            <li>Technical architecture diagrams</li>
+            <li>Database schemas</li>
+            <li>Code specifications</li>
+            <li>50-page feature lists</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 14: What It IS -->
+    <StandardSlide id="14" title="What It IS">
+        <ul class="content-list">
+            <li>Visual representation of the experience</li>
+            <li>Core features that deliver value</li>
+            <li>Simple enough to explain in 2 minutes</li>
+            <li>"Brochure test" ready</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 15: Step 8 Header -->
+    <StatementSlide id="15" section="Step 8: Quantify Value" title="Quantify the Value">
+        Step 8: <span class="accent">Quantify the Value</span>
+    </StatementSlide>
+
+    <!-- Slide 16: Can't Price -->
+    <TwoPartSlide id="16" title="Numbers Matter">
+        <p class="primary">If you can't put a number on your value...</p>
+        <p class="secondary">...you can't price your product.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 17: Types of Value -->
+    <StandardSlide id="17" title="Types of Value" type="visual">
+        <div class="value-grid">
+            <IconCard icon="⏱️" title="Time" delay="100"><p>Hours saved</p></IconCard>
+            <IconCard icon="💰" title="Money" delay="200"><p>Costs reduced</p></IconCard>
+            <IconCard icon="🛡️" title="Risk" delay="300"><p>Problems prevented</p></IconCard>
+            <IconCard icon="❤️" title="Emotional" delay="400"><p>Peace of mind</p></IconCard>
+        </div>
+        <p class="caption" style="margin-top: 1.5rem;">Time and Money are easiest to quantify. Don't ignore Risk and Emotional.</p>
+    </StandardSlide>
+
+    <!-- Slide 18: Quantifying Time -->
+    <StandardSlide id="18" title="Quantifying Time Saved" type="visual">
+        <div class="calc-row"><span class="calc-value">4 hrs/week</span><span class="calc-op">×</span><span class="calc-value">$50/hr</span><span class="calc-op">=</span><span class="calc-value">$200/week</span></div>
+        <div class="calc-row"><span class="calc-value">$200/week</span><span class="calc-op">×</span><span class="calc-value">52 weeks</span><span class="calc-op">=</span><span class="calc-result">$10,400/year</span></div>
+        <p class="caption" style="margin-top: 1.5rem;">That's the value you create—not your price.</p>
+    </StandardSlide>
+
+    <!-- Slide 19: 10x Rule -->
+    <StatementSlide id="19" title="The 10x Rule">
+        Your product should deliver <span class="accent">10x</span> its price.
+        <p class="secondary" style="margin-top: 1rem;">Charge $100/month? Deliver $1,000/month of value.</p>
+    </StatementSlide>
+
+    <!-- Slide 20: Value Prop Template -->
+    <StandardSlide id="20" title="Write Your Value Proposition" type="visual">
+        <div class="template-box">
+            We help <span class="blank">[persona]</span><br>
+            save <span class="blank">[time/money amount]</span><br>
+            by <span class="blank">[core benefit]</span><br>
+            instead of <span class="blank">[current painful solution]</span>.
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 21: Example Value Prop -->
+    <StandardSlide id="21" title="Example Value Proposition" type="visual">
+        <div class="template-box">
+            We help <span class="blank">busy restaurant managers</span><br>
+            save <span class="blank">10 hours/week</span><br>
+            by <span class="blank">automating reservation management</span><br>
+            instead of <span class="blank">manually juggling phone calls and notebooks</span>.
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 22: Workshop -->
+    <StandardSlide id="22" section="Workshop" title="Workshop: 25 Minutes" type="visual">
+        <div class="workshop-box">
+            <ul>
+                <li>Map current customer journey (10 min)</li>
+                <li>Sketch your product solution (5 min)</li>
+                <li>Quantify your value (10 min)</li>
+            </ul>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 23: Remember -->
+    <StandardSlide id="23" section="Closing" title="Remember">
+        <ul class="content-list">
+            <li>Map the full journey—not just the "usage" phase</li>
+            <li>Sketch your solution at high level (no code needed)</li>
+            <li>Quantify value in customer terms</li>
+            <li>The 10x rule: deliver 10x what you charge</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- Slide 24: Homework -->
+    <StandardSlide id="24" title="Before Next Week" type="visual">
+        <div class="homework-list">
+            <div class="homework-item">
+                <span class="homework-icon">🗺️</span>
+                <span class="homework-text">Complete Full Life Cycle journey map</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">✏️</span>
+                <span class="homework-text">Refined product sketch (before/after)</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">📊</span>
+                <span class="homework-text">Written value proposition with numbers</span>
+            </div>
+            <div class="homework-item">
+                <span class="homework-icon">📖</span>
+                <span class="homework-text">Read: DE Chapters 9, 10, 11</span>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 25: Next Week -->
+    <TwoPartSlide id="25" title="Next Week">
+        <p class="primary">Next Week: Competitive Positioning</p>
+        <p class="secondary">Who else serves your customer? What makes you different?</p>
+        <div style="margin-top: 50px; padding: 20px 30px; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 12px; display: inline-block;">
+            <span style="color: var(--theme-color); font-weight: 600;">Theme 2: What can you do for your customer?</span>
+        </div>
+    </TwoPartSlide>
+
+    <!-- ===== APPENDIX SLIDES ===== -->
+
+    <Slide title="Journey Mapping Template" appendix={true}>
+        <div class="slide-content">
+            <h2>Journey Mapping Template</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
+                Use this framework to map each phase of your customer's journey.
+            </p>
+            <div class="journey-template">
+                <div class="journey-phase">
+                    <h4>Awareness</h4>
+                    <p>How do they discover you?</p>
+                </div>
+                <div class="journey-phase">
+                    <h4>Consideration</h4>
+                    <p>How do they evaluate?</p>
+                </div>
+                <!-- ... preserved ... -->
+                <div class="journey-phase">
+                    <h4>Acquisition</h4>
+                    <p>How do they buy?</p>
+                </div>
+                <div class="journey-phase">
+                    <h4>Onboarding</h4>
+                    <p>First experience?</p>
+                </div>
+                <div class="journey-phase">
+                    <h4>Usage</h4>
+                    <p>Core experience?</p>
+                </div>
+                <div class="journey-phase">
+                    <h4>Support</h4>
+                    <p>When things go wrong?</p>
+                </div>
+                <div class="journey-phase">
+                    <h4>Renewal</h4>
+                    <p>Will they come back?</p>
+                </div>
+                <div class="journey-phase">
+                    <h4>Churn</h4>
+                    <p>Why do they leave?</p>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 25px;">
+                For each phase, identify: Current pain points, Your solution, Success metrics
+            </p>
+        </div>
+    </Slide>
+
+    <Slide title="Value Proposition Examples" appendix={true}>
+        <div class="slide-content">
+            <h2>Value Proposition Examples</h2>
+            <div style="display: grid; gap: 20px; max-width: 800px; margin: 30px auto;">
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px; text-align: left;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Slack</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                        "We help <strong>distributed teams</strong> reduce email by <strong>48%</strong> by <strong>centralizing communication in channels</strong> instead of <strong>endless email threads and missed messages</strong>."
+                    </p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px; text-align: left;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Zoom</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                        "We help <strong>remote workers</strong> save <strong>2+ hours/week</strong> by <strong>reliable one-click video meetings</strong> instead of <strong>fighting with complex conference systems</strong>."
+                    </p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px; text-align: left;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Calendly</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                        "We help <strong>busy professionals</strong> save <strong>4 hours/week</strong> by <strong>automating meeting scheduling</strong> instead of <strong>back-and-forth email chains to find time</strong>."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="The 10x Rule Deep Dive" appendix={true}>
+        <div class="slide-content">
+            <h2>The 10x Rule Deep Dive</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto 30px;">
+                Why 10x? Because the switching cost for customers is real.
+            </p>
+            <div style="max-width: 700px; margin: 0 auto; text-align: left;">
+                <div style="margin-bottom: 20px; padding: 20px; background: var(--dark-surface); border-radius: 12px;">
+                    <h3 style="color: var(--theme-color); margin-bottom: 10px;">Switching Costs Include:</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.8;">
+                        <li>Learning a new system (time)</li>
+                        <li>Migrating data (effort)</li>
+                        <li>Risk of failure (fear)</li>
+                        <li>Team buy-in (politics)</li>
+                        <li>Breaking habits (psychology)</li>
+                    </ul>
+                </div>
+                <div style="padding: 20px; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 12px;">
+                    <p style="color: var(--text-primary); font-size: 1rem;">
+                        <strong>The Math:</strong> If switching costs = 20% of value, and you want 3x ROI after switching, you need: <strong>Value = 3x × (Price + 0.2 × Value)</strong> → Solve for Value ≈ <strong>10x Price</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-3-value-proposition/scripts.js"></script>
+    <!-- Removed custom JS for animations as we now use CSS classes triggered by .slide.active -->
+</PresentationLayout>

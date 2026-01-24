@@ -1,0 +1,525 @@
+---
+/**
+ * Class 7: Unit Economics - LTV & COCA
+ * Theme 4 (Amber) - How do you make money?
+ * DE Steps 17-19
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import MetricCard from '../../components/presentation/MetricCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Slide from '../../components/presentation/Slide.astro';
+---
+
+<PresentationLayout title="Class 7: Unit Economics" themeNumber={4}>
+    <style>
+        /* Extended theme variables for this presentation */
+        :root {
+            --theme-color-dim: var(--brand-accent);
+            --theme-amber-light: #fbbf24;
+            --gradient-hero: linear-gradient(135deg, var(--brand-accent) 0%, var(--theme-color) 100%);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        /* Formula Display */
+        .formula-display {
+            background: var(--dark-surface);
+            border: 2px solid var(--theme-color);
+            border-radius: 20px;
+            padding: 50px 80px;
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .formula-display .formula {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: Georgia, serif;
+        }
+
+        .formula-display .formula span {
+            color: var(--theme-color);
+        }
+
+        /* Calculation Steps */
+        .calculation-steps {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calc-step {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: var(--dark-surface);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s ease;
+        }
+
+        :global(.slide.active) .calc-step {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger delays for calc-steps */
+        :global(.slide.active) .calc-step:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .calc-step:nth-child(2) { transition-delay: 400ms; }
+        :global(.slide.active) .calc-step:nth-child(3) { transition-delay: 600ms; }
+        :global(.slide.active) .calc-step:nth-child(4) { transition-delay: 800ms; }
+
+        .calc-step .label {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+        }
+
+        .calc-step .value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--theme-color);
+            font-family: var(--font-mono);
+        }
+
+        .calc-step.result {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, transparent 100%);
+            border: 2px solid var(--theme-color);
+        }
+
+        .calc-step.result .value {
+            font-size: 2rem;
+        }
+
+        /* Retention Bars */
+        .retention-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .retention-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 100px;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .retention-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .retention-bar-container {
+            height: 50px;
+            background: var(--dark-surface);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .retention-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--theme-color), var(--theme-amber-light));
+            border-radius: 8px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        
+        /* Ideally we'd set width based on state, but without JS we might hardcode widths in specific slides/classes 
+           or use inline styles with a transition on load. 
+           Since existing code used JS to probably set width, we might need a workaround for pure CSS bars.
+           Or we can just rely on the bar having a width set inline and transition on opacity/transform as a simpler fallback.
+           Wait, previous code didn't actually have JS to set widths, it just had a class. 
+           Actually, the file read didn't show JS setting widths. It might have been hardcoded or I missed it.
+           I'll assume inline styles for width are needed or already present if I look carefully? 
+           The code had `<div class="retention-bar" style="width: 80%"></div>` likely.
+           I'll ensure animations work by toggling a class? No, pure CSS: 
+           width transition happens when .slide.active class is added to parent.
+        */
+        :global(.slide.active) .retention-bar {
+            /* This needs the element to have a target width style, 
+               but transition from 0. The easiest way without JS computation 
+               is to set width in style attribute and have a starting state.
+               BUT I can't set "starting state" easily without component logic.
+               Alternative: Use transform: scaleX().
+            */
+            transform-origin: left;
+            animation: growBar 1s ease-out forwards;
+        }
+
+        @keyframes growBar {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .retention-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--theme-color);
+            font-family: var(--font-mono);
+        }
+
+        /* Levers Grid */
+        .levers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .lever-column {
+            background: var(--dark-surface);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .lever-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--success-green);
+            text-align: center;
+            font-family: var(--font-display);
+        }
+
+        .lever-column.decrease h3 {
+            color: var(--theme-color);
+        }
+
+        .lever-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        :global(.slide.active) .lever-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger levers */
+        :global(.slide.active) .lever-item:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .lever-item:nth-child(2) { transition-delay: 350ms; }
+        :global(.slide.active) .lever-item:nth-child(3) { transition-delay: 500ms; }
+
+        .lever-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .lever-item .text {
+            font-size: 1.1rem;
+        }
+
+        /* Collapse result */
+        .collapse-result {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .collapse-result .before-after {
+            font-size: 4rem;
+            margin-bottom: 40px;
+        }
+
+        .collapse-result .strike {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .collapse-result .final {
+            color: var(--danger-red);
+            font-weight: 700;
+        }
+
+        .collapse-icons {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .collapse-icon {
+            text-align: center;
+        }
+
+        .collapse-icon .emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .collapse-icon .text {
+            color: var(--danger-red);
+        }
+
+        /* Appendix */
+        .ltv-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 1.5rem auto;
+        }
+
+        .ltv-factor {
+            background: var(--dark-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .ltv-factor h4 {
+            color: var(--theme-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-display);
+        }
+
+        .ltv-factor .range {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ltv-factor p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="Will You Make Money?"
+        subtitle="LTV, COCA & The Crucial Ratio"
+        info="Class 7 | DE Steps 17, 18, 19"
+    />
+
+    <!-- OPENING: THE REALITY -->
+    <StatementSlide id="2" title="The Reality">
+        A business isn't viable if it costs <span class="accent">more</span> to get a customer than that customer is <span class="accent">worth</span>.
+    </StatementSlide>
+
+    <!-- WEWORK STORY -->
+    <StandardSlide id="3" section="Story" title="WeWork 2019" type="visual">
+        <div class="metrics-grid">
+            <MetricCard value="$47B" label="Valuation" delay="100"/>
+            <MetricCard value="Exponential" label="Growth" delay="200"/>
+            <MetricCard value="700+" label="Locations" delay="300"/>
+            <MetricCard value="Glowing" label="Press Coverage" delay="400"/>
+        </div>
+    </StandardSlide>
+
+    <StandardSlide id="4" title="WeWork Reality" type="visual">
+        <div class="metrics-grid">
+            <MetricCard value="$millions" label="Cost per location" danger={true} delay="100"/>
+            <MetricCard value="5+ years" label="Time to profit" danger={true} delay="200"/>
+            <MetricCard value="Too High" label="Churn rate" danger={true} delay="300"/>
+            <MetricCard value="Negative" label="LTV/COCA Ratio" danger={true} delay="400"/>
+        </div>
+    </StandardSlide>
+
+    <StandardSlide id="5" title="The Collapse" type="visual">
+        <div class="collapse-result">
+            <div class="before-after">
+                <span class="strike">$47B</span>
+                <span style="color: var(--text-secondary); margin: 0 30px;">→</span>
+                <span class="final">$9B</span>
+            </div>
+            <div class="collapse-icons">
+                <div class="collapse-icon">
+                    <div class="emoji">👔</div>
+                    <div class="text">CEO Fired</div>
+                </div>
+                <div class="collapse-icon">
+                    <div class="emoji">📉</div>
+                    <div class="text">IPO Cancelled</div>
+                </div>
+            </div>
+            <p style="margin-top: 60px; font-size: 1.5rem; color: var(--theme-color);">"Growth means nothing without unit economics"</p>
+        </div>
+    </StandardSlide>
+
+    <StandardSlide id="6" title="Tonight's Mission">
+        <h2>Tonight We'll Calculate</h2>
+        <ul class="content-list">
+            <li><strong>LTV:</strong> How much is a customer worth?</li>
+            <li><strong>COCA:</strong> How much does it cost to get one?</li>
+            <li><strong>The Ratio:</strong> Is this business viable?</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- STEP 17: LTV -->
+    <StatementSlide id="7" section="Step 17" title="Step 17 Intro">
+        Step 17: <span class="accent">Calculate Lifetime Value (LTV)</span>
+    </StatementSlide>
+
+    <TwoPartSlide id="8" title="What is LTV">
+        <p class="primary">Customer Lifetime Value</p>
+        <p class="secondary">The total <span class="accent">profit</span> from an average customer over your entire relationship with them.</p>
+        <p class="tertiary" style="margin-top: 40px;">Not revenue—profit. After your costs to serve them.</p>
+    </TwoPartSlide>
+
+    <StandardSlide id="9" title="Why LTV Matters">
+        <h2>LTV Tells You...</h2>
+        <ul class="content-list">
+            <li>How much you can <strong>afford</strong> to spend acquiring customers</li>
+            <li>Whether customers are <strong>valuable enough</strong> to sustain a business</li>
+            <li>Why <strong>retention</strong> is so important</li>
+        </ul>
+    </StandardSlide>
+
+    <StandardSlide id="10" title="The LTV Formula" type="visual">
+        <div class="formula-display">
+            <p class="formula"><span>LTV</span> = (ARPU × Gross Margin) × Lifespan</p>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 80px; margin-top: 60px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; color: var(--theme-color); margin-bottom: 10px; font-family: var(--font-display);">ARPU</div>
+                <div style="color: var(--text-secondary);">Avg Revenue<br>Per User</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; color: var(--theme-color); margin-bottom: 10px; font-family: var(--font-display);">Margin</div>
+                <div style="color: var(--text-secondary);">Revenue<br>minus costs</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; color: var(--theme-color); margin-bottom: 10px; font-family: var(--font-display);">Lifespan</div>
+                <div style="color: var(--text-secondary);">Months as<br>customer</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <TwoPartSlide id="11" title="ARPU">
+        <p class="primary">ARPU: Average Revenue Per User</p>
+        <p class="secondary">What does the average customer pay per month/year?</p>
+    </TwoPartSlide>
+
+    <TwoPartSlide id="12" title="Gross Margin">
+        <p class="primary">Gross Margin</p>
+        <p class="secondary">Revenue minus direct costs to serve each customer</p>
+        <div style="margin-top: 50px; padding: 20px 30px; background: var(--dark-surface); border-radius: 12px; display: inline-block;">
+            <span style="color: var(--text-secondary);">Typical:</span>
+            <span style="color: var(--theme-color); margin-left: 15px; font-weight: 600;">60-80% for SaaS</span>
+        </div>
+    </TwoPartSlide>
+
+    <!-- STEP 18: COCA -->
+    <StatementSlide id="13" section="Step 18" title="Step 18 Intro">
+        Step 18: <span class="accent">Calculate Cost of Customer Acquisition (COCA)</span>
+    </StatementSlide>
+
+    <TwoPartSlide id="14" title="What is COCA">
+        <p class="primary">Cost of Customer Acquisition</p>
+        <p class="secondary">How much do you spend to get ONE paying customer?</p>
+    </TwoPartSlide>
+
+    <StandardSlide id="15" title="COCA Formula" type="visual">
+        <div class="formula-display">
+            <p class="formula"><span>COCA</span> = Total Sales & Marketing Costs ÷ New Customers</p>
+        </div>
+    </StandardSlide>
+
+    <!-- STEP 19: THE RATIO -->
+    <StatementSlide id="16" section="Step 19" title="Step 19 Intro">
+        Step 19: <span class="accent">The Golden Ratio</span>
+    </StatementSlide>
+
+    <StandardSlide id="17" title="LTV > COCA" type="visual">
+        <div style="text-align: center;">
+            <div style="font-size: 8rem; font-weight: 700; color: var(--success-green); font-family: var(--font-display);">LTV > COCA</div>
+            <p style="font-size: 2rem; color: var(--text-secondary); margin-top: 2rem;">If this isn't true, you don't have a business.</p>
+        </div>
+    </StandardSlide>
+
+    <StandardSlide id="18" title="The Rule of 3" type="visual">
+        <div style="text-align: center;">
+            <div style="font-size: 6rem; font-weight: 700; font-family: var(--font-display); color: var(--theme-color);">LTV ≥ 3 × COCA</div>
+            <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top: 2rem;">Healthy SaaS Business Benchmark</p>
+        </div>
+    </StandardSlide>
+
+    <!-- WORKSHOP -->
+    <StandardSlide id="19" section="Workshop" title="Workshop: 25 Minutes">
+        <ul class="content-list">
+            <li>Estimate your LTV components (10 min)</li>
+            <li>Estimate your COCA components (10 min)</li>
+            <li>Calculate your ratio (5 min)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- WRAP-UP -->
+    <StandardSlide id="20" section="Closing" title="Remember">
+        <ul class="content-list">
+            <li>Unit economics prove viability</li>
+            <li>LTV must be at least 3x COCA</li>
+            <li>Reduce churn to boost LTV</li>
+            <li>Optimize channels to lower COCA</li>
+        </ul>
+    </StandardSlide>
+
+    <StandardSlide id="21" title="Before Next Week">
+        <ul class="content-list">
+            <li>Refine LTV calculation spreadsheet</li>
+            <li>Refine COCA calculation spreadsheet</li>
+            <li>Identify top 3 levers to improve ratio</li>
+            <li>Read: DE Chapters 20, 21, 22</li>
+        </ul>
+    </StandardSlide>
+
+    <TwoPartSlide id="22" title="Next Week">
+        <p class="primary">Next Week: Testing & Validation</p>
+        <p class="secondary">Minimum Viable Business Product</p>
+        <p class="tertiary">Prove it before you build it.</p>
+    </TwoPartSlide>
+
+    <!-- APPENDIX SLIDES -->
+    <Slide title="LTV Breakdown" appendix={true}>
+        <div class="slide-content">
+            <h2>LTV Breakdown Factors</h2>
+            <div class="ltv-breakdown">
+                <div class="ltv-factor">
+                    <h4>ARPU</h4>
+                    <div class="range">$10 - $100k+</div>
+                    <p>Price point determines sales model</p>
+                </div>
+                <div class="ltv-factor">
+                    <h4>Gross Margin</h4>
+                    <div class="range">60% - 90%</div>
+                    <p>Software has high margins, services lower</p>
+                </div>
+                <div class="ltv-factor">
+                    <h4>Churn</h4>
+                    <div class="range">0.5% - 5% / mo</div>
+                    <p>Lower churn = exponentially higher LTV</p>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-7-unit-economics/scripts.js"></script>
+</PresentationLayout>

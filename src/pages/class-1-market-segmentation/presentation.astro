@@ -1,0 +1,385 @@
+---
+/**
+ * Class 1: Market Segmentation & Beachhead Selection
+ * Theme 1 (Blue) - Who is your customer?
+ * DE Steps 1-2
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import ListSlide from '../../components/presentation/ListSlide.astro';
+import Slide from '../../components/presentation/Slide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import IconGrid from '../../components/presentation/IconGrid.astro';
+import InfoCard from '../../components/presentation/InfoCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Timeline from '../../components/presentation/Timeline.astro';
+
+import SegmentBranches from '../../components/visualizations/class-1/SegmentBranches.astro';
+import SegmentMatrix from '../../components/visualizations/class-1/SegmentMatrix.astro';
+import ExpansionDiagram from '../../components/visualizations/class-1/ExpansionDiagram.astro';
+---
+
+<PresentationLayout title="Class 1: Market Segmentation" themeNumber={1}>
+    <style>
+        /* Accent color for emphasis */
+        .accent { color: var(--gold); }
+        .danger { color: var(--danger-red); }
+
+        /* Criteria cards */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        /* Caption */
+        .caption {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Warning list items */
+        .content-list li.warning::before {
+            background: var(--danger-red) !important;
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="Finding Your First Customers"
+        subtitle="Market Segmentation & Beachhead Selection"
+        info="Class 1 | DE Steps 1 & 2"
+    />
+
+    <!-- Slide 2: Fatal Mistake -->
+    <StatementSlide id="2" title="The Fatal Mistake">
+        Most startups fail because they build something <span class="danger">nobody wants</span>.
+    </StatementSlide>
+
+    <!-- Slide 3: Deeper Problem -->
+    <TwoPartSlide id="3" title="The Root Cause">
+        <p class="primary">They didn't know who they were building for.</p>
+        <p class="secondary">Or they tried to build for everyone.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 4: Big Idea -->
+    <StatementSlide id="4" title="The Big Idea">
+        The more <span class="accent">specific</span> your target, the more <span class="accent">successful</span> you'll be.
+    </StatementSlide>
+
+    <!-- Slide 5: Instagram Part 1 -->
+    <TwoPartSlide id="5" section="Case Study: Instagram" title="Burbn">
+        <p class="primary">2010: Burbn</p>
+        <p class="secondary">A check-in app with photos, messaging, gaming... and 6 failed features</p>
+        <p class="note">Nobody cared.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 6: Instagram Part 2 -->
+    <TwoPartSlide id="6" title="The Pivot">
+        <p class="primary">The Pivot</p>
+        <p class="secondary">Strip everything. Focus on ONE thing for ONE audience.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 7: Instagram Beachhead -->
+    <ListSlide id="7" title="The Instagram Beachhead">
+        <li>iPhone users (not Android, not all phones)</li>
+        <li>Who want to share photos (not text, not video)</li>
+        <li>With beautiful filters (not raw images)</li>
+        <li>With friends (not the public)</li>
+        <p slot="footer" style="margin-top: 40px; font-size: 1.5rem; color: var(--gold); font-weight: 600;">1 million users in 2 months</p>
+    </ListSlide>
+
+    <!-- Slide 8: Section - Step 1 -->
+    <StatementSlide id="8" section="Step 1: Market Segmentation" title="Step 1">
+        Step 1: <span class="accent">Market Segmentation</span>
+    </StatementSlide>
+
+    <!-- Slide 9: What is a Segment -->
+    <TwoPartSlide id="9" title="What is a Segment">
+        <p class="primary">A group of customers who share...</p>
+        <p class="secondary">Similar characteristics, similar problems, similar buying behavior</p>
+    </TwoPartSlide>
+
+    <!-- Slide 10: Why Segment -->
+    <StandardSlide id="10" title="Different Customers Need Different Everything" type="visual">
+        <SegmentBranches />
+        <p class="caption">One product idea branches into many different approaches</p>
+    </StandardSlide>
+
+    <!-- Slide 11: Energy Drink Example -->
+    <StandardSlide id="11" title="One Product, Many Segments" type="visual">
+        <IconGrid>
+            <IconCard icon="📚" title="College Students" delay="100"><p style="font-size: 0.85rem; color: var(--text-muted);">Cramming</p></IconCard>
+            <IconCard icon="🚛" title="Truck Drivers" delay="200"><p style="font-size: 0.85rem; color: var(--text-muted);">Long Hauls</p></IconCard>
+            <IconCard icon="🎮" title="Esports Gamers" delay="300"><p style="font-size: 0.85rem; color: var(--text-muted);">Competitions</p></IconCard>
+            <IconCard icon="👶" title="New Parents" delay="400"><p style="font-size: 0.85rem; color: var(--text-muted);">Sleep-deprived</p></IconCard>
+            <IconCard icon="💪" title="Gym-goers" delay="500"><p style="font-size: 0.85rem; color: var(--text-muted);">Pre-workout</p></IconCard>
+            <IconCard icon="💼" title="Office Workers" delay="600"><p style="font-size: 0.85rem; color: var(--text-muted);">Afternoon Slump</p></IconCard>
+        </IconGrid>
+        <p class="caption">Same energy drink. Completely different customers.</p>
+    </StandardSlide>
+
+    <!-- Slide 12: Segmentation Variables -->
+    <ListSlide id="12" title="How to Slice the Market">
+        <li><strong>Demographics:</strong> Age, location, income, education</li>
+        <li><strong>Psychographics:</strong> Values, attitudes, lifestyle</li>
+        <li><strong>Behavioral:</strong> Usage patterns, benefits sought</li>
+        <li><strong>Situational:</strong> Context, trigger events</li>
+    </ListSlide>
+
+    <!-- Slide 13: Segmentation Matrix -->
+    <StandardSlide id="13" title="Your Tool: The Segmentation Matrix" type="visual">
+        <SegmentMatrix />
+        <p class="caption">Rate each segment on key criteria to find your best opportunity</p>
+    </StandardSlide>
+
+    <!-- Slide 14: Problem Intensity -->
+    <TwoPartSlide id="14" section="Selection Criteria" title="Problem Intensity">
+        <p class="primary">Criterion 1: Problem Intensity</p>
+        <p class="secondary">How much does it hurt?</p>
+        <p class="note">"Hair on fire" beats "mild inconvenience"</p>
+    </TwoPartSlide>
+
+    <!-- Slide 15: Accessibility -->
+    <TwoPartSlide id="15" title="Accessibility">
+        <p class="primary">Criterion 2: Accessibility</p>
+        <p class="secondary">Can you reach them?</p>
+        <p class="note">The best customers are ones you can actually talk to.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 16: Market Size -->
+    <TwoPartSlide id="16" title="Market Size">
+        <p class="primary">Criterion 3: Market Size</p>
+        <p class="secondary">Big enough to matter, small enough to win</p>
+        <p class="note">We'll calculate TAM precisely next week</p>
+    </TwoPartSlide>
+
+    <!-- Slide 17: Competition & Fit -->
+    <StandardSlide id="17" title="Two More Criteria" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Competition" variant="neutral" delay="200">
+                <p>How well served is this segment?</p>
+                <p style="margin-top: 10px; color: var(--text-secondary);">Is there an opening?</p>
+            </ComparisonCard>
+            <ComparisonCard title="Personal Fit" variant="neutral" delay="400">
+                <p>Do you understand these customers?</p>
+                <p style="margin-top: 10px; color: var(--text-secondary);">Are you credible to them?</p>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- Slide 18: Section - Step 2 -->
+    <StatementSlide id="18" section="Step 2: Beachhead Selection" title="Step 2">
+        Step 2: <span class="accent">Select Your Beachhead</span>
+    </StatementSlide>
+
+    <!-- Slide 19: What is Beachhead -->
+    <TwoPartSlide id="19" title="What is a Beachhead">
+        <p class="primary">Your First Landing Zone</p>
+        <p class="secondary">Like D-Day: Win one beach first, then expand into Europe.</p>
+        <p class="note">The Allies didn't try to invade everywhere at once.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 20: Why One -->
+    <ListSlide id="20" title="The Case for Focus">
+        <li>Limited resources demand focus</li>
+        <li>Different segments need different everything</li>
+        <li>Word-of-mouth spreads within segments</li>
+        <li>Domination creates momentum</li>
+        <li>You can expand later (but not if you die first)</li>
+    </ListSlide>
+
+    <!-- Slide 21: The Paradox -->
+    <StatementSlide id="21" title="The Paradox">
+        Going narrow <em>feels</em> risky.<br>Going broad <em>is</em> <span class="danger">actually risky</span>.
+    </StatementSlide>
+
+    <!-- Slide 22: Beachhead Criteria -->
+    <StandardSlide id="22" title="The Four Tests" type="visual">
+        <div class="criteria-grid">
+            <InfoCard title="Winnable" delay="100">
+                <p style="color: var(--text-secondary);">Can you become #1 in this segment?</p>
+            </InfoCard>
+            <InfoCard title="Valuable" delay="300">
+                <p style="color: var(--text-secondary);">Is it worth winning?</p>
+            </InfoCard>
+            <InfoCard title="Strategic" delay="500">
+                <p style="color: var(--text-secondary);">Does winning here unlock more?</p>
+            </InfoCard>
+            <InfoCard title="Achievable" delay="700">
+                <p style="color: var(--text-secondary);">Can you actually reach them?</p>
+            </InfoCard>
+        </div>
+        <p class="caption">All four must be YES.</p>
+    </StandardSlide>
+
+    <!-- Slide 23: Stepping Stones -->
+    <StandardSlide id="23" title="From Beachhead to Empire" type="visual">
+        <ExpansionDiagram />
+        <p class="caption">Amazon: Books → Media → Everything</p>
+    </StandardSlide>
+
+    <!-- Slide 24: Warning Signs -->
+    <ListSlide id="24" title="Red Flags in Beachhead Selection">
+        <li class="warning">"Everyone could use this!"</li>
+        <li class="warning">"It's a trillion-dollar market!"</li>
+        <li class="warning">"We can sell to anyone who..."</li>
+        <li class="warning">"We'll start with friends and family"</li>
+        <li class="warning">"We'll figure out the customer later"</li>
+    </ListSlide>
+
+    <!-- Slide 25: Good vs Bad -->
+    <StandardSlide id="25" section="Examples" title="Specificity is Power" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Too Vague" variant="bad" delay="200">
+                <div class="side-content">"Small business owners"</div>
+            </ComparisonCard>
+             <ComparisonCard title="Just Right" variant="good" delay="400">
+                <div class="side-content">"Restaurant owners in Durham with 10-50 employees who don't have a reservation system"</div>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- Slide 26: Facebook Example -->
+    <StandardSlide id="26" title="Facebook's Beachhead Expansion" type="visual">
+        <Timeline items={[
+            { date: 'Feb 2004', label: 'Harvard Only' },
+            { date: 'Mar 2004', label: 'Ivy League' },
+            { date: 'Sep 2004', label: 'All US Colleges' },
+            { date: 'Sep 2005', label: 'High Schools' },
+            { date: 'Sep 2006', label: 'Everyone' }
+        ]} />
+        <p class="caption">2+ years of narrow focus before opening up</p>
+    </StandardSlide>
+
+    <!-- Slide 27: Other Examples -->
+    <ListSlide id="27" title="Famous Beachheads">
+        <li><strong>Uber:</strong> SF tech workers, black car service</li>
+        <li><strong>Airbnb:</strong> Conference attendees needing rooms</li>
+        <li><strong>Slack:</strong> Founder's own gaming company</li>
+        <li><strong>Tesla:</strong> Wealthy early adopters, sports car</li>
+    </ListSlide>
+
+    <!-- Slide 28: Workshop Intro -->
+    <ListSlide id="28" section="Workshop" title="Workshop Time: 30 Minutes">
+        <li>Brainstorm 6-12 segments (10 min)</li>
+        <li>Score each on 5 criteria (10 min)</li>
+        <li>Select your top 3 candidates (5 min)</li>
+        <li>Prepare to share (5 min)</li>
+    </ListSlide>
+
+    <!-- Slide 29: Key Takeaways -->
+    <ListSlide id="29" section="Closing" title="Remember">
+        <li>Start with customers, not products</li>
+        <li>Segment to find your best opportunity</li>
+        <li>Pick ONE beachhead to dominate</li>
+        <li>Specific beats broad. Always.</li>
+    </ListSlide>
+
+    <!-- Slide 30: Homework -->
+    <ListSlide id="30" title="Before Next Week">
+        <li>Finalize your segmentation matrix</li>
+        <li>Write beachhead selection rationale</li>
+        <li>Identify 5 potential customers</li>
+        <li>Have 2+ conversations in that segment</li>
+        <li>Read: DE Chapters 3 & 5</li>
+    </ListSlide>
+
+    <!-- Slide 31: Next Week -->
+    <TwoPartSlide id="31" title="Next Week">
+        <p class="primary">Next Week: Know Your Customer</p>
+        <p class="secondary">End User Profile, Persona, and TAM</p>
+        <p class="note">Who exactly are you building for?</p>
+    </TwoPartSlide>
+
+    <!-- ===== APPENDIX SLIDES ===== -->
+
+    <Slide title="Segmentation Research Methods" appendix={true} id="res">
+        <div class="slide-content">
+            <h2>Segmentation Research Methods</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 20px auto; line-height: 1.8;">
+                Different methods to gather data for your segmentation matrix:
+            </p>
+            <ul style="list-style: none; max-width: 600px; margin: 30px auto; text-align: left;">
+                <li style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Surveys:</strong>
+                    <span style="color: var(--text-secondary);"> Quick quantitative data from many potential customers</span>
+                </li>
+                <li style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Interviews:</strong>
+                    <span style="color: var(--text-secondary);"> Deep qualitative insights from 1-on-1 conversations</span>
+                </li>
+                <li style="margin-bottom: 15px; padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Observation:</strong>
+                    <span style="color: var(--text-secondary);"> Watch how potential customers behave in natural settings</span>
+                </li>
+                <li style="padding: 15px; background: var(--dark-surface); border-radius: 10px;">
+                    <strong style="color: var(--theme-color);">Secondary Research:</strong>
+                    <span style="color: var(--text-secondary);"> Industry reports, census data, existing studies</span>
+                </li>
+            </ul>
+        </div>
+    </Slide>
+
+    <Slide title="Common Segmentation Mistakes" appendix={true} id="mistakes">
+        <div class="slide-content">
+            <h2>Common Segmentation Mistakes</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 800px; margin: 30px auto;">
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 16px; border-left: 4px solid var(--danger-red);">
+                    <h3 style="color: var(--danger-red); margin-bottom: 12px; font-size: 1.1rem;">Too Broad</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">"Millennials who like technology"</p>
+                    <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.85rem;">Problem: No actionable insights</p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 16px; border-left: 4px solid var(--danger-red);">
+                    <h3 style="color: var(--danger-red); margin-bottom: 12px; font-size: 1.1rem;">Too Narrow</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">"Left-handed accountants in Toledo who own cats"</p>
+                    <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.85rem;">Problem: Not enough customers</p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 16px; border-left: 4px solid var(--danger-red);">
+                    <h3 style="color: var(--danger-red); margin-bottom: 12px; font-size: 1.1rem;">Demographics Only</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">"Women aged 25-35"</p>
+                    <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.85rem;">Problem: Ignores behavior and needs</p>
+                </div>
+                <div style="background: var(--dark-surface); padding: 25px; border-radius: 16px; border-left: 4px solid var(--danger-red);">
+                    <h3 style="color: var(--danger-red); margin-bottom: 12px; font-size: 1.1rem;">No Pain Point</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">"People who might be interested"</p>
+                    <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.85rem;">Problem: No urgency to buy</p>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="Segmentation Matrix Template" appendix={true} id="temp">
+        <div class="slide-content">
+            <h2>Segmentation Matrix Template</h2>
+            <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 20px;">Use this scoring system (1-5) for each criterion:</p>
+            <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px; max-width: 700px; margin: 0 auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                    <tr style="border-bottom: 1px solid var(--dark-border);">
+                        <th style="text-align: left; padding: 12px; color: var(--text-primary);">Criterion</th>
+                        <th style="text-align: center; padding: 12px; color: var(--text-muted);">1 (Low)</th>
+                        <th style="text-align: center; padding: 12px; color: var(--text-muted);">5 (High)</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--dark-border);">
+                        <td style="padding: 12px; color: var(--text-secondary);">Problem Intensity</td>
+                        <td style="padding: 12px; color: var(--text-muted); text-align: center;">Mild annoyance</td>
+                        <td style="padding: 12px; color: var(--text-muted); text-align: center;">Hair on fire</td>
+                    </tr>
+                </table>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 20px; font-size: 0.9rem;">Total possible score: 25. Your beachhead should score at least 18.</p>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-1-market-segmentation/scripts.js"></script>
+</PresentationLayout>

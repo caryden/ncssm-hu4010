@@ -1,0 +1,46 @@
+---
+/**
+ * Slide Component
+ *
+ * Base wrapper for all slide types. Handles:
+ * - Slide type class assignment
+ * - Data attributes for navigation/TOC
+ * - Appendix slide marking
+ *
+ * @example
+ * <Slide id="1" type="content" title="My Slide" section="Introduction">
+ *   <h2>Content here</h2>
+ * </Slide>
+ */
+
+import type { SlideProps } from './types';
+
+interface Props extends SlideProps {}
+
+const {
+  id,
+  type = 'content',
+  title,
+  section,
+  appendix = false,
+  visualization,
+  class: className,
+} = Astro.props;
+
+const slideClasses = [
+  'slide',
+  `slide-${type}`,
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div
+  class={slideClasses}
+  data-slide={id}
+  data-title={title}
+  data-section={section}
+  data-appendix={appendix ? 'true' : undefined}
+  data-visualization={visualization}
+>
+  <slot />
+</div>

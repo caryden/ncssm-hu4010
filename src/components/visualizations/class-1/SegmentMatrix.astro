@@ -1,0 +1,129 @@
+---
+---
+
+<div id="segment-matrix" class="visualization"></div>
+
+<script is:inline>
+(function() {
+    const containerId = 'segment-matrix';
+
+    function draw() {
+        if (!window.Visualization || !d3) return;
+        const viz = window.Visualization.create(containerId, { padding: 0.05 });
+        if (!viz) return;
+
+        const { svg, bounds } = viz;
+
+        const segments = ['College Students', 'Office Workers', 'New Parents', 'Gym-Goers'];
+        const criteria = ['Problem', 'Access', 'Size', 'Compete', 'Fit'];
+        const scores = [
+            [5, 4, 4, 3, 4],
+            [3, 3, 5, 4, 2],
+            [4, 2, 3, 2, 3],
+            [4, 4, 3, 3, 5]
+        ];
+
+        // Proportional calculations based on actual container size
+        const labelWidth = bounds.width * 0.2;
+        const gridWidth = bounds.width - labelWidth;
+        const cellWidth = gridWidth / criteria.length;
+        const headerHeight = bounds.height * 0.15;
+        const gridHeight = bounds.height - headerHeight;
+        const cellHeight = gridHeight / segments.length;
+        const startX = bounds.left + labelWidth;
+        const startY = bounds.top + headerHeight;
+        const cellGap = 4;
+
+        // Headers
+        criteria.forEach((c, i) => {
+            svg.append('text')
+                .attr('x', startX + i * cellWidth + cellWidth/2)
+                .attr('y', bounds.top + headerHeight * 0.6)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat, sans-serif')
+                .attr('font-size', '1.1rem')
+                .attr('font-weight', '600')
+                .text(c)
+                .attr('opacity', 0)
+                .transition()
+                .delay(300 + i * 100)
+                .duration(300)
+                .attr('opacity', 1);
+        });
+
+        // Rows
+        segments.forEach((seg, row) => {
+            svg.append('text')
+                .attr('x', startX - 15)
+                .attr('y', startY + row * cellHeight + cellHeight/2)
+                .attr('text-anchor', 'end')
+                .attr('dominant-baseline', 'middle')
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat, sans-serif')
+                .attr('font-size', '1.1rem')
+                .text(seg)
+                .attr('opacity', 0)
+                .transition()
+                .delay(600 + row * 100)
+                .duration(300)
+                .attr('opacity', 1);
+
+            scores[row].forEach((score, col) => {
+                const colorScale = d3.scaleLinear()
+                    .domain([1, 3, 5])
+                    .range(['#ef4444', '#eab308', '#10b981']);
+
+                svg.append('rect')
+                    .attr('x', startX + col * cellWidth + cellGap/2)
+                    .attr('y', startY + row * cellHeight + cellGap/2)
+                    .attr('width', cellWidth - cellGap)
+                    .attr('height', cellHeight - cellGap)
+                    .attr('rx', 4)
+                    .attr('fill', colorScale(score))
+                    .attr('opacity', 0)
+                    .transition()
+                    .delay(1000 + row * 150 + col * 50)
+                    .duration(200)
+                    .attr('opacity', 0.8);
+
+                svg.append('text')
+                    .attr('x', startX + col * cellWidth + cellWidth/2)
+                    .attr('y', startY + row * cellHeight + cellHeight/2)
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
+                    .attr('fill', '#fff')
+                    .attr('font-family', 'JetBrains Mono, monospace')
+                    .attr('font-size', '1.5rem')
+                    .attr('font-weight', '600')
+                    .text(score)
+                    .attr('opacity', 0)
+                    .transition()
+                    .delay(1200 + row * 150 + col * 50)
+                    .duration(200)
+                    .attr('opacity', 1);
+            });
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(draw, 300);
+                observer.disconnect();
+            }
+        });
+    });
+
+    const el = document.getElementById(containerId);
+    if (el) observer.observe(el);
+})();
+</script>
+
+<style>
+    .visualization {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+    }
+</style>

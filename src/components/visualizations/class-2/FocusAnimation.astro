@@ -1,0 +1,118 @@
+---
+---
+
+<div id="focus-animation" class="visualization"></div>
+
+<script is:inline>
+(function() {
+    const containerId = 'focus-animation';
+
+    function draw() {
+        if (!window.Visualization || !d3) return;
+        const viz = window.Visualization.create(containerId, { padding: 0.05 });
+        if (!viz) return;
+
+        const { svg, bounds } = viz;
+
+        // Proportional calculations based on container
+        const stageXPositions = [
+            bounds.left + bounds.width * 0.15,
+            bounds.centerX,
+            bounds.left + bounds.width * 0.85
+        ];
+        const clusterRadius = bounds.height * 0.15;
+        const labelOffsetY = bounds.height * 0.35;
+
+        const stages = [
+            { x: stageXPositions[0], label: 'Segment', blur: 8, count: 20, size: bounds.height * 0.03 },
+            { x: stageXPositions[1], label: 'Profile', blur: 3, count: 8, size: bounds.height * 0.045 },
+            { x: stageXPositions[2], label: 'Persona', blur: 0, count: 1, size: bounds.height * 0.15 }
+        ];
+
+        // Define blur filters
+        const defs = svg.append('defs');
+        stages.forEach((s, i) => {
+            defs.append('filter').attr('id', `blur-${i}`).append('feGaussianBlur').attr('stdDeviation', s.blur);
+        });
+
+        stages.forEach((stage, si) => {
+            const g = svg.append('g').attr('transform', `translate(${stage.x}, ${bounds.centerY})`);
+
+            // Draw people
+            for (let i = 0; i < stage.count; i++) {
+                const angle = (i / stage.count) * Math.PI * 2;
+                const radius = stage.count > 1 ? clusterRadius : 0;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                g.append('circle')
+                    .attr('cx', x)
+                    .attr('cy', y)
+                    .attr('r', stage.size)
+                    .attr('fill', '#356093')
+                    .attr('filter', stage.blur > 0 ? `url(#blur-${si})` : null)
+                    .attr('opacity', 0)
+                    .transition()
+                    .delay(si * 600 + i * 50)
+                    .duration(400)
+                    .attr('opacity', 1);
+            }
+
+            // Label
+            g.append('text')
+                .attr('y', labelOffsetY)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat, sans-serif')
+                .attr('font-size', '1.25rem')
+                .attr('font-weight', '600')
+                .text(stage.label)
+                .attr('opacity', 0)
+                .transition()
+                .delay(si * 600 + 300)
+                .duration(300)
+                .attr('opacity', 1);
+        });
+
+        // Arrows - positioned between stages
+        const arrowXPositions = [
+            bounds.left + bounds.width * 0.32,
+            bounds.left + bounds.width * 0.68
+        ];
+        arrowXPositions.forEach((x, i) => {
+            svg.append('text')
+                .attr('x', x)
+                .attr('y', bounds.centerY + 5)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#d4a028')
+                .attr('font-size', '1.5rem')
+                .text('→')
+                .attr('opacity', 0)
+                .transition()
+                .delay(600 + i * 600)
+                .duration(300)
+                .attr('opacity', 1);
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(draw, 300);
+                observer.disconnect();
+            }
+        });
+    });
+
+    const el = document.getElementById(containerId);
+    if (el) observer.observe(el);
+})();
+</script>
+
+<style>
+    .visualization {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+    }
+</style>

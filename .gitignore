@@ -1,5 +1,6 @@
 # Environment variables (contains API keys)
 .env
+.env.*
 
 # OS files
 .DS_Store
@@ -8,3 +9,17 @@
 *.swp
 *.swo
 *~
+.vscode/
+
+# Dependencies
+node_modules/
+
+# Build Output
+dist/
+.astro/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

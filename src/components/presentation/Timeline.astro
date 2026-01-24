@@ -1,0 +1,78 @@
+---
+interface TimelineItem {
+  date: string;
+  label: string;
+}
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="timeline-visual">
+  {items.map((item, index) => (
+    <>
+      <div class="timeline-node" style={`transition-delay: ${(index * 2 + 1) * 200}ms;`}>
+        <div class="date">{item.date}</div>
+        <div class="label">{item.label}</div>
+      </div>
+      {index < items.length - 1 && (
+        <span class="timeline-arrow" style={`transition-delay: ${(index * 2 + 2) * 200}ms;`}>→</span>
+      )}
+    </>
+  ))}
+</div>
+
+<style>
+  .timeline-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 50px auto;
+  }
+
+  .timeline-node {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    padding: 15px 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.5s ease;
+  }
+
+  :global(.slide.active) .timeline-node {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-node .date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 5px;
+  }
+
+  .timeline-node .label {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .timeline-arrow {
+    color: var(--theme-color);
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  :global(.slide.active) .timeline-arrow {
+    opacity: 1;
+  }
+</style>

@@ -1,0 +1,361 @@
+---
+/**
+ * Class 2: Customer Persona & TAM
+ * Theme 1 (Blue) - Who is your customer?
+ * DE Steps 3-5
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import ListSlide from '../../components/presentation/ListSlide.astro';
+import QuoteSlide from '../../components/presentation/QuoteSlide.astro';
+import Slide from '../../components/presentation/Slide.astro';
+import TamCalc from '../../components/presentation/TamCalc.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import InfoCard from '../../components/presentation/InfoCard.astro';
+import PersonaCard from '../../components/presentation/PersonaCard.astro';
+
+import FocusAnimation from '../../components/visualizations/class-2/FocusAnimation.astro';
+import UserBuyerDiagram from '../../components/visualizations/class-2/UserBuyerDiagram.astro';
+---
+
+<PresentationLayout title="Class 2: Customer Persona & TAM" themeNumber={1}>
+    <style>
+        /* Accent classes */
+        .accent { color: var(--gold); }
+        .danger { color: var(--danger-red); }
+
+        /* Caption */
+        .caption {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Secondary text for statement slides */
+        .slide-statement .secondary {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="Know Your Customer"
+        subtitle="End User Profile, TAM & Persona"
+        info="Class 2 | DE Steps 3, 4, 5"
+    />
+
+    <!-- Slide 2: The Mistake -->
+    <StatementSlide id="2" title="The Mistake">
+        They built for 18 months <span class="danger">without talking to customers</span>.
+    </StatementSlide>
+
+    <!-- Slide 3: The Result -->
+    <StatementSlide id="3" title="The Result">
+        <span style="font-size: 4rem;">Nobody wanted it.</span>
+    </StatementSlide>
+
+    <!-- Slide 4: Quote -->
+    <QuoteSlide id="4" title="Aulet Quote" attribution="Bill Aulet">
+        The goal of primary market research is not to sell, but to learn.
+    </QuoteSlide>
+
+    <!-- Slide 5: Tonight's Journey -->
+    <StandardSlide id="5" title="From Segment to Person" type="visual">
+        <FocusAnimation />
+        <p class="caption">Progressive focus: The more specific, the better</p>
+    </StandardSlide>
+
+    <!-- Slide 6: Section - Step 3 -->
+    <StatementSlide id="6" section="Step 3: End User Profile" title="Step 3">
+        Step 3: <span class="accent">Build an End User Profile</span>
+    </StatementSlide>
+
+    <!-- Slide 7: End User vs Buyer -->
+    <StandardSlide id="7" title="Who Actually Uses It?" type="visual">
+        <UserBuyerDiagram />
+        <p class="caption">Design for the user. Sell to the buyer.</p>
+    </StandardSlide>
+
+    <!-- Slide 8: Profile Components -->
+    <ListSlide id="8" title="What You Need to Know">
+        <li><strong>Demographics:</strong> Who they are</li>
+        <li><strong>Psychographics:</strong> What they value</li>
+        <li><strong>Behaviors:</strong> What they do</li>
+        <li><strong>Context:</strong> Where/when the problem occurs</li>
+        <li><strong>Current solutions:</strong> What they do today</li>
+    </ListSlide>
+
+    <!-- Slide 9: Questions -->
+    <ListSlide id="9" title="Answer Through Research">
+        <li>What does a typical day look like?</li>
+        <li>Where does the problem occur?</li>
+        <li>How do they solve it today?</li>
+        <li>What frustrates them about current solutions?</li>
+        <li>What would "better" look like?</li>
+    </ListSlide>
+
+    <!-- Slide 10: 80/20 Rule -->
+    <TwoPartSlide id="10" section="Interview Techniques" title="80/20 Rule">
+        <p class="primary">The 80/20 Rule</p>
+        <p class="secondary">Listen 80% of the time. Talk 20%.</p>
+        <p class="note">You're there to learn, not to sell.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 11: Do's and Don'ts -->
+    <StandardSlide id="11" title="Interview Best Practices" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Do" variant="do" delay="200">
+                <ul>
+                    <li>Ask open-ended questions</li>
+                    <li>Focus on past behavior</li>
+                    <li>Ask "why?" repeatedly</li>
+                    <li>Take detailed notes</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard title="Don't" variant="dont" delay="400">
+                <ul>
+                    <li>Pitch your solution</li>
+                    <li>Ask leading questions</li>
+                    <li>Accept hypotheticals</li>
+                    <li>Assume you understand</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- Slide 12: Magic Questions -->
+    <ListSlide id="12" title="The Interview Framework">
+        <li>"Tell me about the last time you experienced [problem]..."</li>
+        <li>"What did you do about it?"</li>
+        <li>"How did that work out?"</li>
+        <li>"What would make it better?"</li>
+        <li>"How much time/money does this cost you?"</li>
+    </ListSlide>
+
+    <!-- Slide 13: Section - Step 4 -->
+    <StatementSlide id="13" section="Step 4: Calculate TAM" title="Step 4">
+        Step 4: <span class="accent">Calculate TAM</span>
+    </StatementSlide>
+
+    <!-- Slide 14: What is TAM -->
+    <TwoPartSlide id="14" title="Total Addressable Market">
+        <p class="primary">Total Addressable Market</p>
+        <p class="secondary">The total revenue if you owned 100% of your beachhead</p>
+        <p class="note">Your ceiling for this market segment</p>
+    </TwoPartSlide>
+
+    <!-- Slide 15: Why TAM Matters -->
+    <ListSlide id="15" title="TAM Tells You...">
+        <li>Is this market worth pursuing?</li>
+        <li>What's the ceiling for this opportunity?</li>
+        <li>Do you need to expand to adjacent markets?</li>
+        <li>Are your goals realistic?</li>
+    </ListSlide>
+
+    <!-- Slide 16: Bottom-Up Method -->
+    <StandardSlide id="16" title="How to Calculate TAM" type="visual">
+        <TamCalc>
+            <span class="tam-value">Customers</span>
+            <span class="tam-operator">×</span>
+            <span class="tam-value">Revenue/Customer</span>
+            <span class="tam-operator">=</span>
+            <span class="tam-result">TAM</span>
+        </TamCalc>
+        <p class="caption">Count them. Price it. Multiply.</p>
+    </StandardSlide>
+
+    <!-- Slide 17: TAM Example -->
+    <StandardSlide id="17" title="Durham Restaurant Example" type="visual">
+        <TamCalc>
+            <span class="tam-value">200 restaurants</span>
+            <span class="tam-operator">×</span>
+            <span class="tam-value">$2,400/year</span>
+            <span class="tam-operator">=</span>
+            <span class="tam-result">$480,000</span>
+        </TamCalc>
+        <p class="caption">Is this big enough? It depends on your goals.</p>
+    </StandardSlide>
+
+    <!-- Slide 18: TAM Sanity Checks -->
+    <ListSlide id="18" title="Goldilocks TAM">
+        <li><strong style="color: var(--danger-red);">Too small (&lt;$1M):</strong> May not be worth pursuing</li>
+        <li><strong style="color: var(--success-green);">Just right ($5M-$50M):</strong> Beachhead sweet spot</li>
+        <li><strong style="color: var(--gold);">Too big (&gt;$100M):</strong> Are you being specific enough?</li>
+    </ListSlide>
+
+    <!-- Slide 19: Key Question -->
+    <StatementSlide id="19" title="TAM Assumptions">
+        What assumptions does your TAM <span class="accent">depend on</span>?
+        <p class="secondary">Write them down. Test them.</p>
+    </StatementSlide>
+
+    <!-- Slide 20: Section - Step 5 -->
+    <StatementSlide id="20" section="Step 5: Profile the Persona" title="Step 5">
+        Step 5: <span class="accent">Profile the Persona</span>
+    </StatementSlide>
+
+    <!-- Slide 21: From Profile to Persona -->
+    <TwoPartSlide id="21" title="Making It Real">
+        <p class="primary">Making It Real</p>
+        <p class="secondary">From data categories to a real person you can picture</p>
+        <p class="note">"Females 25-35" becomes "Maria"</p>
+    </TwoPartSlide>
+
+    <!-- Slide 22: Why Personify -->
+    <ListSlide id="22" title="The Power of a Persona">
+        <li>Easier to design for "Maria" than "females 25-35"</li>
+        <li>Creates shared team understanding</li>
+        <li>Enables empathy-driven decisions</li>
+        <li>Keeps you honest about who you're serving</li>
+    </ListSlide>
+
+    <!-- Slide 23: Example Persona -->
+    <StandardSlide id="23" title="Meet Maria" type="visual">
+        <PersonaCard
+            name="Maria Chen"
+            role="Product Manager, Austin TX"
+            photoEmoji="👩‍💼"
+            quote="I waste hours every week on tasks that should be automated."
+            demographics={["32 years old", "Product Manager, Austin TX", "$95K salary"]}
+            goals={["Ship products faster", "Reduce time in meetings", "Prove her impact with data"]}
+            frustrations={["Manual reporting takes hours", "Constant context switching", "No single source of truth"]}
+            solution={["Spreadsheets + Slack + Prayer"]}
+        />
+    </StandardSlide>
+
+    <!-- Slide 24: The Quote -->
+    <TwoPartSlide id="24" title="The Key Element">
+        <p class="primary">The Most Important Element</p>
+        <p class="secondary">What would your persona actually say?</p>
+        <p class="note">"I just want something that works."</p>
+    </TwoPartSlide>
+
+    <!-- Slide 25: Would They Buy -->
+    <StatementSlide id="25" title="The Test">
+        Would <span class="accent">THIS person</span> buy your product?
+        <p class="secondary">If you can't answer confidently, you need more research.</p>
+    </StatementSlide>
+
+    <!-- Slide 26: One Persona Rule -->
+    <StatementSlide id="26" title="One Persona">
+        <span class="accent">One</span> persona. Not three. Not five. <span class="accent">One</span>.
+        <p class="secondary">Pick the customer who represents your best opportunity.</p>
+    </StatementSlide>
+
+    <!-- Slide 27: Workshop -->
+    <ListSlide id="27" section="Workshop" title="Workshop: Build Your Persona">
+        <li>Name the persona (2 min)</li>
+        <li>Fill demographics (3 min)</li>
+        <li>Write the quote (3 min)</li>
+        <li>Goals and frustrations (7 min)</li>
+        <li>Current solution (5 min)</li>
+    </ListSlide>
+
+    <!-- Slide 28: Key Takeaways -->
+    <ListSlide id="28" section="Closing" title="Remember">
+        <li>Your end user is specific, not generic</li>
+        <li>TAM must be calculated, not guessed</li>
+        <li>Your persona should feel like a real person</li>
+        <li>Research trumps assumptions. Always.</li>
+    </ListSlide>
+
+    <!-- Slide 29: Homework -->
+    <ListSlide id="29" title="Before Next Week">
+        <li>Finalize persona (all fields, bring printed)</li>
+        <li>Complete TAM calculation (show your work)</li>
+        <li>2 more customer conversations</li>
+        <li>Read: DE Chapters 6 & 8</li>
+    </ListSlide>
+
+    <!-- Slide 30: Next Week -->
+    <TwoPartSlide id="30" title="Next Week">
+        <p class="primary">Next Week: Value Proposition</p>
+        <p class="secondary">Full Life Cycle Use Case & Quantified Value</p>
+        <p class="note">What can you do for your customer that no one else can?</p>
+    </TwoPartSlide>
+
+    <!-- ===== APPENDIX SLIDES ===== -->
+
+    <Slide title="Customer Interview Script" appendix={true}>
+        <div class="slide-content">
+            <h2>Customer Interview Script Template</h2>
+            <div style="background: var(--dark-surface); padding: 25px; border-radius: 16px; max-width: 700px; margin: 20px auto; text-align: left;">
+                <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong style="color: var(--theme-color);">Opening:</strong> "Thanks for taking the time. I'm researching [problem area]. I'd love to hear about your experiences."</p>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong style="color: var(--theme-color);">Warm-up:</strong> "Tell me about your role and what a typical day looks like."</p>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong style="color: var(--theme-color);">Problem exploration:</strong> "When was the last time you experienced [problem]? Walk me through what happened."</p>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong style="color: var(--theme-color);">Current solutions:</strong> "What do you currently do to solve this? How well does that work?"</p>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong style="color: var(--theme-color);">Impact:</strong> "How much time/money/effort does this cost you?"</p>
+                <p style="color: var(--text-secondary);"><strong style="color: var(--theme-color);">Close:</strong> "Is there anyone else you'd recommend I talk to about this?"</p>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="TAM vs SAM vs SOM" appendix={true}>
+        <div class="slide-content">
+            <h2>TAM vs SAM vs SOM</h2>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin: 40px auto; flex-wrap: wrap;">
+                <div style="background: var(--dark-surface); padding: 30px; border-radius: 16px; width: 220px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--theme-color); font-weight: 800;">TAM</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Total Addressable Market</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem;">Everyone who could possibly use your product</div>
+                </div>
+                <div style="background: var(--dark-surface); padding: 30px; border-radius: 16px; width: 220px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--gold); font-weight: 800;">SAM</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Serviceable Addressable Market</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem;">Customers you could realistically serve</div>
+                </div>
+                <div style="background: var(--dark-surface); padding: 30px; border-radius: 16px; width: 220px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--success-green); font-weight: 800;">SOM</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Serviceable Obtainable Market</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem;">Customers you'll actually capture</div>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); text-align: center;">For beachhead selection, focus on TAM for your specific segment</p>
+        </div>
+    </Slide>
+
+    <Slide title="Persona Template" appendix={true}>
+        <div class="slide-content">
+            <h2>Persona Card Template</h2>
+            <div style="background: var(--dark-surface); padding: 25px; border-radius: 16px; max-width: 700px; margin: 20px auto; text-align: left;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 8px;">Name & Photo</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Give them a real name and face</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 8px;">Representative Quote</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">What would they say about their problem?</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 8px;">Demographics</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Age, location, job, income</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 8px;">Goals</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">What are they trying to achieve?</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 8px;">Frustrations</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">What's blocking them?</p>
+                    </div>
+                    <div>
+                        <p style="color: var(--gold); font-weight: 600; margin-bottom: 8px;">Current Solution</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">How do they solve it today?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-2-customer-persona/scripts.js"></script>
+</PresentationLayout>

@@ -1,0 +1,516 @@
+---
+/**
+ * Class 6: Business Model & Pricing
+ * Theme 4 (Amber) - How do you make money?
+ * DE Steps 14-16
+ */
+import PresentationLayout from '../../layouts/PresentationLayout.astro';
+import TitleSlide from '../../components/presentation/TitleSlide.astro';
+import StatementSlide from '../../components/presentation/StatementSlide.astro';
+import TwoPartSlide from '../../components/presentation/TwoPartSlide.astro';
+import StandardSlide from '../../components/presentation/StandardSlide.astro';
+import IconCard from '../../components/presentation/IconCard.astro';
+import PricingCard from '../../components/presentation/PricingCard.astro';
+import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
+import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+import Slide from '../../components/presentation/Slide.astro';
+---
+
+<PresentationLayout title="Class 6: Business Model" themeNumber={4}>
+    <style>
+        /* Extended theme variables for this presentation */
+        :root {
+            --theme-color-dim: var(--brand-accent);
+            --gradient-hero: linear-gradient(135deg, var(--brand-accent) 0%, var(--theme-color) 100%);
+        }
+
+        /* Business Model Grid */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Big Number Display */
+        .big-number {
+            font-size: 5rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .context {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Market Expansion */
+        .expansion-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+
+        .expansion-step {
+            background: var(--dark-surface);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        :global(.slide.active) .expansion-step {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger expansion steps */
+        :global(.slide.active) .expansion-step:nth-child(1) { transition-delay: 200ms; }
+        :global(.slide.active) .expansion-step:nth-child(3) { transition-delay: 400ms; }
+        :global(.slide.active) .expansion-step:nth-child(5) { transition-delay: 600ms; }
+        :global(.slide.active) .expansion-step:nth-child(7) { transition-delay: 800ms; }
+
+        .expansion-step.highlight {
+            background: var(--theme-color);
+            color: var(--dark-bg);
+            font-weight: 600;
+        }
+
+        .expansion-arrow {
+            color: var(--theme-color);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        :global(.slide.active) .expansion-arrow {
+            opacity: 1;
+        }
+
+        /* Stagger expansion arrows */
+        :global(.slide.active) .expansion-arrow:nth-child(2) { transition-delay: 300ms; }
+        :global(.slide.active) .expansion-arrow:nth-child(4) { transition-delay: 500ms; }
+        :global(.slide.active) .expansion-arrow:nth-child(6) { transition-delay: 700ms; }
+
+
+        /* Appendix Styles */
+        .canvas-visual {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 0.5rem;
+            max-width: 900px;
+            margin: 1.5rem auto;
+            height: 300px;
+        }
+
+        .canvas-block {
+            background: var(--dark-surface);
+            border-radius: 8px;
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            font-size: 0.75rem;
+        }
+
+        .canvas-block h4 {
+            color: var(--theme-color);
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+
+        .canvas-block.key-partners { grid-row: span 2; }
+        .canvas-block.key-activities { }
+        .canvas-block.key-resources { }
+        .canvas-block.value-prop { grid-row: span 2; }
+        .canvas-block.customer-rel { }
+        .canvas-block.channels { }
+        .canvas-block.customer-seg { grid-row: span 2; }
+        .canvas-block.cost-structure { grid-column: span 2; }
+        .canvas-block.revenue-streams { grid-column: span 2; }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 1.5rem auto;
+        }
+
+        .metric-box {
+            background: var(--dark-surface);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .metric-box h4 {
+            color: var(--theme-color);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+
+        .metric-box .formula {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: var(--dark-bg);
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .psychology-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 800px;
+            margin: 1.5rem auto;
+            text-align: left;
+        }
+
+        .psychology-item {
+            background: var(--dark-surface);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .psychology-item h4 {
+            color: var(--theme-color);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+
+        .psychology-item p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <!-- Slide 1: Title -->
+    <TitleSlide 
+        id="1" 
+        section="Opening" 
+        title="How Do You Make Money?"
+        subtitle="Business Model & Pricing Framework"
+        info="Class 6 | DE Steps 14, 15, 16"
+    />
+
+    <!-- THEME -->
+    <StatementSlide id="2" title="Theme 4">
+        Theme 4: <span class="accent">How Do You Make Money?</span>
+    </StatementSlide>
+
+    <!-- ADOBE STORY -->
+    <TwoPartSlide id="3" section="Adobe Story" title="Adobe's Gamble">
+        <p class="primary">2013: Adobe's Gamble</p>
+        <p class="secondary">Photoshop: $699 one-time purchase</p>
+        <p class="tertiary">"Buy the box" — the way it had always been done</p>
+    </TwoPartSlide>
+
+    <TwoPartSlide id="4" title="The Shift">
+        <p class="primary">The Shift: $9.99/month</p>
+        <p class="secondary">Wall Street said: "CRAZY. Revenue will DROP."</p>
+    </TwoPartSlide>
+
+    <StandardSlide id="5" title="The Result" type="visual">
+        <div class="big-number">$4B → $19B</div>
+        <p class="context">Adobe's revenue growth (2013-2023)</p>
+        <p class="tertiary" style="margin-top: 0.5rem;">Stock up 10x. More customers than ever.</p>
+    </StandardSlide>
+
+    <StatementSlide id="6" title="Key Insight">
+        <span class="accent">How</span> you charge can be as innovative as <span class="accent">what</span> you sell.
+    </StatementSlide>
+
+    <!-- STEP 14: FOLLOW-ON MARKETS -->
+    <StatementSlide id="7" section="Step 14" title="Step 14 Intro">
+        Step 14: <span class="accent">TAM for Follow-on Markets</span>
+    </StatementSlide>
+
+    <TwoPartSlide id="8" title="Market Expansion">
+        <p class="primary">Your Beachhead Is Just the Beginning</p>
+        <div class="expansion-flow">
+            <span class="expansion-step highlight">Beachhead</span>
+            <span class="expansion-arrow">→</span>
+            <span class="expansion-step">Adjacent Market 1</span>
+            <span class="expansion-arrow">→</span>
+            <span class="expansion-step">Adjacent Market 2</span>
+            <span class="expansion-arrow">→</span>
+            <span class="expansion-step">Mass Market</span>
+        </div>
+        <p class="tertiary">Amazon: Books → Music → Everything → AWS</p>
+    </TwoPartSlide>
+
+    <StandardSlide id="9" title="Adjacent Markets">
+        <h2>Adjacent Markets Share...</h2>
+        <ul class="content-list">
+            <li>Similar customer needs</li>
+            <li>Shared technology/product capabilities</li>
+            <li>Referenceable success (wins open doors)</li>
+            <li>Logical expansion in customer's mind</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- STEP 15: BUSINESS MODEL -->
+    <StatementSlide id="10" section="Step 15" title="Step 15 Intro">
+        Step 15: <span class="accent">Design a Business Model</span>
+    </StatementSlide>
+
+    <TwoPartSlide id="11" title="Business Model Definition">
+        <p class="primary">Your Business Model</p>
+        <p class="secondary">How you capture value from the value you create</p>
+    </TwoPartSlide>
+
+    <StandardSlide id="12" title="8 Common Business Models" type="visual">
+        <div class="model-grid">
+            <IconCard icon="🛒" title="One-Time Sale" delay="100" />
+            <IconCard icon="📅" title="Subscription" delay="200" />
+            <IconCard icon="🔓" title="Freemium" delay="300" />
+            <IconCard icon="🏪" title="Marketplace" delay="400" />
+            <IconCard icon="🖨️" title="Razor/Blade" delay="500" />
+            <IconCard icon="📢" title="Advertising" delay="600" />
+            <IconCard icon="🔑" title="Licensing" delay="700" />
+            <IconCard icon="📊" title="Usage-Based" delay="800" />
+        </div>
+    </StandardSlide>
+
+    <StandardSlide id="13" title="One-Time vs Subscription" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="One-Time Purchase" delay="200">
+                <p>Customer pays once, owns forever</p>
+                <p class="pro" style="color: var(--success-green);">Pro: Large upfront revenue</p>
+                <p class="con" style="color: var(--danger-red);">Con: Must constantly find new customers</p>
+            </ComparisonCard>
+            <ComparisonCard title="Subscription" delay="400">
+                <p>Recurring payment for ongoing access</p>
+                <p class="pro" style="color: var(--success-green);">Pro: Predictable recurring revenue</p>
+                <p class="con" style="color: var(--danger-red);">Con: Must continuously deliver value</p>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <TwoPartSlide id="14" title="Freemium">
+        <p class="primary">Freemium</p>
+        <p class="secondary">Basic product free, charge for premium features</p>
+        <p class="tertiary">Dropbox, Spotify, LinkedIn: Free → Paid conversion</p>
+    </TwoPartSlide>
+
+    <TwoPartSlide id="15" title="Marketplace">
+        <p class="primary">Marketplace</p>
+        <p class="secondary">Connect buyers and sellers, take a cut</p>
+        <p class="tertiary">Uber, Airbnb, eBay: Transaction fees on both sides</p>
+    </TwoPartSlide>
+
+    <!-- STEP 16: PRICING -->
+    <StatementSlide id="16" section="Step 16" title="Step 16 Intro">
+        Step 16: <span class="accent">Set Your Pricing Framework</span>
+    </StatementSlide>
+
+    <StandardSlide id="17" title="Three Pricing Approaches">
+        <h2>Three Pricing Approaches</h2>
+        <ul class="content-list">
+            <li><strong>Cost-Plus:</strong> Your costs + markup (floor)</li>
+            <li><strong>Competitive:</strong> Based on alternatives (context)</li>
+            <li><strong>Value-Based:</strong> Based on value delivered (ceiling)</li>
+        </ul>
+        <p style="margin-top: 1.5rem; color: var(--theme-color);">Value-based pricing captures the most opportunity.</p>
+    </StandardSlide>
+
+    <TwoPartSlide id="18" title="10x Rule">
+        <p class="primary">The 10x Rule Revisited</p>
+        <p class="secondary">If you deliver $1,000 of value, you can charge $100</p>
+        <p class="tertiary">Customers need to feel they're getting a deal</p>
+    </TwoPartSlide>
+
+    <StandardSlide id="19" title="The Pricing Tiers Pattern" type="visual">
+        <div class="pricing-grid">
+            <PricingCard title="Basic" price="$9" period="/month" description="Entry point" delay="200" />
+            <PricingCard title="Pro" price="$29" period="/month" description="Most popular" featured={true} delay="400" />
+            <PricingCard title="Enterprise" price="$99" period="/month" description="Full features" delay="600" />
+        </div>
+        <p class="caption">The middle tier usually converts best (anchoring effect)</p>
+    </StandardSlide>
+
+    <!-- WORKSHOP -->
+    <StandardSlide id="20" section="Workshop" title="Workshop: 25 Minutes">
+        <ul class="content-list">
+            <li>Map your follow-on markets (8 min)</li>
+            <li>Choose your business model (7 min)</li>
+            <li>Draft your pricing framework (10 min)</li>
+        </ul>
+    </StandardSlide>
+
+    <!-- WRAP-UP -->
+    <StandardSlide id="21" section="Closing" title="Remember">
+        <ul class="content-list">
+            <li>Your beachhead leads to bigger markets</li>
+            <li>Business model = how you capture value</li>
+            <li>Price based on value, not just cost</li>
+            <li>Pricing is a hypothesis—test it</li>
+        </ul>
+    </StandardSlide>
+
+    <StandardSlide id="22" title="Before Next Week">
+        <ul class="content-list">
+            <li>Follow-on market analysis (2-3 markets)</li>
+            <li>Business model selection with rationale</li>
+            <li>Pricing framework with tiers</li>
+            <li>Read: DE Chapters 17, 18, 19</li>
+        </ul>
+    </StandardSlide>
+
+    <TwoPartSlide id="23" title="Next Week">
+        <p class="primary">Next Week: Unit Economics</p>
+        <p class="secondary">LTV, COCA & The Crucial Ratio</p>
+        <p class="tertiary">Will you actually make money?</p>
+    </TwoPartSlide>
+
+    <!-- APPENDIX SLIDES -->
+    <Slide title="Business Model Canvas" appendix={true}>
+        <div class="slide-content">
+            <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Business Model Canvas</h2>
+            <p class="tertiary" style="margin-bottom: 1rem;">A strategic tool for designing and analyzing business models</p>
+            <div class="canvas-visual">
+                <div class="canvas-block key-partners">
+                    <h4>Key Partners</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">Who helps you?</span>
+                </div>
+                <div class="canvas-block key-activities">
+                    <h4>Key Activities</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">What do you do?</span>
+                </div>
+                <div class="canvas-block value-prop">
+                    <h4>Value Proposition</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">What problem do you solve?</span>
+                </div>
+                <div class="canvas-block customer-rel">
+                    <h4>Customer Relationships</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">How do you interact?</span>
+                </div>
+                <div class="canvas-block customer-seg">
+                    <h4>Customer Segments</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">Who do you serve?</span>
+                </div>
+                <div class="canvas-block key-resources">
+                    <h4>Key Resources</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">What do you need?</span>
+                </div>
+                <div class="canvas-block channels">
+                    <h4>Channels</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">How do you reach them?</span>
+                </div>
+                <div class="canvas-block cost-structure">
+                    <h4>Cost Structure</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">What are your costs?</span>
+                </div>
+                <div class="canvas-block revenue-streams">
+                    <h4>Revenue Streams</h4>
+                    <span style="color: var(--text-muted); font-size: 0.7rem;">How do you make money?</span>
+                </div>
+            </div>
+            <p class="caption">The canvas complements DE by providing a holistic business view</p>
+        </div>
+    </Slide>
+
+    <Slide title="SaaS Metrics" appendix={true}>
+        <div class="slide-content">
+            <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Key SaaS Metrics</h2>
+            <p class="tertiary" style="margin-bottom: 1rem;">Essential metrics for subscription businesses</p>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <h4>MRR</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Monthly Recurring Revenue</p>
+                    <div class="formula">Customers × Avg Price</div>
+                </div>
+                <!-- ... other items ... -->
+                <div class="metric-box">
+                    <h4>ARR</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Annual Recurring Revenue</p>
+                    <div class="formula">MRR × 12</div>
+                </div>
+                <div class="metric-box">
+                    <h4>Churn Rate</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Customer loss rate</p>
+                    <div class="formula">Lost ÷ Total × 100%</div>
+                </div>
+                <div class="metric-box">
+                    <h4>NRR</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Net Revenue Retention</p>
+                    <div class="formula">(Start + Expand - Churn) ÷ Start</div>
+                </div>
+                <div class="metric-box">
+                    <h4>CAC Payback</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Time to recover COCA</p>
+                    <div class="formula">COCA ÷ (ARPU × Margin)</div>
+                </div>
+                <div class="metric-box">
+                    <h4>Rule of 40</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Growth + Profit benchmark</p>
+                    <div class="formula">Growth% + Profit% ≥ 40%</div>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <Slide title="Pricing Psychology" appendix={true}>
+        <div class="slide-content">
+            <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Pricing Psychology</h2>
+            <p class="tertiary" style="margin-bottom: 1rem;">Behavioral principles that influence pricing decisions</p>
+            <div class="psychology-list">
+                <div class="psychology-item">
+                    <h4>Anchoring</h4>
+                    <p>First price seen becomes the reference point. Show the expensive option first.</p>
+                </div>
+                <div class="psychology-item">
+                    <h4>Decoy Effect</h4>
+                    <p>Add a third option to make the target option look better. The "Pro" tier strategy.</p>
+                </div>
+                <div class="psychology-item">
+                    <h4>Charm Pricing</h4>
+                    <p>$9.99 vs $10 — left-digit effect makes prices feel significantly lower.</p>
+                </div>
+                <div class="psychology-item">
+                    <h4>Price-Quality Signal</h4>
+                    <p>Higher prices can signal higher quality. Don't underprice premium products.</p>
+                </div>
+                <div class="psychology-item">
+                    <h4>Loss Aversion</h4>
+                    <p>Frame pricing around what they lose by not buying, not just what they gain.</p>
+                </div>
+                <div class="psychology-item">
+                    <h4>Social Proof</h4>
+                    <p>"Most popular" labels leverage herd behavior to drive tier selection.</p>
+                </div>
+            </div>
+        </div>
+    </Slide>
+
+    <script is:inline src="/class-6-business-model/scripts.js"></script>
+</PresentationLayout>
