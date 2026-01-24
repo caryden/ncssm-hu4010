@@ -17,6 +17,9 @@ import Slide from '../../components/presentation/Slide.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/6-business-model/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 6: Business Model" themeNumber={4} classNumber={6} narration={narrationData}>
@@ -515,5 +518,5 @@ import narrationData from '../../content/classes/6-business-model/narration.json
         </div>
     </Slide>
 
-    <script is:inline src="/class-6-business-model/scripts.js"></script>
+    <script is:inline src={`${base}class-6-business-model/scripts.js`}></script>
 </PresentationLayout>

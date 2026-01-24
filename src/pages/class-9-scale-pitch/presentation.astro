@@ -17,6 +17,9 @@ import Slide from '../../components/presentation/Slide.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/9-scale-pitch/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 9: Scale & Pitch" themeNumber={6} classNumber={9} narration={narrationData}>
@@ -592,5 +595,5 @@ import narrationData from '../../content/classes/9-scale-pitch/narration.json';
         </ul>
     </StandardSlide>
 
-    <script is:inline src="/class-9-scale-pitch/scripts.js"></script>
+    <script is:inline src={`${base}class-9-scale-pitch/scripts.js`}></script>
 </PresentationLayout>

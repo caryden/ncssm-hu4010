@@ -17,6 +17,9 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/3-value-proposition/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 3: Value Proposition" themeNumber={2} classNumber={3} narration={narrationData}>
@@ -552,6 +555,6 @@ import narrationData from '../../content/classes/3-value-proposition/narration.j
         </div>
     </Slide>
 
-    <script is:inline src="/class-3-value-proposition/scripts.js"></script>
+    <script is:inline src={`${base}class-3-value-proposition/scripts.js`}></script>
     <!-- Removed custom JS for animations as we now use CSS classes triggered by .slide.active -->
 </PresentationLayout>

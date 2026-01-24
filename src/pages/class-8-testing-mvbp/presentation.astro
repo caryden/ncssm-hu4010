@@ -17,6 +17,9 @@ import Slide from '../../components/presentation/Slide.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/8-testing-mvbp/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 8: Testing & MVBP" themeNumber={5} classNumber={8} narration={narrationData}>
@@ -783,5 +786,5 @@ import narrationData from '../../content/classes/8-testing-mvbp/narration.json';
         </div>
     </Slide>
 
-    <script is:inline src="/class-8-testing-mvbp/scripts.js"></script>
+    <script is:inline src={`${base}class-8-testing-mvbp/scripts.js`}></script>
 </PresentationLayout>

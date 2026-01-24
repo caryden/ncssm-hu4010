@@ -17,6 +17,9 @@ import Slide from '../../components/presentation/Slide.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/4-competitive-positioning/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 4: Competitive Positioning" themeNumber={2} classNumber={4} narration={narrationData}>
@@ -455,7 +458,7 @@ import narrationData from '../../content/classes/4-competitive-positioning/narra
         </div>
     </Slide>
 
-    <script is:inline src="/class-4-competitive-positioning/scripts.js"></script>
+    <script is:inline src={`${base}class-4-competitive-positioning/scripts.js`}></script>
     <script is:inline>
         // Custom slide animations
         const originalGoToSlide = window.Presentation.goToSlide;

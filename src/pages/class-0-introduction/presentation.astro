@@ -13,6 +13,9 @@ import { course, institution } from '../../config';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/0-introduction/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout
@@ -412,14 +415,62 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </StandardSlide>
 
-    <!-- Slide 12: Customer First -->
-    <StatementSlide id="12" title="Customer First">
+    <!-- Slide 12: The Real Journey (restored) -->
+    <StandardSlide id="12" title="It's Not a Straight Line" type="visual">
+        <img src="/images/class-0/de-24-steps-journey.png" alt="24 Steps - The Real Journey" style="max-width: 90%; max-height: 60vh; border-radius: 12px;" />
+        <p style="margin-top: 20px; color: var(--text-secondary); font-size: 1.25rem;">Sometimes you go back to go forward. Iteration is the process working.</p>
+    </StandardSlide>
+
+    <!-- Slide 13: Famous Pivots (restored) -->
+    <StandardSlide id="13" title="Going Back is Often the Path Forward" type="visual">
+        <div class="pivot-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 30px auto;">
+            <div class="pivot-card" style="background: var(--dark-surface); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--theme-color);">YouTube</div>
+                <div style="color: var(--text-muted); margin: 8px 0;">Dating site</div>
+                <div style="font-size: 1.5rem;">↓</div>
+                <div style="color: var(--text-secondary);">Video sharing</div>
+            </div>
+            <div class="pivot-card" style="background: var(--dark-surface); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--theme-color);">Slack</div>
+                <div style="color: var(--text-muted); margin: 8px 0;">Gaming company</div>
+                <div style="font-size: 1.5rem;">↓</div>
+                <div style="color: var(--text-secondary);">Team chat</div>
+            </div>
+            <div class="pivot-card" style="background: var(--dark-surface); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--theme-color);">Instagram</div>
+                <div style="color: var(--text-muted); margin: 8px 0;">Check-in app</div>
+                <div style="font-size: 1.5rem;">↓</div>
+                <div style="color: var(--text-secondary);">Photo sharing</div>
+            </div>
+            <div class="pivot-card" style="background: var(--dark-surface); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--theme-color);">Netflix</div>
+                <div style="color: var(--text-muted); margin: 8px 0;">DVD mailing</div>
+                <div style="font-size: 1.5rem;">↓</div>
+                <div style="color: var(--text-secondary);">Streaming</div>
+            </div>
+            <div class="pivot-card" style="background: var(--dark-surface); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--theme-color);">Twitter</div>
+                <div style="color: var(--text-muted); margin: 8px 0;">Podcasting</div>
+                <div style="font-size: 1.5rem;">↓</div>
+                <div style="color: var(--text-secondary);">Microblogging</div>
+            </div>
+            <div class="pivot-card" style="background: var(--dark-surface); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--theme-color);">Shopify</div>
+                <div style="color: var(--text-muted); margin: 8px 0;">Snowboard store</div>
+                <div style="font-size: 1.5rem;">↓</div>
+                <div style="color: var(--text-secondary);">E-commerce platform</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 14: Customer First -->
+    <StatementSlide id="14" title="Customer First">
         Everything starts with the customer.
         <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">Not your idea. Not your technology. The customer.</span>
     </StatementSlide>
 
-    <!-- Slide 13: Pirate + SEAL -->
-    <StandardSlide id="13" title="The Entrepreneurial Mindset" type="visual">
+    <!-- Slide 15: Pirate + SEAL -->
+    <StandardSlide id="15" title="The Entrepreneurial Mindset" type="visual">
         <div class="dual-cards">
             <div class="dual-card">
                 <div class="icon">🏴‍☠️</div>
@@ -434,14 +485,14 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </StandardSlide>
 
-    <!-- Slide 14: Course Overview Section -->
-    <StatementSlide id="14" section="The Course" title="What We'll Build">
+    <!-- Slide 16: Course Overview Section -->
+    <StatementSlide id="16" section="The Course" title="What We'll Build">
         <span class="section-label" style="display: block; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 15px;">This Semester</span>
         What We'll Build Together
     </StatementSlide>
 
-    <!-- Slide 15: Course Timeline -->
-    <StandardSlide id="15" title="Your 10-Week Journey" type="visual">
+    <!-- Slide 17: Course Timeline -->
+    <StandardSlide id="17" title="Your 10-Week Journey" type="visual">
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-dot">1-2</div>
@@ -471,8 +522,8 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </StandardSlide>
 
-    <!-- Slide 16: Weekly Rhythm -->
-    <StandardSlide id="16" title="Weekly Rhythm" type="visual">
+    <!-- Slide 18: Weekly Rhythm -->
+    <StandardSlide id="18" title="Weekly Rhythm" type="visual">
         <div class="dual-cards">
             <div class="dual-card">
                 <div class="icon">📚</div>
@@ -487,8 +538,8 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </StandardSlide>
 
-    <!-- Slide 17: Teams -->
-    <StandardSlide id="17" title="Team Formation" type="visual">
+    <!-- Slide 19: Teams -->
+    <StandardSlide id="19" title="Team Formation" type="visual">
         <ul class="content-list">
             <li><strong>5 teams</strong> of approximately 6 students each</li>
             <li>Teams form over the <strong>first two weeks</strong></li>
@@ -497,14 +548,14 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </ul>
     </StandardSlide>
 
-    <!-- Slide 18: Final Pitches -->
-    <StatementSlide id="18" title="Final Pitches">
+    <!-- Slide 20: Final Pitches -->
+    <StatementSlide id="20" title="Final Pitches">
         May 4 & 11: You'll Pitch to Real Judges
         <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">8 minutes to convince them your venture is viable.</span>
     </StatementSlide>
 
-    <!-- Slide 19: What We're Looking For -->
-    <StandardSlide id="19" section="Expectations" title="What We're Looking For">
+    <!-- Slide 21: What We're Looking For -->
+    <StandardSlide id="21" section="Expectations" title="What We're Looking For">
         <ul class="content-list">
             <li><strong>Evidence over opinion</strong> - Show your work with data</li>
             <li><strong>Iteration</strong> - Pivot when the evidence says so</li>
@@ -513,8 +564,8 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </ul>
     </StandardSlide>
 
-    <!-- Slide 20: What We're NOT Looking For -->
-    <StandardSlide id="20" title="What We're NOT Looking For">
+    <!-- Slide 22: What We're NOT Looking For -->
+    <StandardSlide id="22" title="What We're NOT Looking For">
         <ul class="content-list">
             <li><span style="color: var(--danger-red);">✗</span> A "successful" business idea (most won't be viable - that's normal!)</li>
             <li><span style="color: var(--danger-red);">✗</span> Perfect execution (this is about learning)</li>
@@ -522,14 +573,14 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </ul>
     </StandardSlide>
 
-    <!-- Slide 21: Key Takeaway -->
-    <StatementSlide id="21" section="Closing" title="Key Takeaway">
+    <!-- Slide 23: Key Takeaway -->
+    <StatementSlide id="23" section="Closing" title="Key Takeaway">
         Entrepreneurship is a <span style="color: var(--theme-color);">craft</span>.
         <span class="subtext" style="display: block; font-size: 1.5rem; color: var(--text-secondary); margin-top: 20px; font-weight: 400;">You learn it by doing it. Let's get started.</span>
     </StatementSlide>
 
-    <!-- Slide 22: Homework -->
-    <StandardSlide id="22" title="Homework" type="visual">
+    <!-- Slide 24: Homework -->
+    <StandardSlide id="24" title="Homework" type="visual">
         <div class="homework-list">
             <div class="homework-item">
                 <span class="homework-icon">📖</span>
@@ -546,8 +597,8 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </StandardSlide>
 
-    <!-- Slide 23: Next Week Preview -->
-    <TwoPartSlide id="23" title="Next Week">
+    <!-- Slide 25: Next Week Preview -->
+    <TwoPartSlide id="25" title="Next Week">
         <p class="primary">Next Week: Market Segmentation</p>
         <p class="secondary">How do you find customers worth serving?<br>And which one do you start with?</p>
         <div style="margin-top: 50px; padding: 20px 30px; background: rgba(53, 96, 147, 0.1); border: 1px solid rgba(53, 96, 147, 0.3); border-radius: 12px; display: inline-block;">
@@ -555,8 +606,8 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </TwoPartSlide>
 
-    <!-- Slide 24: Let's Go -->
-    <StatementSlide id="24" title="Let's Go!">
+    <!-- Slide 26: Let's Go -->
+    <StatementSlide id="26" title="Let's Go!">
         <span style="color: var(--theme-color);">Let's build something.</span>
         <div style="font-size: 4rem; margin-top: 30px;">🚀</div>
     </StatementSlide>
@@ -640,7 +691,7 @@ import narrationData from '../../content/classes/0-introduction/narration.json';
         </div>
     </Slide>
 
-    <script is:inline src="/class-0-introduction/scripts.js"></script>
+    <script is:inline src={`${base}class-0-introduction/scripts.js`}></script>
 
     <script is:inline>
         // Custom visualizations for this presentation

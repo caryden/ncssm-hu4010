@@ -24,6 +24,9 @@ import ExpansionDiagram from '../../components/visualizations/class-1/ExpansionD
 
 // Load narration data for captions
 import narrationData from '../../content/classes/1-market-segmentation/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 1: Market Segmentation" themeNumber={1} classNumber={1} narration={narrationData}>
@@ -384,5 +387,5 @@ import narrationData from '../../content/classes/1-market-segmentation/narration
         </div>
     </Slide>
 
-    <script is:inline src="/class-1-market-segmentation/scripts.js"></script>
+    <script is:inline src={`${base}class-1-market-segmentation/scripts.js`}></script>
 </PresentationLayout>

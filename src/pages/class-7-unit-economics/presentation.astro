@@ -17,6 +17,9 @@ import Slide from '../../components/presentation/Slide.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/7-unit-economics/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
 <PresentationLayout title="Class 7: Unit Economics" themeNumber={4} classNumber={7} narration={narrationData}>
@@ -524,5 +527,5 @@ import narrationData from '../../content/classes/7-unit-economics/narration.json
         </div>
     </Slide>
 
-    <script is:inline src="/class-7-unit-economics/scripts.js"></script>
+    <script is:inline src={`${base}class-7-unit-economics/scripts.js`}></script>
 </PresentationLayout>

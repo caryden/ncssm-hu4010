@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 /**
  * Narration slide schema - represents one slide's narration content
@@ -30,25 +31,11 @@ const audioManifestSlideSchema = z.object({
 });
 
 /**
- * Classes collection - lesson plans and presentation specs
- */
-const classesCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    classNumber: z.number(),
-    topic: z.string(),
-    title: z.string(),
-    theme: z.number().min(1).max(6),
-    deSteps: z.array(z.number()),
-    duration: z.string().default('75 minutes'),
-  }),
-});
-
-/**
  * Narration data collection - slide-by-slide narration scripts
+ * Located at: src/content/classes/{n}-{topic}/narration.json
  */
 const narrationCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '*/narration.json', base: './src/content/classes' }),
   schema: z.object({
     classNumber: z.number(),
     topic: z.string(),
@@ -61,9 +48,10 @@ const narrationCollection = defineCollection({
 
 /**
  * Audio manifest data collection - tracks audio file sync status
+ * Located at: src/content/classes/{n}-{topic}/audio-manifest.json
  */
 const audioManifestCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '*/audio-manifest.json', base: './src/content/classes' }),
   schema: z.object({
     classNumber: z.number(),
     topic: z.string(),
@@ -75,7 +63,6 @@ const audioManifestCollection = defineCollection({
 });
 
 export const collections = {
-  classes: classesCollection,
   narration: narrationCollection,
   'audio-manifest': audioManifestCollection,
 };

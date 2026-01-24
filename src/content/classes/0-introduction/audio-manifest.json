@@ -1,7 +1,7 @@
 {
   "classNumber": 0,
   "topic": "introduction",
-  "generatedAt": "2026-01-24T22:33:59.101Z",
+  "generatedAt": "2026-01-24T23:16:36.855Z",
   "voiceId": "Rachel",
   "audioPath": "audio/class-0/",
   "slides": {
@@ -120,8 +120,8 @@
       "narrationTextHash": "d4a0187582b8ea42",
       "slideSignature": {
         "number": 12,
-        "type": "slide-statement",
-        "title": "Customer First"
+        "type": "slide-content",
+        "title": "It"
       },
       "status": "current"
     },
@@ -131,7 +131,7 @@
       "slideSignature": {
         "number": 13,
         "type": "slide-content",
-        "title": "The Entrepreneurial Mindset"
+        "title": "Going Back is Often the Path Forward"
       },
       "status": "current"
     },
@@ -141,7 +141,7 @@
       "slideSignature": {
         "number": 14,
         "type": "slide-statement",
-        "title": "What We"
+        "title": "Customer First"
       },
       "status": "current"
     },
@@ -151,7 +151,7 @@
       "slideSignature": {
         "number": 15,
         "type": "slide-content",
-        "title": "Your 10-Week Journey"
+        "title": "The Entrepreneurial Mindset"
       },
       "status": "current"
     },
@@ -160,8 +160,8 @@
       "narrationTextHash": "7de9d8e8dfd19dce",
       "slideSignature": {
         "number": 16,
-        "type": "slide-content",
-        "title": "Weekly Rhythm"
+        "type": "slide-statement",
+        "title": "What We"
       },
       "status": "current"
     },
@@ -171,7 +171,7 @@
       "slideSignature": {
         "number": 17,
         "type": "slide-content",
-        "title": "Team Formation"
+        "title": "Your 10-Week Journey"
       },
       "status": "current"
     },
@@ -180,8 +180,8 @@
       "narrationTextHash": "c7133aa41abb4a5c",
       "slideSignature": {
         "number": 18,
-        "type": "slide-statement",
-        "title": "Final Pitches"
+        "type": "slide-content",
+        "title": "Weekly Rhythm"
       },
       "status": "current"
     },
@@ -191,7 +191,7 @@
       "slideSignature": {
         "number": 19,
         "type": "slide-content",
-        "title": "What We"
+        "title": "Team Formation"
       },
       "status": "current"
     },
@@ -200,8 +200,8 @@
       "narrationTextHash": "46a6721dade9b7ee",
       "slideSignature": {
         "number": 20,
-        "type": "slide-content",
-        "title": "What We"
+        "type": "slide-statement",
+        "title": "Final Pitches"
       },
       "status": "current"
     },
@@ -210,8 +210,8 @@
       "narrationTextHash": "4e99ddb36b67dda5",
       "slideSignature": {
         "number": 21,
-        "type": "slide-statement",
-        "title": "Key Takeaway"
+        "type": "slide-content",
+        "title": "What We"
       },
       "status": "current"
     },
@@ -221,7 +221,7 @@
       "slideSignature": {
         "number": 22,
         "type": "slide-content",
-        "title": "Homework"
+        "title": "What We"
       },
       "status": "current"
     },
@@ -230,8 +230,8 @@
       "narrationTextHash": "2a59407c8d5867df",
       "slideSignature": {
         "number": 23,
-        "type": "slide-two-part",
-        "title": "Next Week"
+        "type": "slide-statement",
+        "title": "Key Takeaway"
       },
       "status": "current"
     },
@@ -240,8 +240,8 @@
       "narrationTextHash": "85d8d95aab35d9ee",
       "slideSignature": {
         "number": 24,
-        "type": "slide-statement",
-        "title": "Let"
+        "type": "slide-content",
+        "title": "Homework"
       },
       "status": "current"
     },
@@ -250,8 +250,8 @@
       "narrationTextHash": "849e5173ebe5688d",
       "slideSignature": {
         "number": 25,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-two-part",
+        "title": "Next Week"
       },
       "status": "current"
     },
@@ -260,8 +260,8 @@
       "narrationTextHash": "4403d2da70e4290c",
       "slideSignature": {
         "number": 26,
-        "title": "Unknown",
-        "type": "unknown"
+        "type": "slide-statement",
+        "title": "Let"
       },
       "status": "current"
     }
