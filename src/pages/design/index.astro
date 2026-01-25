@@ -1,0 +1,407 @@
+---
+/**
+ * Design Documents Index
+ *
+ * Lists all course design documents for instructor access.
+ * Provides navigation to individual document pages.
+ */
+
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import { institution, course } from '../../config';
+
+// Get all design documents, sorted by order
+const designDocs = await getCollection('design');
+const sortedDocs = designDocs.sort((a, b) => a.data.order - b.data.order);
+
+// Get base URL for links
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+// Icon mapping for document types
+const docTypeIcons: Record<string, string> = {
+  research: '🔬',
+  plan: '📋',
+  syllabus: '📅',
+  spec: '🎨',
+};
+
+const docTypeLabels: Record<string, string> = {
+  research: 'Research',
+  plan: 'Course Plan',
+  syllabus: 'Syllabus',
+  spec: 'Design Spec',
+};
+---
+
+<MainLayout title="Course Design Documents">
+  <header class="header">
+    <div class="header-content">
+      <a href={`${base}/`} class="back-link">← Back to Course</a>
+      <div class="institution-badge">{institution.shortName} Instructor Resources</div>
+      <h1>Course Design</h1>
+      <p class="subtitle">Pedagogical foundations, teaching philosophy, and design specifications</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="documents">
+      <div class="section-header">
+        <h2>Design Documents</h2>
+        <p>Core documents that define the course structure and approach</p>
+      </div>
+
+      <div class="docs-grid">
+        {sortedDocs.map((doc) => (
+          <a href={`${base}/design/${doc.id}`} class="doc-card">
+            <div class="doc-icon">{docTypeIcons[doc.data.docType]}</div>
+            <div class="doc-content">
+              <div class="doc-type">{docTypeLabels[doc.data.docType]}</div>
+              <h3 class="doc-title">{doc.data.title}</h3>
+              <p class="doc-description">{doc.data.description}</p>
+            </div>
+            <div class="doc-action">
+              <span>Read</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="section-header">
+        <h2>Quick Reference</h2>
+        <p>Jump to specific sections</p>
+      </div>
+
+      <div class="links-grid">
+        <div class="link-group">
+          <h4>Pedagogical Foundations</h4>
+          <ul>
+            <li><a href={`${base}/design/curriculum-research#expert-sources`}>Expert Sources (Aulet, Blank, etc.)</a></li>
+            <li><a href={`${base}/design/curriculum-research#common-misconceptions`}>Common Misconceptions</a></li>
+            <li><a href={`${base}/design/curriculum-research#pedagogical-approaches`}>Experiential Learning Approach</a></li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Teaching Philosophy</h4>
+          <ul>
+            <li><a href={`${base}/design/course-plan#guiding-principles`}>7 Guiding Principles</a></li>
+            <li><a href={`${base}/design/course-plan#misconception-handling`}>Misconception Schedule</a></li>
+            <li><a href={`${base}/design/course-plan#assessment-philosophy`}>Assessment Philosophy</a></li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Course Structure</h4>
+          <ul>
+            <li><a href={`${base}/design/syllabus#course-schedule`}>Session Schedule</a></li>
+            <li><a href={`${base}/design/syllabus#assignments--deliverables`}>Weekly Deliverables</a></li>
+            <li><a href={`${base}/design/syllabus#team-formation`}>Team Formation</a></li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Design System</h4>
+          <ul>
+            <li><a href={`${base}/design/presentation-spec#color-palette`}>Color Palette</a></li>
+            <li><a href={`${base}/design/presentation-spec#typography`}>Typography & Font Sizes</a></li>
+            <li><a href={`${base}/design/presentation-spec#de-framework-theme-colors`}>DE Theme Colors</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-note">These documents are for instructor reference. Students access the course through the main syllabus.</p>
+    <a href={`${base}/`} class="footer-link">← Return to Course Syllabus</a>
+  </footer>
+</MainLayout>
+
+<style>
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--dark-surface) 0%, var(--dark-bg) 100%);
+    border-bottom: 1px solid var(--dark-border);
+    padding: 40px 40px 60px;
+  }
+
+  .header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--brand-primary);
+  }
+
+  .institution-badge {
+    display: inline-block;
+    background: var(--theme-2-purple);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+
+  .header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--theme-2-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+
+  /* Main content */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: 30px;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  /* Documents grid */
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+
+  .doc-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .doc-card:hover {
+    border-color: var(--theme-2-purple);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+  }
+
+  .doc-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(124, 58, 237, 0.15);
+    border-radius: 14px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .doc-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .doc-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--theme-2-purple);
+    margin-bottom: 6px;
+  }
+
+  .doc-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .doc-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .doc-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .doc-card:hover .doc-action {
+    background: var(--theme-2-purple);
+    border-color: var(--theme-2-purple);
+    color: white;
+  }
+
+  .doc-action .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .doc-card:hover .doc-action .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Quick links */
+  .quick-links {
+    padding-top: 40px;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .link-group h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .link-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .link-group li {
+    margin-bottom: 10px;
+  }
+
+  .link-group a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    display: block;
+    line-height: 1.4;
+  }
+
+  .link-group a:hover {
+    color: var(--theme-2-purple);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 80px;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .footer-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--brand-primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    .links-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: 30px 20px 40px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+    }
+
+    .main {
+      padding: 40px 20px;
+    }
+
+    .docs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .doc-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .doc-action {
+      align-self: center;
+      margin-top: 15px;
+    }
+
+    .links-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+</style>
