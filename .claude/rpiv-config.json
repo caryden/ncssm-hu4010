@@ -72,12 +72,12 @@
     }
   },
   "blocking": {
-    "lesson-plan": ["course-plan.md", "research-{topic}.md"],
+    "lesson-plan": ["course-plan.md"],
     "presentation-spec": ["lesson-plan.md"],
     "presentation": ["presentation-spec.md"],
     "reviewlog": ["presentation.astro"],
     "narration": ["presentation.astro"],
-    "audio": ["narration.json"]
+    "audio": ["narration.json", "audio-manifest.json"]
   },
   "paths": {
     "courseArtifacts": ".",

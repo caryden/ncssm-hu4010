@@ -57,35 +57,51 @@ If `SYLLABUS.md` exists:
 
 ### Step 4: Check Class-Level Artifacts
 
-For each class identified in syllabus:
+For each class identified in syllabus, check artifacts in **Astro structure**:
 
 | Artifact | Path Pattern | Gate |
 |----------|--------------|------|
-| Research | `research/research-{topic}.md` | - |
-| Lesson Plan | `class-{n}-{topic}/lesson-plan-{topic}.md` | 1 |
-| Spec | `class-{n}-{topic}/presentation-spec-{topic}.md` | 2 |
-| Presentation | `class-{n}-{topic}/presentation.astro` | 3 |
-| Review Log | `class-{n}-{topic}/reviewlog.md` | 4-5 |
-| Script | `class-{n}-{topic}/script.md` | - |
-| Audio | `public/audio/class-{n}/` | - |
+| Lesson Plan | `src/content/classes/{n}-{topic}/lesson-plan.md` | 1 |
+| Spec | `src/content/classes/{n}-{topic}/presentation-spec.md` | 2 |
+| Presentation | `src/pages/class-{n}-{topic}/presentation.astro` | 3 |
+| Review Log | `src/content/classes/{n}-{topic}/reviewlog.md` | 4-5 |
+| Narration | `src/content/classes/{n}-{topic}/narration.json` | - |
+| Audio Manifest | `src/content/classes/{n}-{topic}/audio-manifest.json` | - |
+| Audio Files | `public/audio/class-{n}/slide-*.mp3` | - |
 
-Check both old HTML structure and new Astro structure.
+### Step 5: Check Narration & Audio Freshness
 
-### Step 5: Apply Blocking Rules
+For each class with `narration.json` and `audio-manifest.json`:
+
+1. **Count slides in narration.json** - Number of entries in `slides` object
+2. **Count entries in audio-manifest.json** - Should match narration slide count
+3. **Check audio file count** - Count `slide-*.mp3` files in `public/audio/class-{n}/`
+4. **Check freshness status** - Read `status` field for each slide in audio-manifest.json:
+   - `"current"` = Audio matches narration text (hash verified)
+   - `"stale"` = Narration changed, audio needs regeneration
+
+**Audio Status Codes:**
+- ✅ All slides have `"status": "current"` and files exist
+- ⚠️ Some slides are `"stale"` (need regeneration)
+- 🔄 Slide count mismatch between narration and manifest
+- ❌ Missing narration.json or audio-manifest.json
+
+### Step 6: Apply Blocking Rules
 
 For any missing artifact, check if its prerequisites exist:
 
 ```
-lesson-plan requires: course-plan.md + research-{topic}.md
-presentation-spec requires: lesson-plan-{topic}.md
-presentation requires: presentation-spec-{topic}.md
-reviewlog requires: presentation.*
-script requires: presentation.* + reviewlog.md
+lesson-plan requires: course-plan.md
+presentation-spec requires: lesson-plan.md
+presentation requires: presentation-spec.md
+reviewlog requires: presentation.astro
+narration requires: presentation.astro
+audio requires: narration.json
 ```
 
 Mark blocked items with 🚫 and note what's blocking them.
 
-### Step 6: Generate Status Report
+### Step 7: Generate Status Report
 
 Output a structured report:
 
@@ -98,43 +114,44 @@ Generated: {timestamp}
 
 | Artifact | Status | Notes |
 |----------|--------|-------|
-| curriculum-design-research.md | ✅ | 3 sources cited |
+| curriculum-design-research.md | ✅ | 4 sources cited |
 | course-plan.md | ✅ | |
-| SYLLABUS.md | ✅ | 15 classes defined |
+| SYLLABUS.md | ✅ | 10 classes defined |
 | master-presentation-spec.md | ✅ | |
 
 Foundation Status: COMPLETE ✅
 
 ## Classes
 
-### Class 1: {topic}
-| Artifact | Status | Blocker |
-|----------|--------|---------|
-| research-{topic}.md | ✅ | |
-| lesson-plan-{topic}.md | ✅ | Gate 1: ✅ |
-| presentation-spec-{topic}.md | ✅ | Gate 2: ✅ |
-| presentation.astro | ✅ | Gate 3: ✅ |
-| reviewlog.md | ✅ | Gates 4-5: ✅ |
-| script.md | ❌ | |
-| audio/ | ❌ | Blocked by script.md |
+| Class | Topic | Lesson | Spec | Presentation | Narration | Audio |
+|-------|-------|:------:|:----:|:------------:|:---------:|:-----:|
+| 0 | introduction | ✅ | ✅ | ✅ | ✅ | ✅ 26 |
+| 1 | market-segmentation | ✅ | ✅ | ✅ | ✅ | ⚠️ 2 stale |
+| 2 | customer-persona | ✅ | ✅ | ✅ | ❌ | 🚫 |
 
-Class 1 Status: READY FOR NARRATION 🎙️
+## Audio Freshness Details
 
-### Class 2: {topic}
-...
+### Classes with Stale Audio
+| Class | Topic | Stale Slides | Action |
+|-------|-------|--------------|--------|
+| 1 | market-segmentation | 5, 12 | Run `/narration-build` |
+
+### Classes Missing Audio
+| Class | Topic | Blocker |
+|-------|-------|---------|
+| 2 | customer-persona | Missing narration.json |
 
 ## Summary
 
 - Course Foundation: ✅ Complete
-- Classes Complete: 3/15 (20%)
-- Classes In Progress: 2/15 (13%)
-- Classes Not Started: 10/15 (67%)
+- Classes with all artifacts: 8/10 (80%)
+- Classes with stale audio: 1/10 (10%)
+- Classes missing audio: 1/10 (10%)
 
 ## Next Actions
 
-1. Class 4 ({topic}): Run `/presentation-build {topic}` - spec complete
-2. Class 5 ({topic}): Run `/lesson-plan {topic}` - research complete
-3. Class 1 ({topic}): Run `/narration-build {topic}` - ready for audio
+1. Class 1 (market-segmentation): Run `/narration-build` - 2 slides stale
+2. Class 2 (customer-persona): Run `/narration-build` - no narration.json
 ```
 
 ---
@@ -156,59 +173,114 @@ This skill produces:
 | 🔄 | Partial/incomplete | Complete the artifact |
 | ❌ | Missing | Create with appropriate skill |
 | 🚫 | Blocked | Complete blocker first |
-| ⚠️ | Gate failed | Re-run gate after fixes |
+| ⚠️ | Stale (audio needs regen) | Run `/narration-build` |
+
+---
+
+## Audio Manifest Structure
+
+The `audio-manifest.json` file tracks audio generation state:
+
+```json
+{
+  "classNumber": 0,
+  "topic": "introduction",
+  "generatedAt": "2026-01-24T23:16:36.855Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-0/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "df8ef2a01399f40d",
+      "slideSignature": {
+        "number": 1,
+        "type": "slide-title",
+        "title": "Based on Bill Aulet"
+      },
+      "status": "current"
+    }
+  }
+}
+```
+
+**Key fields for freshness check:**
+- `narrationTextHash`: SHA256 hash of the narration text (first 16 chars)
+- `status`: `"current"` or `"stale"`
+- `audioFile`: Expected file in `public/audio/class-{n}/`
+
+---
+
+## Narration JSON Structure
+
+The `narration.json` file contains the actual scripts:
+
+```json
+{
+  "classNumber": 0,
+  "topic": "introduction",
+  "voice": "Rachel",
+  "model": "eleven_multilingual_v2",
+  "slides": {
+    "1": {
+      "ssml": "<speak>...</speak>",
+      "plainText": "...",
+      "estimatedDuration": null
+    }
+  }
+}
+```
+
+**Narration is complete when:**
+- All presentation slides have corresponding entries
+- Each entry has both `ssml` and `plainText`
 
 ---
 
 ## Examples
 
-### Example: Early Project
+### Example: All Fresh
 
 ```
-$ /artifact-status
-
-# RPIV Artifact Status Report
-
-## Course Foundation
-
-| Artifact | Status | Notes |
-|----------|--------|-------|
-| curriculum-design-research.md | ❌ | Missing |
-| course-plan.md | 🚫 | Blocked by research |
-| SYLLABUS.md | 🚫 | Blocked by course-plan |
-| master-presentation-spec.md | 🚫 | Blocked by course-plan |
-
-Foundation Status: NOT STARTED ❌
-
-## Next Actions
-
-1. Run `/course-research` to begin curriculum research
-```
-
-### Example: Mid-Project
-
-```
-$ /artifact-status
-
-# RPIV Artifact Status Report
-
-## Course Foundation
-[All ✅]
-
 ## Classes
 
-### Class 1-3: Complete ✅
-### Class 4: customer-discovery
-| Artifact | Status | Blocker |
-|----------|--------|---------|
-| research-customer-discovery.md | ✅ | |
-| lesson-plan-customer-discovery.md | ✅ | Gate 1: ✅ |
-| presentation-spec-customer-discovery.md | 🔄 | Missing viz specs |
+| Class | Topic | Lesson | Spec | Presentation | Narration | Audio |
+|-------|-------|:------:|:----:|:------------:|:---------:|:-----:|
+| 0 | introduction | ✅ | ✅ | ✅ | ✅ | ✅ 26 |
+| 1 | market-segmentation | ✅ | ✅ | ✅ | ✅ | ✅ 33 |
 
-Class 4 Status: IN PROGRESS (at spec)
+Audio Status: ALL CURRENT ✅
+```
+
+### Example: Some Stale
+
+```
+## Classes
+
+| Class | Topic | Lesson | Spec | Presentation | Narration | Audio |
+|-------|-------|:------:|:----:|:------------:|:---------:|:-----:|
+| 0 | introduction | ✅ | ✅ | ✅ | ✅ | ✅ 26 |
+| 1 | market-segmentation | ✅ | ✅ | ✅ | ✅ | ⚠️ 3 stale |
+
+## Audio Freshness Details
+
+### Classes with Stale Audio
+| Class | Stale Slides | Reason |
+|-------|--------------|--------|
+| 1 | 5, 12, 18 | Narration text changed |
 
 ## Next Actions
+1. Run `/narration-build market-segmentation` to regenerate stale audio
+```
 
-1. Complete presentation-spec for customer-discovery (add visualization specs)
-2. Then run Gate 2 check
+### Example: Missing Narration
+
+```
+## Classes
+
+| Class | Topic | Lesson | Spec | Presentation | Narration | Audio |
+|-------|-------|:------:|:----:|:------------:|:---------:|:-----:|
+| 3 | value-proposition | ✅ | ✅ | ✅ | ❌ | 🚫 |
+
+## Next Actions
+1. Run `/narration-build value-proposition` to create narration and audio
 ```
