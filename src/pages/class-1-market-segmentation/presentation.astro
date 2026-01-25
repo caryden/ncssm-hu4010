@@ -21,6 +21,7 @@ import Timeline from '../../components/presentation/Timeline.astro';
 import SegmentBranches from '../../components/visualizations/class-1/SegmentBranches.astro';
 import SegmentMatrix from '../../components/visualizations/class-1/SegmentMatrix.astro';
 import ExpansionDiagram from '../../components/visualizations/class-1/ExpansionDiagram.astro';
+import IntensityScale from '../../components/visualizations/class-1/IntensityScale.astro';
 
 // Load narration data for captions
 import narrationData from '../../content/classes/1-market-segmentation/narration.json';
@@ -156,22 +157,35 @@ const base = import.meta.env.BASE_URL;
         <p class="note">"Hair on fire" beats "mild inconvenience"</p>
     </TwoPartSlide>
 
-    <!-- Slide 15: Accessibility -->
-    <TwoPartSlide id="15" title="Accessibility">
+    <!-- Slide 15: Problem Intensity Scale -->
+    <StandardSlide id="15" narrationKey="15" title="Problem Intensity Scale" type="visual">
+        <IntensityScale />
+        <p class="caption">Early-stage startups should focus on customers at levels 4-5</p>
+    </StandardSlide>
+
+    <!-- Slide 16: Why Intensity Matters -->
+    <TwoPartSlide id="16" narrationKey="16" title="Why Intensity Matters">
+        <p class="primary">Educating customers about latent problems is expensive.</p>
+        <p class="secondary">Find people already feeling the pain.</p>
+        <p class="note">Let urgency do your selling for you.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 17: Accessibility -->
+    <TwoPartSlide id="17" narrationKey="17" title="Accessibility">
         <p class="primary">Criterion 2: Accessibility</p>
         <p class="secondary">Can you reach them?</p>
         <p class="note">The best customers are ones you can actually talk to.</p>
     </TwoPartSlide>
 
     <!-- Slide 16: Market Size -->
-    <TwoPartSlide id="16" title="Market Size">
+    <TwoPartSlide id="18" narrationKey="18" title="Market Size">
         <p class="primary">Criterion 3: Market Size</p>
         <p class="secondary">Big enough to matter, small enough to win</p>
         <p class="note">We'll calculate TAM precisely next week</p>
     </TwoPartSlide>
 
     <!-- Slide 17: Competition & Fit -->
-    <StandardSlide id="17" title="Two More Criteria" type="visual">
+    <StandardSlide id="19" narrationKey="19" title="Two More Criteria" type="visual">
         <ComparisonGrid>
             <ComparisonCard title="Competition" variant="neutral" delay="200">
                 <p>How well served is this segment?</p>
@@ -185,19 +199,19 @@ const base = import.meta.env.BASE_URL;
     </StandardSlide>
 
     <!-- Slide 18: Section - Step 2 -->
-    <StatementSlide id="18" section="Step 2: Beachhead Selection" title="Step 2">
+    <StatementSlide id="20" narrationKey="20" section="Step 2: Beachhead Selection" title="Step 2">
         Step 2: <span class="accent">Select Your Beachhead</span>
     </StatementSlide>
 
     <!-- Slide 19: What is Beachhead -->
-    <TwoPartSlide id="19" title="What is a Beachhead">
+    <TwoPartSlide id="21" narrationKey="21" title="What is a Beachhead">
         <p class="primary">Your First Landing Zone</p>
         <p class="secondary">Like D-Day: Win one beach first, then expand into Europe.</p>
         <p class="note">The Allies didn't try to invade everywhere at once.</p>
     </TwoPartSlide>
 
     <!-- Slide 20: Why One -->
-    <ListSlide id="20" title="The Case for Focus">
+    <ListSlide id="22" narrationKey="22" title="The Case for Focus">
         <li>Limited resources demand focus</li>
         <li>Different segments need different everything</li>
         <li>Word-of-mouth spreads within segments</li>
@@ -206,12 +220,12 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 21: The Paradox -->
-    <StatementSlide id="21" title="The Paradox">
+    <StatementSlide id="23" narrationKey="23" title="The Paradox">
         Going narrow <em>feels</em> risky.<br>Going broad <em>is</em> <span class="danger">actually risky</span>.
     </StatementSlide>
 
     <!-- Slide 22: Beachhead Criteria -->
-    <StandardSlide id="22" title="The Four Tests" type="visual">
+    <StandardSlide id="24" narrationKey="24" title="The Four Tests" type="visual">
         <div class="criteria-grid">
             <InfoCard title="Winnable" delay="100">
                 <p style="color: var(--text-secondary);">Can you become #1 in this segment?</p>
@@ -230,13 +244,13 @@ const base = import.meta.env.BASE_URL;
     </StandardSlide>
 
     <!-- Slide 23: Stepping Stones -->
-    <StandardSlide id="23" title="From Beachhead to Empire" type="visual">
+    <StandardSlide id="25" narrationKey="25" title="From Beachhead to Empire" type="visual">
         <ExpansionDiagram />
         <p class="caption">Amazon: Books → Media → Everything</p>
     </StandardSlide>
 
     <!-- Slide 24: Warning Signs -->
-    <ListSlide id="24" title="Red Flags in Beachhead Selection">
+    <ListSlide id="26" narrationKey="26" title="Red Flags in Beachhead Selection">
         <li class="warning">"Everyone could use this!"</li>
         <li class="warning">"It's a trillion-dollar market!"</li>
         <li class="warning">"We can sell to anyone who..."</li>
@@ -245,7 +259,7 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 25: Good vs Bad -->
-    <StandardSlide id="25" section="Examples" title="Specificity is Power" type="visual">
+    <StandardSlide id="27" narrationKey="27" section="Examples" title="Specificity is Power" type="visual">
         <ComparisonGrid>
             <ComparisonCard title="Too Vague" variant="bad" delay="200">
                 <div class="side-content">"Small business owners"</div>
@@ -257,7 +271,7 @@ const base = import.meta.env.BASE_URL;
     </StandardSlide>
 
     <!-- Slide 26: Facebook Example -->
-    <StandardSlide id="26" title="Facebook's Beachhead Expansion" type="visual">
+    <StandardSlide id="28" narrationKey="28" title="Facebook's Beachhead Expansion" type="visual">
         <Timeline items={[
             { date: 'Feb 2004', label: 'Harvard Only' },
             { date: 'Mar 2004', label: 'Ivy League' },
@@ -269,7 +283,7 @@ const base = import.meta.env.BASE_URL;
     </StandardSlide>
 
     <!-- Slide 27: Other Examples -->
-    <ListSlide id="27" title="Famous Beachheads">
+    <ListSlide id="29" narrationKey="29" title="Famous Beachheads">
         <li><strong>Uber:</strong> SF tech workers, black car service</li>
         <li><strong>Airbnb:</strong> Conference attendees needing rooms</li>
         <li><strong>Slack:</strong> Founder's own gaming company</li>
@@ -277,7 +291,7 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 28: Workshop Intro -->
-    <ListSlide id="28" section="Workshop" title="Workshop Time: 30 Minutes">
+    <ListSlide id="30" narrationKey="30" section="Workshop" title="Workshop Time: 30 Minutes">
         <li>Brainstorm 6-12 segments (10 min)</li>
         <li>Score each on 5 criteria (10 min)</li>
         <li>Select your top 3 candidates (5 min)</li>
@@ -285,7 +299,7 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 29: Key Takeaways -->
-    <ListSlide id="29" section="Closing" title="Remember">
+    <ListSlide id="31" narrationKey="31" section="Closing" title="Remember">
         <li>Start with customers, not products</li>
         <li>Segment to find your best opportunity</li>
         <li>Pick ONE beachhead to dominate</li>
@@ -293,7 +307,7 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 30: Homework -->
-    <ListSlide id="30" title="Before Next Week">
+    <ListSlide id="32" narrationKey="32" title="Before Next Week">
         <li>Finalize your segmentation matrix</li>
         <li>Write beachhead selection rationale</li>
         <li>Identify 5 potential customers</li>
@@ -302,7 +316,7 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 31: Next Week -->
-    <TwoPartSlide id="31" title="Next Week">
+    <TwoPartSlide id="33" narrationKey="33" title="Next Week">
         <p class="primary">Next Week: Know Your Customer</p>
         <p class="secondary">End User Profile, Persona, and TAM</p>
         <p class="note">Who exactly are you building for?</p>

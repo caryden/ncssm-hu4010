@@ -147,28 +147,67 @@ const base = import.meta.env.BASE_URL;
         <li>"How much time/money does this cost you?"</li>
     </ListSlide>
 
-    <!-- Slide 13: Section - Step 4 -->
-    <StatementSlide id="13" section="Step 4: Calculate TAM" title="Step 4">
+    <!-- Slide 13: The Mom Test -->
+    <TwoPartSlide id="13" narrationKey="13" title="The Mom Test">
+        <p class="primary">Ask questions your mom can't lie to you about.</p>
+        <p class="secondary">Bad: "Would you buy this?"<br/>Good: "Tell me about the last time you faced [problem]"</p>
+        <p class="note">— Rob Fitzpatrick, The Mom Test</p>
+    </TwoPartSlide>
+
+    <!-- Slide 14: Good vs Bad Questions -->
+    <StandardSlide id="14" narrationKey="14" title="Questions That Work" type="visual">
+        <ComparisonGrid>
+            <ComparisonCard title="Avoid These" variant="dont" delay="200">
+                <ul>
+                    <li>"Would you use this?"</li>
+                    <li>"Do you think this is a good idea?"</li>
+                    <li>"How much would you pay?"</li>
+                    <li>"Would you recommend this?"</li>
+                </ul>
+            </ComparisonCard>
+            <ComparisonCard title="Ask Instead" variant="do" delay="400">
+                <ul>
+                    <li>"What solutions have you tried?"</li>
+                    <li>"How much did those cost you?"</li>
+                    <li>"What happened last time?"</li>
+                    <li>"Can I follow up when ready?"</li>
+                </ul>
+            </ComparisonCard>
+        </ComparisonGrid>
+    </StandardSlide>
+
+    <!-- Slide 15: Commitment Escalator -->
+    <ListSlide id="15" narrationKey="15" title="End Every Interview With a Commitment">
+        <li><strong>Time:</strong> "Can I follow up in 2 weeks?"</li>
+        <li><strong>Referral:</strong> "Who else should I talk to?"</li>
+        <li><strong>Introduction:</strong> "Would you connect me to [person]?"</li>
+        <li><strong>Letter of Intent:</strong> "Would you sign a pilot agreement?"</li>
+        <li><strong>Pre-order:</strong> "Would you put down a deposit?"</li>
+        <p slot="footer" class="caption" style="margin-top: 1.5rem;">Commitments reveal true interest. Compliments don't.</p>
+    </ListSlide>
+
+    <!-- Slide 16: Section - Step 4 -->
+    <StatementSlide id="16" narrationKey="16" section="Step 4: Calculate TAM" title="Step 4">
         Step 4: <span class="accent">Calculate TAM</span>
     </StatementSlide>
 
-    <!-- Slide 14: What is TAM -->
-    <TwoPartSlide id="14" title="Total Addressable Market">
+    <!-- Slide 17: What is TAM -->
+    <TwoPartSlide id="17" narrationKey="17" title="Total Addressable Market">
         <p class="primary">Total Addressable Market</p>
         <p class="secondary">The total revenue if you owned 100% of your beachhead</p>
         <p class="note">Your ceiling for this market segment</p>
     </TwoPartSlide>
 
-    <!-- Slide 15: Why TAM Matters -->
-    <ListSlide id="15" title="TAM Tells You...">
+    <!-- Slide 18: Why TAM Matters -->
+    <ListSlide id="18" narrationKey="18" title="TAM Tells You...">
         <li>Is this market worth pursuing?</li>
         <li>What's the ceiling for this opportunity?</li>
         <li>Do you need to expand to adjacent markets?</li>
         <li>Are your goals realistic?</li>
     </ListSlide>
 
-    <!-- Slide 16: Bottom-Up Method -->
-    <StandardSlide id="16" title="How to Calculate TAM" type="visual">
+    <!-- Slide 19: Bottom-Up Method -->
+    <StandardSlide id="19" narrationKey="19" title="How to Calculate TAM" type="visual">
         <TamCalc>
             <span class="tam-value">Customers</span>
             <span class="tam-operator">×</span>
@@ -179,8 +218,8 @@ const base = import.meta.env.BASE_URL;
         <p class="caption">Count them. Price it. Multiply.</p>
     </StandardSlide>
 
-    <!-- Slide 17: TAM Example -->
-    <StandardSlide id="17" title="Durham Restaurant Example" type="visual">
+    <!-- Slide 20: TAM Example -->
+    <StandardSlide id="20" narrationKey="20" title="Durham Restaurant Example" type="visual">
         <TamCalc>
             <span class="tam-value">200 restaurants</span>
             <span class="tam-operator">×</span>
@@ -191,41 +230,41 @@ const base = import.meta.env.BASE_URL;
         <p class="caption">Is this big enough? It depends on your goals.</p>
     </StandardSlide>
 
-    <!-- Slide 18: TAM Sanity Checks -->
-    <ListSlide id="18" title="Goldilocks TAM">
+    <!-- Slide 21: TAM Sanity Checks -->
+    <ListSlide id="21" narrationKey="21" title="Goldilocks TAM">
         <li><strong style="color: var(--danger-red);">Too small (&lt;$1M):</strong> May not be worth pursuing</li>
         <li><strong style="color: var(--success-green);">Just right ($5M-$50M):</strong> Beachhead sweet spot</li>
         <li><strong style="color: var(--gold);">Too big (&gt;$100M):</strong> Are you being specific enough?</li>
     </ListSlide>
 
-    <!-- Slide 19: Key Question -->
-    <StatementSlide id="19" title="TAM Assumptions">
+    <!-- Slide 22: Key Question -->
+    <StatementSlide id="22" narrationKey="22" title="TAM Assumptions">
         What assumptions does your TAM <span class="accent">depend on</span>?
         <p class="secondary">Write them down. Test them.</p>
     </StatementSlide>
 
-    <!-- Slide 20: Section - Step 5 -->
-    <StatementSlide id="20" section="Step 5: Profile the Persona" title="Step 5">
+    <!-- Slide 23: Section - Step 5 -->
+    <StatementSlide id="23" narrationKey="23" section="Step 5: Profile the Persona" title="Step 5">
         Step 5: <span class="accent">Profile the Persona</span>
     </StatementSlide>
 
-    <!-- Slide 21: From Profile to Persona -->
-    <TwoPartSlide id="21" title="Making It Real">
+    <!-- Slide 24: From Profile to Persona -->
+    <TwoPartSlide id="24" narrationKey="24" title="Making It Real">
         <p class="primary">Making It Real</p>
         <p class="secondary">From data categories to a real person you can picture</p>
         <p class="note">"Females 25-35" becomes "Maria"</p>
     </TwoPartSlide>
 
-    <!-- Slide 22: Why Personify -->
-    <ListSlide id="22" title="The Power of a Persona">
+    <!-- Slide 25: Why Personify -->
+    <ListSlide id="25" narrationKey="25" title="The Power of a Persona">
         <li>Easier to design for "Maria" than "females 25-35"</li>
         <li>Creates shared team understanding</li>
         <li>Enables empathy-driven decisions</li>
         <li>Keeps you honest about who you're serving</li>
     </ListSlide>
 
-    <!-- Slide 23: Example Persona -->
-    <StandardSlide id="23" title="Meet Maria" type="visual">
+    <!-- Slide 26: Example Persona -->
+    <StandardSlide id="26" narrationKey="26" title="Meet Maria" type="visual">
         <PersonaCard
             name="Maria Chen"
             role="Product Manager, Austin TX"
@@ -238,27 +277,27 @@ const base = import.meta.env.BASE_URL;
         />
     </StandardSlide>
 
-    <!-- Slide 24: The Quote -->
-    <TwoPartSlide id="24" title="The Key Element">
+    <!-- Slide 27: The Quote -->
+    <TwoPartSlide id="27" narrationKey="27" title="The Key Element">
         <p class="primary">The Most Important Element</p>
         <p class="secondary">What would your persona actually say?</p>
         <p class="note">"I just want something that works."</p>
     </TwoPartSlide>
 
-    <!-- Slide 25: Would They Buy -->
-    <StatementSlide id="25" title="The Test">
+    <!-- Slide 28: Would They Buy -->
+    <StatementSlide id="28" narrationKey="28" title="The Test">
         Would <span class="accent">THIS person</span> buy your product?
         <p class="secondary">If you can't answer confidently, you need more research.</p>
     </StatementSlide>
 
-    <!-- Slide 26: One Persona Rule -->
-    <StatementSlide id="26" title="One Persona">
+    <!-- Slide 29: One Persona Rule -->
+    <StatementSlide id="29" narrationKey="29" title="One Persona">
         <span class="accent">One</span> persona. Not three. Not five. <span class="accent">One</span>.
         <p class="secondary">Pick the customer who represents your best opportunity.</p>
     </StatementSlide>
 
-    <!-- Slide 27: Workshop -->
-    <ListSlide id="27" section="Workshop" title="Workshop: Build Your Persona">
+    <!-- Slide 30: Workshop -->
+    <ListSlide id="30" narrationKey="30" section="Workshop" title="Workshop: Build Your Persona">
         <li>Name the persona (2 min)</li>
         <li>Fill demographics (3 min)</li>
         <li>Write the quote (3 min)</li>
@@ -266,16 +305,16 @@ const base = import.meta.env.BASE_URL;
         <li>Current solution (5 min)</li>
     </ListSlide>
 
-    <!-- Slide 28: Key Takeaways -->
-    <ListSlide id="28" section="Closing" title="Remember">
+    <!-- Slide 31: Key Takeaways -->
+    <ListSlide id="31" narrationKey="31" section="Closing" title="Remember">
         <li>Your end user is specific, not generic</li>
         <li>TAM must be calculated, not guessed</li>
         <li>Your persona should feel like a real person</li>
         <li>Research trumps assumptions. Always.</li>
     </ListSlide>
 
-    <!-- Slide 29: Homework -->
-    <ListSlide id="29" title="Before Next Week">
+    <!-- Slide 32: Homework -->
+    <ListSlide id="32" narrationKey="32" title="Before Next Week">
         <li>Finalize persona (all fields, bring printed)</li>
         <li>Complete TAM calculation (show your work)</li>
         <li>2 more customer conversations</li>
@@ -283,7 +322,7 @@ const base = import.meta.env.BASE_URL;
     </ListSlide>
 
     <!-- Slide 30: Next Week -->
-    <TwoPartSlide id="30" title="Next Week">
+    <TwoPartSlide id="33" narrationKey="33" title="Next Week">
         <p class="primary">Next Week: Value Proposition</p>
         <p class="secondary">Full Life Cycle Use Case & Quantified Value</p>
         <p class="note">What can you do for your customer that no one else can?</p>
