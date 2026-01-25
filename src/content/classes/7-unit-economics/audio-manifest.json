@@ -1,0 +1,339 @@
+{
+  "classNumber": 7,
+  "topic": "unit-economics",
+  "generatedAt": "2026-01-24T23:16:36.864Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-7/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "146209840b2cbaa8",
+      "slideSignature": {
+        "number": 1,
+        "type": "slide-title",
+        "title": "Will You Make Money?"
+      },
+      "status": "current"
+    },
+    "2": {
+      "audioFile": "slide-2.mp3",
+      "narrationTextHash": "de5a12a9265a8acb",
+      "slideSignature": {
+        "number": 2,
+        "type": "slide-statement",
+        "title": "The Reality"
+      },
+      "status": "current"
+    },
+    "3": {
+      "audioFile": "slide-3.mp3",
+      "narrationTextHash": "f278f8991a065046",
+      "slideSignature": {
+        "number": 3,
+        "type": "slide-content",
+        "title": "WeWork 2019"
+      },
+      "status": "current"
+    },
+    "4": {
+      "audioFile": "slide-4.mp3",
+      "narrationTextHash": "a1c7228235a547b9",
+      "slideSignature": {
+        "number": 4,
+        "type": "slide-content",
+        "title": "WeWork Reality"
+      },
+      "status": "current"
+    },
+    "5": {
+      "audioFile": "slide-5.mp3",
+      "narrationTextHash": "af892041bb9d79ae",
+      "slideSignature": {
+        "number": 5,
+        "type": "slide-content",
+        "title": "The Collapse"
+      },
+      "status": "current"
+    },
+    "6": {
+      "audioFile": "slide-6.mp3",
+      "narrationTextHash": "71110d3eef391a5e",
+      "slideSignature": {
+        "number": 6,
+        "type": "slide-content",
+        "title": "Tonight"
+      },
+      "status": "current"
+    },
+    "7": {
+      "audioFile": "slide-7.mp3",
+      "narrationTextHash": "56097e1e6c84ff85",
+      "slideSignature": {
+        "number": 7,
+        "type": "slide-statement",
+        "title": "Step 17 Intro"
+      },
+      "status": "current"
+    },
+    "8": {
+      "audioFile": "slide-8.mp3",
+      "narrationTextHash": "31e47c4ef96806e7",
+      "slideSignature": {
+        "number": 8,
+        "type": "slide-two-part",
+        "title": "What is LTV"
+      },
+      "status": "current"
+    },
+    "9": {
+      "audioFile": "slide-9.mp3",
+      "narrationTextHash": "a628a6a9ea62dfa5",
+      "slideSignature": {
+        "number": 9,
+        "type": "slide-content",
+        "title": "Why LTV Matters"
+      },
+      "status": "current"
+    },
+    "10": {
+      "audioFile": "slide-10.mp3",
+      "narrationTextHash": "fda0fdad22e19707",
+      "slideSignature": {
+        "number": 10,
+        "type": "slide-content",
+        "title": "The LTV Formula"
+      },
+      "status": "current"
+    },
+    "11": {
+      "audioFile": "slide-11.mp3",
+      "narrationTextHash": "6a365fc03ca3de03",
+      "slideSignature": {
+        "number": 11,
+        "type": "slide-two-part",
+        "title": "ARPU"
+      },
+      "status": "current"
+    },
+    "12": {
+      "audioFile": "slide-12.mp3",
+      "narrationTextHash": "9598e8a069fa0443",
+      "slideSignature": {
+        "number": 12,
+        "type": "slide-two-part",
+        "title": "Gross Margin"
+      },
+      "status": "current"
+    },
+    "13": {
+      "audioFile": "slide-13.mp3",
+      "narrationTextHash": "54e782b0f2de010e",
+      "slideSignature": {
+        "number": 13,
+        "type": "slide-statement",
+        "title": "Step 18 Intro"
+      },
+      "status": "current"
+    },
+    "14": {
+      "audioFile": "slide-14.mp3",
+      "narrationTextHash": "3c87cbe93436bb8a",
+      "slideSignature": {
+        "number": 14,
+        "type": "slide-two-part",
+        "title": "What is COCA"
+      },
+      "status": "current"
+    },
+    "15": {
+      "audioFile": "slide-15.mp3",
+      "narrationTextHash": "17c6c8417d06e806",
+      "slideSignature": {
+        "number": 15,
+        "type": "slide-content",
+        "title": "COCA Formula"
+      },
+      "status": "current"
+    },
+    "16": {
+      "audioFile": "slide-16.mp3",
+      "narrationTextHash": "706e12710b000945",
+      "slideSignature": {
+        "number": 16,
+        "type": "slide-statement",
+        "title": "Step 19 Intro"
+      },
+      "status": "current"
+    },
+    "17": {
+      "audioFile": "slide-17.mp3",
+      "narrationTextHash": "834a176f61167afa",
+      "slideSignature": {
+        "number": 17,
+        "type": "slide-content",
+        "title": "Untitled"
+      },
+      "status": "current"
+    },
+    "18": {
+      "audioFile": "slide-18.mp3",
+      "narrationTextHash": "779af69e1d5d0d7a",
+      "slideSignature": {
+        "number": 18,
+        "type": "slide-content",
+        "title": "The Rule of 3"
+      },
+      "status": "current"
+    },
+    "19": {
+      "audioFile": "slide-19.mp3",
+      "narrationTextHash": "76b8634206a853a0",
+      "slideSignature": {
+        "number": 19,
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
+      },
+      "status": "current"
+    },
+    "20": {
+      "audioFile": "slide-20.mp3",
+      "narrationTextHash": "f7fcfcacd1c97f2d",
+      "slideSignature": {
+        "number": 20,
+        "type": "slide-content",
+        "title": "Remember"
+      },
+      "status": "current"
+    },
+    "21": {
+      "audioFile": "slide-21.mp3",
+      "narrationTextHash": "a3b45358197860eb",
+      "slideSignature": {
+        "number": 21,
+        "type": "slide-content",
+        "title": "Before Next Week"
+      },
+      "status": "current"
+    },
+    "22": {
+      "audioFile": "slide-22.mp3",
+      "narrationTextHash": "17144abc80b64a98",
+      "slideSignature": {
+        "number": 22,
+        "type": "slide-two-part",
+        "title": "Next Week"
+      },
+      "status": "current"
+    },
+    "23": {
+      "audioFile": "slide-23.mp3",
+      "narrationTextHash": "d6234cbf021f1aa2",
+      "slideSignature": {
+        "number": 23,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "24": {
+      "audioFile": "slide-24.mp3",
+      "narrationTextHash": "d6d5989ba96bb773",
+      "slideSignature": {
+        "number": 24,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "25": {
+      "audioFile": "slide-25.mp3",
+      "narrationTextHash": "2d7dd45a6a499e92",
+      "slideSignature": {
+        "number": 25,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "26": {
+      "audioFile": "slide-26.mp3",
+      "narrationTextHash": "5bf716c71756086c",
+      "slideSignature": {
+        "number": 26,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "27": {
+      "audioFile": "slide-27.mp3",
+      "narrationTextHash": "f95e93221c967ef8",
+      "slideSignature": {
+        "number": 27,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "28": {
+      "audioFile": "slide-28.mp3",
+      "narrationTextHash": "1dfa68ffbc1f11e1",
+      "slideSignature": {
+        "number": 28,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "29": {
+      "audioFile": "slide-29.mp3",
+      "narrationTextHash": "e96377174dd1f024",
+      "slideSignature": {
+        "number": 29,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "30": {
+      "audioFile": "slide-30.mp3",
+      "narrationTextHash": "5b6b1ebbac434418",
+      "slideSignature": {
+        "number": 30,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "31": {
+      "audioFile": "slide-31.mp3",
+      "narrationTextHash": "1bc545c4adc4daad",
+      "slideSignature": {
+        "number": 31,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "32": {
+      "audioFile": "slide-32.mp3",
+      "narrationTextHash": "5781fd022e3fca26",
+      "slideSignature": {
+        "number": 32,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "33": {
+      "audioFile": "slide-33.mp3",
+      "narrationTextHash": "93ac5c8b433c26b1",
+      "slideSignature": {
+        "number": 33,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    }
+  }
+}

@@ -7,32 +7,61 @@
  * - Progress bar and slide counter
  * - Keyboard navigation hints
  * - D3.js for visualizations
+ * - Optional narration player with captions
  *
  * @prop {string} title - Presentation title
  * @prop {string} [description] - Description for meta tags
  * @prop {number} [themeNumber] - DE Framework theme (1-6) for color override
+ * @prop {number} [classNumber] - Class number for audio paths (enables narration)
+ * @prop {object} [narration] - Narration data from content collection
  */
 
 import '../styles/global.css';
 import {
   institution,
   course,
+  sessions,
   getPageTitle,
   generateCSSVariables,
   getThemeColor,
 } from '../config';
+import NarrationPlayer from '../components/presentation/NarrationPlayer.astro';
+
+interface NarrationSlide {
+  ssml: string;
+  plainText: string;
+  estimatedDuration: number | null;
+  captions?: Array<{ start: number; end: number; text: string }>;
+}
+
+interface NarrationData {
+  slides: Record<string, NarrationSlide>;
+}
 
 interface Props {
   title: string;
   description?: string;
   themeNumber?: number;
+  classNumber?: number;
+  narration?: NarrationData;
 }
 
 const {
   title,
   description = course.description,
   themeNumber,
+  classNumber,
+  narration,
 } = Astro.props;
+
+const hasNarration = classNumber !== undefined && narration !== undefined;
+
+// Derive lesson plan URL from class number
+const session = classNumber !== undefined ? sessions.find(s => s.number === classNumber) : undefined;
+const lessonPlanSlug = session?.presentationPath
+  ? session.presentationPath.replace('/class-', '').replace('/presentation', '')
+  : undefined;
+const hasLessonPlan = lessonPlanSlug !== undefined;
 
 const pageTitle = getPageTitle(title);
 const baseCssVariables = generateCSSVariables();
@@ -77,9 +106,24 @@ const themeOverride = themeNumber
   <script is:inline src={`${base}shared/presentation.js`}></script>
 
   <!-- Configure presentation with correct base URL for syllabus navigation -->
-  <script define:vars={{ syllabusUrl: base }}>
+  <script define:vars={{ syllabusUrl: base, lessonPlanUrl: hasLessonPlan ? `${base}design/lessons/${lessonPlanSlug}` : null }}>
     window.__SYLLABUS_URL__ = syllabusUrl;
+    window.__LESSON_PLAN_URL__ = lessonPlanUrl;
   </script>
+
+  <!-- Lesson plan keyboard shortcut -->
+  {hasLessonPlan && (
+    <script is:inline>
+      document.addEventListener('keydown', function(e) {
+        if (e.key.toLowerCase() === 'l' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          var overlays = document.querySelectorAll('.toc-overlay.active, .appendix-overlay.active');
+          if (overlays.length === 0 && window.__LESSON_PLAN_URL__) {
+            window.location.href = window.__LESSON_PLAN_URL__;
+          }
+        }
+      });
+    </script>
+  )}
 
   <!-- Inject theme CSS variables from config -->
   <style set:html={`${baseCssVariables}${themeOverride}`}></style>
@@ -140,6 +184,13 @@ const themeOverride = themeNumber
     <span><kbd>T</kbd> Contents</span>
     <span><kbd>A</kbd> Appendix</span>
     <span><kbd>S</kbd> Syllabus</span>
+    {hasLessonPlan && <span><kbd>L</kbd> Lesson Plan</span>}
+    {hasNarration && <span><kbd>C</kbd> Captions</span>}
   </div>
+
+  <!-- Narration Player (if enabled) -->
+  {hasNarration && (
+    <NarrationPlayer classNumber={classNumber!} narration={narration!} />
+  )}
 </body>
 </html>

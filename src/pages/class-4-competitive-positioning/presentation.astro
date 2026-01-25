@@ -14,9 +14,15 @@ import InfoCard from '../../components/presentation/InfoCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/4-competitive-positioning/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
-<PresentationLayout title="Class 4: Competitive Positioning" themeNumber={2}>
+<PresentationLayout title="Class 4: Competitive Positioning" themeNumber={2} classNumber={4} narration={narrationData}>
     <style>
         /* VRIO grid styles */
         .vrio-grid {
@@ -311,8 +317,32 @@ import Slide from '../../components/presentation/Slide.astro';
         <p class="secondary" style="margin-top: 1rem;">Where no strong competitor exists AND customers want to be served.</p>
     </StatementSlide>
 
-    <!-- Slide 24: Workshop -->
-    <StandardSlide id="24" section="Workshop" title="Workshop: 30 Minutes" type="visual">
+    <!-- Slide 24: The Three Whys -->
+    <StandardSlide id="24" narrationKey="24" title="The Three Whys">
+        <h2>Every Investor Asks These</h2>
+        <ul class="content-list">
+            <li><strong style="color: var(--theme-color);">Why This?</strong> Is this problem worth solving?</li>
+            <li><strong style="color: var(--gold);">Why Now?</strong> What has changed to make this the right moment?</li>
+            <li><strong style="color: var(--success-green);">Why Us?</strong> Why is your team uniquely positioned to win?</li>
+        </ul>
+        <p class="caption" style="margin-top: 30px;">"Why Now" is the most often forgotten—and most important.</p>
+    </StandardSlide>
+
+    <!-- Slide 25: Why Now -->
+    <StandardSlide id="25" narrationKey="25" title="Why Now: Timing Matters">
+        <h2>What Has Changed?</h2>
+        <ul class="content-list">
+            <li><strong>Technology shift:</strong> AI, mobile, cloud, sensors</li>
+            <li><strong>Regulatory change:</strong> New laws, deregulation</li>
+            <li><strong>Cultural shift:</strong> Remote work, sustainability, trust</li>
+            <li><strong>Economic shift:</strong> Inflation, interest rates, budgets</li>
+            <li><strong>Demographic shift:</strong> Aging population, Gen Z</li>
+        </ul>
+        <p class="caption" style="margin-top: 20px;">If this is such a good idea, why hasn't someone done it already?</p>
+    </StandardSlide>
+
+    <!-- Slide 26: Workshop -->
+    <StandardSlide id="26" narrationKey="26" section="Workshop" title="Workshop: 30 Minutes" type="visual">
         <div class="workshop-box">
             <ul>
                 <li>Identify 10 potential customers (10 min)</li>
@@ -322,8 +352,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </StandardSlide>
 
-    <!-- Slide 25: Remember -->
-    <StandardSlide id="25" section="Closing" title="Remember">
+    <!-- Slide 27: Remember -->
+    <StandardSlide id="27" narrationKey="27" section="Closing" title="Remember">
         <ul class="content-list">
             <li>10 customers means real names, not abstract segments</li>
             <li>Core is defensible advantage, not features</li>
@@ -332,8 +362,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </ul>
     </StandardSlide>
 
-    <!-- Slide 26: Homework -->
-    <StandardSlide id="26" title="Before Next Week" type="visual">
+    <!-- Slide 28: Homework -->
+    <StandardSlide id="28" narrationKey="28" title="Before Next Week" type="visual">
         <div class="homework-list">
             <div class="homework-item">
                 <span class="homework-icon">📋</span>
@@ -354,8 +384,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </StandardSlide>
 
-    <!-- Slide 27: Next Week -->
-    <TwoPartSlide id="27" title="Next Week">
+    <!-- Slide 29: Next Week -->
+    <TwoPartSlide id="29" narrationKey="29" title="Next Week">
         <p class="primary">Next Week: Customer Acquisition</p>
         <p class="secondary">Decision-Making Unit & Acquisition Process</p>
         <p class="tertiary">How do customers actually decide to buy?</p>
@@ -366,7 +396,7 @@ import Slide from '../../components/presentation/Slide.astro';
 
     <!-- ===== APPENDIX SLIDES ===== -->
 
-    <Slide title="Porter's Five Forces" appendix={true}>
+    <Slide id="appendix-five-forces" title="Porter's Five Forces" appendix={true}>
         <div class="slide-content">
             <h2>Porter's Five Forces</h2>
             <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
@@ -401,7 +431,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <Slide title="Famous Moats" appendix={true}>
+    <Slide id="appendix-famous-moats" title="Famous Moats" appendix={true}>
         <div class="slide-content">
             <h2>Famous Moats (Competitive Advantages)</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 30px auto;">
@@ -425,7 +455,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <Slide title="Positioning Matrix Tips" appendix={true}>
+    <Slide id="appendix-positioning-tips" title="Positioning Matrix Tips" appendix={true}>
         <div class="slide-content">
             <h2>Building an Effective Positioning Matrix</h2>
             <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto 30px;">
@@ -452,7 +482,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <script is:inline src="/class-4-competitive-positioning/scripts.js"></script>
+    <script is:inline src={`${base}class-4-competitive-positioning/scripts.js`}></script>
     <script is:inline>
         // Custom slide animations
         const originalGoToSlide = window.Presentation.goToSlide;

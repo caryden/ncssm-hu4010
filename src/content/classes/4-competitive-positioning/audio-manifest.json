@@ -1,0 +1,299 @@
+{
+  "classNumber": 4,
+  "topic": "competitive-positioning",
+  "generatedAt": "2026-01-24T23:16:36.862Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-4/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "dac6573f20c66880",
+      "slideSignature": {
+        "number": 1,
+        "type": "slide-title",
+        "title": "Finding Your Unfair Advantage"
+      },
+      "status": "current"
+    },
+    "2": {
+      "audioFile": "slide-2.mp3",
+      "narrationTextHash": "9a1f09154f70c59a",
+      "slideSignature": {
+        "number": 2,
+        "type": "slide-statement",
+        "title": "Not in a Vacuum"
+      },
+      "status": "current"
+    },
+    "3": {
+      "audioFile": "slide-3.mp3",
+      "narrationTextHash": "eae048707e10319e",
+      "slideSignature": {
+        "number": 3,
+        "type": "slide-content",
+        "title": "Tonight We Answer"
+      },
+      "status": "current"
+    },
+    "4": {
+      "audioFile": "slide-4.mp3",
+      "narrationTextHash": "bd006d14dfc10022",
+      "slideSignature": {
+        "number": 4,
+        "type": "slide-two-part",
+        "title": "Dell Was Unstoppable"
+      },
+      "status": "current"
+    },
+    "5": {
+      "audioFile": "slide-5.mp3",
+      "narrationTextHash": "59dee5d5ce55539e",
+      "slideSignature": {
+        "number": 5,
+        "type": "slide-two-part",
+        "title": "The Reversal"
+      },
+      "status": "current"
+    },
+    "6": {
+      "audioFile": "slide-6.mp3",
+      "narrationTextHash": "d02d635f8fc6c248",
+      "slideSignature": {
+        "number": 6,
+        "type": "slide-two-part",
+        "title": "Copiable vs Lock-in"
+      },
+      "status": "current"
+    },
+    "7": {
+      "audioFile": "slide-7.mp3",
+      "narrationTextHash": "b8817d4db2155e57",
+      "slideSignature": {
+        "number": 7,
+        "type": "slide-statement",
+        "title": "Identify Next 10 Customers"
+      },
+      "status": "current"
+    },
+    "8": {
+      "audioFile": "slide-8.mp3",
+      "narrationTextHash": "49bb4b3f9d49405b",
+      "slideSignature": {
+        "number": 8,
+        "type": "slide-two-part",
+        "title": "Names Not Segments"
+      },
+      "status": "current"
+    },
+    "9": {
+      "audioFile": "slide-9.mp3",
+      "narrationTextHash": "f28596295ab1df00",
+      "slideSignature": {
+        "number": 9,
+        "type": "slide-content",
+        "title": "What Makes a Good Target"
+      },
+      "status": "current"
+    },
+    "10": {
+      "audioFile": "slide-10.mp3",
+      "narrationTextHash": "ac3fab896d3cd5d9",
+      "slideSignature": {
+        "number": 10,
+        "type": "slide-content",
+        "title": "Customer Hunting Grounds"
+      },
+      "status": "current"
+    },
+    "11": {
+      "audioFile": "slide-11.mp3",
+      "narrationTextHash": "aaebd828c1243c92",
+      "slideSignature": {
+        "number": 11,
+        "type": "slide-statement",
+        "title": "Start with Three"
+      },
+      "status": "current"
+    },
+    "12": {
+      "audioFile": "slide-12.mp3",
+      "narrationTextHash": "974cdce3b0d652ac",
+      "slideSignature": {
+        "number": 12,
+        "type": "slide-statement",
+        "title": "Define Your Core"
+      },
+      "status": "current"
+    },
+    "13": {
+      "audioFile": "slide-13.mp3",
+      "narrationTextHash": "ba56d2e2113d884b",
+      "slideSignature": {
+        "number": 13,
+        "type": "slide-two-part",
+        "title": "Your Core"
+      },
+      "status": "current"
+    },
+    "14": {
+      "audioFile": "slide-14.mp3",
+      "narrationTextHash": "d77a556cda2f556b",
+      "slideSignature": {
+        "number": 14,
+        "type": "slide-content",
+        "title": "The VRIO Test"
+      },
+      "status": "current"
+    },
+    "15": {
+      "audioFile": "slide-15.mp3",
+      "narrationTextHash": "84807f0e10636d47",
+      "slideSignature": {
+        "number": 15,
+        "type": "slide-content",
+        "title": "What Can Be Core?"
+      },
+      "status": "current"
+    },
+    "16": {
+      "audioFile": "slide-16.mp3",
+      "narrationTextHash": "10d5aa364d99cefa",
+      "slideSignature": {
+        "number": 16,
+        "type": "slide-content",
+        "title": "Features vs Core"
+      },
+      "status": "current"
+    },
+    "17": {
+      "audioFile": "slide-17.mp3",
+      "narrationTextHash": "493f99428e494e89",
+      "slideSignature": {
+        "number": 17,
+        "type": "slide-two-part",
+        "title": "The Flywheel Effect"
+      },
+      "status": "current"
+    },
+    "18": {
+      "audioFile": "slide-18.mp3",
+      "narrationTextHash": "d1af93e84b743293",
+      "slideSignature": {
+        "number": 18,
+        "type": "slide-statement",
+        "title": "Core Takes Time"
+      },
+      "status": "current"
+    },
+    "19": {
+      "audioFile": "slide-19.mp3",
+      "narrationTextHash": "348049ce733c6613",
+      "slideSignature": {
+        "number": 19,
+        "type": "slide-statement",
+        "title": "Chart Your Position"
+      },
+      "status": "current"
+    },
+    "20": {
+      "audioFile": "slide-20.mp3",
+      "narrationTextHash": "fb5b6c149eab6828",
+      "slideSignature": {
+        "number": 20,
+        "type": "slide-two-part",
+        "title": "Types of Competitors"
+      },
+      "status": "current"
+    },
+    "21": {
+      "audioFile": "slide-21.mp3",
+      "narrationTextHash": "b845929996c136f2",
+      "slideSignature": {
+        "number": 21,
+        "type": "slide-statement",
+        "title": "Do Nothing Competitor"
+      },
+      "status": "current"
+    },
+    "22": {
+      "audioFile": "slide-22.mp3",
+      "narrationTextHash": "69e908a4ab2ca5ec",
+      "slideSignature": {
+        "number": 22,
+        "type": "slide-content",
+        "title": "The 2x2 Positioning Matrix"
+      },
+      "status": "current"
+    },
+    "23": {
+      "audioFile": "slide-23.mp3",
+      "narrationTextHash": "5b0ae15f4af11e64",
+      "slideSignature": {
+        "number": 23,
+        "type": "slide-statement",
+        "title": "Find White Space"
+      },
+      "status": "current"
+    },
+    "24": {
+      "audioFile": "slide-24.mp3",
+      "narrationTextHash": "045b470a74c5931a",
+      "slideSignature": {
+        "number": 24,
+        "type": "slide-content",
+        "title": "Workshop: 30 Minutes"
+      },
+      "status": "current"
+    },
+    "25": {
+      "audioFile": "slide-25.mp3",
+      "narrationTextHash": "4312ad9007f17b88",
+      "slideSignature": {
+        "number": 25,
+        "type": "slide-content",
+        "title": "Remember"
+      },
+      "status": "current"
+    },
+    "26": {
+      "audioFile": "slide-26.mp3",
+      "narrationTextHash": "275be800deb4f702",
+      "slideSignature": {
+        "number": 26,
+        "type": "slide-content",
+        "title": "Before Next Week"
+      },
+      "status": "current"
+    },
+    "27": {
+      "audioFile": "slide-27.mp3",
+      "narrationTextHash": "2f9d7e49a0f65cf2",
+      "slideSignature": {
+        "number": 27,
+        "type": "slide-two-part",
+        "title": "Next Week"
+      },
+      "status": "current"
+    },
+    "28": {
+      "audioFile": "slide-28.mp3",
+      "narrationTextHash": "5bbb2763505a74ae",
+      "slideSignature": {
+        "number": 28,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "29": {
+      "audioFile": "slide-29.mp3",
+      "narrationTextHash": "e0ac10d18836a321",
+      "slideSignature": {
+        "number": 29,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    }
+  }
+}

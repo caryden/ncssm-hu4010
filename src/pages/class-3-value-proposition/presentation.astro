@@ -14,9 +14,15 @@ import Slide from '../../components/presentation/Slide.astro';
 import InfoCard from '../../components/presentation/InfoCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/3-value-proposition/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
-<PresentationLayout title="Class 3: Value Proposition" themeNumber={2}>
+<PresentationLayout title="Class 3: Value Proposition" themeNumber={2} classNumber={3} narration={narrationData}>
     <style>
         /* Journey step styles */
         .journey-step {
@@ -450,7 +456,7 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 
     <!-- ===== APPENDIX SLIDES ===== -->
 
-    <Slide title="Journey Mapping Template" appendix={true}>
+    <Slide id="appendix-journey-template" title="Journey Mapping Template" appendix={true}>
         <div class="slide-content">
             <h2>Journey Mapping Template</h2>
             <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
@@ -497,7 +503,7 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
         </div>
     </Slide>
 
-    <Slide title="Value Proposition Examples" appendix={true}>
+    <Slide id="appendix-value-prop-examples" title="Value Proposition Examples" appendix={true}>
         <div class="slide-content">
             <h2>Value Proposition Examples</h2>
             <div style="display: grid; gap: 20px; max-width: 800px; margin: 30px auto;">
@@ -523,7 +529,7 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
         </div>
     </Slide>
 
-    <Slide title="The 10x Rule Deep Dive" appendix={true}>
+    <Slide id="appendix-10x-rule" title="The 10x Rule Deep Dive" appendix={true}>
         <div class="slide-content">
             <h2>The 10x Rule Deep Dive</h2>
             <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto 30px;">
@@ -549,6 +555,6 @@ import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
         </div>
     </Slide>
 
-    <script is:inline src="/class-3-value-proposition/scripts.js"></script>
+    <script is:inline src={`${base}class-3-value-proposition/scripts.js`}></script>
     <!-- Removed custom JS for animations as we now use CSS classes triggered by .slide.active -->
 </PresentationLayout>

@@ -1,0 +1,200 @@
+---
+---
+
+<div id="intensity-scale" class="visualization"></div>
+
+<script is:inline>
+(function() {
+    const containerId = 'intensity-scale';
+
+    function draw() {
+        if (!window.Visualization || !d3) return;
+        const viz = window.Visualization.create(containerId, { padding: 0.08 });
+        if (!viz) return;
+
+        const { svg, bounds, scale } = viz;
+
+        const levels = [
+            { level: 1, name: 'Latent', desc: "Don't know they have it", color: '#6a6a7a' },
+            { level: 2, name: 'Passive', desc: 'Aware but not looking', color: '#356093' },
+            { level: 3, name: 'Active', desc: 'Searching for solutions', color: '#eab308' },
+            { level: 4, name: 'Urgent', desc: 'Need it solved NOW', color: '#f97316' },
+            { level: 5, name: 'Hair on Fire', desc: 'Will pay almost anything', color: '#ef4444' }
+        ];
+
+        // Layout calculations
+        const barWidth = bounds.width * 0.12;
+        const barHeight = bounds.height * 0.85;
+        const levelHeight = barHeight / levels.length;
+        const barX = bounds.centerX - bounds.width * 0.25;
+        const barY = bounds.top + bounds.height * 0.075;
+
+        // Draw thermometer outline
+        svg.append('rect')
+            .attr('x', barX)
+            .attr('y', barY)
+            .attr('width', barWidth)
+            .attr('height', barHeight)
+            .attr('rx', barWidth / 2)
+            .attr('fill', 'none')
+            .attr('stroke', '#3a3a4a')
+            .attr('stroke-width', 3);
+
+        // Draw levels from bottom to top
+        levels.forEach((level, i) => {
+            const levelY = barY + barHeight - (i + 1) * levelHeight;
+
+            // Level fill
+            svg.append('rect')
+                .attr('x', barX + 3)
+                .attr('y', levelY)
+                .attr('width', barWidth - 6)
+                .attr('height', levelHeight - 2)
+                .attr('fill', level.color)
+                .attr('opacity', 0)
+                .transition()
+                .delay(i * 200)
+                .duration(400)
+                .attr('opacity', 0.85);
+
+            // Level number inside bar
+            svg.append('text')
+                .attr('x', barX + barWidth / 2)
+                .attr('y', levelY + levelHeight / 2)
+                .attr('text-anchor', 'middle')
+                .attr('dominant-baseline', 'middle')
+                .attr('fill', '#fff')
+                .attr('font-family', 'Montserrat')
+                .attr('font-size', '1.5rem')
+                .attr('font-weight', '700')
+                .attr('opacity', 0)
+                .text(level.level)
+                .transition()
+                .delay(i * 200 + 200)
+                .duration(300)
+                .attr('opacity', 1);
+
+            // Level name and description on the right
+            const labelX = barX + barWidth + 25;
+
+            svg.append('text')
+                .attr('x', labelX)
+                .attr('y', levelY + levelHeight / 2 - 8)
+                .attr('fill', level.color)
+                .attr('font-family', 'Montserrat')
+                .attr('font-size', '1.25rem')
+                .attr('font-weight', '600')
+                .attr('opacity', 0)
+                .text(level.name)
+                .transition()
+                .delay(i * 200 + 300)
+                .duration(300)
+                .attr('opacity', 1);
+
+            svg.append('text')
+                .attr('x', labelX)
+                .attr('y', levelY + levelHeight / 2 + 14)
+                .attr('fill', '#a0a0a0')
+                .attr('font-family', 'Montserrat')
+                .attr('font-size', '1rem')
+                .attr('opacity', 0)
+                .text(level.desc)
+                .transition()
+                .delay(i * 200 + 400)
+                .duration(300)
+                .attr('opacity', 1);
+        });
+
+        // Add "TARGET THESE" annotation for levels 4-5
+        const targetY = barY + levelHeight * 0.5;
+        const targetHeight = levelHeight * 2;
+        const annotationX = barX - 20;
+
+        // Bracket line
+        svg.append('path')
+            .attr('d', `M ${annotationX} ${targetY}
+                       L ${annotationX - 15} ${targetY}
+                       L ${annotationX - 15} ${targetY + targetHeight}
+                       L ${annotationX} ${targetY + targetHeight}`)
+            .attr('fill', 'none')
+            .attr('stroke', '#10b981')
+            .attr('stroke-width', 3)
+            .attr('opacity', 0)
+            .transition()
+            .delay(1200)
+            .duration(400)
+            .attr('opacity', 1);
+
+        // TARGET label
+        svg.append('text')
+            .attr('x', annotationX - 25)
+            .attr('y', targetY + targetHeight / 2)
+            .attr('text-anchor', 'end')
+            .attr('dominant-baseline', 'middle')
+            .attr('fill', '#10b981')
+            .attr('font-family', 'Montserrat')
+            .attr('font-size', '1rem')
+            .attr('font-weight', '700')
+            .attr('opacity', 0)
+            .text('TARGET')
+            .transition()
+            .delay(1400)
+            .duration(300)
+            .attr('opacity', 1);
+
+        svg.append('text')
+            .attr('x', annotationX - 25)
+            .attr('y', targetY + targetHeight / 2 + 18)
+            .attr('text-anchor', 'end')
+            .attr('dominant-baseline', 'middle')
+            .attr('fill', '#10b981')
+            .attr('font-family', 'Montserrat')
+            .attr('font-size', '1rem')
+            .attr('font-weight', '700')
+            .attr('opacity', 0)
+            .text('THESE')
+            .transition()
+            .delay(1400)
+            .duration(300)
+            .attr('opacity', 1);
+
+        // Add flame animation on level 5 (Hair on Fire)
+        const flameX = barX + barWidth + 8;
+        const flameY = barY + levelHeight * 0.5;
+
+        // Simple flame shapes
+        for (let j = 0; j < 3; j++) {
+            svg.append('text')
+                .attr('x', flameX + j * 12 - 12)
+                .attr('y', flameY - 5 + Math.random() * 10)
+                .attr('font-size', '1.2rem')
+                .attr('opacity', 0)
+                .text('\uD83D\uDD25')
+                .transition()
+                .delay(1600 + j * 100)
+                .duration(300)
+                .attr('opacity', 1);
+        }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(draw, 300);
+                observer.disconnect();
+            }
+        });
+    });
+
+    const el = document.getElementById(containerId);
+    if (el) observer.observe(el);
+})();
+</script>
+
+<style>
+    .visualization {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+    }
+</style>

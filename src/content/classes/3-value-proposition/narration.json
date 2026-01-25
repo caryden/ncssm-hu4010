@@ -1,0 +1,134 @@
+{
+  "classNumber": 3,
+  "topic": "value-proposition",
+  "voice": "Rachel",
+  "model": "eleven_multilingual_v2",
+  "generatedFrom": "class-3-value-proposition/scripts.js",
+  "slides": {
+    "1": {
+      "ssml": "Welcome to Class 3: What Can You Do For Them? <break time=\"0.3s\"/> Tonight we're covering the Customer Journey and Value Proposition. <break time=\"0.3s\"/> These are Steps 6, 7, and 8 in the Disciplined Entrepreneurship framework.",
+      "plainText": "Welcome to Class 3: What Can You Do For Them? Tonight we're covering the Customer Journey and Value Proposition. These are Steps 6, 7, and 8 in the Disciplined Entrepreneurship framework.",
+      "estimatedDuration": null
+    },
+    "2": {
+      "ssml": "Let's connect the dots. <break time=\"0.3s\"/> Last week we focused on WHO is your customer—the persona, the end user profile, the TAM. <break time=\"0.5s\"/> This week we shift to WHAT you can actually do for them. <break time=\"0.3s\"/> Understanding the customer was just the beginning.",
+      "plainText": "Let's connect the dots. Last week we focused on WHO is your customer—the persona, the end user profile, the TAM. This week we shift to WHAT you can actually do for them. Understanding the customer was just the beginning.",
+      "estimatedDuration": null
+    },
+    "3": {
+      "ssml": "Here's a mistake most founders make. <break time=\"0.5s\"/> They talk about what their product DOES. <break time=\"0.3s\"/> Feature lists. Technical capabilities. Architecture diagrams. <break time=\"0.3s\"/> They get excited about how their product works.",
+      "plainText": "Here's a mistake most founders make. They talk about what their product DOES. Feature lists. Technical capabilities. Architecture diagrams. They get excited about how their product works.",
+      "estimatedDuration": null
+    },
+    "4": {
+      "ssml": "But customers don't care about what your product does. <break time=\"0.5s\"/> They care about what it does FOR THEM. <break time=\"0.3s\"/> How does it make their life better? How does it solve their problem? <break time=\"0.3s\"/> Features are irrelevant if they don't translate to benefits.",
+      "plainText": "But customers don't care about what your product does. They care about what it does FOR THEM. How does it make their life better? How does it solve their problem? Features are irrelevant if they don't translate to benefits.",
+      "estimatedDuration": null
+    },
+    "5": {
+      "ssml": "Let me illustrate with Uber. <break time=\"0.3s\"/> Think about getting a taxi before Uber existed. <break time=\"0.5s\"/> First, you call dispatch and wait on hold. Then you give your address and hope they write it down correctly. Then you wait outside with no idea when the cab will arrive. You ride, trusting the meter isn't rigged. You pay cash and calculate the tip. And a receipt? Maybe, if you're lucky. <break time=\"0.5s\"/> Every single step had friction and uncertainty.",
+      "plainText": "Let me illustrate with Uber. Think about getting a taxi before Uber existed. First, you call dispatch and wait on hold. Then you give your address and hope they write it down correctly. Then you wait outside with no idea when the cab will arrive. You ride, trusting the meter isn't rigged. You pay cash and calculate the tip. And a receipt? Maybe, if you're lucky. Every single step had friction and uncertainty.",
+      "estimatedDuration": null
+    },
+    "6": {
+      "ssml": "Now think about the same journey with Uber. <break time=\"0.3s\"/> Open the app—you immediately see cars nearby. Enter your destination and get the price upfront. Track the driver's arrival with real-time ETA. During the ride, follow along on the map. Payment is automatic—no fumbling with cash. Receipt arrives by email without asking. <break time=\"0.5s\"/> Every friction point transformed into delight.",
+      "plainText": "Now think about the same journey with Uber. Open the app—you immediately see cars nearby. Enter your destination and get the price upfront. Track the driver's arrival with real-time ETA. During the ride, follow along on the map. Payment is automatic—no fumbling with cash. Receipt arrives by email without asking. Every friction point transformed into delight.",
+      "estimatedDuration": null
+    },
+    "7": {
+      "ssml": "This brings us to Step 6: the Full Life Cycle Use Case. <break time=\"0.3s\"/> Understanding your customer's complete journey with your product.",
+      "plainText": "This brings us to Step 6: the Full Life Cycle Use Case. Understanding your customer's complete journey with your product.",
+      "estimatedDuration": null
+    },
+    "8": {
+      "ssml": "Here's the key insight. <break time=\"0.5s\"/> Your product doesn't exist in isolation. <break time=\"0.3s\"/> Customers experience you in the context of their whole day. Every touchpoint is an opportunity—or a failure point. Understanding the full journey reveals where you can add the most value. And competitors might beat you in phases you forgot about.",
+      "plainText": "Here's the key insight. Your product doesn't exist in isolation. Customers experience you in the context of their whole day. Every touchpoint is an opportunity—or a failure point. Understanding the full journey reveals where you can add the most value. And competitors might beat you in phases you forgot about.",
+      "estimatedDuration": null
+    },
+    "9": {
+      "ssml": "The customer journey has 8 phases. <break time=\"0.3s\"/> Let's cover the first five. <break time=\"0.5s\"/> Awareness: how do they discover you? Consideration: how do they evaluate their options? Acquisition: how do they buy or sign up? Onboarding: their first experience with your product. And Usage: the core experience they'll repeat over and over.",
+      "plainText": "The customer journey has 8 phases. Let's cover the first five. Awareness: how do they discover you? Consideration: how do they evaluate their options? Acquisition: how do they buy or sign up? Onboarding: their first experience with your product. And Usage: the core experience they'll repeat over and over.",
+      "estimatedDuration": null
+    },
+    "10": {
+      "ssml": "The remaining three phases are just as important. <break time=\"0.3s\"/> Support: what happens when things go wrong? Renewal: will they come back and buy again? And Churn: why do they eventually leave? <break time=\"0.5s\"/> Most founders focus only on Usage. Don't make that mistake. The other phases often determine success or failure.",
+      "plainText": "The remaining three phases are just as important. Support: what happens when things go wrong? Renewal: will they come back and buy again? And Churn: why do they eventually leave? Most founders focus only on Usage. Don't make that mistake. The other phases often determine success or failure.",
+      "estimatedDuration": null
+    },
+    "11": {
+      "ssml": "Now let's move to Step 7: the High-Level Product Spec. <break time=\"0.3s\"/> This is about articulating what you're building at a level customers can understand.",
+      "plainText": "Now let's move to Step 7: the High-Level Product Spec. This is about articulating what you're building at a level customers can understand.",
+      "estimatedDuration": null
+    },
+    "12": {
+      "ssml": "I call this the Brochure Test. <break time=\"0.5s\"/> Could you show this to a customer and have them understand what you're offering in 30 seconds? <break time=\"0.3s\"/> If the answer is no, your spec is too complex.",
+      "plainText": "I call this the Brochure Test. Could you show this to a customer and have them understand what you're offering in 30 seconds? If the answer is no, your spec is too complex.",
+      "estimatedDuration": null
+    },
+    "13": {
+      "ssml": "Let me be clear about what a High-Level Product Spec is NOT. <break time=\"0.3s\"/> It's not technical architecture diagrams. It's not database schemas. It's not code specifications. And it's definitely not a 50-page feature list. <break time=\"0.3s\"/> Those are useful internally, but they're not what we're talking about here.",
+      "plainText": "Let me be clear about what a High-Level Product Spec is NOT. It's not technical architecture diagrams. It's not database schemas. It's not code specifications. And it's definitely not a 50-page feature list. Those are useful internally, but they're not what we're talking about here.",
+      "estimatedDuration": null
+    },
+    "14": {
+      "ssml": "Here's what a High-Level Product Spec IS. <break time=\"0.3s\"/> A visual representation of the experience. The core features that deliver value. Something simple enough to explain in 2 minutes. Something that passes the brochure test. <break time=\"0.3s\"/> Think: something you could sketch on a napkin.",
+      "plainText": "Here's what a High-Level Product Spec IS. A visual representation of the experience. The core features that deliver value. Something simple enough to explain in 2 minutes. Something that passes the brochure test. Think: something you could sketch on a napkin.",
+      "estimatedDuration": null
+    },
+    "15": {
+      "ssml": "Now we reach Step 8: Quantify the Value Proposition. <break time=\"0.3s\"/> This is where we put numbers to the benefits you deliver.",
+      "plainText": "Now we reach Step 8: Quantify the Value Proposition. This is where we put numbers to the benefits you deliver.",
+      "estimatedDuration": null
+    },
+    "16": {
+      "ssml": "Here's the hard truth. <break time=\"0.5s\"/> If you can't put a number on your value, you can't price your product. <break time=\"0.3s\"/> Vague benefits lead to vague pricing. Quantified value leads to confident pricing.",
+      "plainText": "Here's the hard truth. If you can't put a number on your value, you can't price your product. Vague benefits lead to vague pricing. Quantified value leads to confident pricing.",
+      "estimatedDuration": null
+    },
+    "17": {
+      "ssml": "There are four types of value you can deliver. <break time=\"0.3s\"/> Time: hours saved. Money: costs reduced. Risk: problems prevented. And Emotional: peace of mind. <break time=\"0.5s\"/> Time and Money are easiest to quantify. But don't ignore Risk and Emotional value—they're often what closes the sale.",
+      "plainText": "There are four types of value you can deliver. Time: hours saved. Money: costs reduced. Risk: problems prevented. And Emotional: peace of mind. Time and Money are easiest to quantify. But don't ignore Risk and Emotional value—they're often what closes the sale.",
+      "estimatedDuration": null
+    },
+    "18": {
+      "ssml": "Let's quantify time saved with a real example. <break time=\"0.3s\"/> Say your product saves someone 4 hours per week. At $50 per hour, that's $200 per week in value. Over 52 weeks, that's $10,400 per year. <break time=\"0.5s\"/> That's the value you create. It's not your price—it's your value.",
+      "plainText": "Let's quantify time saved with a real example. Say your product saves someone 4 hours per week. At $50 per hour, that's $200 per week in value. Over 52 weeks, that's $10,400 per year. That's the value you create. It's not your price—it's your value.",
+      "estimatedDuration": null
+    },
+    "19": {
+      "ssml": "This brings us to the 10x Rule. <break time=\"0.5s\"/> Your product should deliver 10 times its price in value. <break time=\"0.3s\"/> If you charge $100 per month, you should deliver $1,000 per month of value. <break time=\"0.3s\"/> Customers need to feel they're getting a deal. They need to feel like they can't afford NOT to buy.",
+      "plainText": "This brings us to the 10x Rule. Your product should deliver 10 times its price in value. If you charge $100 per month, you should deliver $1,000 per month of value. Customers need to feel they're getting a deal. They need to feel like they can't afford NOT to buy.",
+      "estimatedDuration": null
+    },
+    "20": {
+      "ssml": "Here's a template for writing your value proposition. <break time=\"0.3s\"/> \"We help [persona] save [time or money amount] by [core benefit] instead of [current painful solution].\" <break time=\"0.5s\"/> Fill in each blank with specifics. No vague words allowed.",
+      "plainText": "Here's a template for writing your value proposition. \"We help [persona] save [time or money amount] by [core benefit] instead of [current painful solution].\" Fill in each blank with specifics. No vague words allowed.",
+      "estimatedDuration": null
+    },
+    "21": {
+      "ssml": "Let me give you a concrete example. <break time=\"0.3s\"/> \"We help busy restaurant managers save 10 hours per week by automating reservation management instead of manually juggling phone calls and notebooks.\" <break time=\"0.5s\"/> Notice: specific persona, specific value, specific benefit, specific alternative.",
+      "plainText": "Let me give you a concrete example. \"We help busy restaurant managers save 10 hours per week by automating reservation management instead of manually juggling phone calls and notebooks.\" Notice: specific persona, specific value, specific benefit, specific alternative.",
+      "estimatedDuration": null
+    },
+    "22": {
+      "ssml": "Time for the workshop. <break time=\"0.3s\"/> You have 25 minutes. <break time=\"0.5s\"/> First, map your customer's current journey—10 minutes. Find the pain points. Then sketch your product solution—5 minutes. Show the before and after. Finally, quantify your value—10 minutes. Put real numbers on the benefits you deliver.",
+      "plainText": "Time for the workshop. You have 25 minutes. First, map your customer's current journey—10 minutes. Find the pain points. Then sketch your product solution—5 minutes. Show the before and after. Finally, quantify your value—10 minutes. Put real numbers on the benefits you deliver.",
+      "estimatedDuration": null
+    },
+    "23": {
+      "ssml": "Let's recap what to remember. <break time=\"0.3s\"/> Map the full journey—not just the usage phase. Sketch your solution at a high level—no code needed yet. Quantify value in customer terms, not technical terms. And remember the 10x rule: deliver 10 times what you charge.",
+      "plainText": "Let's recap what to remember. Map the full journey—not just the usage phase. Sketch your solution at a high level—no code needed yet. Quantify value in customer terms, not technical terms. And remember the 10x rule: deliver 10 times what you charge.",
+      "estimatedDuration": null
+    },
+    "24": {
+      "ssml": "Before next week. <break time=\"0.3s\"/> Complete your Full Life Cycle journey map with all 8 phases. Create a refined product sketch showing before and after. Write your value proposition with specific numbers. And read chapters 9, 10, and 11 from Disciplined Entrepreneurship.",
+      "plainText": "Before next week. Complete your Full Life Cycle journey map with all 8 phases. Create a refined product sketch showing before and after. Write your value proposition with specific numbers. And read chapters 9, 10, and 11 from Disciplined Entrepreneurship.",
+      "estimatedDuration": null
+    },
+    "25": {
+      "ssml": "Next week we tackle Competitive Positioning. <break time=\"0.3s\"/> We'll answer: Who else serves your customer? And what makes you different? <break time=\"0.5s\"/> We're still in Theme 2: What can you do for your customer? <break time=\"0.3s\"/> See you then.",
+      "plainText": "Next week we tackle Competitive Positioning. We'll answer: Who else serves your customer? And what makes you different? We're still in Theme 2: What can you do for your customer? See you then.",
+      "estimatedDuration": null
+    }
+  }
+}

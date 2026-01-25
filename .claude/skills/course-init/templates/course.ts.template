@@ -1,0 +1,115 @@
+/**
+ * Course Configuration
+ *
+ * Metadata and settings for {COURSE_NAME}
+ */
+
+export interface ThemeConfig {
+  id: number;
+  name: string;
+  question: string;
+  color: string;
+  cssVar: string;
+}
+
+export interface InstructorConfig {
+  name: string;
+  email: string;
+  office?: string;
+  hours?: string;
+}
+
+export interface NarrationConfig {
+  enabled: boolean;
+  provider: "elevenlabs" | "none";
+  defaultVoice: string;
+  model?: string;
+}
+
+export interface CourseConfig {
+  title: string;
+  code: string;
+  term: string;
+  description: string;
+  framework: string | null;
+  themes: ThemeConfig[];
+  instructors: InstructorConfig[];
+  narration: NarrationConfig;
+  classDuration: number; // minutes
+  totalClasses: number;
+}
+
+export const course: CourseConfig = {
+  // Course title
+  title: "{COURSE_NAME}",
+
+  // Short code (used in URLs, file names)
+  code: "{COURSE_CODE}",
+
+  // Academic term
+  term: "{TERM}",
+
+  // One-line description
+  description: "{COURSE_DESCRIPTION}",
+
+  // Pedagogical framework (null if none)
+  framework: {FRAMEWORK},
+
+  // Class duration in minutes
+  classDuration: {CLASS_DURATION},
+
+  // Total number of classes
+  totalClasses: {TOTAL_CLASSES},
+
+  // Theme definitions (if using framework)
+  themes: [
+    // Example for Disciplined Entrepreneurship:
+    // {
+    //   id: 1,
+    //   name: "Customer",
+    //   question: "Who is your customer?",
+    //   color: "#356093",
+    //   cssVar: "--theme-1-customer",
+    // },
+    {THEMES}
+  ],
+
+  // Course instructors
+  instructors: [
+    {
+      name: "{INSTRUCTOR_NAME}",
+      email: "{INSTRUCTOR_EMAIL}",
+      office: "{INSTRUCTOR_OFFICE}",
+      hours: "{OFFICE_HOURS}",
+    },
+  ],
+
+  // Voice narration settings
+  narration: {
+    enabled: {NARRATION_ENABLED},
+    provider: "{NARRATION_PROVIDER}",
+    defaultVoice: "{DEFAULT_VOICE}",
+    model: "eleven_multilingual_v2",
+  },
+};
+
+/**
+ * Get theme by ID
+ */
+export function getTheme(id: number): ThemeConfig | undefined {
+  return course.themes.find((t) => t.id === id);
+}
+
+/**
+ * Get theme color by ID
+ */
+export function getThemeColor(id: number): string {
+  return getTheme(id)?.color ?? course.themes[0]?.color ?? "#356093";
+}
+
+/**
+ * Generate CSS variables for all themes
+ */
+export const themeCSSVars = course.themes
+  .map((t) => `${t.cssVar}: ${t.color};`)
+  .join("\n    ");

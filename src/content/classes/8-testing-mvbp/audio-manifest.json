@@ -1,0 +1,339 @@
+{
+  "classNumber": 8,
+  "topic": "testing-mvbp",
+  "generatedAt": "2026-01-24T23:16:36.865Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-8/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "dcc570ef4fc2d22d",
+      "slideSignature": {
+        "number": 1,
+        "type": "slide-title",
+        "title": "Prove It"
+      },
+      "status": "current"
+    },
+    "2": {
+      "audioFile": "slide-2.mp3",
+      "narrationTextHash": "cb04bf2ebc3ee9d6",
+      "slideSignature": {
+        "number": 2,
+        "type": "slide-statement",
+        "title": "Welcome Back"
+      },
+      "status": "current"
+    },
+    "3": {
+      "audioFile": "slide-3.mp3",
+      "narrationTextHash": "c5a3ac0373f2a417",
+      "slideSignature": {
+        "number": 3,
+        "type": "slide-statement",
+        "title": "Theme 5"
+      },
+      "status": "current"
+    },
+    "4": {
+      "audioFile": "slide-4.mp3",
+      "narrationTextHash": "9fc6ad180f136fbe",
+      "slideSignature": {
+        "number": 4,
+        "type": "slide-content",
+        "title": "The Critical Shift"
+      },
+      "status": "current"
+    },
+    "5": {
+      "audioFile": "slide-5.mp3",
+      "narrationTextHash": "c66e2166caadc71b",
+      "slideSignature": {
+        "number": 5,
+        "type": "slide-content",
+        "title": "Dropbox Problem"
+      },
+      "status": "current"
+    },
+    "6": {
+      "audioFile": "slide-6.mp3",
+      "narrationTextHash": "54786292e7772bcf",
+      "slideSignature": {
+        "number": 6,
+        "type": "slide-content",
+        "title": "Dropbox Test"
+      },
+      "status": "current"
+    },
+    "7": {
+      "audioFile": "slide-7.mp3",
+      "narrationTextHash": "f73dcf2a353bb1be",
+      "slideSignature": {
+        "number": 7,
+        "type": "slide-content",
+        "title": "Tonight"
+      },
+      "status": "current"
+    },
+    "8": {
+      "audioFile": "slide-8.mp3",
+      "narrationTextHash": "1250a177720ab8ad",
+      "slideSignature": {
+        "number": 8,
+        "type": "slide-statement",
+        "title": "Step 20 Intro"
+      },
+      "status": "current"
+    },
+    "9": {
+      "audioFile": "slide-9.mp3",
+      "narrationTextHash": "e72192b805d70eff",
+      "slideSignature": {
+        "number": 9,
+        "type": "slide-content",
+        "title": "Assumption Matrix"
+      },
+      "status": "current"
+    },
+    "10": {
+      "audioFile": "slide-10.mp3",
+      "narrationTextHash": "06e11434ad25be5f",
+      "slideSignature": {
+        "number": 10,
+        "type": "slide-statement",
+        "title": "Step 21 Intro"
+      },
+      "status": "current"
+    },
+    "11": {
+      "audioFile": "slide-11.mp3",
+      "narrationTextHash": "55901ba035ff6bee",
+      "slideSignature": {
+        "number": 11,
+        "type": "slide-content",
+        "title": "Testing Techniques"
+      },
+      "status": "current"
+    },
+    "12": {
+      "audioFile": "slide-12.mp3",
+      "narrationTextHash": "47926caf45ac4f8f",
+      "slideSignature": {
+        "number": 12,
+        "type": "slide-statement",
+        "title": "Step 22 Intro"
+      },
+      "status": "current"
+    },
+    "13": {
+      "audioFile": "slide-13.mp3",
+      "narrationTextHash": "36ee779211efbf54",
+      "slideSignature": {
+        "number": 13,
+        "type": "slide-two-part",
+        "title": "MVP vs MVBP"
+      },
+      "status": "current"
+    },
+    "14": {
+      "audioFile": "slide-14.mp3",
+      "narrationTextHash": "d525cb025465495d",
+      "slideSignature": {
+        "number": 14,
+        "type": "slide-content",
+        "title": "Three Conditions"
+      },
+      "status": "current"
+    },
+    "15": {
+      "audioFile": "slide-15.mp3",
+      "narrationTextHash": "9a1146ccd42798d9",
+      "slideSignature": {
+        "number": 15,
+        "type": "slide-content",
+        "title": "MVBP Examples"
+      },
+      "status": "current"
+    },
+    "16": {
+      "audioFile": "slide-16.mp3",
+      "narrationTextHash": "bb0b93d870bcaca8",
+      "slideSignature": {
+        "number": 16,
+        "type": "slide-statement",
+        "title": "Step 23 Intro"
+      },
+      "status": "current"
+    },
+    "17": {
+      "audioFile": "slide-17.mp3",
+      "narrationTextHash": "e8aead7499d85525",
+      "slideSignature": {
+        "number": 17,
+        "type": "slide-two-part",
+        "title": "Dog Food"
+      },
+      "status": "current"
+    },
+    "18": {
+      "audioFile": "slide-18.mp3",
+      "narrationTextHash": "bd3fba3e0be137ec",
+      "slideSignature": {
+        "number": 18,
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
+      },
+      "status": "current"
+    },
+    "19": {
+      "audioFile": "slide-19.mp3",
+      "narrationTextHash": "f9b747459ee9df34",
+      "slideSignature": {
+        "number": 19,
+        "type": "slide-content",
+        "title": "Remember"
+      },
+      "status": "current"
+    },
+    "20": {
+      "audioFile": "slide-20.mp3",
+      "narrationTextHash": "6435c359981fd1d2",
+      "slideSignature": {
+        "number": 20,
+        "type": "slide-content",
+        "title": "Before Next Week"
+      },
+      "status": "current"
+    },
+    "21": {
+      "audioFile": "slide-21.mp3",
+      "narrationTextHash": "c440c246f543a948",
+      "slideSignature": {
+        "number": 21,
+        "type": "slide-two-part",
+        "title": "Next Week"
+      },
+      "status": "current"
+    },
+    "22": {
+      "audioFile": "slide-22.mp3",
+      "narrationTextHash": "79fe940d660ae485",
+      "slideSignature": {
+        "number": 22,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "23": {
+      "audioFile": "slide-23.mp3",
+      "narrationTextHash": "a82665971757f55f",
+      "slideSignature": {
+        "number": 23,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "24": {
+      "audioFile": "slide-24.mp3",
+      "narrationTextHash": "12a0ff52efdb26a3",
+      "slideSignature": {
+        "number": 24,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "25": {
+      "audioFile": "slide-25.mp3",
+      "narrationTextHash": "e44222a4a59d5896",
+      "slideSignature": {
+        "number": 25,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "26": {
+      "audioFile": "slide-26.mp3",
+      "narrationTextHash": "3d12e353c91adb7c",
+      "slideSignature": {
+        "number": 26,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "27": {
+      "audioFile": "slide-27.mp3",
+      "narrationTextHash": "619af777b43a12f4",
+      "slideSignature": {
+        "number": 27,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "28": {
+      "audioFile": "slide-28.mp3",
+      "narrationTextHash": "1b78af49f317f9dc",
+      "slideSignature": {
+        "number": 28,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "29": {
+      "audioFile": "slide-29.mp3",
+      "narrationTextHash": "0395e48e805a1abb",
+      "slideSignature": {
+        "number": 29,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "30": {
+      "audioFile": "slide-30.mp3",
+      "narrationTextHash": "f67c9e3a9c1ba033",
+      "slideSignature": {
+        "number": 30,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "31": {
+      "audioFile": "slide-31.mp3",
+      "narrationTextHash": "6502c39b9203c1e1",
+      "slideSignature": {
+        "number": 31,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "32": {
+      "audioFile": "slide-32.mp3",
+      "narrationTextHash": "75f7f8b3c932b97d",
+      "slideSignature": {
+        "number": 32,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    },
+    "33": {
+      "audioFile": "slide-33.mp3",
+      "narrationTextHash": "51d04a7ec8cb28bb",
+      "slideSignature": {
+        "number": 33,
+        "title": "Unknown",
+        "type": "unknown"
+      },
+      "status": "current"
+    }
+  }
+}

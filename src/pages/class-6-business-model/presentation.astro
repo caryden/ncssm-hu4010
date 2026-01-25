@@ -14,9 +14,15 @@ import PricingCard from '../../components/presentation/PricingCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/6-business-model/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
-<PresentationLayout title="Class 6: Business Model" themeNumber={4}>
+<PresentationLayout title="Class 6: Business Model" themeNumber={4} classNumber={6} narration={narrationData}>
     <style>
         /* Extended theme variables for this presentation */
         :root {
@@ -393,7 +399,7 @@ import Slide from '../../components/presentation/Slide.astro';
     </TwoPartSlide>
 
     <!-- APPENDIX SLIDES -->
-    <Slide title="Business Model Canvas" appendix={true}>
+    <Slide id="appendix-bmc" title="Business Model Canvas" appendix={true}>
         <div class="slide-content">
             <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Business Model Canvas</h2>
             <p class="tertiary" style="margin-bottom: 1rem;">A strategic tool for designing and analyzing business models</p>
@@ -439,7 +445,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <Slide title="SaaS Metrics" appendix={true}>
+    <Slide id="appendix-saas-metrics" title="SaaS Metrics" appendix={true}>
         <div class="slide-content">
             <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Key SaaS Metrics</h2>
             <p class="tertiary" style="margin-bottom: 1rem;">Essential metrics for subscription businesses</p>
@@ -479,7 +485,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <Slide title="Pricing Psychology" appendix={true}>
+    <Slide id="appendix-pricing-psychology" title="Pricing Psychology" appendix={true}>
         <div class="slide-content">
             <h2 style="font-family: var(--font-display); margin-bottom: 1rem;">Pricing Psychology</h2>
             <p class="tertiary" style="margin-bottom: 1rem;">Behavioral principles that influence pricing decisions</p>
@@ -512,5 +518,5 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <script is:inline src="/class-6-business-model/scripts.js"></script>
+    <script is:inline src={`${base}class-6-business-model/scripts.js`}></script>
 </PresentationLayout>

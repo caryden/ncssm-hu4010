@@ -1,0 +1,233 @@
+---
+/**
+ * NarrationPlayer.astro
+ *
+ * Caption display that integrates with the existing narration system.
+ * Shows timed captions synced to audio playback.
+ *
+ * Features:
+ * - Toggle captions with 'C' key
+ * - Shows caption text synced to narration
+ * - Falls back to full text if no caption timing
+ * - Integrates with existing narration.js audio system
+ *
+ * Props:
+ * - classNumber: number - The class number (for audio path)
+ * - narration: object - The narration data from narration.json
+ */
+
+interface Props {
+  classNumber: number;
+  narration: {
+    slides: Record<string, {
+      ssml: string;
+      plainText: string;
+      estimatedDuration: number | null;
+      captions?: Array<{ start: number; end: number; text: string }>;
+    }>;
+  };
+}
+
+const { classNumber, narration } = Astro.props;
+---
+
+<div id="caption-display" class="caption-display" data-class={classNumber} hidden>
+  <div id="caption-text" class="caption-text"></div>
+</div>
+
+<script define:vars={{ narration, classNumber }}>
+  // Store narration data globally for caption display
+  window.NARRATION_DATA = narration;
+  window.NARRATION_CLASS = classNumber;
+</script>
+
+<script>
+  class CaptionController {
+    constructor() {
+      this.captionDisplay = document.getElementById('caption-display');
+      this.captionText = document.getElementById('caption-text');
+      this.narration = window.NARRATION_DATA;
+      this.classNumber = window.NARRATION_CLASS;
+      this.currentSlide = 1;
+      this.captionsEnabled = false;
+      this.updateInterval = null;
+
+      this.init();
+    }
+
+    init() {
+      // Load saved caption preference
+      this.captionsEnabled = localStorage.getItem('captionsEnabled') === 'true';
+      this.updateCaptionVisibility();
+
+      // Keyboard shortcut for captions
+      document.addEventListener('keydown', (e) => this.handleKeydown(e));
+
+      // Listen for slide changes from presentation.js
+      this.hookIntoSlideChanges();
+
+      // Hook into narration system for audio timing
+      this.hookIntoNarration();
+    }
+
+    hookIntoSlideChanges() {
+      // Override goToSlide to track current slide
+      if (window.Presentation && window.Presentation.goToSlide) {
+        const originalGoToSlide = window.Presentation.goToSlide;
+        const self = this;
+
+        window.Presentation.goToSlide = function(n) {
+          originalGoToSlide.call(this, n);
+          self.onSlideChange(n);
+        };
+      }
+    }
+
+    hookIntoNarration() {
+      // Hook into the Narration system to get audio timing
+      const checkNarration = () => {
+        if (window.Narration) {
+          // Add callback for narration events
+          const originalOnSlideChange = window.Narration.onSlideChange;
+          const self = this;
+
+          window.Narration.onSlideChange = function(slideNum) {
+            if (originalOnSlideChange) {
+              originalOnSlideChange.call(this, slideNum);
+            }
+            self.onSlideChange(slideNum);
+          };
+
+          // Start monitoring audio for caption timing
+          this.startAudioMonitoring();
+        } else {
+          // Narration module not loaded yet, try again
+          setTimeout(checkNarration, 100);
+        }
+      };
+
+      checkNarration();
+    }
+
+    startAudioMonitoring() {
+      // Monitor for audio elements to sync captions
+      this.updateInterval = setInterval(() => {
+        if (!this.captionsEnabled) return;
+
+        // Find current playing audio
+        const audios = document.querySelectorAll('audio');
+        for (const audio of audios) {
+          if (!audio.paused && audio.src.includes(`slide-${this.currentSlide}`)) {
+            this.updateTimedCaptions(audio.currentTime);
+            return;
+          }
+        }
+
+        // No audio playing - show full caption text
+        this.showFullCaption();
+      }, 100);
+    }
+
+    onSlideChange(slideNum) {
+      this.currentSlide = slideNum;
+      this.showFullCaption();
+    }
+
+    showFullCaption() {
+      const slideData = this.narration?.slides?.[String(this.currentSlide)];
+      if (slideData && this.captionsEnabled) {
+        this.captionText.textContent = slideData.plainText;
+      } else {
+        this.captionText.textContent = '';
+      }
+    }
+
+    updateTimedCaptions(currentTime) {
+      const slideData = this.narration?.slides?.[String(this.currentSlide)];
+      if (!slideData) return;
+
+      // If we have timed captions, use them
+      if (slideData.captions && slideData.captions.length > 0) {
+        const currentCaption = slideData.captions.find(
+          c => currentTime >= c.start && currentTime < c.end
+        );
+        if (currentCaption) {
+          this.captionText.textContent = currentCaption.text;
+        }
+      } else {
+        // No timed captions - show full text
+        this.captionText.textContent = slideData.plainText;
+      }
+    }
+
+    toggleCaptions() {
+      this.captionsEnabled = !this.captionsEnabled;
+      localStorage.setItem('captionsEnabled', String(this.captionsEnabled));
+      this.updateCaptionVisibility();
+
+      // Show current slide caption if enabled
+      if (this.captionsEnabled) {
+        this.showFullCaption();
+      }
+    }
+
+    updateCaptionVisibility() {
+      if (this.captionDisplay) {
+        this.captionDisplay.hidden = !this.captionsEnabled;
+      }
+    }
+
+    handleKeydown(e) {
+      // Don't capture if user is typing in an input
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        this.toggleCaptions();
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    window.captionController = new CaptionController();
+  });
+</script>
+
+<style>
+  .caption-display {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  .caption-text {
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-family: var(--font-body, system-ui, sans-serif);
+  }
+
+  .caption-text:empty {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .caption-text {
+      font-size: 1.25rem;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .caption-display {
+      bottom: 100px;
+      max-width: 90vw;
+    }
+  }
+</style>

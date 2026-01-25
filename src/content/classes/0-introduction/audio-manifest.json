@@ -1,0 +1,269 @@
+{
+  "classNumber": 0,
+  "topic": "introduction",
+  "generatedAt": "2026-01-24T23:16:36.855Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-0/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "df8ef2a01399f40d",
+      "slideSignature": {
+        "number": 1,
+        "type": "slide-title",
+        "title": "Based on Bill Aulet"
+      },
+      "status": "current"
+    },
+    "2": {
+      "audioFile": "slide-2.mp3",
+      "narrationTextHash": "c2f5f0567a13839f",
+      "slideSignature": {
+        "number": 2,
+        "type": "slide-statement",
+        "title": "Can It Be Taught?"
+      },
+      "status": "current"
+    },
+    "3": {
+      "audioFile": "slide-3.mp3",
+      "narrationTextHash": "85a8fdc0c19670a2",
+      "slideSignature": {
+        "number": 3,
+        "type": "slide-statement",
+        "title": "Yes, It Can"
+      },
+      "status": "current"
+    },
+    "4": {
+      "audioFile": "slide-4.mp3",
+      "narrationTextHash": "aaa05c4dbc406dcd",
+      "slideSignature": {
+        "number": 4,
+        "type": "slide-content",
+        "title": "Tonight"
+      },
+      "status": "current"
+    },
+    "5": {
+      "audioFile": "slide-5.mp3",
+      "narrationTextHash": "2df4e36cf695847d",
+      "slideSignature": {
+        "number": 5,
+        "type": "slide-statement",
+        "title": "Myth Busting"
+      },
+      "status": "current"
+    },
+    "6": {
+      "audioFile": "slide-6.mp3",
+      "narrationTextHash": "7f6725bc6bd4efa7",
+      "slideSignature": {
+        "number": 6,
+        "type": "slide-content",
+        "title": "What Most People Get Wrong"
+      },
+      "status": "current"
+    },
+    "7": {
+      "audioFile": "slide-7.mp3",
+      "narrationTextHash": "ca109d0b3d9d3328",
+      "slideSignature": {
+        "number": 7,
+        "type": "slide-statement",
+        "title": "The Evidence"
+      },
+      "status": "current"
+    },
+    "8": {
+      "audioFile": "slide-8.mp3",
+      "narrationTextHash": "c52e42bcfdce2211",
+      "slideSignature": {
+        "number": 8,
+        "type": "slide-statement",
+        "title": "Disciplined Entrepreneurship"
+      },
+      "status": "current"
+    },
+    "9": {
+      "audioFile": "slide-9.mp3",
+      "narrationTextHash": "cc4eea6fc4a40108",
+      "slideSignature": {
+        "number": 9,
+        "type": "slide-statement",
+        "title": "Bill Aulet Quote"
+      },
+      "status": "current"
+    },
+    "10": {
+      "audioFile": "slide-10.mp3",
+      "narrationTextHash": "44b54d3ea3a985b2",
+      "slideSignature": {
+        "number": 10,
+        "type": "slide-content",
+        "title": "The 24-Step Framework"
+      },
+      "status": "current"
+    },
+    "11": {
+      "audioFile": "slide-11.mp3",
+      "narrationTextHash": "68cf2e6b1ec21a9a",
+      "slideSignature": {
+        "number": 11,
+        "type": "slide-content",
+        "title": "Six Questions Every Startup Must Answer"
+      },
+      "status": "current"
+    },
+    "12": {
+      "audioFile": "slide-12.mp3",
+      "narrationTextHash": "d4a0187582b8ea42",
+      "slideSignature": {
+        "number": 12,
+        "type": "slide-content",
+        "title": "It"
+      },
+      "status": "current"
+    },
+    "13": {
+      "audioFile": "slide-13.mp3",
+      "narrationTextHash": "60e8b5fbf7a29f20",
+      "slideSignature": {
+        "number": 13,
+        "type": "slide-content",
+        "title": "Going Back is Often the Path Forward"
+      },
+      "status": "current"
+    },
+    "14": {
+      "audioFile": "slide-14.mp3",
+      "narrationTextHash": "f2de4f63ffa6cd5d",
+      "slideSignature": {
+        "number": 14,
+        "type": "slide-statement",
+        "title": "Customer First"
+      },
+      "status": "current"
+    },
+    "15": {
+      "audioFile": "slide-15.mp3",
+      "narrationTextHash": "cfeb115d2449042d",
+      "slideSignature": {
+        "number": 15,
+        "type": "slide-content",
+        "title": "The Entrepreneurial Mindset"
+      },
+      "status": "current"
+    },
+    "16": {
+      "audioFile": "slide-16.mp3",
+      "narrationTextHash": "7de9d8e8dfd19dce",
+      "slideSignature": {
+        "number": 16,
+        "type": "slide-statement",
+        "title": "What We"
+      },
+      "status": "current"
+    },
+    "17": {
+      "audioFile": "slide-17.mp3",
+      "narrationTextHash": "f70cc4f0adca48a5",
+      "slideSignature": {
+        "number": 17,
+        "type": "slide-content",
+        "title": "Your 10-Week Journey"
+      },
+      "status": "current"
+    },
+    "18": {
+      "audioFile": "slide-18.mp3",
+      "narrationTextHash": "c7133aa41abb4a5c",
+      "slideSignature": {
+        "number": 18,
+        "type": "slide-content",
+        "title": "Weekly Rhythm"
+      },
+      "status": "current"
+    },
+    "19": {
+      "audioFile": "slide-19.mp3",
+      "narrationTextHash": "cc16e29b3150d9a7",
+      "slideSignature": {
+        "number": 19,
+        "type": "slide-content",
+        "title": "Team Formation"
+      },
+      "status": "current"
+    },
+    "20": {
+      "audioFile": "slide-20.mp3",
+      "narrationTextHash": "46a6721dade9b7ee",
+      "slideSignature": {
+        "number": 20,
+        "type": "slide-statement",
+        "title": "Final Pitches"
+      },
+      "status": "current"
+    },
+    "21": {
+      "audioFile": "slide-21.mp3",
+      "narrationTextHash": "4e99ddb36b67dda5",
+      "slideSignature": {
+        "number": 21,
+        "type": "slide-content",
+        "title": "What We"
+      },
+      "status": "current"
+    },
+    "22": {
+      "audioFile": "slide-22.mp3",
+      "narrationTextHash": "f25a1a65c6168a90",
+      "slideSignature": {
+        "number": 22,
+        "type": "slide-content",
+        "title": "What We"
+      },
+      "status": "current"
+    },
+    "23": {
+      "audioFile": "slide-23.mp3",
+      "narrationTextHash": "2a59407c8d5867df",
+      "slideSignature": {
+        "number": 23,
+        "type": "slide-statement",
+        "title": "Key Takeaway"
+      },
+      "status": "current"
+    },
+    "24": {
+      "audioFile": "slide-24.mp3",
+      "narrationTextHash": "85d8d95aab35d9ee",
+      "slideSignature": {
+        "number": 24,
+        "type": "slide-content",
+        "title": "Homework"
+      },
+      "status": "current"
+    },
+    "25": {
+      "audioFile": "slide-25.mp3",
+      "narrationTextHash": "849e5173ebe5688d",
+      "slideSignature": {
+        "number": 25,
+        "type": "slide-two-part",
+        "title": "Next Week"
+      },
+      "status": "current"
+    },
+    "26": {
+      "audioFile": "slide-26.mp3",
+      "narrationTextHash": "4403d2da70e4290c",
+      "slideSignature": {
+        "number": 26,
+        "type": "slide-statement",
+        "title": "Let"
+      },
+      "status": "current"
+    }
+  }
+}

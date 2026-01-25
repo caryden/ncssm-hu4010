@@ -20,7 +20,8 @@
         appendixVisible: false,
         sections: [],  // Populated from slide data
         // Syllabus URL - can be set via window.__SYLLABUS_URL__ for base path support
-        syllabusUrl: window.__SYLLABUS_URL__ || './',
+        // Default to root index (the syllabus page)
+        syllabusUrl: window.__SYLLABUS_URL__ || '/',
         // Touch tracking for swipe navigation
         touch: {
             startX: 0,

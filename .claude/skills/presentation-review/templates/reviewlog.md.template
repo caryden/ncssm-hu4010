@@ -1,0 +1,147 @@
+# Review Log: {TOPIC_TITLE}
+
+Class: {N}
+Presentation: `presentation.astro`
+
+---
+
+## Review History
+
+{Each review session adds an entry below}
+
+---
+
+## Review: {DATE}
+
+### Gate 3: Implementation Match
+
+**Status**: {PASS/FAIL}
+
+**Slide Count**:
+- Expected: {N from spec}
+- Actual: {N in presentation}
+- Match: {YES/NO}
+
+**Visualization Check**:
+| Visualization | Implemented | Matches Spec |
+|---------------|-------------|--------------|
+| {viz-1} | [ ] | [ ] |
+| {viz-2} | [ ] | [ ] |
+
+**Font Size Check**:
+- [ ] All text ≥ 1rem
+- [ ] Labels ≥ 1.25rem
+- [ ] Body ≥ 1.5rem
+- [ ] Violations found: {list if any}
+
+**Navigation Check**:
+- [ ] Arrow keys work
+- [ ] T toggles TOC
+- [ ] A toggles Appendix (if applicable)
+- [ ] F toggles fullscreen
+
+**Issues Found**:
+{List issues or "None"}
+
+---
+
+### Gate 4: Verification
+
+**Status**: {PASS/FAIL}
+
+**Code Quality**:
+- [ ] Valid HTML5
+- [ ] CSS follows conventions
+- [ ] JavaScript is clean
+
+**Accessibility**:
+- [ ] Color contrast adequate
+- [ ] Images have alt text
+- [ ] Keyboard navigable
+
+**Performance**:
+- [ ] Resources load quickly
+- [ ] No render blocking
+- [ ] Images optimized
+
+**Error Check**:
+- [ ] No console errors
+- [ ] No 404s
+- [ ] All assets load
+
+**Issues Found**:
+{List issues or "None"}
+
+**Fixes Applied**:
+{List fixes or "N/A"}
+
+---
+
+### Gate 5: Validation
+
+**Status**: {PASS/FAIL}
+
+**Content Accuracy**:
+- [ ] Factually correct
+- [ ] No misleading content
+- [ ] Expert would approve
+
+**Clarity**:
+- [ ] Clear for target audience
+- [ ] Jargon explained
+- [ ] Examples relatable
+
+**Visualization Effectiveness**:
+- [ ] Visuals aid understanding
+- [ ] Animations purposeful
+- [ ] Not distracting
+
+**Pacing**:
+- [ ] Fits in class time
+- [ ] Appropriate depth
+- [ ] Interaction points included
+
+**Objective Achievement**:
+| # | Objective | Achievable? | Notes |
+|---|-----------|-------------|-------|
+| 1 | {objective} | [ ] | {notes} |
+| 2 | {objective} | [ ] | {notes} |
+| 3 | {objective} | [ ] | {notes} |
+
+**Issues Found**:
+{List issues or "None"}
+
+**Spec Changes Made**:
+{List spec changes or "N/A"}
+
+**Code Changes Made**:
+{List code changes following spec changes or "N/A"}
+
+---
+
+### Final Status
+
+| Gate | Status | Notes |
+|------|--------|-------|
+| Gate 3 | {PASS/FAIL} | {brief note} |
+| Gate 4 | {PASS/FAIL} | {brief note} |
+| Gate 5 | {PASS/FAIL} | {brief note} |
+
+**Overall**: {READY FOR NARRATION / NEEDS FIXES}
+
+**Reviewer**: {who reviewed}
+**Date**: {timestamp}
+
+---
+
+## Previous Reviews
+
+{Previous review entries appear here, newest first}
+
+---
+
+## Changelog
+
+| Date | Change | Reason |
+|------|--------|--------|
+| {date} | {what changed} | {why - e.g., Gate 5 failure} |

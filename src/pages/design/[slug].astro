@@ -1,0 +1,534 @@
+---
+/**
+ * Individual Design Document Page
+ *
+ * Renders a single design document with full MDX content.
+ * Provides navigation between documents and back to index.
+ */
+
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { institution } from '../../config';
+
+type DesignDoc = CollectionEntry<'design'>;
+
+// Generate static paths for all design documents
+export async function getStaticPaths() {
+  const designDocs = await getCollection('design');
+  return designDocs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+interface Props {
+  doc: DesignDoc;
+}
+
+const { doc } = Astro.props as Props;
+const { Content, headings } = await render(doc);
+
+// Filter headings for TOC (depth 2-3)
+const tocHeadings = headings.filter((h) => h.depth <= 3);
+
+// Get all docs for navigation
+const allDocs = await getCollection('design');
+const sortedDocs = allDocs.sort((a, b) => a.data.order - b.data.order);
+const currentIndex = sortedDocs.findIndex((d) => d.id === doc.id);
+const prevDoc = currentIndex > 0 ? sortedDocs[currentIndex - 1] : null;
+const nextDoc = currentIndex < sortedDocs.length - 1 ? sortedDocs[currentIndex + 1] : null;
+
+// Get base URL for links
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+// Document type labels and colors
+const docTypeConfig: Record<string, { label: string; color: string }> = {
+  research: { label: 'Research', color: 'var(--theme-1-blue)' },
+  plan: { label: 'Course Plan', color: 'var(--theme-2-purple)' },
+  syllabus: { label: 'Syllabus', color: 'var(--theme-3-green)' },
+  spec: { label: 'Design Spec', color: 'var(--theme-4-amber)' },
+};
+
+const typeConfig = docTypeConfig[doc.data.docType];
+---
+
+<MainLayout title={doc.data.title}>
+  <div class="doc-layout">
+    <!-- Sidebar with TOC -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href={`${base}/design`} class="back-link">← All Documents</a>
+      </div>
+
+      <nav class="toc">
+        <h4>On This Page</h4>
+        <ul>
+          {tocHeadings.map((heading) => (
+            <li class={`depth-${heading.depth}`}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="doc-nav">
+        <h4>Documents</h4>
+        <ul>
+          {sortedDocs.map((d) => (
+            <li class:list={{ active: d.id === doc.id }}>
+              <a href={`${base}/design/${d.id}`}>{d.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <header class="doc-header">
+        <div class="doc-meta">
+          <span class="doc-type" style={`--type-color: ${typeConfig.color}`}>
+            {typeConfig.label}
+          </span>
+          <span class="doc-institution">{institution.shortName}</span>
+        </div>
+        <h1>{doc.data.title}</h1>
+        <p class="doc-description">{doc.data.description}</p>
+      </header>
+
+      <article class="prose">
+        <Content />
+      </article>
+
+      <!-- Document navigation -->
+      <nav class="doc-footer-nav">
+        {prevDoc ? (
+          <a href={`${base}/design/${prevDoc.id}`} class="nav-prev">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">{prevDoc.data.title}</span>
+          </a>
+        ) : (
+          <div></div>
+        )}
+        {nextDoc ? (
+          <a href={`${base}/design/${nextDoc.id}`} class="nav-next">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">{nextDoc.data.title}</span>
+          </a>
+        ) : (
+          <div></div>
+        )}
+      </nav>
+    </main>
+  </div>
+</MainLayout>
+
+<style>
+  .doc-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 30px 25px;
+    background: var(--dark-surface);
+    border-right: 1px solid var(--dark-border);
+  }
+
+  .sidebar-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--brand-primary);
+  }
+
+  .toc,
+  .doc-nav {
+    margin-bottom: 30px;
+  }
+
+  .toc h4,
+  .doc-nav h4 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+  }
+
+  .toc ul,
+  .doc-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc li {
+    margin-bottom: 8px;
+  }
+
+  .toc li.depth-2 {
+    padding-left: 0;
+  }
+
+  .toc li.depth-3 {
+    padding-left: 12px;
+  }
+
+  .toc a,
+  .doc-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    display: block;
+    transition: color 0.2s ease;
+  }
+
+  .toc a:hover,
+  .doc-nav a:hover {
+    color: var(--text-primary);
+  }
+
+  .doc-nav li {
+    margin-bottom: 6px;
+  }
+
+  .doc-nav li.active a {
+    color: var(--theme-2-purple);
+    font-weight: 600;
+  }
+
+  /* Main content */
+  .content {
+    padding: 50px 80px 100px;
+    max-width: 900px;
+  }
+
+  .doc-header {
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .doc-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .doc-type {
+    display: inline-block;
+    padding: 5px 12px;
+    background: color-mix(in srgb, var(--type-color) 20%, transparent);
+    color: var(--type-color);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .doc-institution {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .doc-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .doc-description {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Prose styling for MDX content */
+  .prose {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .prose :global(h2:first-child) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 35px;
+    margin-bottom: 15px;
+  }
+
+  .prose :global(h4) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 25px;
+    margin-bottom: 12px;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(li > ul),
+  .prose :global(li > ol) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose :global(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .prose :global(a) {
+    color: var(--theme-2-purple);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .prose :global(a:hover) {
+    border-bottom-color: var(--theme-2-purple);
+  }
+
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--theme-2-purple);
+    padding-left: 20px;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .prose :global(code) {
+    background: var(--dark-surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .prose :global(pre) {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose :global(pre code) {
+    background: none;
+    padding: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .prose :global(th) {
+    background: var(--dark-surface);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .prose :global(tr:hover td) {
+    background: rgba(124, 58, 237, 0.05);
+  }
+
+  .prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--dark-border);
+    margin: 40px 0;
+  }
+
+  /* Document footer navigation */
+  .doc-footer-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .nav-prev,
+  .nav-next {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .nav-prev:hover,
+  .nav-next:hover {
+    border-color: var(--theme-2-purple);
+    transform: translateY(-2px);
+  }
+
+  .nav-next {
+    text-align: right;
+  }
+
+  .nav-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    .doc-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: relative;
+      height: auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .sidebar-header {
+      width: 100%;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .toc {
+      display: none;
+    }
+
+    .doc-nav {
+      margin-bottom: 0;
+    }
+
+    .doc-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .doc-nav li {
+      margin-bottom: 0;
+    }
+
+    .doc-nav a {
+      padding: 6px 12px;
+      background: var(--dark-card);
+      border-radius: 6px;
+    }
+
+    .doc-nav li.active a {
+      background: rgba(124, 58, 237, 0.2);
+    }
+
+    .content {
+      padding: 40px 30px 80px;
+    }
+
+    .doc-header h1 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .content {
+      padding: 30px 20px 60px;
+    }
+
+    .doc-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .doc-footer-nav {
+      grid-template-columns: 1fr;
+    }
+
+    .nav-next {
+      text-align: left;
+    }
+  }
+</style>

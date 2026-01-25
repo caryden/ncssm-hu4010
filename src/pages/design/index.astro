@@ -1,0 +1,559 @@
+---
+/**
+ * Design Documents Index
+ *
+ * Lists all course design documents for instructor access.
+ * Provides navigation to individual document pages.
+ */
+
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import { institution } from '../../config';
+
+// Get all design documents, sorted by order
+const designDocs = await getCollection('design');
+const sortedDocs = designDocs.sort((a, b) => a.data.order - b.data.order);
+
+// Get all lesson plans, sorted by class number
+const lessonPlans = await getCollection('lesson-plans');
+const sortedLessons = lessonPlans.sort((a, b) => {
+  const aNum = parseInt(a.id.split('-')[0]);
+  const bNum = parseInt(b.id.split('-')[0]);
+  return aNum - bNum;
+});
+
+// Helper to get lesson display info
+function getLessonInfo(lessonId: string) {
+  const [folder] = lessonId.split('/');
+  const [num, ...parts] = folder.split('-');
+  const name = parts.join(' ');
+  return {
+    number: parseInt(num),
+    name: name.charAt(0).toUpperCase() + name.slice(1),
+    slug: folder
+  };
+}
+
+// Get base URL for links
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+// Icon mapping for document types
+const docTypeIcons: Record<string, string> = {
+  research: '🔬',
+  plan: '📋',
+  syllabus: '📅',
+  spec: '🎨',
+};
+
+const docTypeLabels: Record<string, string> = {
+  research: 'Research',
+  plan: 'Course Plan',
+  syllabus: 'Syllabus',
+  spec: 'Design Spec',
+};
+---
+
+<MainLayout title="Course Design Documents">
+  <header class="header">
+    <div class="header-content">
+      <div class="header-nav">
+        <a href={`${base}/`} class="back-link">← Back to Course</a>
+        <a href="https://github.com/caryden/ncssm-hu4010" class="github-link" target="_blank" rel="noopener noreferrer">
+          <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span>View on GitHub</span>
+        </a>
+      </div>
+      <div class="institution-badge">{institution.shortName} Instructor Resources</div>
+      <h1>Course Design</h1>
+      <p class="subtitle">Pedagogical foundations, teaching philosophy, and design specifications</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="documents">
+      <div class="section-header">
+        <h2>Design Documents</h2>
+        <p>Core documents that define the course structure and approach</p>
+      </div>
+
+      <div class="docs-grid">
+        {sortedDocs.map((doc) => (
+          <a href={`${base}/design/${doc.id}`} class="doc-card">
+            <div class="doc-icon">{docTypeIcons[doc.data.docType]}</div>
+            <div class="doc-content">
+              <div class="doc-type">{docTypeLabels[doc.data.docType]}</div>
+              <h3 class="doc-title">{doc.data.title}</h3>
+              <p class="doc-description">{doc.data.description}</p>
+            </div>
+            <div class="doc-action">
+              <span>Read</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="lesson-plans">
+      <div class="section-header">
+        <h2>Lesson Plans</h2>
+        <p>Session-by-session teaching guides with activities and timing</p>
+      </div>
+
+      <div class="lessons-grid">
+        {sortedLessons.map((lesson) => {
+          const info = getLessonInfo(lesson.id);
+          return (
+            <a href={`${base}/design/lessons/${info.slug}`} class="lesson-card">
+              <div class="lesson-number">Class {info.number}</div>
+              <div class="lesson-title">{info.name}</div>
+              <span class="lesson-arrow">&rarr;</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="section-header">
+        <h2>Quick Reference</h2>
+        <p>Jump to specific sections</p>
+      </div>
+
+      <div class="links-grid">
+        <div class="link-group">
+          <h4>Pedagogical Foundations</h4>
+          <ul>
+            <li><a href={`${base}/design/curriculum-research#expert-sources`}>Expert Sources (Aulet, Blank, etc.)</a></li>
+            <li><a href={`${base}/design/curriculum-research#common-misconceptions`}>Common Misconceptions</a></li>
+            <li><a href={`${base}/design/curriculum-research#pedagogical-approaches`}>Experiential Learning Approach</a></li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Teaching Philosophy</h4>
+          <ul>
+            <li><a href={`${base}/design/course-plan#guiding-principles`}>7 Guiding Principles</a></li>
+            <li><a href={`${base}/design/course-plan#misconception-handling`}>Misconception Schedule</a></li>
+            <li><a href={`${base}/design/course-plan#assessment-philosophy`}>Assessment Philosophy</a></li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Course Structure</h4>
+          <ul>
+            <li><a href={`${base}/design/syllabus#course-schedule`}>Session Schedule</a></li>
+            <li><a href={`${base}/design/syllabus#assignments--deliverables`}>Weekly Deliverables</a></li>
+            <li><a href={`${base}/design/syllabus#team-formation`}>Team Formation</a></li>
+          </ul>
+        </div>
+
+        <div class="link-group">
+          <h4>Design System</h4>
+          <ul>
+            <li><a href={`${base}/design/presentation-spec#color-palette`}>Color Palette</a></li>
+            <li><a href={`${base}/design/presentation-spec#typography`}>Typography & Font Sizes</a></li>
+            <li><a href={`${base}/design/presentation-spec#de-framework-theme-colors`}>DE Theme Colors</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-note">These documents are for instructor reference. Students access the course through the main syllabus.</p>
+    <a href={`${base}/`} class="footer-link">← Return to Course Syllabus</a>
+  </footer>
+</MainLayout>
+
+<style>
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--dark-surface) 0%, var(--dark-bg) 100%);
+    border-bottom: 1px solid var(--dark-border);
+    padding: 40px 40px 60px;
+  }
+
+  .header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--brand-primary);
+  }
+
+  .github-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .github-link:hover {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .github-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .institution-badge {
+    display: inline-block;
+    background: var(--theme-2-purple);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+
+  .header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--theme-2-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+
+  /* Main content */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: 30px;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  /* Documents grid */
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+
+  .doc-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .doc-card:hover {
+    border-color: var(--theme-2-purple);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+  }
+
+  .doc-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(124, 58, 237, 0.15);
+    border-radius: 14px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .doc-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .doc-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--theme-2-purple);
+    margin-bottom: 6px;
+  }
+
+  .doc-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .doc-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .doc-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .doc-card:hover .doc-action {
+    background: var(--theme-2-purple);
+    border-color: var(--theme-2-purple);
+    color: white;
+  }
+
+  .doc-action .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .doc-card:hover .doc-action .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Lesson plans */
+  .lesson-plans {
+    margin-bottom: 60px;
+  }
+
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .lesson-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .lesson-card:hover {
+    border-color: var(--theme-3-green);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(5, 150, 105, 0.15);
+  }
+
+  .lesson-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--theme-3-green);
+  }
+
+  .lesson-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    text-transform: capitalize;
+  }
+
+  .lesson-arrow {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .lesson-card:hover .lesson-arrow {
+    color: var(--theme-3-green);
+    transform: translateX(3px);
+  }
+
+  /* Quick links */
+  .quick-links {
+    padding-top: 40px;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .link-group h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .link-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .link-group li {
+    margin-bottom: 10px;
+  }
+
+  .link-group a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    display: block;
+    line-height: 1.4;
+  }
+
+  .link-group a:hover {
+    color: var(--theme-2-purple);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 80px;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .footer-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--brand-primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .lessons-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .links-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lessons-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: 30px 20px 40px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+    }
+
+    .main {
+      padding: 40px 20px;
+    }
+
+    .docs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .doc-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .doc-action {
+      align-self: center;
+      margin-top: 15px;
+    }
+
+    .links-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .lessons-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

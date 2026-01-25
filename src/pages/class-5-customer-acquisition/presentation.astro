@@ -13,9 +13,15 @@ import IconCard from '../../components/presentation/IconCard.astro';
 import ComparisonGrid from '../../components/presentation/ComparisonGrid.astro';
 import ComparisonCard from '../../components/presentation/ComparisonCard.astro';
 import Slide from '../../components/presentation/Slide.astro';
+
+// Load narration data for captions
+import narrationData from '../../content/classes/5-customer-acquisition/narration.json';
+
+// Get base URL for asset paths
+const base = import.meta.env.BASE_URL;
 ---
 
-<PresentationLayout title="Class 5: Customer Acquisition" themeNumber={3}>
+<PresentationLayout title="Class 5: Customer Acquisition" themeNumber={3} classNumber={5} narration={narrationData}>
     <style>
         /* DMU grid styles */
         .dmu-grid {
@@ -202,13 +208,20 @@ import Slide from '../../components/presentation/Slide.astro';
         <p class="secondary">Map the Decision-Making Unit.</p>
     </TwoPartSlide>
 
-    <!-- Slide 7: Step 12 Header -->
-    <StatementSlide id="7" section="Step 12: The DMU" title="Determine the DMU">
+    <!-- Slide 7: From Persona to DMU -->
+    <TwoPartSlide id="7" narrationKey="7" title="From Persona to DMU">
+        <p class="primary">Your persona is usually the End User.</p>
+        <p class="secondary">But they may not control the budget.</p>
+        <p class="tertiary">A teacher loves your product... but the principal approves purchases, and IT must sign off.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 8: Step 12 Header -->
+    <StatementSlide id="8" narrationKey="8" section="Step 12: The DMU" title="Determine the DMU">
         Step 12: <span class="accent">Determine the DMU</span>
     </StatementSlide>
 
-    <!-- Slide 8: Six DMU Roles -->
-    <StandardSlide id="8" title="Six DMU Roles" type="visual">
+    <!-- Slide 9: Six DMU Roles -->
+    <StandardSlide id="9" narrationKey="9" title="Six DMU Roles" type="visual">
         <div class="dmu-grid">
             <IconCard icon="⭐" title="Champion" delay="100"><p>Your internal advocate</p></IconCard>
             <IconCard icon="👤" title="End User" delay="200"><p>Daily product user</p></IconCard>
@@ -219,29 +232,29 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </StandardSlide>
 
-    <!-- Slide 9: Champion -->
-    <TwoPartSlide id="9" title="Champion Role">
+    <!-- Slide 10: Champion -->
+    <TwoPartSlide id="10" narrationKey="10" title="Champion Role">
         <p class="primary">Champion</p>
         <p class="secondary">Your internal advocate who believes in your solution</p>
         <p class="tertiary">Cares about: Looking good, having tools to sell internally, success metrics</p>
     </TwoPartSlide>
 
-    <!-- Slide 10: Economic Buyer -->
-    <TwoPartSlide id="10" title="Economic Buyer Role">
+    <!-- Slide 11: Economic Buyer -->
+    <TwoPartSlide id="11" narrationKey="11" title="Economic Buyer Role">
         <p class="primary">Economic Buyer</p>
         <p class="secondary">Controls the budget and makes the financial decision</p>
         <p class="tertiary">Cares about: ROI, risk mitigation, strategic alignment</p>
     </TwoPartSlide>
 
-    <!-- Slide 11: Technical Buyer -->
-    <TwoPartSlide id="11" title="Technical Buyer Role">
+    <!-- Slide 12: Technical Buyer -->
+    <TwoPartSlide id="12" narrationKey="12" title="Technical Buyer Role">
         <p class="primary">Technical Buyer</p>
         <p class="secondary">Evaluates fit with existing systems</p>
         <p class="tertiary">Cares about: Security, integration complexity, maintenance burden</p>
     </TwoPartSlide>
 
-    <!-- Slide 12: Different Concerns -->
-    <StandardSlide id="12" title="Different Concerns">
+    <!-- Slide 13: Different Concerns -->
+    <StandardSlide id="13" narrationKey="13" title="Different Concerns">
         <h2>Each Role Has Different Concerns</h2>
         <ul class="content-list">
             <li><strong>End User:</strong> "Will this make my job easier?"</li>
@@ -252,13 +265,13 @@ import Slide from '../../components/presentation/Slide.astro';
         <p style="margin-top: 1.5rem; color: var(--theme-color); font-family: var(--font-display);">You need to address ALL of these.</p>
     </StandardSlide>
 
-    <!-- Slide 13: Step 13 Header -->
-    <StatementSlide id="13" section="Step 13: Acquisition Process" title="Map Acquisition Process">
+    <!-- Slide 14: Step 13 Header -->
+    <StatementSlide id="14" narrationKey="14" section="Step 13: Acquisition Process" title="Map Acquisition Process">
         Step 13: <span class="accent">Map the Acquisition Process</span>
     </StatementSlide>
 
-    <!-- Slide 14: Funnel -->
-    <StandardSlide id="14" title="The Acquisition Funnel" type="visual">
+    <!-- Slide 15: Funnel -->
+    <StandardSlide id="15" narrationKey="15" title="The Acquisition Funnel" type="visual">
         <div style="max-width: 400px; margin: 2rem auto;">
             <!-- Added delays manually for funnel items -->
             <div class="funnel-stage" style="width: 100%; transition-delay: 200ms;">Awareness</div>
@@ -275,22 +288,22 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </StandardSlide>
 
-    <!-- Slide 15: Awareness -->
-    <TwoPartSlide id="15" title="Awareness Stage">
+    <!-- Slide 16: Awareness -->
+    <TwoPartSlide id="16" narrationKey="16" title="Awareness Stage">
         <p class="primary">Awareness</p>
         <p class="secondary">How do they discover you exist?</p>
         <p class="tertiary">What triggers the search? Where do they look?</p>
     </TwoPartSlide>
 
-    <!-- Slide 16: Evaluation -->
-    <TwoPartSlide id="16" title="Evaluation Stage">
+    <!-- Slide 17: Evaluation -->
+    <TwoPartSlide id="17" narrationKey="17" title="Evaluation Stage">
         <p class="primary">Evaluation</p>
         <p class="secondary">How do they compare options?</p>
         <p class="tertiary">What criteria matter? What evidence do they need?</p>
     </TwoPartSlide>
 
-    <!-- Slide 17: Stage Questions -->
-    <StandardSlide id="17" title="Questions for Each Stage">
+    <!-- Slide 18: Stage Questions -->
+    <StandardSlide id="18" narrationKey="18" title="Questions for Each Stage">
         <h2>For Every Stage, Ask:</h2>
         <ul class="content-list">
             <li>How do they move to this stage?</li>
@@ -300,8 +313,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </ul>
     </StandardSlide>
 
-    <!-- Slide 18: B2B vs B2C -->
-    <StandardSlide id="18" title="B2B vs B2C" type="visual">
+    <!-- Slide 19: B2B vs B2C -->
+    <StandardSlide id="19" narrationKey="19" title="B2B vs B2C" type="visual">
         <ComparisonGrid>
             <ComparisonCard title="B2C" delay="200">
                 <ul>
@@ -323,15 +336,15 @@ import Slide from '../../components/presentation/Slide.astro';
         <p class="caption">Know which world you're in.</p>
     </StandardSlide>
 
-    <!-- Slide 19: Sales Cycle -->
-    <StandardSlide id="19" title="Sales Cycle Time" type="visual">
+    <!-- Slide 20: Sales Cycle -->
+    <StandardSlide id="20" narrationKey="20" title="Sales Cycle Time" type="visual">
         <div class="big-number">3-6 months</div>
         <p class="context">Typical B2B sales cycle for new vendors</p>
         <p style="margin-top: 0.5rem; color: var(--text-muted);">Plan accordingly.</p>
     </StandardSlide>
 
-    <!-- Slide 20: Workshop -->
-    <StandardSlide id="20" section="Workshop" title="Workshop: 25 Minutes" type="visual">
+    <!-- Slide 21: Workshop -->
+    <StandardSlide id="21" narrationKey="21" section="Workshop" title="Workshop: 25 Minutes" type="visual">
         <div class="workshop-box">
             <ul>
                 <li>Complete DMU map (10 min)</li>
@@ -341,8 +354,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </StandardSlide>
 
-    <!-- Slide 21: Remember -->
-    <StandardSlide id="21" section="Closing" title="Remember">
+    <!-- Slide 22: Remember -->
+    <StandardSlide id="22" narrationKey="22" section="Closing" title="Remember">
         <ul class="content-list">
             <li>The buyer is often not the user</li>
             <li>Unknown stakeholders kill deals</li>
@@ -351,8 +364,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </ul>
     </StandardSlide>
 
-    <!-- Slide 22: Homework -->
-    <StandardSlide id="22" title="Before Next Week" type="visual">
+    <!-- Slide 23: Homework -->
+    <StandardSlide id="23" narrationKey="23" title="Before Next Week" type="visual">
         <div class="homework-list">
             <div class="homework-item">
                 <span class="homework-icon">🗺️</span>
@@ -373,8 +386,8 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </StandardSlide>
 
-    <!-- Slide 23: Next Week -->
-    <TwoPartSlide id="23" title="Next Week">
+    <!-- Slide 24: Next Week -->
+    <TwoPartSlide id="24" narrationKey="24" title="Next Week">
         <p class="primary">Next Week: Business Model & Pricing</p>
         <p class="secondary">How will you capture value? What will you charge?</p>
         <div style="margin-top: 50px; padding: 20px 30px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; display: inline-block;">
@@ -384,7 +397,7 @@ import Slide from '../../components/presentation/Slide.astro';
 
     <!-- ===== APPENDIX SLIDES ===== -->
 
-    <Slide title="DMU Role Details" appendix={true}>
+    <Slide id="appendix-dmu-roles" title="DMU Role Details" appendix={true}>
         <div class="slide-content">
             <h2>DMU Role Details</h2>
             <div style="max-width: 800px; margin: 30px auto; text-align: left;">
@@ -406,7 +419,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <Slide title="B2B Sales Cycle" appendix={true}>
+    <Slide id="appendix-b2b-sales" title="B2B Sales Cycle" appendix={true}>
         <div class="slide-content">
             <h2>Typical B2B Sales Cycle Stages</h2>
             <div style="max-width: 700px; margin: 30px auto;">
@@ -430,7 +443,7 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <Slide title="Champion Strategy" appendix={true}>
+    <Slide id="appendix-champion-strategy" title="Champion Strategy" appendix={true}>
         <div class="slide-content">
             <h2>Building a Champion Strategy</h2>
             <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
@@ -459,5 +472,5 @@ import Slide from '../../components/presentation/Slide.astro';
         </div>
     </Slide>
 
-    <script is:inline src="/class-5-customer-acquisition/scripts.js"></script>
+    <script is:inline src={`${base}class-5-customer-acquisition/scripts.js`}></script>
 </PresentationLayout>

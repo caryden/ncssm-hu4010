@@ -24,6 +24,7 @@ const {
   section,
   appendix = false,
   visualization,
+  narrationKey,
   class: className,
 } = Astro.props;
 
@@ -41,6 +42,7 @@ const slideClasses = [
   data-section={section}
   data-appendix={appendix ? 'true' : undefined}
   data-visualization={visualization}
+  data-narration-key={narrationKey}
 >
   <slot />
 </div>

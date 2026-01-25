@@ -1,0 +1,239 @@
+{
+  "classNumber": 6,
+  "topic": "business-model",
+  "generatedAt": "2026-01-24T23:16:36.864Z",
+  "voiceId": "Rachel",
+  "audioPath": "audio/class-6/",
+  "slides": {
+    "1": {
+      "audioFile": "slide-1.mp3",
+      "narrationTextHash": "b08037d2641b6053",
+      "slideSignature": {
+        "number": 1,
+        "type": "slide-title",
+        "title": "How Do You Make Money?"
+      },
+      "status": "current"
+    },
+    "2": {
+      "audioFile": "slide-2.mp3",
+      "narrationTextHash": "c9272d55de1ba42a",
+      "slideSignature": {
+        "number": 2,
+        "type": "slide-statement",
+        "title": "Theme 4"
+      },
+      "status": "current"
+    },
+    "3": {
+      "audioFile": "slide-3.mp3",
+      "narrationTextHash": "3d0b4b06a5721b64",
+      "slideSignature": {
+        "number": 3,
+        "type": "slide-two-part",
+        "title": "Adobe"
+      },
+      "status": "current"
+    },
+    "4": {
+      "audioFile": "slide-4.mp3",
+      "narrationTextHash": "673ae48a64213a1e",
+      "slideSignature": {
+        "number": 4,
+        "type": "slide-two-part",
+        "title": "The Shift"
+      },
+      "status": "current"
+    },
+    "5": {
+      "audioFile": "slide-5.mp3",
+      "narrationTextHash": "3e5a05c9ab0b22f9",
+      "slideSignature": {
+        "number": 5,
+        "type": "slide-content",
+        "title": "The Result"
+      },
+      "status": "current"
+    },
+    "6": {
+      "audioFile": "slide-6.mp3",
+      "narrationTextHash": "abf362728821bf5a",
+      "slideSignature": {
+        "number": 6,
+        "type": "slide-statement",
+        "title": "Key Insight"
+      },
+      "status": "current"
+    },
+    "7": {
+      "audioFile": "slide-7.mp3",
+      "narrationTextHash": "c628c9c51ec6c544",
+      "slideSignature": {
+        "number": 7,
+        "type": "slide-statement",
+        "title": "Step 14 Intro"
+      },
+      "status": "current"
+    },
+    "8": {
+      "audioFile": "slide-8.mp3",
+      "narrationTextHash": "59fee0720e905d9c",
+      "slideSignature": {
+        "number": 8,
+        "type": "slide-two-part",
+        "title": "Market Expansion"
+      },
+      "status": "current"
+    },
+    "9": {
+      "audioFile": "slide-9.mp3",
+      "narrationTextHash": "b7dd03e8a881af58",
+      "slideSignature": {
+        "number": 9,
+        "type": "slide-content",
+        "title": "Adjacent Markets"
+      },
+      "status": "current"
+    },
+    "10": {
+      "audioFile": "slide-10.mp3",
+      "narrationTextHash": "747573966bd839a5",
+      "slideSignature": {
+        "number": 10,
+        "type": "slide-statement",
+        "title": "Step 15 Intro"
+      },
+      "status": "current"
+    },
+    "11": {
+      "audioFile": "slide-11.mp3",
+      "narrationTextHash": "da51ed8a29917e26",
+      "slideSignature": {
+        "number": 11,
+        "type": "slide-two-part",
+        "title": "Business Model Definition"
+      },
+      "status": "current"
+    },
+    "12": {
+      "audioFile": "slide-12.mp3",
+      "narrationTextHash": "c1532c0ff1d938a7",
+      "slideSignature": {
+        "number": 12,
+        "type": "slide-content",
+        "title": "8 Common Business Models"
+      },
+      "status": "current"
+    },
+    "13": {
+      "audioFile": "slide-13.mp3",
+      "narrationTextHash": "bd06fba65ea29ae4",
+      "slideSignature": {
+        "number": 13,
+        "type": "slide-content",
+        "title": "One-Time vs Subscription"
+      },
+      "status": "current"
+    },
+    "14": {
+      "audioFile": "slide-14.mp3",
+      "narrationTextHash": "01ec72901061041d",
+      "slideSignature": {
+        "number": 14,
+        "type": "slide-two-part",
+        "title": "Freemium"
+      },
+      "status": "current"
+    },
+    "15": {
+      "audioFile": "slide-15.mp3",
+      "narrationTextHash": "4d41ba4d756cce23",
+      "slideSignature": {
+        "number": 15,
+        "type": "slide-two-part",
+        "title": "Marketplace"
+      },
+      "status": "current"
+    },
+    "16": {
+      "audioFile": "slide-16.mp3",
+      "narrationTextHash": "becaeaa7c03a2162",
+      "slideSignature": {
+        "number": 16,
+        "type": "slide-statement",
+        "title": "Step 16 Intro"
+      },
+      "status": "current"
+    },
+    "17": {
+      "audioFile": "slide-17.mp3",
+      "narrationTextHash": "6afdc6ce8c8bed65",
+      "slideSignature": {
+        "number": 17,
+        "type": "slide-content",
+        "title": "Three Pricing Approaches"
+      },
+      "status": "current"
+    },
+    "18": {
+      "audioFile": "slide-18.mp3",
+      "narrationTextHash": "7ff29f14e208adc0",
+      "slideSignature": {
+        "number": 18,
+        "type": "slide-two-part",
+        "title": "10x Rule"
+      },
+      "status": "current"
+    },
+    "19": {
+      "audioFile": "slide-19.mp3",
+      "narrationTextHash": "ccb2d3e8edda4a96",
+      "slideSignature": {
+        "number": 19,
+        "type": "slide-content",
+        "title": "The Pricing Tiers Pattern"
+      },
+      "status": "current"
+    },
+    "20": {
+      "audioFile": "slide-20.mp3",
+      "narrationTextHash": "4446d5a7e7505b16",
+      "slideSignature": {
+        "number": 20,
+        "type": "slide-content",
+        "title": "Workshop: 25 Minutes"
+      },
+      "status": "current"
+    },
+    "21": {
+      "audioFile": "slide-21.mp3",
+      "narrationTextHash": "5d3717984d83a43a",
+      "slideSignature": {
+        "number": 21,
+        "type": "slide-content",
+        "title": "Remember"
+      },
+      "status": "current"
+    },
+    "22": {
+      "audioFile": "slide-22.mp3",
+      "narrationTextHash": "34628af590f023bb",
+      "slideSignature": {
+        "number": 22,
+        "type": "slide-content",
+        "title": "Before Next Week"
+      },
+      "status": "current"
+    },
+    "23": {
+      "audioFile": "slide-23.mp3",
+      "narrationTextHash": "2817c211cccc62e8",
+      "slideSignature": {
+        "number": 23,
+        "type": "slide-two-part",
+        "title": "Next Week"
+      },
+      "status": "current"
+    }
+  }
+}

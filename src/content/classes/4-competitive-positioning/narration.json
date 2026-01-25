@@ -1,0 +1,154 @@
+{
+  "classNumber": 4,
+  "topic": "competitive-positioning",
+  "voice": "Rachel",
+  "model": "eleven_multilingual_v2",
+  "generatedFrom": "class-4-competitive-positioning/scripts.js",
+  "slides": {
+    "1": {
+      "ssml": "Welcome to Class 4: Finding Your Unfair Advantage. <break time=\"0.3s\"/> Tonight we're covering Customers, Core, and Competition. <break time=\"0.3s\"/> These are Steps 9, 10, and 11 in the Disciplined Entrepreneurship framework.",
+      "plainText": "Welcome to Class 4: Finding Your Unfair Advantage. Tonight we're covering Customers, Core, and Competition. These are Steps 9, 10, and 11 in the Disciplined Entrepreneurship framework.",
+      "estimatedDuration": null
+    },
+    "2": {
+      "ssml": "Here's something every entrepreneur must remember. <break time=\"0.5s\"/> You're not building in a vacuum. <break time=\"0.3s\"/> Customers have alternatives. Competitors are watching. The market doesn't wait for you.",
+      "plainText": "Here's something every entrepreneur must remember. You're not building in a vacuum. Customers have alternatives. Competitors are watching. The market doesn't wait for you.",
+      "estimatedDuration": null
+    },
+    "3": {
+      "ssml": "Tonight we answer three crucial questions. <break time=\"0.3s\"/> First: Who specifically will buy from you? Not segments—actual names. <break time=\"0.3s\"/> Second: What makes you impossible to copy? <break time=\"0.3s\"/> Third: Why will you win against the alternatives?",
+      "plainText": "Tonight we answer three crucial questions. First: Who specifically will buy from you? Not segments—actual names. Second: What makes you impossible to copy? Third: Why will you win against the alternatives?",
+      "estimatedDuration": null
+    },
+    "4": {
+      "ssml": "Let me tell you about Dell. <break time=\"0.5s\"/> In 2005, Dell was unstoppable. The world's largest PC maker. Legendary supply chain efficiency. \"Build to order\" was revolutionary. <break time=\"0.3s\"/> Everyone wanted to be like Dell.",
+      "plainText": "Let me tell you about Dell. In 2005, Dell was unstoppable. The world's largest PC maker. Legendary supply chain efficiency. \"Build to order\" was revolutionary. Everyone wanted to be like Dell.",
+      "estimatedDuration": null
+    },
+    "5": {
+      "ssml": "Fast forward to 2024. <break time=\"0.5s\"/> Dell: 70 billion dollar market cap. Apple: 3 TRILLION dollars. <break time=\"0.3s\"/> What happened? How did the market leader become an also-ran?",
+      "plainText": "Fast forward to 2024. Dell: 70 billion dollar market cap. Apple: 3 TRILLION dollars. What happened? How did the market leader become an also-ran?",
+      "estimatedDuration": null
+    },
+    "6": {
+      "ssml": "Here's the lesson. <break time=\"0.5s\"/> Dell's core was copiable. Supply chain efficiency can be replicated. <break time=\"0.3s\"/> Apple's core creates lock-in. Ecosystem plus design plus brand. <break time=\"0.3s\"/> One could be copied. The other couldn't.",
+      "plainText": "Here's the lesson. Dell's core was copiable. Supply chain efficiency can be replicated. Apple's core creates lock-in. Ecosystem plus design plus brand. One could be copied. The other couldn't.",
+      "estimatedDuration": null
+    },
+    "7": {
+      "ssml": "Let's start with Step 9: Identify Your Next 10 Customers. <break time=\"0.3s\"/> Not hypothetical customers. Real people you can call this week.",
+      "plainText": "Let's start with Step 9: Identify Your Next 10 Customers. Not hypothetical customers. Real people you can call this week.",
+      "estimatedDuration": null
+    },
+    "8": {
+      "ssml": "Here's the difference between market research and sales pipeline. <break time=\"0.3s\"/> It's easy to say \"restaurant owners would want this.\" <break time=\"0.5s\"/> It's much harder to NAME ten specific restaurant owners who'd actually buy it. <break time=\"0.3s\"/> That's the test.",
+      "plainText": "Here's the difference between market research and sales pipeline. It's easy to say \"restaurant owners would want this.\" It's much harder to NAME ten specific restaurant owners who'd actually buy it. That's the test.",
+      "estimatedDuration": null
+    },
+    "9": {
+      "ssml": "What makes a good target customer? <break time=\"0.3s\"/> They match your persona in demographics and psychographics. They have the problem—demonstrated, not assumed. They're accessible—you can reach them now. They're early adopter types, willing to try new things. And they could become paying customers—they have budget and authority.",
+      "plainText": "What makes a good target customer? They match your persona in demographics and psychographics. They have the problem—demonstrated, not assumed. They're accessible—you can reach them now. They're early adopter types, willing to try new things. And they could become paying customers—they have budget and authority.",
+      "estimatedDuration": null
+    },
+    "10": {
+      "ssml": "Where do you find these customers? <break time=\"0.3s\"/> Start with your personal network—friends, family, their connections. Use LinkedIn and professional networks. Attend industry events and meetups. Search online communities like Reddit, Discord, and forums. And when all else fails, cold outreach works too—it's harder, but possible.",
+      "plainText": "Where do you find these customers? Start with your personal network—friends, family, their connections. Use LinkedIn and professional networks. Attend industry events and meetups. Search online communities like Reddit, Discord, and forums. And when all else fails, cold outreach works too—it's harder, but possible.",
+      "estimatedDuration": null
+    },
+    "11": {
+      "ssml": "Here's your action item. <break time=\"0.5s\"/> Start with your three most accessible targets. <break time=\"0.3s\"/> Reach out this week. Not next month. This week.",
+      "plainText": "Here's your action item. Start with your three most accessible targets. Reach out this week. Not next month. This week.",
+      "estimatedDuration": null
+    },
+    "12": {
+      "ssml": "Now Step 10: Define Your Core. <break time=\"0.3s\"/> This is about building your unfair advantage.",
+      "plainText": "Now Step 10: Define Your Core. This is about building your unfair advantage.",
+      "estimatedDuration": null
+    },
+    "13": {
+      "ssml": "What is your Core? <break time=\"0.5s\"/> The ONE thing you do better than anyone else that is ALSO hard to copy. <break time=\"0.3s\"/> Not one or the other. Both. Better AND defensible.",
+      "plainText": "What is your Core? The ONE thing you do better than anyone else that is ALSO hard to copy. Not one or the other. Both. Better AND defensible.",
+      "estimatedDuration": null
+    },
+    "14": {
+      "ssml": "The VRIO test helps you evaluate whether you have a true core. <break time=\"0.3s\"/> V for Valuable: Does the customer actually care about this? R for Rare: Is it uncommon in your market? I for Inimitable: Is it hard to copy? O for Organized: Can you actually leverage it? <break time=\"0.5s\"/> All four must be YES for a true core advantage.",
+      "plainText": "The VRIO test helps you evaluate whether you have a true core. V for Valuable: Does the customer actually care about this? R for Rare: Is it uncommon in your market? I for Inimitable: Is it hard to copy? O for Organized: Can you actually leverage it? All four must be YES for a true core advantage.",
+      "estimatedDuration": null
+    },
+    "15": {
+      "ssml": "What can qualify as a core? <break time=\"0.3s\"/> Network effects—more users make the product more valuable. Proprietary technology that's hard to replicate. Cost advantage from structural efficiency. Customer lock-in through switching costs. Unique expertise your team brings. Key relationships with suppliers or partners. Brand recognition and trust. And data that improves your product over time.",
+      "plainText": "What can qualify as a core? Network effects—more users make the product more valuable. Proprietary technology that's hard to replicate. Cost advantage from structural efficiency. Customer lock-in through switching costs. Unique expertise your team brings. Key relationships with suppliers or partners. Brand recognition and trust. And data that improves your product over time.",
+      "estimatedDuration": null
+    },
+    "16": {
+      "ssml": "Let's distinguish features from core. <break time=\"0.3s\"/> Features that are NOT core: \"fast delivery,\" \"easy to use,\" \"great customer service,\" \"best price.\" These can be copied in six months. <break time=\"0.5s\"/> Core advantages that ARE defensible: \"proprietary logistics network,\" \"deep UX research methodology,\" \"community-driven support,\" \"structural cost advantage.\" These take years to build.",
+      "plainText": "Let's distinguish features from core. Features that are NOT core: \"fast delivery,\" \"easy to use,\" \"great customer service,\" \"best price.\" These can be copied in six months. Core advantages that ARE defensible: \"proprietary logistics network,\" \"deep UX research methodology,\" \"community-driven support,\" \"structural cost advantage.\" These take years to build.",
+      "estimatedDuration": null
+    },
+    "17": {
+      "ssml": "The Flywheel Effect is one of the most powerful forms of core. <break time=\"0.3s\"/> More users lead to better data, which leads to a better product, which attracts more users. <break time=\"0.3s\"/> Uber, Google, and Facebook all built flywheels. Once spinning, they're almost impossible to stop.",
+      "plainText": "The Flywheel Effect is one of the most powerful forms of core. More users lead to better data, which leads to a better product, which attracts more users. Uber, Google, and Facebook all built flywheels. Once spinning, they're almost impossible to stop.",
+      "estimatedDuration": null
+    },
+    "18": {
+      "ssml": "Here's an honest truth. <break time=\"0.5s\"/> Most startups don't have a core yet. <break time=\"0.3s\"/> That's okay. You're not supposed to have it on day one. <break time=\"0.3s\"/> Your job is to build one over time. Start with what you have and invest in making it defensible.",
+      "plainText": "Here's an honest truth. Most startups don't have a core yet. That's okay. You're not supposed to have it on day one. Your job is to build one over time. Start with what you have and invest in making it defensible.",
+      "estimatedDuration": null
+    },
+    "19": {
+      "ssml": "Now Step 11: Chart Your Competitive Position. <break time=\"0.3s\"/> Understanding where you stand in the market.",
+      "plainText": "Now Step 11: Chart Your Competitive Position. Understanding where you stand in the market.",
+      "estimatedDuration": null
+    },
+    "20": {
+      "ssml": "There are two types of competitors you need to track. <break time=\"0.3s\"/> Direct competitors: same solution, same customers. They're doing exactly what you're doing. <break time=\"0.3s\"/> Indirect competitors: different solution, same problem. They solve the customer's problem in a different way.",
+      "plainText": "There are two types of competitors you need to track. Direct competitors: same solution, same customers. They're doing exactly what you're doing. Indirect competitors: different solution, same problem. They solve the customer's problem in a different way.",
+      "estimatedDuration": null
+    },
+    "21": {
+      "ssml": "But here's what most founders forget. <break time=\"0.5s\"/> Your biggest competitor is often \"do nothing.\" <break time=\"0.3s\"/> The status quo. The spreadsheet. The manual workaround. <break time=\"0.3s\"/> Inertia is powerful. Overcoming \"good enough\" is often harder than beating a competitor.",
+      "plainText": "But here's what most founders forget. Your biggest competitor is often \"do nothing.\" The status quo. The spreadsheet. The manual workaround. Inertia is powerful. Overcoming \"good enough\" is often harder than beating a competitor.",
+      "estimatedDuration": null
+    },
+    "22": {
+      "ssml": "The 2x2 positioning matrix is a powerful visualization tool. <break time=\"0.3s\"/> Pick two dimensions that matter to your customers and differentiate you. <break time=\"0.3s\"/> Plot yourself and your competitors. <break time=\"0.3s\"/> Look for white space—areas where no strong competitor exists but customers want to be served.",
+      "plainText": "The 2x2 positioning matrix is a powerful visualization tool. Pick two dimensions that matter to your customers and differentiate you. Plot yourself and your competitors. Look for white space—areas where no strong competitor exists but customers want to be served.",
+      "estimatedDuration": null
+    },
+    "23": {
+      "ssml": "That's the goal. <break time=\"0.5s\"/> Find your white space. <break time=\"0.3s\"/> The intersection of \"no strong competitor exists\" AND \"customers want to be served here.\" <break time=\"0.3s\"/> That's where you win.",
+      "plainText": "That's the goal. Find your white space. The intersection of \"no strong competitor exists\" AND \"customers want to be served here.\" That's where you win.",
+      "estimatedDuration": null
+    },
+    "24": {
+      "ssml": "Now, every investor will ask you three questions. <break time=\"0.4s\"/> Why This? Is this problem worth solving? Is it big enough, painful enough? <break time=\"0.3s\"/> Why Now? What has changed to make this the right moment? This is the most often forgotten—and most important question. <break time=\"0.3s\"/> And Why Us? Why is your team uniquely positioned to win? <break time=\"0.4s\"/> If you can't answer all three convincingly, investors will pass.",
+      "plainText": "Now, every investor will ask you three questions. Why This? Is this problem worth solving? Is it big enough, painful enough? Why Now? What has changed to make this the right moment? This is the most often forgotten—and most important question. And Why Us? Why is your team uniquely positioned to win? If you can't answer all three convincingly, investors will pass.",
+      "estimatedDuration": null
+    },
+    "25": {
+      "ssml": "Let's dig deeper into \"Why Now.\" <break time=\"0.4s\"/> What has changed to create this opportunity? <break time=\"0.3s\"/> Technology shifts like AI, mobile, cloud, or sensors. Regulatory changes—new laws or deregulation. Cultural shifts like remote work, sustainability, or changing trust patterns. Economic shifts such as inflation or budget pressures. Demographic shifts like an aging population or Gen Z coming of age. <break time=\"0.5s\"/> If this is such a good idea, why hasn't someone done it already? <break time=\"0.3s\"/> You need a compelling answer to that question.",
+      "plainText": "Let's dig deeper into \"Why Now.\" What has changed to create this opportunity? Technology shifts like AI, mobile, cloud, or sensors. Regulatory changes—new laws or deregulation. Cultural shifts like remote work, sustainability, or changing trust patterns. Economic shifts such as inflation or budget pressures. Demographic shifts like an aging population or Gen Z coming of age. If this is such a good idea, why hasn't someone done it already? You need a compelling answer to that question.",
+      "estimatedDuration": null
+    },
+    "26": {
+      "ssml": "Time for the workshop. <break time=\"0.3s\"/> You have 30 minutes total. <break time=\"0.5s\"/> First ten minutes: identify your ten potential customers by name, with contact information. Next ten minutes: define your core—what makes you both better AND defensible. Final ten minutes: build your competitive positioning chart.",
+      "plainText": "Time for the workshop. You have 30 minutes total. First ten minutes: identify your ten potential customers by name, with contact information. Next ten minutes: define your core—what makes you both better AND defensible. Final ten minutes: build your competitive positioning chart.",
+      "estimatedDuration": null
+    },
+    "27": {
+      "ssml": "Let's recap what to remember. <break time=\"0.3s\"/> Ten customers means real names, not abstract segments. Your core is a defensible advantage, not just features. Everyone has competitors, including \"do nothing.\" And position yourself where customers actually want to be served.",
+      "plainText": "Let's recap what to remember. Ten customers means real names, not abstract segments. Your core is a defensible advantage, not just features. Everyone has competitors, including \"do nothing.\" And position yourself where customers actually want to be served.",
+      "estimatedDuration": null
+    },
+    "28": {
+      "ssml": "Before next week. <break time=\"0.3s\"/> Complete your list of ten customers with a contact plan for each. Write a core statement—one paragraph explaining your unfair advantage. Create your competitive positioning chart. And read chapters 12 and 13 from Disciplined Entrepreneurship.",
+      "plainText": "Before next week. Complete your list of ten customers with a contact plan for each. Write a core statement—one paragraph explaining your unfair advantage. Create your competitive positioning chart. And read chapters 12 and 13 from Disciplined Entrepreneurship.",
+      "estimatedDuration": null
+    },
+    "29": {
+      "ssml": "Next week we start Theme 3: How does your customer acquire your product? <break time=\"0.3s\"/> We'll cover the Decision-Making Unit and the Acquisition Process. <break time=\"0.3s\"/> The question we'll answer: How do customers actually decide to buy? <break time=\"0.3s\"/> See you then.",
+      "plainText": "Next week we start Theme 3: How does your customer acquire your product? We'll cover the Decision-Making Unit and the Acquisition Process. The question we'll answer: How do customers actually decide to buy? See you then.",
+      "estimatedDuration": null
+    }
+  }
+}

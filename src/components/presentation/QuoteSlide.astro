@@ -21,11 +21,12 @@ const {
   title,
   attribution,
   section,
+  narrationKey,
   class: className,
 } = Astro.props;
 ---
 
-<Slide id={id} type="quote" title={title} section={section} class={className}>
+<Slide id={id} type="quote" title={title} section={section} narrationKey={narrationKey} class={className}>
   <div class="slide-content">
     <blockquote>
       <slot />

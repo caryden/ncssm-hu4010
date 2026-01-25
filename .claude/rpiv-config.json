@@ -1,0 +1,124 @@
+{
+  "version": "2.0",
+  "framework": "astro",
+  "narration": {
+    "provider": "elevenlabs",
+    "voiceId": "configurable",
+    "model": "eleven_multilingual_v2",
+    "defaultVoice": "Rachel",
+    "outputFormat": "mp3_44100_128",
+    "captionsEnabled": true
+  },
+  "research": {
+    "defaultSources": [
+      "3Blue1Brown",
+      "Khan Academy",
+      "MIT OpenCourseWare",
+      "Coursera",
+      "edX"
+    ],
+    "requireMinSources": 2,
+    "requireMinMisconceptions": 3,
+    "requireMinVizPatterns": 1
+  },
+  "validation": {
+    "strictMode": true,
+    "minFontSize": "1rem",
+    "preferredLabelSize": "1.25rem",
+    "requiredElements": [
+      "toc-overlay",
+      "keyboard-hints",
+      "progress-bar",
+      "slide-navigation"
+    ],
+    "requiredSlideTypes": [
+      "slide-title",
+      "slide-content",
+      "slide-visual"
+    ]
+  },
+  "astro": {
+    "componentPath": "src/components/presentation",
+    "layoutPath": "src/layouts/PresentationLayout.astro",
+    "pagesPath": "src/pages",
+    "contentPath": "src/content",
+    "collectionsPath": "src/content/classes"
+  },
+  "gates": {
+    "gate1": {
+      "name": "Lesson Plan Alignment",
+      "description": "Objectives align with course plan",
+      "required": true
+    },
+    "gate2": {
+      "name": "Spec Achievement",
+      "description": "Spec achieves lesson objectives",
+      "required": true
+    },
+    "gate3": {
+      "name": "Implementation Match",
+      "description": "Presentation matches spec",
+      "required": true
+    },
+    "gate4": {
+      "name": "Verification",
+      "description": "Did we build the thing right?",
+      "required": true
+    },
+    "gate5": {
+      "name": "Validation",
+      "description": "Did we build the right thing?",
+      "required": true
+    }
+  },
+  "blocking": {
+    "lesson-plan": ["course-plan.md"],
+    "presentation-spec": ["lesson-plan.md"],
+    "presentation": ["presentation-spec.md"],
+    "reviewlog": ["presentation.astro"],
+    "narration": ["presentation.astro"],
+    "audio": ["narration.json", "audio-manifest.json"]
+  },
+  "paths": {
+    "courseArtifacts": ".",
+    "classContent": "src/content/classes/{n}-{topic}",
+    "classPages": "src/pages/class-{n}-{topic}",
+    "visualizations": "src/scripts/visualizations",
+    "audioOutput": "public/audio/class-{n}",
+    "legacy": {
+      "classArtifacts": "class-{n}-{topic}",
+      "note": "Legacy paths - migrate to new structure with /structure-migrate"
+    }
+  },
+  "artifacts": {
+    "perClass": {
+      "content": [
+        "lesson-plan.md",
+        "presentation-spec.md",
+        "narration.json",
+        "audio-manifest.json"
+      ],
+      "pages": [
+        "presentation.astro"
+      ],
+      "audio": [
+        "slide-*.mp3"
+      ]
+    },
+    "courseLevel": {
+      "path": "src/content/design",
+      "files": [
+        "syllabus.mdx",
+        "presentation-spec.mdx",
+        "course-plan.mdx",
+        "curriculum-research.mdx"
+      ]
+    }
+  },
+  "audioSync": {
+    "hashAlgorithm": "sha256",
+    "hashLength": 16,
+    "checkOnBuild": true,
+    "warnOnStale": true
+  }
+}

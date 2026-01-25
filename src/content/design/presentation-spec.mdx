@@ -1,0 +1,351 @@
+---
+title: "Master Presentation Specification"
+description: "Design system, styling guidelines, and technical specifications for all course presentations"
+docType: "spec"
+order: 4
+brandIntegration: "NCSSM official brand guidelines + modern startup aesthetic"
+---
+
+## Overview
+
+This document defines the common styling, fonts, layout, and technical guidelines for all presentations in the Applications in Entrepreneurship course. Each class-specific presentation spec should reference this document for consistency.
+
+**Brand Integration:** This spec combines NCSSM's official brand guidelines with a modern startup aesthetic appropriate for entrepreneurship education.
+
+---
+
+## NCSSM Brand Reference
+
+Based on [NCSSM's official branding kit](https://brand.ncssm.edu/):
+
+- **Primary Colors:** Royal Blue and Gray (School colors: "Royal and Gray")
+- **Brand Blue:** Chambray Blue `#356093`
+- **Typography:** Montserrat (primary), Georgia (secondary), Verdana (fallback)
+- **Mascot:** Unicorns
+- **Style:** Clean, professional, academically rigorous with innovation energy
+
+---
+
+## Design Philosophy
+
+### NCSSM + Startup Aesthetic
+- **Dark mode** primary design - reduces eye strain, modern feel, focuses attention
+- **NCSSM Royal Blue** as primary accent - connects to school identity
+- **Bold, confident typography** - using Montserrat for headings, Georgia for body
+- **Dynamic animations** - purposeful motion that reinforces learning
+- **Clean, minimal chrome** - content is the hero
+- **Accessible** - keyboard navigation, high contrast, semantic HTML
+
+### Visual Principles
+1. **Contrast** - Dark backgrounds with NCSSM blue and bright text
+2. **Hierarchy** - Use scale (3.5rem → 1.5rem) not just color for importance
+3. **Whitespace** - Generous padding, centered max-width containers
+4. **Consistency** - Same patterns across all presentations
+5. **Academic Credibility** - Professional feel befitting NCSSM's reputation
+
+---
+
+## Color Palette
+
+```css
+:root {
+  /* ===== NCSSM Brand Colors ===== */
+  --ncssm-blue: #356093;           /* Official Chambray Blue */
+  --ncssm-blue-light: #4a7ab8;     /* Lighter variant */
+  --ncssm-blue-dark: #264570;      /* Darker variant */
+  --ncssm-blue-glow: rgba(53, 96, 147, 0.4);
+  --ncssm-gray: #6b7280;           /* Brand gray */
+  --ncssm-gray-light: #9ca3af;     /* Light gray */
+  --ncssm-gray-dark: #4b5563;      /* Dark gray */
+
+  /* ===== Backgrounds (Dark Mode) ===== */
+  --bg-primary: #0c1220;           /* Main slide - deep blue-black */
+  --bg-secondary: #141c2e;         /* Cards, sidebar - blue-tinted dark */
+  --bg-tertiary: #1c2640;          /* Nested content, code blocks */
+  --bg-hover: #243352;             /* Interactive hover states */
+
+  /* ===== Text ===== */
+  --text-primary: #ffffff;         /* Main headings, emphasis */
+  --text-secondary: #b8c4d6;       /* Body text, descriptions (blue-tinted) */
+  --text-tertiary: #6b7a94;        /* Captions, metadata */
+  --text-dim: #4a5568;             /* Inactive, placeholder */
+
+  /* ===== Primary Accent (NCSSM Blue) ===== */
+  --accent: #356093;               /* Primary accent - NCSSM Chambray Blue */
+  --accent-bright: #4a7ab8;        /* Bright variant for hover/emphasis */
+  --accent-glow: rgba(53, 96, 147, 0.4);
+
+  /* ===== Secondary Accent (Entrepreneurship Gold) ===== */
+  --accent-secondary: #d4a028;     /* Gold - innovation, success, energy */
+  --accent-secondary-bright: #e8b84a;
+  --accent-secondary-glow: rgba(212, 160, 40, 0.3);
+
+  /* ===== Status Colors ===== */
+  --success: #22c55e;              /* Green - positive, growth, validation */
+  --warning: #f59e0b;              /* Amber - caution, attention */
+  --danger: #ef4444;               /* Red - risk, problems, failure */
+  --info: #356093;                 /* NCSSM Blue - information */
+
+  /* ===== Gradients ===== */
+  --gradient-hero: linear-gradient(135deg, #356093 0%, #d4a028 100%);
+  --gradient-ncssm: linear-gradient(135deg, #264570 0%, #4a7ab8 100%);
+  --gradient-text: linear-gradient(135deg, #ffffff 0%, #d4a028 100%);
+  --gradient-dark: linear-gradient(180deg, #0c1220 0%, #141c2e 100%);
+}
+```
+
+---
+
+## Typography
+
+### Fonts (NCSSM Brand Guidelines)
+```css
+/* Primary font - headings and display (NCSSM: Montserrat) */
+--font-display: 'Montserrat', Verdana, -apple-system, BlinkMacSystemFont, sans-serif;
+
+/* Secondary font - body text (NCSSM: Georgia) */
+--font-body: 'Georgia', 'Times New Roman', serif;
+
+/* Monospace - numbers, data, code */
+--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+```
+
+### Minimum Font Sizes (Classroom Readability)
+
+**Context:** These presentations are delivered on ~80" TVs in classrooms (students 10-30 feet away) AND simultaneously over Zoom to the Morganton campus. All text must be readable in both contexts.
+
+| Element Type | Minimum Size | Notes |
+|--------------|--------------|-------|
+| **Titles/Headlines** | `2.5rem` (40px) | Slide titles, section headers |
+| **Primary Content** | `1.5rem` (24px) | Main text, bullet points, key messages |
+| **Secondary Content** | `1.25rem` (20px) | Supporting text, descriptions |
+| **Labels & Captions** | `1.25rem` (20px) | Chart labels, diagram annotations, D3 text |
+| **Absolute Minimum** | `1rem` (16px) | Only for non-essential metadata (e.g., keyboard hints) |
+
+**Critical Rules:**
+1. **No pixel values under 16px** - Ever. For any visible text.
+2. **Use rem units** - Scales properly with browser/display settings
+3. **D3 visualizations** - All `.attr('font-size', ...)` must use rem: `'1.25rem'` minimum
+4. **Chart labels** - Must be readable from back of room; prefer `1.25rem` or larger
+5. **Test readability** - Preview on actual classroom TV before final delivery
+
+---
+
+## Slide Types
+
+1. **Title Slide** (`.slide-title`)
+   - Large title, subtitle, course branding
+   - Used for: Course title, chapter intros
+
+2. **Statement Slide** (`.slide-statement`)
+   - Single powerful statement
+   - Used for: Key concepts, memorable quotes
+
+3. **Two-Part Slide** (`.slide-two-part`)
+   - Primary + secondary text, optional icon
+   - Used for: Definitions, explanations
+
+4. **Visual Slide** (`.slide-visual`)
+   - Title + large visualization area + caption
+   - Used for: Charts, diagrams, animations
+
+5. **List Slide** (`.slide-list`)
+   - Heading + bullet points (animated entrance)
+   - Used for: Steps, principles, criteria
+
+6. **Comparison Slide** (`.slide-comparison`)
+   - Two columns for contrast
+   - Used for: Before/after, good/bad, problem/solution
+
+7. **Quote Slide** (`.slide-quote`)
+   - Large quote + attribution
+   - Used for: Expert quotes, inspiration
+
+8. **Number Slide** (`.slide-number`)
+   - Big statistic + context
+   - Used for: Market size, metrics, data points
+
+9. **Exercise Slide** (`.slide-exercise`)
+   - Interactive prompt for class activity
+   - Used for: Workshops, group work
+
+---
+
+## Responsive D3 Visualizations (CRITICAL)
+
+**Problem:** Presentations are viewed on different screen sizes and resolutions (80" classroom TVs, laptop screens, Zoom windows). Hardcoded pixel values cause clipping, overlap, and layout issues.
+
+**Solution:** All D3 visualizations MUST be fully responsive using these techniques:
+
+### 1. Use viewBox for SVG Scaling
+```javascript
+// GOOD - Responsive SVG that scales to container
+const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+    // Do NOT set width/height attributes - let viewBox handle scaling
+
+// BAD - Fixed size that won't adapt
+const svg = d3.select(container)
+    .append('svg')
+    .attr('width', 800)
+    .attr('height', 400);
+```
+
+### 2. Calculate Positions as Proportions
+```javascript
+// GOOD - Proportional positioning
+const center = { x: width * 0.5, y: height * 0.5 };
+const nodeRadius = Math.min(width, height) * 0.07;  // 7% of smallest dimension
+const ringDistance = Math.min(width, height) * 0.35;  // 35% from center
+
+// BAD - Hardcoded pixels
+const center = { x: 350, y: 190 };
+const nodeRadius = 50;
+const ringDistance = 130;
+```
+
+### 3. Standard Responsive Pattern
+```javascript
+function drawVisualization() {
+    const container = document.getElementById('my-viz');
+    if (!container || container.querySelector('svg')) return;
+
+    // Define logical coordinate space (viewBox dimensions)
+    const width = 700;
+    const height = 500;
+
+    // Create responsive SVG
+    const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // Calculate all positions as proportions
+    const scale = Math.min(width, height);
+    const center = { x: width / 2, y: height / 2 };
+    const nodeSize = scale * 0.08;
+    const fontSize = scale * 0.03;
+
+    // Draw elements using proportional values
+    svg.append('circle')
+        .attr('cx', center.x)
+        .attr('cy', center.y)
+        .attr('r', nodeSize);
+
+    svg.append('text')
+        .attr('font-size', `${Math.max(fontSize, 14)}px`);  // Floor for readability
+}
+```
+
+---
+
+## Keyboard Navigation
+
+All presentations support these keyboard shortcuts:
+
+| Key | Action |
+|-----|--------|
+| `← →` | Previous/Next slide |
+| `↑ ↓` | Previous/Next slide (or appendix slide when appendix is open) |
+| `Space` | Next slide |
+| `Home` | First slide |
+| `End` | Last slide |
+| `T` | Toggle Table of Contents (TOC) overlay from left |
+| `S` | Return to course syllabus (index.html) |
+| `A` | Toggle Appendix overlay from right |
+| `F` | Toggle fullscreen |
+| `Escape` | Close any open overlay |
+| `Enter` | Close appendix overlay (alternative to Escape) |
+
+---
+
+## DE Framework Theme Colors
+
+The 6 themes of Disciplined Entrepreneurship, styled to complement NCSSM brand:
+
+```css
+/* Theme colors - each represents one of the 6 fundamental questions */
+--theme-1-customer: #356093;      /* NCSSM Blue - Who is your customer? */
+--theme-2-value: #7c3aed;         /* Purple - What can you do? */
+--theme-3-acquire: #059669;       /* Emerald - How do they acquire? */
+--theme-4-money: #d4a028;         /* Gold - How make money? */
+--theme-5-build: #dc2626;         /* Red - How design & build? */
+--theme-6-scale: #0891b2;         /* Cyan - How scale? */
+```
+
+**Theme Color Usage:**
+- Theme 1 uses NCSSM Blue to anchor the framework in school identity
+- Theme 4 (money) uses the gold secondary accent
+- Other themes provide visual variety while maintaining harmony with brand
+
+---
+
+## Common Diagrams to Include
+
+1. **Market Segmentation Matrix** - Grid with segments rated on criteria
+2. **Persona Card** - Visual profile of target customer
+3. **Customer Journey Map** - Full life cycle visualization
+4. **Competitive Position Chart** - 2x2 matrix or spider chart
+5. **Business Model Canvas** - DE Canvas adaptation
+6. **Unit Economics Calculator** - LTV/COCA visualization
+7. **Assumption Matrix** - Risk vs. impact grid
+8. **Product Roadmap** - Timeline visualization
+
+---
+
+## Accessibility Requirements
+
+1. **Color contrast** - Minimum 4.5:1 ratio for text
+2. **Focus indicators** - Visible focus states for keyboard nav
+3. **Alt text** - All images and visualizations described
+4. **Semantic HTML** - Proper heading hierarchy, landmarks
+5. **Reduced motion** - Respect `prefers-reduced-motion` media query
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+---
+
+## Branding Elements
+
+### NCSSM Identity
+
+| Element | Value |
+|---------|-------|
+| Primary Color | Chambray Blue `#356093` |
+| Secondary Color | Gray family |
+| Typography | Montserrat + Georgia |
+| Mascot | Unicorns |
+| School Colors | Royal Blue and Gray |
+
+### Course Title
+**Applications in Entrepreneurship**
+Subtitle: Based on Bill Aulet's Disciplined Entrepreneurship
+
+### Title Slide Template
+```
+[NCSSM Logo]
+
+Applications in Entrepreneurship
+Class [N]: [Topic]
+Based on Bill Aulet's Disciplined Entrepreneurship
+
+[Instructor Name] | [Date]
+```
+
+---
+
+## Sources
+
+- [NCSSM Branding Kit](https://brand.ncssm.edu/)
+- [NCSSM Fonts and Colors](https://brand.ncssm.edu/fonts-and-colors)
+- [NCSSM Logos](https://brand.ncssm.edu/logos)
+- [Disciplined Entrepreneurship Framework](https://www.d-eship.com/)
