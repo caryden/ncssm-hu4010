@@ -33,14 +33,14 @@ Read `.claude/rpiv-config.json` to understand:
 
 ### Step 2: Check Course-Level Artifacts
 
-Scan for existence and completeness of:
+Scan for existence and completeness of design documents in `src/content/design/`:
 
 | Artifact | Expected Path | Required For |
 |----------|---------------|--------------|
-| Research | `curriculum-design-research.md` | course-plan |
-| Course Plan | `course-plan.md` | lesson-plans |
-| Syllabus | `SYLLABUS.md` | class-research |
-| Master Spec | `master-presentation-spec.md` | presentations |
+| Research | `src/content/design/curriculum-research.mdx` | course-plan |
+| Course Plan | `src/content/design/course-plan.mdx` | lesson-plans |
+| Syllabus | `src/content/design/syllabus.mdx` | class-research |
+| Master Spec | `src/content/design/presentation-spec.mdx` | presentations |
 | Config | `.claude/rpiv-config.json` | everything |
 
 For each artifact:

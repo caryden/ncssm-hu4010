@@ -105,12 +105,15 @@
         "slide-*.mp3"
       ]
     },
-    "courseLevel": [
-      "SYLLABUS.md",
-      "master-presentation-spec.md",
-      "course-plan.md",
-      "curriculum-design-research.md"
-    ]
+    "courseLevel": {
+      "path": "src/content/design",
+      "files": [
+        "syllabus.mdx",
+        "presentation-spec.mdx",
+        "course-plan.mdx",
+        "curriculum-research.mdx"
+      ]
+    }
   },
   "audioSync": {
     "hashAlgorithm": "sha256",

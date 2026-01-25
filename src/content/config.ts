@@ -2,6 +2,38 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
+ * Design documents collection - course-level design and planning docs
+ * Located at: src/content/design/*.mdx
+ */
+const designCollection = defineCollection({
+  loader: glob({ pattern: '*.mdx', base: './src/content/design' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    docType: z.enum(['research', 'plan', 'syllabus', 'spec']),
+    order: z.number(),
+    // Optional metadata fields
+    generated: z.coerce.date().optional(),
+    version: z.string().optional(),
+    date: z.coerce.date().optional(),
+    semester: z.string().optional(),
+    course: z.string().optional(),
+    courseCode: z.string().optional(),
+    institution: z.string().optional(),
+    targetAudience: z.string().optional(),
+    basedOn: z.string().optional(),
+    guestInstructor: z.string().optional(),
+    ncssmInstructor: z.string().optional(),
+    schedule: z.string().optional(),
+    workSessions: z.string().optional(),
+    duration: z.string().optional(),
+    location: z.string().optional(),
+    classSize: z.string().optional(),
+    brandIntegration: z.string().optional(),
+  }),
+});
+
+/**
  * Narration slide schema - represents one slide's narration content
  */
 const narrationSlideSchema = z.object({
@@ -63,6 +95,7 @@ const audioManifestCollection = defineCollection({
 });
 
 export const collections = {
+  design: designCollection,
   narration: narrationCollection,
   'audio-manifest': audioManifestCollection,
 };
