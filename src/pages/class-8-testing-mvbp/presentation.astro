@@ -489,27 +489,28 @@ const base = import.meta.env.BASE_URL;
     </style>
 
     <!-- Slide 1: Title -->
-    <TitleSlide 
-        id="1" 
-        section="Opening" 
+    <TitleSlide
+        id="1"
+        narrationKey="1"
+        section="Opening"
         title="Prove It"
         subtitle="Testing Assumptions & MVBP"
         info="Class 8 | DE Steps 20, 21, 22, 23"
     />
 
     <!-- WELCOME BACK -->
-    <StatementSlide id="2" title="Welcome Back">
+    <StatementSlide id="2" narrationKey="2" title="Welcome Back">
         Welcome back from Spring Break!
         <p class="secondary" style="margin-top: 30px;">Let's finish strong.</p>
     </StatementSlide>
 
     <!-- NEW THEME -->
-    <StatementSlide id="3" title="Theme 5">
+    <StatementSlide id="3" narrationKey="3" title="Theme 5">
         Theme 5: <span class="accent">How Do You Design and Build?</span>
     </StatementSlide>
 
     <!-- CRITICAL SHIFT -->
-    <StandardSlide id="4" title="The Critical Shift" type="visual">
+    <StandardSlide id="4" narrationKey="4" title="The Critical Shift" type="visual">
         <h2 style="text-align: center; margin-bottom: 30px;">The Critical Shift</h2>
         <div class="comparison-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 30px auto;">
             <div class="comparison-side left" style="background: linear-gradient(135deg, rgba(100, 100, 100, 0.1) 0%, transparent 100%); border: 1px solid rgba(100, 100, 100, 0.3); padding: 40px; border-radius: 20px; text-align: center;">
@@ -529,7 +530,7 @@ const base = import.meta.env.BASE_URL;
     </StandardSlide>
 
     <!-- DROPBOX STORY -->
-    <StandardSlide id="5" section="Story" title="Dropbox Problem" type="visual">
+    <StandardSlide id="5" narrationKey="5" section="Story" title="Dropbox Problem" type="visual">
         <h2>2007: Drew Houston Had an Idea</h2>
         <div class="story-cards">
             <div class="story-card">
@@ -547,7 +548,7 @@ const base = import.meta.env.BASE_URL;
         </div>
     </StandardSlide>
 
-    <StandardSlide id="6" title="Dropbox Test" type="visual">
+    <StandardSlide id="6" narrationKey="6" title="Dropbox Test" type="visual">
         <h2>Instead of Building, He Tested</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 800px; margin: 40px auto; align-items: center;">
             <div style="text-align: center;">
@@ -565,7 +566,7 @@ const base = import.meta.env.BASE_URL;
         <p style="text-align: center; margin-top: 30px; font-size: 1.5rem; color: var(--theme-color); font-weight: 600;">No product. Just validation.</p>
     </StandardSlide>
 
-    <StandardSlide id="7" title="Tonight's Mission">
+    <StandardSlide id="7" narrationKey="7" title="Tonight's Mission">
         <h2>Tonight We'll Learn To...</h2>
         <ul class="content-list">
             <li>Identify what we're <strong>assuming</strong></li>
@@ -576,11 +577,44 @@ const base = import.meta.env.BASE_URL;
     </StandardSlide>
 
     <!-- STEP 20: ASSUMPTIONS -->
-    <StatementSlide id="8" section="Step 20" title="Step 20 Intro">
+    <StatementSlide id="8" narrationKey="8" section="Step 20" title="Step 20 Intro">
         Step 20: <span class="accent">Identify Key Assumptions</span>
     </StatementSlide>
 
-    <StandardSlide id="9" title="Assumption Matrix" type="visual">
+    <!-- Slide 9: Humble Truth -->
+    <TwoPartSlide id="9" narrationKey="9" title="Humble Truth">
+        <p class="primary">Your business plan is a collection of beliefs.</p>
+        <p class="secondary">Until tested, they're just guesses.</p>
+        <p class="tertiary" style="margin-top: 40px;">The entrepreneurs who succeed test their assumptions <span class="accent">fastest</span>.</p>
+    </TwoPartSlide>
+
+    <!-- Slide 10: What Are You Assuming -->
+    <StandardSlide id="10" narrationKey="10" title="What Are You Assuming" type="visual">
+        <h2>Five Categories of Assumptions</h2>
+        <div class="categories-grid">
+            <IconCard icon="👤" title="Customer" delay="100">"They have this problem"</IconCard>
+            <IconCard icon="💎" title="Value" delay="200">"Our solution solves it"</IconCard>
+            <IconCard icon="🔧" title="Product" delay="300">"We can build this"</IconCard>
+            <IconCard icon="💰" title="Business" delay="400">"This pricing works"</IconCard>
+            <IconCard icon="⚔️" title="Competition" delay="500">"We can win"</IconCard>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: var(--text-secondary);">Every one of these is a guess until tested.</p>
+    </StandardSlide>
+
+    <!-- Slide 11: Challenge Everything -->
+    <StandardSlide id="11" narrationKey="11" title="Challenge Everything">
+        <h2>Question Every Assumption</h2>
+        <ul class="content-list">
+            <li>"They have this problem" → <strong>Have you witnessed it?</strong></li>
+            <li>"They'll pay $X" → <strong>Have they paid for similar?</strong></li>
+            <li>"We can build this" → <strong>Do you have the skills?</strong></li>
+            <li>"We can reach them" → <strong>Have you actually tried?</strong></li>
+        </ul>
+        <p style="text-align: center; margin-top: 40px; color: var(--theme-color); font-weight: 600;">Be your own harshest critic.</p>
+    </StandardSlide>
+
+    <!-- Slide 12: Assumption Matrix -->
+    <StandardSlide id="12" narrationKey="12" title="Assumption Matrix" type="visual">
         <div class="matrix-container">
             <div class="matrix-corner"></div>
             <div class="matrix-header">Low Impact</div>
@@ -608,121 +642,306 @@ const base = import.meta.env.BASE_URL;
         </div>
     </StandardSlide>
 
+    <!-- Slide 13: Food Delivery Example -->
+    <StandardSlide id="13" narrationKey="13" title="Example: Food Delivery App" type="visual">
+        <h2>Prioritizing Assumptions</h2>
+        <div class="assumption-table">
+            <div class="assumption-header">
+                <div>Assumption</div>
+                <div>Importance</div>
+                <div>Certainty</div>
+            </div>
+            <div class="assumption-row critical">
+                <div>"People will pay $5 delivery fee"</div>
+                <div style="color: var(--theme-color);">HIGH</div>
+                <div style="color: var(--theme-color);">LOW → Test</div>
+            </div>
+            <div class="assumption-row critical">
+                <div>"Drivers will be available"</div>
+                <div style="color: var(--theme-color);">HIGH</div>
+                <div style="color: var(--theme-color);">LOW → Test</div>
+            </div>
+            <div class="assumption-row normal">
+                <div>"Restaurants will partner"</div>
+                <div>HIGH</div>
+                <div>MEDIUM → Monitor</div>
+            </div>
+            <div class="assumption-row normal">
+                <div>"We can build the app"</div>
+                <div>MEDIUM</div>
+                <div>HIGH → Later</div>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 14: Workshop: Identify Assumptions -->
+    <StatementSlide id="14" narrationKey="14" title="Workshop: Assumptions">
+        <p style="font-size: 3rem; font-weight: 700;">Your Turn: Identify Assumptions</p>
+        <p class="secondary" style="margin-top: 30px;">15 minutes: List, rate importance &amp; certainty, prioritize</p>
+    </StatementSlide>
+
     <!-- STEP 21: TEST -->
-    <StatementSlide id="10" section="Step 21" title="Step 21 Intro">
+    <StatementSlide id="15" narrationKey="15" section="Step 21" title="Step 21 Intro">
         Step 21: <span class="accent">Test Key Assumptions</span>
     </StatementSlide>
 
-    <StandardSlide id="11" title="Testing Techniques" type="visual">
+    <!-- Slide 16: Good Experiments -->
+    <StandardSlide id="16" narrationKey="16" title="Good Experiments" type="visual">
+        <h2>What Makes a Good Test?</h2>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 900px; margin: 40px auto;">
+            <IconCard icon="⚡" title="Fast" delay="100">Days or weeks, not months</IconCard>
+            <IconCard icon="💵" title="Cheap" delay="200">Minimal resources</IconCard>
+            <IconCard icon="✅" title="Decisive" delay="300">Clear pass/fail</IconCard>
+            <IconCard icon="📊" title="Measurable" delay="400">Define metrics first</IconCard>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 17: Testing Toolkit -->
+    <StandardSlide id="17" narrationKey="17" title="Testing Toolkit" type="visual">
         <div class="techniques-grid">
             <TechniqueCard name="Landing Page" effort="low" effortLabel="Low" delay="100">
                 <p>Signups = Interest</p>
             </TechniqueCard>
-            <TechniqueCard name="Concierge" effort="medium" effortLabel="Medium" delay="200">
-                <p>Do it manually</p>
+            <TechniqueCard name="Customer Interviews" effort="low" effortLabel="Low" delay="150">
+                <p>Direct feedback</p>
             </TechniqueCard>
-            <TechniqueCard name="Wizard of Oz" effort="medium" effortLabel="Medium" delay="300">
+            <TechniqueCard name="Smoke Test" effort="low" effortLabel="Low" delay="200">
+                <p>Fake door test</p>
+            </TechniqueCard>
+            <TechniqueCard name="Wizard of Oz" effort="medium" effortLabel="Medium" delay="250">
                 <p>Fake the backend</p>
             </TechniqueCard>
-            <TechniqueCard name="Crowdfunding" effort="high" effortLabel="High" delay="400">
-                <p>Pre-sales</p>
+            <TechniqueCard name="Prototype" effort="medium" effortLabel="Medium" delay="300">
+                <p>Visual mockups</p>
             </TechniqueCard>
-            <TechniqueCard name="Mockups" effort="low" effortLabel="Low" delay="500">
-                <p>Visual feedback</p>
+            <TechniqueCard name="Concierge MVP" effort="high" effortLabel="High" delay="350">
+                <p>Manual delivery</p>
             </TechniqueCard>
-            <TechniqueCard name="Letter of Intent" effort="medium" effortLabel="Medium" delay="600">
-                <p>B2B Commitment</p>
-            </TechniqueCard>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: var(--text-secondary);">Start low effort, work your way up.</p>
+    </StandardSlide>
+
+    <!-- Slide 18: Landing Page Test -->
+    <StandardSlide id="18" narrationKey="18" title="Landing Page Test" type="visual">
+        <h2>The Landing Page Test</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 800px; margin: 40px auto;">
+            <div>
+                <h3 style="color: var(--theme-color); font-family: var(--font-display); margin-bottom: 20px;">How It Works</h3>
+                <ul class="content-list" style="font-size: 1.1rem;">
+                    <li>Build a page describing your product</li>
+                    <li>Drive traffic to it</li>
+                    <li>Measure the response</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: var(--success-green); font-family: var(--font-display); margin-bottom: 20px;">Key Metrics</h3>
+                <ul class="content-list" style="font-size: 1.1rem;">
+                    <li>Signup rate</li>
+                    <li>Engagement</li>
+                    <li>Time on page</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; color: var(--text-secondary);">Tests: Is there interest? Does the message resonate?</p>
+    </StandardSlide>
+
+    <!-- Slide 19: Smoke Test -->
+    <StandardSlide id="19" narrationKey="19" title="Smoke Test" type="visual">
+        <h2>The Smoke Test (Fake Door)</h2>
+        <div style="max-width: 700px; margin: 30px auto;">
+            <div style="background: var(--dark-surface); padding: 30px; border-radius: 16px; margin-bottom: 30px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">Create a "Buy Now" button that <span class="accent">doesn't actually work</span></p>
+                <p style="color: var(--text-secondary);">When clicked → apologize and explain you're testing interest</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 30px;">
+                <div style="flex: 1; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📊</div>
+                    <p style="color: var(--theme-color); font-weight: 600;">Metric</p>
+                    <p style="color: var(--text-secondary);">Click-through rate on purchase button</p>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">⚖️</div>
+                    <p style="color: var(--theme-color); font-weight: 600;">Ethics</p>
+                    <p style="color: var(--text-secondary);">Always apologize and explain afterward</p>
+                </div>
+            </div>
         </div>
     </StandardSlide>
 
-    <!-- STEP 22: MVBP -->
-    <StatementSlide id="12" section="Step 22" title="Step 22 Intro">
-        Step 22: <span class="accent">Define Your MVBP</span>
+    <!-- Slide 20: Wizard of Oz -->
+    <StandardSlide id="20" narrationKey="20" title="Wizard of Oz" type="visual">
+        <h2>The Wizard of Oz Test</h2>
+        <div style="max-width: 800px; margin: 30px auto;">
+            <p style="text-align: center; font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 40px;">Customers think it's automated—but <span class="accent">you're doing everything manually</span></p>
+            <div style="background: var(--dark-surface); padding: 40px; border-radius: 16px;">
+                <h3 style="color: var(--theme-color); font-family: var(--font-display); margin-bottom: 20px;">Famous Example: Zappos</h3>
+                <ul class="content-list" style="font-size: 1.1rem;">
+                    <li>Founder posted shoe photos online</li>
+                    <li>When someone ordered → went to store → bought shoes → shipped them</li>
+                    <li>Proved: people WILL buy shoes online</li>
+                </ul>
+                <p style="margin-top: 20px; color: var(--success-green); font-weight: 600;">No technology built. Just validation.</p>
+            </div>
+        </div>
+    </StandardSlide>
+
+    <!-- Slide 21: Pre-define Success -->
+    <StandardSlide id="21" narrationKey="21" title="Pre-define Success" type="visual">
+        <h2>Define Success BEFORE You Test</h2>
+        <div style="max-width: 700px; margin: 30px auto;">
+            <div class="threshold-item" style="transition-delay: 200ms;">
+                <span class="threshold-condition">"If 5% of landing page visitors sign up..."</span>
+                <span class="threshold-action">→ Proceed</span>
+            </div>
+            <div class="threshold-item" style="transition-delay: 400ms;">
+                <span class="threshold-condition">"If 3/10 interviewees mention the problem unprompted..."</span>
+                <span class="threshold-action">→ It's real</span>
+            </div>
+            <div class="threshold-item" style="transition-delay: 600ms;">
+                <span class="threshold-condition">"If 2% click 'Buy Now'..."</span>
+                <span class="threshold-action">→ There's demand</span>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; color: var(--theme-color); font-weight: 600; font-size: 1.3rem;">Otherwise you'll rationalize any result.</p>
+    </StandardSlide>
+
+    <!-- Slide 22: Workshop: Design Tests -->
+    <StatementSlide id="22" narrationKey="22" title="Workshop: Design Tests">
+        <p style="font-size: 3rem; font-weight: 700;">Your Turn: Design Your Tests</p>
+        <p class="secondary" style="margin-top: 30px;">15 minutes: Pick technique, design experiment, define success metric</p>
     </StatementSlide>
 
-    <TwoPartSlide id="13" title="MVP vs MVBP">
+    <!-- STEP 22-23: MVBP -->
+    <StatementSlide id="23" narrationKey="23" section="Steps 22-23" title="Steps 22-23 Intro">
+        Steps 22-23: <span class="accent">Define MVBP and Prove It</span>
+    </StatementSlide>
+
+    <!-- Slide 24: MVP vs MVBP -->
+    <TwoPartSlide id="24" narrationKey="24" title="MVP vs MVBP">
         <p class="primary">MVP vs MVBP</p>
         <p class="secondary">Minimum Viable <span class="accent">Business</span> Product</p>
-        <p class="tertiary">Not just a product feature set. A business transaction.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; max-width: 700px;">
+            <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px;">
+                <h4 style="color: var(--text-secondary); margin-bottom: 15px;">MVP</h4>
+                <p style="font-size: 0.95rem;">Minimum product that <em>works</em></p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary);">May be free. Validates technology.</p>
+            </div>
+            <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px; border: 1px solid var(--theme-color);">
+                <h4 style="color: var(--theme-color); margin-bottom: 15px;">MVBP</h4>
+                <p style="font-size: 0.95rem;">Minimum product people <em>PAY for</em></p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary);">Requires transaction. Validates business.</p>
+            </div>
+        </div>
     </TwoPartSlide>
 
-    <StandardSlide id="14" title="Three Conditions" type="visual">
+    <!-- Slide 25: MVBP Requirements -->
+    <StandardSlide id="25" narrationKey="25" title="MVBP Requirements" type="visual">
         <div class="mvbp-circles">
-            <div class="mvbp-circle value">Value to Customer</div>
-            <div class="mvbp-circle payment">Payment to You</div>
-            <div class="mvbp-circle feedback">Feedback Loop</div>
+            <div class="mvbp-circle value">Value</div>
+            <div class="mvbp-circle payment">Payment</div>
+            <div class="mvbp-circle feedback">Feedback</div>
             <div class="mvbp-center">MVBP</div>
         </div>
+        <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">All three are required.</p>
     </StandardSlide>
 
-    <StandardSlide id="15" title="MVBP Examples" type="visual">
+    <!-- Slide 26: Famous MVBPs -->
+    <StandardSlide id="26" narrationKey="26" title="Famous MVBPs" type="visual">
         <div class="examples-grid">
             <div class="example-card">
+                <div class="company">Dropbox</div>
+                <p class="description">A video and a waitlist.</p>
+                <p class="result">Proved demand existed.</p>
+            </div>
+            <div class="example-card">
                 <div class="company">Zappos</div>
-                <p class="description">Photos of shoes from local store. Bought at full price, mailed to customer.</p>
-                <p class="result">Proved demand without inventory.</p>
+                <p class="description">Photos + manual fulfillment.</p>
+                <p class="result">Proved online shoe buying.</p>
             </div>
             <div class="example-card">
                 <div class="company">Groupon</div>
-                <p class="description">WordPress blog + PDF coupons emailed manually.</p>
-                <p class="result">Proved "deal of the day" concept.</p>
+                <p class="description">Blog + PDF coupons.</p>
+                <p class="result">Proved local deals work.</p>
             </div>
             <div class="example-card">
                 <div class="company">Airbnb</div>
-                <p class="description">Air mattress in founders' apartment + breakfast.</p>
-                <p class="result">Proved strangers would stay in homes.</p>
+                <p class="description">Founders renting their apartment.</p>
+                <p class="result">Proved strangers would stay.</p>
             </div>
-            <div class="example-card">
-                <div class="company">Buffer</div>
-                <p class="description">Landing page → Pricing page → "We're not ready yet"</p>
-                <p class="result">Proved willingness to pay.</p>
-            </div>
+        </div>
+        <p style="text-align: center; margin-top: 20px; color: var(--theme-color);">None were fully built products. All were experiments.</p>
+    </StandardSlide>
+
+    <!-- Slide 27: Ultimate Test -->
+    <StatementSlide id="27" narrationKey="27" title="Ultimate Test">
+        You haven't validated until <span class="accent">strangers pay you real money</span>.
+        <p class="secondary" style="margin-top: 30px;">Not friends. Not family. Not "I would buy that."</p>
+    </StatementSlide>
+
+    <!-- Slide 28: Validation Ladder -->
+    <StandardSlide id="28" narrationKey="28" title="Validation Ladder" type="visual">
+        <h2>The Validation Ladder</h2>
+        <div class="visualization" id="validation-ladder"></div>
+    </StandardSlide>
+
+    <!-- Slide 29: MVBP Template -->
+    <StandardSlide id="29" narrationKey="29" title="MVBP Template" type="visual">
+        <h2>Define Your MVBP</h2>
+        <div class="template-box">
+            "Our MVBP is <span class="placeholder">[what]</span> that <span class="placeholder">[delivers this value]</span> for <span class="placeholder">[this price]</span> and teaches us <span class="placeholder">[this feedback]</span>."
+        </div>
+        <div style="background: var(--dark-surface); padding: 25px; border-radius: 12px; max-width: 800px; margin: 30px auto;">
+            <p style="color: var(--text-secondary); margin-bottom: 10px;">Example:</p>
+            <p style="font-size: 1.1rem;">"Our MVBP is a <span style="color: var(--theme-color);">manual tutoring matching service</span> that <span style="color: var(--theme-color);">connects students with tutors</span> for <span style="color: var(--theme-color);">$10/session</span> and teaches us <span style="color: var(--theme-color);">which subjects are most requested</span>."</p>
         </div>
     </StandardSlide>
 
-    <!-- STEP 23: NUMBERS -->
-    <StatementSlide id="16" section="Step 23" title="Step 23 Intro">
-        Step 23: <span class="accent">Show the Numbers</span>
-    </StatementSlide>
-
-    <TwoPartSlide id="17" title="Dog Food">
-        <p class="primary">"The dogs are eating the dog food"</p>
-        <p class="secondary">Metrics prove that you're not hallucinating.</p>
-    </TwoPartSlide>
-
-    <!-- WORKSHOP -->
-    <StandardSlide id="18" section="Workshop" title="Workshop: 25 Minutes">
-        <ul class="content-list">
-            <li>Map your assumptions (10 min)</li>
-            <li>Design one test (5 min)</li>
-            <li>Define your MVBP (10 min)</li>
-        </ul>
-    </StandardSlide>
-
     <!-- WRAP-UP -->
-    <StandardSlide id="19" section="Closing" title="Remember">
+    <!-- Slide 30: Theme Complete -->
+    <StandardSlide id="30" narrationKey="30" section="Closing" title="Theme Complete" type="visual">
+        <h2 style="text-align: center;">Theme 5 Complete!</h2>
+        <div style="text-align: center; margin-top: 40px;">
+            <svg width="300" height="300" viewBox="0 0 300 300" style="margin: 0 auto;">
+                <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="20"/>
+                <circle cx="150" cy="150" r="130" fill="none" stroke="var(--theme-color)" stroke-width="20"
+                        stroke-dasharray="340 544" stroke-dashoffset="136" stroke-linecap="round"/>
+                <text x="150" y="140" text-anchor="middle" fill="var(--text-primary)" font-size="16" font-family="Montserrat">Theme 5</text>
+                <text x="150" y="170" text-anchor="middle" fill="var(--theme-color)" font-size="20" font-weight="700" font-family="Montserrat">COMPLETE</text>
+            </svg>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-size: 1.3rem; color: var(--text-secondary);">
+            "How do you design and build?" <span style="color: var(--success-green);">✓</span>
+        </p>
+    </StandardSlide>
+
+    <!-- Slide 31: Remember -->
+    <StandardSlide id="31" narrationKey="31" title="Remember">
         <ul class="content-list">
-            <li>Identify highest risk assumptions</li>
-            <li>Test before investing engineering time</li>
-            <li>MVBP includes payment</li>
-            <li>Metrics trump opinions</li>
+            <li>Every business is built on assumptions—<strong>identify yours</strong></li>
+            <li>High importance + low certainty = <strong>test first</strong></li>
+            <li>MVBP requires <strong>value + payment + feedback</strong></li>
+            <li>Talk is cheap—<strong>payment is the only real validation</strong></li>
         </ul>
     </StandardSlide>
 
-    <StandardSlide id="20" title="Before Next Week">
+    <!-- Slide 32: Before Next Week -->
+    <StandardSlide id="32" narrationKey="32" title="Before Next Week">
         <ul class="content-list">
-            <li>Run your assumption test</li>
-            <li>Define MVBP features</li>
-            <li>Prepare for final pitch</li>
-            <li>Read: DE Chapter 23, 24</li>
+            <li>Complete your assumption matrix (top 3 risky)</li>
+            <li>Design a test for each risky assumption</li>
+            <li>Define your MVBP using the template</li>
+            <li>Run at least one test if possible</li>
+            <li>Read DE Ch. 24 + start pitch prep</li>
         </ul>
     </StandardSlide>
 
-    <TwoPartSlide id="21" title="Next Week">
-        <p class="primary">Next Week: Scale & Pitch</p>
-        <p class="secondary">Growth Strategy & Final Prep</p>
-        <p class="tertiary">Bringing it all together.</p>
+    <!-- Slide 33: Next Week -->
+    <TwoPartSlide id="33" narrationKey="33" title="Next Week">
+        <p class="primary">Next Week: How Do You Scale?</p>
+        <p class="secondary">Growth Strategy & Pitch Preparation</p>
+        <div style="margin-top: 50px; padding: 20px 30px; background: rgba(8, 145, 178, 0.1); border: 1px solid rgba(8, 145, 178, 0.3); border-radius: 12px; display: inline-block;">
+            <span style="color: #0891b2; font-weight: 600;">Final pitches in 2 weeks!</span>
+        </div>
     </TwoPartSlide>
 
     <!-- APPENDIX SLIDES -->
