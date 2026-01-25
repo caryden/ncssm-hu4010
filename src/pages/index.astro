@@ -47,15 +47,17 @@ function getSessionNumber(session: typeof sessions[0]): string {
 
 <MainLayout>
   <script define:vars={{ presentationSessions, base }}>
-    // Keyboard shortcuts: 0-9 to navigate to class presentations
+    // Keyboard shortcuts: 0-9 to navigate to class presentations, d for design
     document.addEventListener('keydown', (e) => {
-      const key = e.key;
+      const key = e.key.toLowerCase();
       if (key >= '0' && key <= '9') {
         const classNum = parseInt(key);
         const session = presentationSessions.find(s => s.number === classNum);
         if (session && session.presentationPath) {
           window.location.href = base + session.presentationPath;
         }
+      } else if (key === 'd') {
+        window.location.href = base + '/design';
       }
     });
   </script>
@@ -184,7 +186,10 @@ function getSessionNumber(session: typeof sessions[0]): string {
     <p class="footer-attribution">— Bill Aulet, MIT</p>
     <p class="keyboard-hint">
       <kbd>0</kbd>-<kbd>9</kbd> Jump to class
+      <span class="hint-separator">·</span>
+      <kbd>D</kbd> Design docs
     </p>
+    <a href={`${base}/design`} class="design-link">Instructor Design Documents →</a>
   </footer>
 </MainLayout>
 
@@ -513,6 +518,29 @@ function getSessionNumber(session: typeof sessions[0]): string {
     border: 1px solid var(--dark-border);
     border-radius: 4px;
     font-family: inherit;
+  }
+
+  .hint-separator {
+    margin: 0 12px;
+    color: var(--dark-border);
+  }
+
+  .design-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+  }
+
+  .design-link:hover {
+    border-color: var(--theme-2-purple);
+    color: var(--theme-2-purple);
   }
 
   /* Responsive */

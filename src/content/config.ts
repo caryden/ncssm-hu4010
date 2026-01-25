@@ -34,6 +34,17 @@ const designCollection = defineCollection({
 });
 
 /**
+ * Lesson plans collection - per-class teaching guides
+ * Located at: src/content/classes/{n}-{topic}/lesson-plan.md
+ */
+const lessonPlanCollection = defineCollection({
+  loader: glob({ pattern: '*/lesson-plan.md', base: './src/content/classes' }),
+  schema: z.object({
+    // Lesson plans use markdown without frontmatter, so we extract info from path
+  }).optional(),
+});
+
+/**
  * Narration slide schema - represents one slide's narration content
  */
 const narrationSlideSchema = z.object({
@@ -96,6 +107,7 @@ const audioManifestCollection = defineCollection({
 
 export const collections = {
   design: designCollection,
+  'lesson-plans': lessonPlanCollection,
   narration: narrationCollection,
   'audio-manifest': audioManifestCollection,
 };
