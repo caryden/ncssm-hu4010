@@ -101,15 +101,15 @@ const themeOverride = themeNumber
   <!-- D3.js for visualizations -->
   <script src="https://d3js.org/d3.v7.min.js" defer></script>
 
-  <!-- Presentation scripts -->
-  <script is:inline src={`${base}shared/narration.js`}></script>
-  <script is:inline src={`${base}shared/presentation.js`}></script>
-
-  <!-- Configure presentation with correct base URL for syllabus navigation -->
+  <!-- Configure base URLs BEFORE loading presentation scripts -->
   <script define:vars={{ syllabusUrl: base, lessonPlanUrl: hasLessonPlan ? `${base}design/lessons/${lessonPlanSlug}` : null }}>
     window.__SYLLABUS_URL__ = syllabusUrl;
     window.__LESSON_PLAN_URL__ = lessonPlanUrl;
   </script>
+
+  <!-- Presentation scripts (must come after URL configuration) -->
+  <script is:inline src={`${base}shared/narration.js`}></script>
+  <script is:inline src={`${base}shared/presentation.js`}></script>
 
   <!-- Lesson plan keyboard shortcut -->
   {hasLessonPlan && (
