@@ -1,14 +1,16 @@
 # AI-Assisted Course Design Experiment
 
-This repository is an experiment in **AI-assisted curriculum development**, exploring how Claude and other AI tools can collaborate with educators to design, build, and maintain educational content.
+> **[View the Live Course Site →](https://caryden.github.io/ncssm-hu4010)**
 
-The course itself is **Applications in Entrepreneurship** (HU4010) at the North Carolina School of Science and Mathematics, based on Bill Aulet's *Disciplined Entrepreneurship* framework from MIT.
+This repository is an experiment in **AI-assisted curriculum development**, exploring how [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and other AI tools can collaborate with educators to design, build, and maintain educational content.
+
+The course itself is **Applications in Entrepreneurship** (HU4010) at the [North Carolina School of Science and Mathematics (NCSSM)](https://www.ncssm.edu/), based on Bill Aulet's *[Disciplined Entrepreneurship](https://www.amazon.com/Disciplined-Entrepreneurship-24-Steps-Successful/dp/1118692284)* framework from [MIT](https://entrepreneurship.mit.edu/).
 
 ## What Makes This Different
 
 This isn't just a course website—it's a testbed for a new approach to curriculum development:
 
-1. **AI-Generated Content with Human Oversight**: Presentations, lesson plans, and design documents were developed through iterative collaboration between instructors and Claude.
+1. **AI-Generated Content with Human Oversight**: Presentations, lesson plans, and design documents were developed through iterative collaboration between instructors and [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
 2. **RPIV Workflow System**: A structured Research-Plan-Implement-Verify workflow ensures quality through defined gates and checklists.
 
@@ -45,7 +47,7 @@ ncssm-hu4010/
 ├── public/                       # Static assets
 ├── .claude/                      # Claude Code skills and config
 │   └── skills/                   # RPIV workflow skills
-├── CLAUDE.md                     # Instructions for Claude
+├── CLAUDE.md                     # Instructions for Claude Code
 └── master-presentation-spec.md   # Design system specification
 ```
 
@@ -56,9 +58,9 @@ ncssm-hu4010/
 - **[D3.js](https://d3js.org/)** - Data visualizations in presentations
 - **MDX** - Markdown with components for design documents
 
-## Working with Claude
+## Working with Claude Code
 
-This repository is designed to be maintained through conversation with Claude Code. The `CLAUDE.md` file contains detailed instructions that Claude follows when making changes.
+This repository is designed to be maintained through conversation with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Anthropic's agentic coding tool. The `CLAUDE.md` file contains detailed instructions that Claude Code follows when making changes.
 
 ### Common Tasks
 
@@ -121,7 +123,7 @@ The site is deployed to GitHub Pages automatically on push to `main`.
 ### For Instructors
 - Design documents capture the "why" behind every pedagogical choice
 - Lesson plans provide session-by-session guidance with timing
-- Easy updates through conversation with Claude
+- Easy updates through conversation with [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
 
 ### For AI Collaboration
 - Structured content makes context easy to gather
@@ -156,10 +158,10 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-- **Bill Aulet** and MIT for the Disciplined Entrepreneurship framework
-- **NCSSM** for supporting experimental approaches to education
-- **Anthropic** for Claude, which co-authored much of this content
+- **[Bill Aulet](https://mitsloan.mit.edu/faculty/directory/bill-aulet)** and [MIT Martin Trust Center for Entrepreneurship](https://entrepreneurship.mit.edu/) for the [Disciplined Entrepreneurship](https://www.d-eship.com/) framework
+- **[NCSSM](https://www.ncssm.edu/)** for supporting experimental approaches to education
+- **[Anthropic](https://www.anthropic.com/)** for [Claude Code](https://docs.anthropic.com/en/docs/claude-code), which co-authored much of this content
 
 ---
 
-*This README was collaboratively written by a human instructor and Claude.*
+*This README was collaboratively written by a human instructor and [Claude Code](https://docs.anthropic.com/en/docs/claude-code).*
